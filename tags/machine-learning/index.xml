@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Machine Learning on moskomule log</title>
-    <link>http://moskomule.github.io/tags/machine-learning/index.xml</link>
+    <link>http://mosko.tokyo/tags/machine-learning/index.xml</link>
     <description>Recent content in Machine Learning on moskomule log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>Written by Ryuichiro Hataya</copyright>
-    <atom:link href="http://moskomule.github.io/tags/machine-learning/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://mosko.tokyo/tags/machine-learning/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>scikit-learn, Xgboost そしてTensorFlow</title>
-      <link>http://moskomule.github.io/post/on-sklearn-xgboost-and-tensorflow/</link>
+      <link>http://mosko.tokyo/post/on-sklearn-xgboost-and-tensorflow/</link>
       <pubDate>Sat, 29 Oct 2016 00:16:01 +0900</pubDate>
       
-      <guid>http://moskomule.github.io/post/on-sklearn-xgboost-and-tensorflow/</guid>
+      <guid>http://mosko.tokyo/post/on-sklearn-xgboost-and-tensorflow/</guid>
       <description>
 
 &lt;p&gt;新しいもの好きなので色々と触ってはみるものの，必要とならないと理解しようとしないので結果的には無駄に時間を使ってしまう．研究でPythonの機械学習・ディープラーニングライブラリに触っているので備忘録に．&lt;/p&gt;

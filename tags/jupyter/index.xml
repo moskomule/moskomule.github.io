@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Jupyter on moskomule log</title>
-    <link>http://moskomule.github.io/tags/jupyter/index.xml</link>
+    <link>http://mosko.tokyo/tags/jupyter/index.xml</link>
     <description>Recent content in Jupyter on moskomule log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>Written by Ryuichiro Hataya</copyright>
-    <atom:link href="http://moskomule.github.io/tags/jupyter/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://mosko.tokyo/tags/jupyter/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Juliaに触ってみた</title>
-      <link>http://moskomule.github.io/post/julia-boxmuller/</link>
+      <link>http://mosko.tokyo/post/julia-boxmuller/</link>
       <pubDate>Sun, 23 Oct 2016 22:36:34 +0900</pubDate>
       
-      <guid>http://moskomule.github.io/post/julia-boxmuller/</guid>
+      <guid>http://mosko.tokyo/post/julia-boxmuller/</guid>
       <description>
 
 &lt;p&gt;我らがJupyterの&lt;strong&gt;Ju&lt;/strong&gt;,であるところのJupyterに触って，IPythonに相当するIJuliaを導入してJupyterから操作してみた．ちょっと触った感想は，強いR-lang．&lt;/p&gt;
@@ -101,10 +101,10 @@ plot(x=x,y=y)
     
     <item>
       <title>TensorflowでCNN入門</title>
-      <link>http://moskomule.github.io/post/started-CNN-with-Tensorflow/</link>
+      <link>http://mosko.tokyo/post/started-CNN-with-Tensorflow/</link>
       <pubDate>Wed, 19 Oct 2016 20:04:20 +0900</pubDate>
       
-      <guid>http://moskomule.github.io/post/started-CNN-with-Tensorflow/</guid>
+      <guid>http://mosko.tokyo/post/started-CNN-with-Tensorflow/</guid>
       <description>
 
 &lt;p&gt;いよいよDeep Learningからは逃れられない運命，真剣に向かい合わざるを得ないことを悟り，&lt;a href=&#34;https://github.com/alrojo/tensorflow-tutorial&#34;&gt;TensorFlow Tutorial-used by Nvidia&lt;/a&gt;を始めた．&lt;/p&gt;
@@ -178,10 +178,10 @@ ALTER TABLE TABLE_NAME ADD INDEX(id, name);
     
     <item>
       <title>Jupyterをサーバー上で使う</title>
-      <link>http://moskomule.github.io/post/using-Jupyter-on-an-external-server/</link>
+      <link>http://mosko.tokyo/post/using-Jupyter-on-an-external-server/</link>
       <pubDate>Wed, 31 Aug 2016 18:30:08 +0900</pubDate>
       
-      <guid>http://moskomule.github.io/post/using-Jupyter-on-an-external-server/</guid>
+      <guid>http://mosko.tokyo/post/using-Jupyter-on-an-external-server/</guid>
       <description>
 
 &lt;h1 id=&#34;2016-08-29&#34;&gt;2016-08-29&lt;/h1&gt;

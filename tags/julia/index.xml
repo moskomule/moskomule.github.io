@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Julia on moskomule log</title>
-    <link>http://moskomule.github.io/tags/julia/index.xml</link>
+    <link>http://mosko.tokyo/tags/julia/index.xml</link>
     <description>Recent content in Julia on moskomule log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>Written by Ryuichiro Hataya</copyright>
-    <atom:link href="http://moskomule.github.io/tags/julia/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://mosko.tokyo/tags/julia/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Juliaに触ってみた</title>
-      <link>http://moskomule.github.io/post/julia-boxmuller/</link>
+      <link>http://mosko.tokyo/post/julia-boxmuller/</link>
       <pubDate>Sun, 23 Oct 2016 22:36:34 +0900</pubDate>
       
-      <guid>http://moskomule.github.io/post/julia-boxmuller/</guid>
+      <guid>http://mosko.tokyo/post/julia-boxmuller/</guid>
       <description>
 
 &lt;p&gt;我らがJupyterの&lt;strong&gt;Ju&lt;/strong&gt;,であるところのJupyterに触って，IPythonに相当するIJuliaを導入してJupyterから操作してみた．ちょっと触った感想は，強いR-lang．&lt;/p&gt;

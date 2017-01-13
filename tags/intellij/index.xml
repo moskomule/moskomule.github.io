@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Intellij on moskomule log</title>
-    <link>http://moskomule.github.io/tags/intellij/index.xml</link>
+    <link>http://mosko.tokyo/tags/intellij/index.xml</link>
     <description>Recent content in Intellij on moskomule log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>Written by Ryuichiro Hataya</copyright>
-    <atom:link href="http://moskomule.github.io/tags/intellij/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://mosko.tokyo/tags/intellij/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>MeCabのJavaバインドをIntelliJで使う．</title>
-      <link>http://moskomule.github.io/post/use-mecab-java-with-intelliJ/</link>
+      <link>http://mosko.tokyo/post/use-mecab-java-with-intelliJ/</link>
       <pubDate>Sat, 08 Oct 2016 19:57:29 +0900</pubDate>
       
-      <guid>http://moskomule.github.io/post/use-mecab-java-with-intelliJ/</guid>
+      <guid>http://mosko.tokyo/post/use-mecab-java-with-intelliJ/</guid>
       <description>
 
 &lt;h2 id=&#34;mecabのjavaバインドのセットアップ&#34;&gt;MeCabのJavaバインドのセットアップ&lt;/h2&gt;

@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Util on moskomule log</title>
-    <link>http://moskomule.github.io/tags/util/index.xml</link>
+    <link>http://mosko.tokyo/tags/util/index.xml</link>
     <description>Recent content in Util on moskomule log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>Written by Ryuichiro Hataya</copyright>
-    <atom:link href="http://moskomule.github.io/tags/util/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://mosko.tokyo/tags/util/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>dotfilesを公開</title>
-      <link>http://moskomule.github.io/post/dotfiles/</link>
+      <link>http://mosko.tokyo/post/dotfiles/</link>
       <pubDate>Sat, 12 Nov 2016 01:11:08 +0900</pubDate>
       
-      <guid>http://moskomule.github.io/post/dotfiles/</guid>
+      <guid>http://mosko.tokyo/post/dotfiles/</guid>
       <description>
 
 &lt;p&gt;研究室の人々もすなるdotfilesなるものを，我も公開してみんとてするなり．それの年のかむなつきの廿日あまり一日の，戌の時に部屋の人のいふやう，「&lt;a href=&#34;https://github.com/moskomule/.dotfiles&#34;&gt;dotfiles&lt;/a&gt;を見せよ」．&lt;/p&gt;

@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Python on moskomule log</title>
-    <link>http://moskomule.github.io/tags/python/index.xml</link>
+    <link>http://mosko.tokyo/tags/python/index.xml</link>
     <description>Recent content in Python on moskomule log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>Written by Ryuichiro Hataya</copyright>
-    <atom:link href="http://moskomule.github.io/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://mosko.tokyo/tags/python/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>scikit-learn, Xgboost そしてTensorFlow</title>
-      <link>http://moskomule.github.io/post/on-sklearn-xgboost-and-tensorflow/</link>
+      <link>http://mosko.tokyo/post/on-sklearn-xgboost-and-tensorflow/</link>
       <pubDate>Sat, 29 Oct 2016 00:16:01 +0900</pubDate>
       
-      <guid>http://moskomule.github.io/post/on-sklearn-xgboost-and-tensorflow/</guid>
+      <guid>http://mosko.tokyo/post/on-sklearn-xgboost-and-tensorflow/</guid>
       <description>
 
 &lt;p&gt;新しいもの好きなので色々と触ってはみるものの，必要とならないと理解しようとしないので結果的には無駄に時間を使ってしまう．研究でPythonの機械学習・ディープラーニングライブラリに触っているので備忘録に．&lt;/p&gt;
@@ -138,10 +138,10 @@ res = sess.run(fetches=[y],
     
     <item>
       <title>PythonでMySQLを使う</title>
-      <link>http://moskomule.github.io/post/python-and-mysql/</link>
+      <link>http://mosko.tokyo/post/python-and-mysql/</link>
       <pubDate>Sat, 22 Oct 2016 00:21:34 +0900</pubDate>
       
-      <guid>http://moskomule.github.io/post/python-and-mysql/</guid>
+      <guid>http://mosko.tokyo/post/python-and-mysql/</guid>
       <description>&lt;p&gt;現在開発しているものはScalaで前処理を行っているので，本番の処理も本当は全部Scalaで書ければよかったのだけれども，そうは問屋が卸さず，種々の原因によりPythonが必要になってしまった． これなら最初から全部Pythonでよかったのでは，とも思うけれど，PythonはJupyterで小さなものを色々弄るのには使うものの，大きいものをPythonで書いた経験が無いので心配．型が違う，という注意が沢山出そうだ．&lt;/p&gt;
 
 &lt;p&gt;ともかく，そのためにPythonからMySQLを扱う必要が出てきた．Pythonists3は新しいもの好きなのか，いまやNoSQLを使うのがトレンドなのか，MySQL周りの情報が少ないのだが，&lt;code&gt;pymysql&lt;/code&gt;を使うことに落ち着いた．&lt;/p&gt;
@@ -189,10 +189,10 @@ with connection.cursor() as cursor:
     
     <item>
       <title>TensorflowでCNN入門</title>
-      <link>http://moskomule.github.io/post/started-CNN-with-Tensorflow/</link>
+      <link>http://mosko.tokyo/post/started-CNN-with-Tensorflow/</link>
       <pubDate>Wed, 19 Oct 2016 20:04:20 +0900</pubDate>
       
-      <guid>http://moskomule.github.io/post/started-CNN-with-Tensorflow/</guid>
+      <guid>http://mosko.tokyo/post/started-CNN-with-Tensorflow/</guid>
       <description>
 
 &lt;p&gt;いよいよDeep Learningからは逃れられない運命，真剣に向かい合わざるを得ないことを悟り，&lt;a href=&#34;https://github.com/alrojo/tensorflow-tutorial&#34;&gt;TensorFlow Tutorial-used by Nvidia&lt;/a&gt;を始めた．&lt;/p&gt;
@@ -266,10 +266,10 @@ ALTER TABLE TABLE_NAME ADD INDEX(id, name);
     
     <item>
       <title>Jupyterをサーバー上で使う</title>
-      <link>http://moskomule.github.io/post/using-Jupyter-on-an-external-server/</link>
+      <link>http://mosko.tokyo/post/using-Jupyter-on-an-external-server/</link>
       <pubDate>Wed, 31 Aug 2016 18:30:08 +0900</pubDate>
       
-      <guid>http://moskomule.github.io/post/using-Jupyter-on-an-external-server/</guid>
+      <guid>http://mosko.tokyo/post/using-Jupyter-on-an-external-server/</guid>
       <description>
 
 &lt;h1 id=&#34;2016-08-29&#34;&gt;2016-08-29&lt;/h1&gt;

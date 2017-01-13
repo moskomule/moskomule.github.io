@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Nlp on moskomule log</title>
-    <link>http://moskomule.github.io/tags/nlp/index.xml</link>
+    <link>http://mosko.tokyo/tags/nlp/index.xml</link>
     <description>Recent content in Nlp on moskomule log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>Written by Ryuichiro Hataya</copyright>
-    <atom:link href="http://moskomule.github.io/tags/nlp/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://mosko.tokyo/tags/nlp/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>MeCabのJavaバインドをIntelliJで使う．</title>
-      <link>http://moskomule.github.io/post/use-mecab-java-with-intelliJ/</link>
+      <link>http://mosko.tokyo/post/use-mecab-java-with-intelliJ/</link>
       <pubDate>Sat, 08 Oct 2016 19:57:29 +0900</pubDate>
       
-      <guid>http://moskomule.github.io/post/use-mecab-java-with-intelliJ/</guid>
+      <guid>http://mosko.tokyo/post/use-mecab-java-with-intelliJ/</guid>
       <description>
 
 &lt;h2 id=&#34;mecabのjavaバインドのセットアップ&#34;&gt;MeCabのJavaバインドのセットアップ&lt;/h2&gt;
@@ -78,10 +78,10 @@ Exception in thread &amp;quot;main&amp;quot; java.lang.UnsatisfiedLinkError: no 
     
     <item>
       <title>JUMAN&#43;&#43; on Ubuntu</title>
-      <link>http://moskomule.github.io/post/juman-install/</link>
+      <link>http://mosko.tokyo/post/juman-install/</link>
       <pubDate>Wed, 05 Oct 2016 14:40:43 +0900</pubDate>
       
-      <guid>http://moskomule.github.io/post/juman-install/</guid>
+      <guid>http://mosko.tokyo/post/juman-install/</guid>
       <description>
 
 &lt;p&gt;日本語形態素解析には &lt;a href=&#34;https://taku910.github.io/mecab/&#34;&gt;MeCab&lt;/a&gt;を使ってきたが，京大の &lt;a href=&#34;http://nlp.ist.i.kyoto-u.ac.jp/index.php?JUMAN%2B%2B&#34;&gt;JUMAN++&lt;/a&gt;が進化してWikipediaやWiktionaryの用語を取り込んでMeCabを追い越した，とのことなのでインストールしてみた．&lt;/p&gt;
