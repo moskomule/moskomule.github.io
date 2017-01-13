@@ -1,0 +1,314 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+
+  
+  <meta charset="UTF-8">
+  <title>
+    JUMAN&#43;&#43; on Ubuntu | moskomule log
+  </title>
+
+
+  
+  <meta name="viewport" content="width=device-width,user-scalable=no,maximum-scale=1,initial-scale=1">
+
+  
+  <link rel="canonical" href="http://moskomule.github.io/post/juman-install/"/>
+
+  
+  <link rel="stylesheet" href="/css/sanitize.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+  <link rel="stylesheet" href="/css/highlight_monokai.css">
+  <link rel="stylesheet" href="/css/theme.css">
+  <link rel="stylesheet" href="/css/custom.css">
+  
+  
+  <link href="http://moskomule.github.io/index.xml" rel="alternate" type="application/rss+xml" title="moskomule log" />
+  <link href="http://moskomule.github.io/index.xml" rel="feed" type="application/rss+xml" title="moskomule log" />
+
+  
+  
+
+
+</head>
+
+
+
+<body>
+<div class="container">
+
+  
+  <header role="banner">
+    <div class="row gutters">
+      <div id="site-title" class="col span_6">
+        <h1><a href="http://moskomule.github.io/">moskomule log</a></h1>
+        <h2>carpe diem</h2>
+      </div>
+      <div id="social" class="col span_6">
+        <ul>
+          <li><a href="https://twitter.com/mosko_mule" target="_blank">Twitter</a></li>
+          
+          <li><a href="https://github.com/moskomule" target="_blank">GitHub</a></li>
+          <li><a href="http://moskomule.github.io/index.xml" type="application/rss+xml" target="_blank">RSS</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+
+  
+  <main id="single" role="main">
+    <div class="article-header">
+      <h1>JUMAN&#43;&#43; on Ubuntu</h1>
+      <div class="meta">
+        Oct 5, 2016 &nbsp;
+        
+          #<a href="/tags/nlp">NLP</a>&nbsp;
+        
+      </div>
+    </div>
+    <article>
+      
+
+<p>日本語形態素解析には <a href="https://taku910.github.io/mecab/">MeCab</a>を使ってきたが，京大の <a href="http://nlp.ist.i.kyoto-u.ac.jp/index.php?JUMAN%2B%2B">JUMAN++</a>が進化してWikipediaやWiktionaryの用語を取り込んでMeCabを追い越した，とのことなのでインストールしてみた．</p>
+
+<h2 id="インストール">インストール</h2>
+
+<ul>
+<li><p>必須ライブラリ</p>
+
+<ul>
+<li><p>gcc (4.9+)</p></li>
+
+<li><p>Boost C++ Libraries (1.57+)</p></li>
+</ul></li>
+
+<li><p>推奨ライブラリ</p>
+
+<ul>
+<li><p>gpreftool</p></li>
+
+<li><p>libunwind(gpreftoolを64bit環境で使用する場合)</p></li>
+</ul></li>
+</ul>
+
+<p>gccと推奨ライブラリは<code>apt-get install</code>で導入できたのだが，Boostは<code>apt-get</code>では1.57以上が入らなかったので，<a href="http://www.boost.org/">boost.org</a>から最新版を解凍して</p>
+
+<pre><code class="language-shell">
+cd boost_*
+
+sudo ./bootstrap.sh --prefix=&lt;INSTALL_PATH&gt;
+
+sudo ./b2 install
+
+export PATH=$PATH:&lt;INSTALL_PATH&gt;/include/:&lt;INSTALL_PATH&gt;/lib/
+
+export BOOST_ROOT=&lt;INSTALL_PATH&gt;
+
+</code></pre>
+
+<p>続いて，JUMAN++をダウンロードし，解凍する．</p>
+
+<pre><code class="language-shell">
+cd jumanapp-1.0*
+
+./configure --with-boost=&lt;INSTALL_PATH&gt;
+
+sudo make install
+
+</code></pre>
+
+<p>こうして，<code>jumanapp</code>が使えるようになる．</p>
+
+<h2 id="比較">比較</h2>
+
+<p>JUMAN++</p>
+
+<pre><code>
+入り口から入って振り返ると，善き羊飼いとしてのキリストの図像がある．
+
+入り口 いりぐち 入り口 名詞 6 普通名詞 1 * 0 * 0 &quot;代表表記:入り口/いりぐち カテゴリ:場所-その他&quot;
+
+から から から 助詞 9 格助詞 1 * 0 * 0 NIL
+
+入って はいって 入る 動詞 2 * 0 子音動詞ラ行 10 タ系連用テ形 14 &quot;代表表記:入る/はいる 自他動詞:他:入れる/いれる 反義:動詞:出る/でる&quot;
+
+振り返る ふりかえる 振り返る 動詞 2 * 0 子音動詞ラ行 10 基本形 2 &quot;代表表記:振り返る/ふりかえる&quot;
+
+と と と 助詞 9 格助詞 1 * 0 * 0 NIL
+
+， ， ， 特殊 1 読点 2 * 0 * 0 NIL
+
+善き よき 善い 形容詞 3 * 0 イ形容詞アウオ段 18 文語連体形 21 &quot;代表表記:良い/よい 反義:形容詞:悪い/わるい&quot;
+
+@ 善き よき 善い 形容詞 3 * 0 イ形容詞アウオ段 18 文語連体形 21 &quot;代表表記:良い/よい 反義:形容詞:悪い/わるい&quot;
+
+羊飼い ひつじかい 羊飼い 名詞 6 普通名詞 1 * 0 * 0 &quot;代表表記:羊飼い/ひつじかい カテゴリ:人&quot;
+
+と と と 助詞 9 格助詞 1 * 0 * 0 NIL
+
+して して する 動詞 2 * 0 サ変動詞 16 タ系連用テ形 14 &quot;代表表記:する/する 付属動詞候補（基本） 自他動詞:自:成る/なる&quot;
+
+の の の 助詞 9 接続助詞 3 * 0 * 0 NIL
+
+キリスト キリスト キリスト 名詞 6 普通名詞 1 * 0 * 0 &quot;自動獲得:Wikipedia Wikipedia多義&quot;
+
+の の の 助詞 9 接続助詞 3 * 0 * 0 NIL
+
+図像 ずぞう 図像 名詞 6 普通名詞 1 * 0 * 0 &quot;代表表記:図像/ずぞう カテゴリ:抽象物 ドメイン:文化・芸術&quot;
+
+が が が 助詞 9 格助詞 1 * 0 * 0 NIL
+
+ある ある ある 動詞 2 * 0 子音動詞ラ行 10 基本形 2 &quot;代表表記:有る/ある 補文ト 反義:形容詞:無い/ない&quot;
+
+． ． ． 特殊 1 句点 1 * 0 * 0 NIL
+
+EOS
+
+</code></pre>
+
+<p>MeCab</p>
+
+<pre><code>
+入り口から入って振り返ると，善き羊飼いとしてのキリストの図像がある．
+
+入り口	名詞,一般,*,*,*,*,入り口,イリクチ,イリクチ
+
+から	助詞,格助詞,一般,*,*,*,から,カラ,カラ
+
+入っ	動詞,自立,*,*,五段・ラ行,連用タ接続,入る,ハイッ,ハイッ
+
+て	助詞,接続助詞,*,*,*,*,て,テ,テ
+
+振り返る	動詞,自立,*,*,五段・ラ行,基本形,振り返る,フリカエル,フリカエル
+
+と	助詞,接続助詞,*,*,*,*,と,ト,ト
+
+，	記号,読点,*,*,*,*,，,，,，
+
+善き	形容詞,自立,*,*,形容詞・アウオ段,体言接続,善い,ヨキ,ヨキ
+
+羊	名詞,一般,*,*,*,*,羊,ヒツジ,ヒツジ
+
+飼い	動詞,自立,*,*,五段・ワ行促音便,連用形,飼う,カイ,カイ
+
+として	助詞,格助詞,連語,*,*,*,として,トシテ,トシテ
+
+の	助詞,連体化,*,*,*,*,の,ノ,ノ
+
+キリスト	名詞,固有名詞,一般,*,*,*,キリスト,キリスト,キリスト
+
+の	助詞,連体化,*,*,*,*,の,ノ,ノ
+
+図像	名詞,一般,*,*,*,*,図像,ズゾウ,ズゾー
+
+が	助詞,格助詞,一般,*,*,*,が,ガ,ガ
+
+ある	動詞,自立,*,*,五段・ラ行,基本形,ある,アル,アル
+
+．	記号,句点,*,*,*,*,．,．,．
+
+EOS
+
+</code></pre>
+
+<p>羊飼いが認識できている．</p>
+
+<hr />
+
+<p>JUMAN++</p>
+
+<pre><code>
+スマートフォンを買い換えた
+
+スマートフォン スマートフォン スマートフォン 名詞 6 普通名詞 1 * 0 * 0 &quot;自動獲得:Wikipedia Wikipedia上位語:用語/ようご&quot;
+
+を を を 助詞 9 格助詞 1 * 0 * 0 NIL
+
+買い かい 買う 動詞 2 * 0 子音動詞ワ行 12 基本連用形 8 &quot;代表表記:買う/かう ドメイン:家庭・暮らし;ビジネス 反義:動詞:売る/うる&quot;
+
+換えた かえた 換える 動詞 2 * 0 母音動詞 1 タ形 10 &quot;代表表記:換える/かえる 付属動詞候補（基本） 自他動詞:自:換わる/かわる&quot;
+
+EOS
+
+</code></pre>
+
+<p>MeCab</p>
+
+<pre><code>
+スマートフォンを買い換えた
+
+スマート	名詞,固有名詞,人名,姓,*,*,スマート,スマート,スマート
+
+フォン	名詞,一般,*,*,*,*,フォン,フォン,フォン
+
+を	助詞,格助詞,一般,*,*,*,を,ヲ,ヲ
+
+買い換え	動詞,自立,*,*,一段,連用形,買い換える,カイカエ,カイカエ
+
+た	助動詞,*,*,*,特殊・タ,基本形,た,タ,タ
+
+EOS
+
+</code></pre>
+
+<p>スマートフォンなど，最近の用語にも強い．</p>
+
+<hr />
+
+<p>この程度の文章では気にならなかったが，JUMAN++は精度と引き替えに速度がMecabの100分の1以下という話もあるので，必要に応じて使い分けるのがよいのだろう</p>
+
+      
+      
+      
+    </article>
+    
+ <aside><div id="disqus_thread"></div></aside>
+
+<script type="text/javascript">
+     
+    var disqus_shortname = 'mosko';
+
+     
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+  </main>
+  
+  <nav class="pagination-single">
+    
+      <span class="previous">&larr; <a href="http://moskomule.github.io/post/italy6/" rel="prev">イタリア旅行記6日目</a></span>
+    
+    
+      <span class="next"><a href="http://moskomule.github.io/post/italy7/" rel="next">イタリア旅行記7日目</a> &rarr;</span>
+    
+  </nav>
+
+
+  
+  <footer role="contentinfo">
+    <div style="text-align:center;">
+      
+      Written by Ryuichiro Hataya
+    </div>
+  </footer>
+
+
+</div>
+
+<script src="/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+</body>
+</html>
+

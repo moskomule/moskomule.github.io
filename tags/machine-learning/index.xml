@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Machine Learning on moskomule log</title>
+    <link>http://moskomule.github.io/tags/machine-learning/index.xml</link>
+    <description>Recent content in Machine Learning on moskomule log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <copyright>Written by Ryuichiro Hataya</copyright>
+    <atom:link href="http://moskomule.github.io/tags/machine-learning/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>scikit-learn, Xgboost そしてTensorFlow</title>
+      <link>http://moskomule.github.io/post/on-sklearn-xgboost-and-tensorflow/</link>
+      <pubDate>Sat, 29 Oct 2016 00:16:01 +0900</pubDate>
+      
+      <guid>http://moskomule.github.io/post/on-sklearn-xgboost-and-tensorflow/</guid>
+      <description>
+
+&lt;p&gt;新しいもの好きなので色々と触ってはみるものの，必要とならないと理解しようとしないので結果的には無駄に時間を使ってしまう．研究でPythonの機械学習・ディープラーニングライブラリに触っているので備忘録に．&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;scikit-learn&#34;&gt;scikit-learn&lt;/h2&gt;
+
+&lt;p&gt;scikit-learn a.k.a. sklearnは機械学習のライブラリで，多くの機械学習アルゴリズムが収録されている．機械学習プロパーの人からすると色々問題もあるのかもしれないが，とりあえず色々な手法が同じような書き方で使えるのはありがたい．とはいいながら，結局今回使っているのはSVMとRandom Forestだけなのだけれど．&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;
+from sklearn import svm
+
+svc = svm.SVC(kernel=&#39;linear&#39;)
+
+svc.fit(train_X,train_Y)
+
+predict_Y = svc.predict(test_X)
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;これだけ．あと便利なのが&lt;code&gt;classification_report&lt;/code&gt;と&lt;code&gt;GridSearchCV&lt;/code&gt;．&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;
+from sklearn.metrics import classification_report
+
+print(classification_report(test_Y, predict_Y))
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;で&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+             precision    recall  f1-score   support
+
+        0.0       0.56      0.96      0.71       364
+
+        1.0       0.87      0.24      0.38       364
+
+avg / total       0.72      0.60      0.55       728
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;まで表示される．グリッドサーチの方はクロスバリデーション付きで以下のように使う．&lt;code&gt;n_jobs&lt;/code&gt;は使用するCPU数で，&lt;code&gt;-1&lt;/code&gt;のときは全CPUを使って並列で処理を進めるので，モデルによっては注意が必要．今回はCPUはよいのだけれども，並列で処理するためかメモリを相当喰っている印象を受けた．&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;
+from sklearn.model_selection import GridSearchCV
+
+
+
+tuned_parameters = [{&#39;kernel&#39;: [&#39;poly&#39;,&#39;linear&#39;],
+
+                     &#39;gamma&#39;: [1e-3, 1e-4],
+
+                     &#39;C&#39;: [0.1,1,10]}]
+
+gsc = GridSearchCV(svm.SVC(), tuned_parameters, cv=5, scoring=score, n_jobs=-1)
+
+gsc.fit(train_X, train_Y)
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;この結果得られる&lt;code&gt;gsc&lt;/code&gt;には最良のモデルが入っているので&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;
+predict_Y = gsc.predict(test_X)
+
+print(classification_report(test_Y, predict_Y))
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;などとしてやればよい．当然グリッドは隙間があるので，&lt;code&gt;RandomizedSearchCV&lt;/code&gt;で細かく見ていってもいいのかもしれない．&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;xgboost&#34;&gt;Xgboost&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/dmlc/xgboost&#34;&gt;Xgboost&lt;/a&gt;はgradient boostingの高速な実装．インストール方法は&lt;a href=&#34;https://github.com/dmlc/xgboost/blob/master/doc/build.md&#34;&gt;ここ&lt;/a&gt;を読めばよいはずで，各種バインディングが用意されている．今回はPythonバインディングを導入した．&lt;/p&gt;
+
+&lt;p&gt;Pythonバインディングはよくできていてimportしてしまえばsklearnのように使えてしまう．そして，&lt;code&gt;GridSearchCV&lt;/code&gt;なども使えてしまうので，非常に便利．&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;
+from xgboost import XGBClassifier
+
+xgb = XGBClassifier()
+
+xgb.fit(train_X, train_Y)
+
+predict_Y = xgb.predict(test_X)
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;tensorflow&#34;&gt;TensorFlow&lt;/h2&gt;
+
+&lt;p&gt;TensorFlowでは，DLの重い計算を行うグラフ部分の中身は隠されていて，そのグラフの構築や何をするかの指示をPythonで構築していく．&lt;/p&gt;
+
+&lt;p&gt;グラフへの入力や教師データは&lt;code&gt;tf.placeholder(...)&lt;/code&gt;で与えられている．&lt;code&gt;Session.run()&lt;/code&gt;で指定する&lt;code&gt;feed_dict&lt;/code&gt;は何を入力や教師データとして用いるか，ということを指していて，&lt;code&gt;fetches&lt;/code&gt;は演算の結果返すものを指定している．&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;
+# グラフ構築
+
+l_in = tf.placeholder(...) # 入力
+
+...
+
+y = fully_connected(...)
+
+y_ = tf.placeholder(...) # 教師データ
+
+...
+
+res = sess.run(fetches=[y], 
+
+               feed_dict={l_in: batch_X, y_: batch_Y})
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;であれば，&lt;code&gt;fetches&lt;/code&gt;で[y]を指定することで&lt;code&gt;res[0]&lt;/code&gt;には演算の結果&lt;code&gt;y&lt;/code&gt;に来た値が入ることになる．&lt;code&gt;feed_dict&lt;/code&gt;にはグラフの&lt;code&gt;l_in&lt;/code&gt;には&lt;code&gt;batch_X&lt;/code&gt;を，&lt;code&gt;y_&lt;/code&gt;には&lt;code&gt;batch_Y&lt;/code&gt;が対応することを示している．各所のチュートリアルでは解説されておらず難儀したけれど，よくよく字面を見れば，何の捻りもなくて当然解説されないわけである&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

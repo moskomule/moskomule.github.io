@@ -1,0 +1,169 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+
+  
+  <meta charset="UTF-8">
+  <title>
+    PythonでMySQLを使う | moskomule log
+  </title>
+
+
+  
+  <meta name="viewport" content="width=device-width,user-scalable=no,maximum-scale=1,initial-scale=1">
+
+  
+  <link rel="canonical" href="http://moskomule.github.io/post/python-and-mysql/"/>
+
+  
+  <link rel="stylesheet" href="/css/sanitize.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+  <link rel="stylesheet" href="/css/highlight_monokai.css">
+  <link rel="stylesheet" href="/css/theme.css">
+  <link rel="stylesheet" href="/css/custom.css">
+  
+  
+  <link href="http://moskomule.github.io/index.xml" rel="alternate" type="application/rss+xml" title="moskomule log" />
+  <link href="http://moskomule.github.io/index.xml" rel="feed" type="application/rss+xml" title="moskomule log" />
+
+  
+  
+
+
+</head>
+
+
+
+<body>
+<div class="container">
+
+  
+  <header role="banner">
+    <div class="row gutters">
+      <div id="site-title" class="col span_6">
+        <h1><a href="http://moskomule.github.io/">moskomule log</a></h1>
+        <h2>carpe diem</h2>
+      </div>
+      <div id="social" class="col span_6">
+        <ul>
+          <li><a href="https://twitter.com/mosko_mule" target="_blank">Twitter</a></li>
+          
+          <li><a href="https://github.com/moskomule" target="_blank">GitHub</a></li>
+          <li><a href="http://moskomule.github.io/index.xml" type="application/rss+xml" target="_blank">RSS</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+
+  
+  <main id="single" role="main">
+    <div class="article-header">
+      <h1>PythonでMySQLを使う</h1>
+      <div class="meta">
+        Oct 22, 2016 &nbsp;
+        
+          #<a href="/tags/python">Python</a>&nbsp;
+        
+          #<a href="/tags/db">DB</a>&nbsp;
+        
+      </div>
+    </div>
+    <article>
+      <p>現在開発しているものはScalaで前処理を行っているので，本番の処理も本当は全部Scalaで書ければよかったのだけれども，そうは問屋が卸さず，種々の原因によりPythonが必要になってしまった． これなら最初から全部Pythonでよかったのでは，とも思うけれど，PythonはJupyterで小さなものを色々弄るのには使うものの，大きいものをPythonで書いた経験が無いので心配．型が違う，という注意が沢山出そうだ．</p>
+
+<p>ともかく，そのためにPythonからMySQLを扱う必要が出てきた．Pythonists3は新しいもの好きなのか，いまやNoSQLを使うのがトレンドなのか，MySQL周りの情報が少ないのだが，<code>pymysql</code>を使うことに落ち着いた．</p>
+
+<pre><code class="language-python">
+connection = pymysql.connect(host=&quot;HOSTNAME&quot;,
+
+                            user=&quot;USERNAME&quot;,
+
+                            password=&quot;PASSWORD&quot;,
+
+                            db=&quot;DB_NAME&quot;,
+
+                            charset='utf8',
+
+                            cursorclass=pymysql.cursors.DictCursor) #1
+
+
+
+with connection.cursor() as cursor:
+
+
+
+    sql = &quot;SELECT name FROM table WHERE id=%s&quot;
+
+    cursor.execute(sql, (900))
+
+
+
+    results = cursor.fetchall()
+
+    for r in results:
+
+        b = r['name']
+
+        print(bytes.decode(b)) #2
+
+</code></pre>
+
+<p>#1を指定することで，返ってくる結果がdict形式になって分かりやすい．</p>
+
+<p>最後，#2で<code>name</code>に相当する列が<code>varbinary</code>であったので，文字列に変換するのに<code>bytes.decode()</code>が必要だった．とりあえずこれで一件落着．</p>
+
+      
+      
+      
+    </article>
+    
+ <aside><div id="disqus_thread"></div></aside>
+
+<script type="text/javascript">
+     
+    var disqus_shortname = 'mosko';
+
+     
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+  </main>
+  
+  <nav class="pagination-single">
+    
+      <span class="previous">&larr; <a href="http://moskomule.github.io/post/started-CNN-with-Tensorflow/" rel="prev">TensorflowでCNN入門</a></span>
+    
+    
+      <span class="next"><a href="http://moskomule.github.io/post/julia-boxmuller/" rel="next">Juliaに触ってみた</a> &rarr;</span>
+    
+  </nav>
+
+
+  
+  <footer role="contentinfo">
+    <div style="text-align:center;">
+      
+      Written by Ryuichiro Hataya
+    </div>
+  </footer>
+
+
+</div>
+
+<script src="/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+</body>
+</html>
+

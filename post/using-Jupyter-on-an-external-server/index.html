@@ -1,0 +1,180 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+
+  
+  <meta charset="UTF-8">
+  <title>
+    Jupyterをサーバー上で使う | moskomule log
+  </title>
+
+
+  
+  <meta name="viewport" content="width=device-width,user-scalable=no,maximum-scale=1,initial-scale=1">
+
+  
+  <link rel="canonical" href="http://moskomule.github.io/post/using-Jupyter-on-an-external-server/"/>
+
+  
+  <link rel="stylesheet" href="/css/sanitize.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+  <link rel="stylesheet" href="/css/highlight_monokai.css">
+  <link rel="stylesheet" href="/css/theme.css">
+  <link rel="stylesheet" href="/css/custom.css">
+  
+  
+  <link href="http://moskomule.github.io/index.xml" rel="alternate" type="application/rss+xml" title="moskomule log" />
+  <link href="http://moskomule.github.io/index.xml" rel="feed" type="application/rss+xml" title="moskomule log" />
+
+  
+  
+
+
+</head>
+
+
+
+<body>
+<div class="container">
+
+  
+  <header role="banner">
+    <div class="row gutters">
+      <div id="site-title" class="col span_6">
+        <h1><a href="http://moskomule.github.io/">moskomule log</a></h1>
+        <h2>carpe diem</h2>
+      </div>
+      <div id="social" class="col span_6">
+        <ul>
+          <li><a href="https://twitter.com/mosko_mule" target="_blank">Twitter</a></li>
+          
+          <li><a href="https://github.com/moskomule" target="_blank">GitHub</a></li>
+          <li><a href="http://moskomule.github.io/index.xml" type="application/rss+xml" target="_blank">RSS</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+
+  
+  <main id="single" role="main">
+    <div class="article-header">
+      <h1>Jupyterをサーバー上で使う</h1>
+      <div class="meta">
+        Aug 31, 2016 &nbsp;
+        
+          #<a href="/tags/python">Python</a>&nbsp;
+        
+          #<a href="/tags/jupyter">Jupyter</a>&nbsp;
+        
+      </div>
+    </div>
+    <article>
+      
+
+<h1 id="2016-08-29">2016-08-29</h1>
+
+<h2 id="サーバー上のjupyter-notebookを使う">サーバー上のJupyter notebookを使う</h2>
+
+<p>サーバー上でPythonを実行するのに，ターミナルで弄っていたが何かと不便だったのでJupyterを導入した．</p>
+
+<pre><code>
+jupyter notebook --generate-config
+
+vim ~/.jupyter/jupyter_notebook_config.py
+
+</code></pre>
+
+<p>で<code>jupyter_notebook_config.py</code>に以下を加える．</p>
+
+<pre><code>
+c.NotebookApp.ip = '*'  # localhost以外からもアクセス可能にする。
+
+c.NotebookApp.port = 9999  # サーバのポートを指定。デフォルト8888。
+
+c.NotebookApp.open_browser = False  # ブラウザが自動で開かないようにする。
+
+c.NotebookApp.notebook_dir = '/home/USER_NAME/notebooks'  # 作業ディレクトリを指定。デフォルト起動ディレクトリ。
+
+</code></pre>
+
+<p>かくして，<code>jupyter notebook</code>コマンドを叩くと<code>http://hoge.hoge:9999</code>でJupyterが扱える．</p>
+
+<h2 id="scikit-learnでのmklエラー解決">scikit-learnでのMKLエラー解決</h2>
+
+<p>Ubuntuサーバー上のAnaconda3でscikit-learnを動かしたところ</p>
+
+<pre><code>
+Intel MKL FATAL ERROR: Cannot load libmkl_avx.so or libmkl_def.so
+
+</code></pre>
+
+<p>というような表示が出て終了してしまう．とりあえず</p>
+
+<pre><code>
+conda install nomkl numpy scipy scikit-learn numexpr
+
+</code></pre>
+
+<p>で解決させたものの，<code>MKL</code>使った方が速そうなので早々に解決したい．<code>MRO</code>の<code>MKL</code>が悪かったりするのだろうか．</p>
+
+<hr />
+
+<p>参考</p>
+
+<p><a href="http://www.task-notes.com/entry/20160204/1454513778">Jupyter Notebook（IPython）サーバの起動方法</a></p>
+
+      
+      
+      
+    </article>
+    
+ <aside><div id="disqus_thread"></div></aside>
+
+<script type="text/javascript">
+     
+    var disqus_shortname = 'mosko';
+
+     
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+  </main>
+  
+  <nav class="pagination-single">
+    
+      <span class="previous">&larr; <a href="http://moskomule.github.io/tags/db/" rel="prev">Db</a></span>
+    
+    
+      <span class="next"><a href="http://moskomule.github.io/post/italy1/" rel="next">イタリア旅行記1日目</a> &rarr;</span>
+    
+  </nav>
+
+
+  
+  <footer role="contentinfo">
+    <div style="text-align:center;">
+      
+      Written by Ryuichiro Hataya
+    </div>
+  </footer>
+
+
+</div>
+
+<script src="/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+</body>
+</html>
+

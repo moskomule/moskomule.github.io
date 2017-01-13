@@ -1,0 +1,208 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+
+  
+  <meta charset="UTF-8">
+  <title>
+    Juliaに触ってみた | moskomule log
+  </title>
+
+
+  
+  <meta name="viewport" content="width=device-width,user-scalable=no,maximum-scale=1,initial-scale=1">
+
+  
+  <link rel="canonical" href="http://moskomule.github.io/post/julia-boxmuller/"/>
+
+  
+  <link rel="stylesheet" href="/css/sanitize.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+  <link rel="stylesheet" href="/css/highlight_monokai.css">
+  <link rel="stylesheet" href="/css/theme.css">
+  <link rel="stylesheet" href="/css/custom.css">
+  
+  
+  <link href="http://moskomule.github.io/index.xml" rel="alternate" type="application/rss+xml" title="moskomule log" />
+  <link href="http://moskomule.github.io/index.xml" rel="feed" type="application/rss+xml" title="moskomule log" />
+
+  
+  
+
+
+</head>
+
+
+
+<body>
+<div class="container">
+
+  
+  <header role="banner">
+    <div class="row gutters">
+      <div id="site-title" class="col span_6">
+        <h1><a href="http://moskomule.github.io/">moskomule log</a></h1>
+        <h2>carpe diem</h2>
+      </div>
+      <div id="social" class="col span_6">
+        <ul>
+          <li><a href="https://twitter.com/mosko_mule" target="_blank">Twitter</a></li>
+          
+          <li><a href="https://github.com/moskomule" target="_blank">GitHub</a></li>
+          <li><a href="http://moskomule.github.io/index.xml" type="application/rss+xml" target="_blank">RSS</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+
+  
+  <main id="single" role="main">
+    <div class="article-header">
+      <h1>Juliaに触ってみた</h1>
+      <div class="meta">
+        Oct 23, 2016 &nbsp;
+        
+          #<a href="/tags/julia">Julia</a>&nbsp;
+        
+          #<a href="/tags/jupyter">Jupyter</a>&nbsp;
+        
+      </div>
+    </div>
+    <article>
+      
+
+<p>我らがJupyterの<strong>Ju</strong>,であるところのJupyterに触って，IPythonに相当するIJuliaを導入してJupyterから操作してみた．ちょっと触った感想は，強いR-lang．</p>
+
+<h2 id="ijuliaの導入">IJuliaの導入．</h2>
+
+<p>Juliaは <a href="http://julialang.org/">ここ</a>から導入する．ターミナルから開いて，</p>
+
+<pre><code class="language-julia">
+Package.add(&quot;IJulia&quot;)
+
+using IJulia
+
+notebook()
+
+</code></pre>
+
+<p>これでJupyterが起動する．あとは普段通り．</p>
+
+<h2 id="触る">触る．</h2>
+
+<p>折角なので手元にあったPRMLにあった，一様乱数からガウス分布を得るBox-Muller法によって得られる分布をプロットする．以下ではプロットツールの<code>Gadfly</code>を用いている．</p>
+
+<pre><code class="language-julia">
+using Gadfly
+
+set_default_plot_size(10cm,10cm);
+
+# Box-Muller法
+
+
+
+function box_muller(num)
+
+    x = []
+
+    y = []
+
+    for i = 0:num
+
+        a = rand()
+
+        b = rand()
+
+        η = 2a -1 #1
+
+        ζ = 2b -1
+
+        r2 = η ^ 2 + ζ ^ 2
+
+        if (r2) &lt;= 1
+
+            x = push!(x, η  * √(-2 * log(r2) / r2)) #2
+
+            y = push!(y, ζ  * √(-2 * log(r2) / r2))
+
+        else
+
+            skip
+
+        end
+
+    end
+
+    return (x, y) 
+
+end
+
+
+
+(x,y) = box_muller(10000)
+
+plot(x=x,y=y)
+
+</code></pre>
+
+<p>#1,#2に示したように，Juliaでは<code>\eta,\zeta</code>と入力してタブを押すと &lsquo;η，ζ&rsquo; と補完されて変数として用いることが出来る．また，&rsquo;\sqrt&rsquo;は&rsquo;√&rsquo;になってそのまま<code>sqrt</code>として使用できる．数学よりのことをするときには数式に与えられている変数と一致させられて便利かもしれないし，何より面白い．</p>
+
+<p>{% asset_img output.svg 出力 %}</p>
+
+<p>PythonとScalaで満足しているし，情報も少ないのでいまのところ使う当てはないけれど，少し触った感じは軽快でよいし，プログラムをよく書く人にはRよりは取っつきやすいのかもしれない</p>
+
+      
+      
+      
+    </article>
+    
+ <aside><div id="disqus_thread"></div></aside>
+
+<script type="text/javascript">
+     
+    var disqus_shortname = 'mosko';
+
+     
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+  </main>
+  
+  <nav class="pagination-single">
+    
+      <span class="previous">&larr; <a href="http://moskomule.github.io/post/python-and-mysql/" rel="prev">PythonでMySQLを使う</a></span>
+    
+    
+      <span class="next"><a href="http://moskomule.github.io/post/on-sklearn-xgboost-and-tensorflow/" rel="next">scikit-learn, Xgboost そしてTensorFlow</a> &rarr;</span>
+    
+  </nav>
+
+
+  
+  <footer role="contentinfo">
+    <div style="text-align:center;">
+      
+      Written by Ryuichiro Hataya
+    </div>
+  </footer>
+
+
+</div>
+
+<script src="/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+</body>
+</html>
+

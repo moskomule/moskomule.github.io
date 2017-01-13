@@ -1,0 +1,193 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+
+  
+  <meta charset="UTF-8">
+  <title>
+    dotfilesを公開 | moskomule log
+  </title>
+
+
+  
+  <meta name="viewport" content="width=device-width,user-scalable=no,maximum-scale=1,initial-scale=1">
+
+  
+  <link rel="canonical" href="http://moskomule.github.io/post/dotfiles/"/>
+
+  
+  <link rel="stylesheet" href="/css/sanitize.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+  <link rel="stylesheet" href="/css/highlight_monokai.css">
+  <link rel="stylesheet" href="/css/theme.css">
+  <link rel="stylesheet" href="/css/custom.css">
+  
+  
+  <link href="http://moskomule.github.io/index.xml" rel="alternate" type="application/rss+xml" title="moskomule log" />
+  <link href="http://moskomule.github.io/index.xml" rel="feed" type="application/rss+xml" title="moskomule log" />
+
+  
+  
+
+
+</head>
+
+
+
+<body>
+<div class="container">
+
+  
+  <header role="banner">
+    <div class="row gutters">
+      <div id="site-title" class="col span_6">
+        <h1><a href="http://moskomule.github.io/">moskomule log</a></h1>
+        <h2>carpe diem</h2>
+      </div>
+      <div id="social" class="col span_6">
+        <ul>
+          <li><a href="https://twitter.com/mosko_mule" target="_blank">Twitter</a></li>
+          
+          <li><a href="https://github.com/moskomule" target="_blank">GitHub</a></li>
+          <li><a href="http://moskomule.github.io/index.xml" type="application/rss+xml" target="_blank">RSS</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+
+  
+  <main id="single" role="main">
+    <div class="article-header">
+      <h1>dotfilesを公開</h1>
+      <div class="meta">
+        Nov 12, 2016 &nbsp;
+        
+          #<a href="/tags/vim">Vim</a>&nbsp;
+        
+          #<a href="/tags/util">Util</a>&nbsp;
+        
+      </div>
+    </div>
+    <article>
+      
+
+<p>研究室の人々もすなるdotfilesなるものを，我も公開してみんとてするなり．それの年のかむなつきの廿日あまり一日の，戌の時に部屋の人のいふやう，「<a href="https://github.com/moskomule/.dotfiles">dotfiles</a>を見せよ」．</p>
+
+<p>公開して，人のdotfilesを見るようになると段々充実してきて諸々使いやすくなった一方忘れやすくもなったので備忘録をば．</p>
+
+<h2 id="vim-neovim">Vim(NeoVim)</h2>
+
+<p>新しいもの好きなので<a href="https://neovim.io/">NeoVim</a> ，プラグインマネージャーとして<code>dein.nvim</code>を使っている．</p>
+
+<h3 id="denite-nvim">denite.nvim</h3>
+
+<p><code>dein.nvim</code>の設定ファイルに</p>
+
+<pre><code>
+[[plugins]]
+
+repo = 'Shougo/denite.nvim'
+
+</code></pre>
+
+<p>を追加する．基本的に<a href="http://qiita.com/okamos/items/4e1665ecd416ef77df7c">ここ</a>を参考にしてマッピングした．<code>&lt;C-u&gt;&lt;C-g&gt;</code>でgrepによるファイルの検索のようなことが高速に行える．</p>
+
+<h3 id="vim-easy-align">vim-easy-align</h3>
+
+<pre><code>
+[[plugins]]
+
+repo = 'junegunn/vim-easy-align'
+
+</code></pre>
+
+<p><a href="https://github.com/junegunn/vim-easy-align">Github</a>を見れば一目瞭然なのだが，<code>ga</code>で起動するように設定しておくだけで，<code>vipga=</code>のみで上から下を実現する．</p>
+
+<pre><code>
+apple  = red
+
+sky = blue
+
+banana=yellow
+
+---------------
+
+apple  = red
+
+sky    = blue
+
+banana = yellow
+
+</code></pre>
+
+<p>ともかく上記のREADMEが非常に充実しているのでこれを見る．</p>
+
+<h3 id="misc">misc</h3>
+
+<ul>
+<li><code>&lt;C-v&gt;</code>でヴィジュアルモードに入り，範囲選択して<code>I#</code>で選択した行のコメントアウト．</li>
+</ul>
+
+<h2 id="tmux">tmux</h2>
+
+<p>どうして今まで知らなかったのだろう，tmux．</p>
+
+<p>さまざまな機能があるけれども，サーバとのsshの接続を切ってしまってもプロセスを動かし続けることが出来る，というのがいちばんありがたい．それまでは時間のかかるプロセスを動かしてしまった日はノートパソコンが据え置き機と化してしまっていた．</p>
+
+<p><code>tmux a</code>で前回のセッションにつないで，tmux上で<code>Ctrl+d</code>で離れる．プレフィックスキーはzshの<code>Ctrl+a</code>を多用するので標準の<code>Ctrl+b</code>のままにしてある．マウス/タッチパッドの使用を有効にする設定がバージョンによって違うのでそれが多少厄介で，今回の<code>dotfiles</code>では<code>tmux</code>ディレクトリを作っておき，バージョンによって読み込むファイルを変えることで解決している．</p>
+
+      
+      
+      
+    </article>
+    
+ <aside><div id="disqus_thread"></div></aside>
+
+<script type="text/javascript">
+     
+    var disqus_shortname = 'mosko';
+
+     
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+  </main>
+  
+  <nav class="pagination-single">
+    
+      <span class="previous">&larr; <a href="http://moskomule.github.io/post/on-sklearn-xgboost-and-tensorflow/" rel="prev">scikit-learn, Xgboost そしてTensorFlow</a></span>
+    
+    
+      <span class="next"><a href="http://moskomule.github.io/post/test/" rel="next">test</a> &rarr;</span>
+    
+  </nav>
+
+
+  
+  <footer role="contentinfo">
+    <div style="text-align:center;">
+      
+      Written by Ryuichiro Hataya
+    </div>
+  </footer>
+
+
+</div>
+
+<script src="/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+</body>
+</html>
+

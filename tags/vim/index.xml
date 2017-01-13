@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Vim on moskomule log</title>
+    <link>http://moskomule.github.io/tags/vim/index.xml</link>
+    <description>Recent content in Vim on moskomule log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <copyright>Written by Ryuichiro Hataya</copyright>
+    <atom:link href="http://moskomule.github.io/tags/vim/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>dotfilesを公開</title>
+      <link>http://moskomule.github.io/post/dotfiles/</link>
+      <pubDate>Sat, 12 Nov 2016 01:11:08 +0900</pubDate>
+      
+      <guid>http://moskomule.github.io/post/dotfiles/</guid>
+      <description>
+
+&lt;p&gt;研究室の人々もすなるdotfilesなるものを，我も公開してみんとてするなり．それの年のかむなつきの廿日あまり一日の，戌の時に部屋の人のいふやう，「&lt;a href=&#34;https://github.com/moskomule/.dotfiles&#34;&gt;dotfiles&lt;/a&gt;を見せよ」．&lt;/p&gt;
+
+&lt;p&gt;公開して，人のdotfilesを見るようになると段々充実してきて諸々使いやすくなった一方忘れやすくもなったので備忘録をば．&lt;/p&gt;
+
+&lt;h2 id=&#34;vim-neovim&#34;&gt;Vim(NeoVim)&lt;/h2&gt;
+
+&lt;p&gt;新しいもの好きなので&lt;a href=&#34;https://neovim.io/&#34;&gt;NeoVim&lt;/a&gt; ，プラグインマネージャーとして&lt;code&gt;dein.nvim&lt;/code&gt;を使っている．&lt;/p&gt;
+
+&lt;h3 id=&#34;denite-nvim&#34;&gt;denite.nvim&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;dein.nvim&lt;/code&gt;の設定ファイルに&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+[[plugins]]
+
+repo = &#39;Shougo/denite.nvim&#39;
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;を追加する．基本的に&lt;a href=&#34;http://qiita.com/okamos/items/4e1665ecd416ef77df7c&#34;&gt;ここ&lt;/a&gt;を参考にしてマッピングした．&lt;code&gt;&amp;lt;C-u&amp;gt;&amp;lt;C-g&amp;gt;&lt;/code&gt;でgrepによるファイルの検索のようなことが高速に行える．&lt;/p&gt;
+
+&lt;h3 id=&#34;vim-easy-align&#34;&gt;vim-easy-align&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;
+[[plugins]]
+
+repo = &#39;junegunn/vim-easy-align&#39;
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/junegunn/vim-easy-align&#34;&gt;Github&lt;/a&gt;を見れば一目瞭然なのだが，&lt;code&gt;ga&lt;/code&gt;で起動するように設定しておくだけで，&lt;code&gt;vipga=&lt;/code&gt;のみで上から下を実現する．&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+apple  = red
+
+sky = blue
+
+banana=yellow
+
+---------------
+
+apple  = red
+
+sky    = blue
+
+banana = yellow
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;ともかく上記のREADMEが非常に充実しているのでこれを見る．&lt;/p&gt;
+
+&lt;h3 id=&#34;misc&#34;&gt;misc&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;&amp;lt;C-v&amp;gt;&lt;/code&gt;でヴィジュアルモードに入り，範囲選択して&lt;code&gt;I#&lt;/code&gt;で選択した行のコメントアウト．&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;tmux&#34;&gt;tmux&lt;/h2&gt;
+
+&lt;p&gt;どうして今まで知らなかったのだろう，tmux．&lt;/p&gt;
+
+&lt;p&gt;さまざまな機能があるけれども，サーバとのsshの接続を切ってしまってもプロセスを動かし続けることが出来る，というのがいちばんありがたい．それまでは時間のかかるプロセスを動かしてしまった日はノートパソコンが据え置き機と化してしまっていた．&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;tmux a&lt;/code&gt;で前回のセッションにつないで，tmux上で&lt;code&gt;Ctrl+d&lt;/code&gt;で離れる．プレフィックスキーはzshの&lt;code&gt;Ctrl+a&lt;/code&gt;を多用するので標準の&lt;code&gt;Ctrl+b&lt;/code&gt;のままにしてある．マウス/タッチパッドの使用を有効にする設定がバージョンによって違うのでそれが多少厄介で，今回の&lt;code&gt;dotfiles&lt;/code&gt;では&lt;code&gt;tmux&lt;/code&gt;ディレクトリを作っておき，バージョンによって読み込むファイルを変えることで解決している．&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
