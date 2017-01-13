@@ -1,0 +1,173 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+
+  
+  <meta charset="UTF-8">
+  <title>
+    「日本古典籍字形データセット」で遊ぶ | moskomule log
+  </title>
+
+
+  
+  <meta name="viewport" content="width=device-width,user-scalable=no,maximum-scale=1,initial-scale=1">
+
+  
+  <link rel="canonical" href="http://mosko.tokyo/post/mnist_kuzushiji/"/>
+
+  
+  <link rel="stylesheet" href="/css/sanitize.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+  <link rel="stylesheet" href="/css/highlight_monokai.css">
+  <link rel="stylesheet" href="/css/theme.css">
+  <link rel="stylesheet" href="/css/custom.css">
+  
+  
+  <link href="http://mosko.tokyo/index.xml" rel="alternate" type="application/rss+xml" title="moskomule log" />
+  <link href="http://mosko.tokyo/index.xml" rel="feed" type="application/rss+xml" title="moskomule log" />
+
+  
+  
+
+
+</head>
+
+
+
+<body>
+<div class="container">
+
+  
+  <header role="banner">
+    <div class="row gutters">
+      <div id="site-title" class="col span_6">
+        <h1><a href="http://mosko.tokyo/">moskomule log</a></h1>
+        <h2>carpe diem</h2>
+      </div>
+      <div id="social" class="col span_6">
+        <ul>
+          <li><a href="https://twitter.com/mosko_mule" target="_blank">Twitter</a></li>
+          
+          <li><a href="https://github.com/moskomule" target="_blank">GitHub</a></li>
+          <li><a href="http://mosko.tokyo/index.xml" type="application/rss+xml" target="_blank">RSS</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+
+  
+  <main id="single" role="main">
+    <div class="article-header">
+      <h1>「日本古典籍字形データセット」で遊ぶ</h1>
+      <div class="meta">
+        Jan 13, 2017 &nbsp;
+        
+          #<a href="/tags/deep-learning">Deep Learning</a>&nbsp;
+        
+          #<a href="/tags/python">Python</a>&nbsp;
+        
+      </div>
+    </div>
+    <article>
+      <p>日本語版MNIST,というわけではないけれど<a href="http://codh.rois.ac.jp/char-shape/">日本古典籍字形データセット</a>の識別を<code>keras</code>で実装したresnetによって行った．現在validation accuracyは93.3%．少なくとも自分よりはきちんと分類できるようだ．</p>
+
+<p>このデータセットには2017年1月現在，「8点の画像データから切り取ったくずし字1,521文字種の字形データ86,176文字」が収録されている．</p>
+
+<p><img src="http://codh.rois.ac.jp/char-shape/unicode/U+30A6/200021712.jpg" alt="例" /></p>
+
+<p>今回はMNIST的に使うので，つまり文脈を考慮しないので変体仮名の「志」（し）と漢字としての「志」とを区別する，というようなタスクも含まれてしまうが，特に考慮しない．<code>keras</code>の<code>ImageDataGenerator</code>で前処理を一括して行う．本当はもう少し丁寧にした方がいいのかもしれないけれど，とりあえず．</p>
+
+<pre><code class="language-Python">
+# data generator
+train_datagen = ImageDataGenerator(
+    shear_range=0.05,
+    width_shift_range=0.05,
+    height_shift_range=0.05,
+    rotation_range=10,
+    fill_mode=&quot;constant&quot;,
+    cval=200,
+    zoom_range=0.2)
+train_generator = train_datagen.flow_from_directory(
+    'train',
+    color_mode=&quot;grayscale&quot;,
+    target_size=target_size,
+    batch_size=batch_size,
+    class_mode='categorical'
+)
+
+val_datagen = ImageDataGenerator()
+val_generator = val_datagen.flow_from_directory(
+    'val',
+    color_mode=&quot;grayscale&quot;,
+    target_size=target_size,
+    batch_size=batch_size,
+    class_mode='categorical'
+)
+
+</code></pre>
+
+<p>training dataには変形を施した．resnetは<a href="https://transcranial.github.io/keras-js/#/resnet50">keras.js</a>を参考にして実装(下記の<code>res_a</code>,<code>res_b</code>)．</p>
+
+<pre><code class="language-Python"># model
+input_layer = Input(shape=input_shape)
+x = Convolution2D(nb_filters, 4, 4, subsample=(2,2))(input_layer)
+x = BatchNormalization()(x)
+x = Activation('relu')(x)
+x = MaxPooling2D(pool_size, strides=stride_size)(x)
+x = res_a([32,32,128])(x)
+x = res_b([32,32,128])(x)
+x = res_b([32,32,128])(x)
+x = res_a([64,64,256])(x)
+x = res_b([64,64,256])(x)
+x = res_b([128,128,256])(x)
+x = res_a([128,128,512])(x)
+x = res_b([128,128,512])(x)
+x = res_b([256,256,512])(x)
+x = AveragePooling2D((4,4))(x)
+x = Flatten()(x)
+output_layer = Dense(nb_classes, activation='softmax')(x)
+
+model = Model(input=input_layer, output=output_layer)
+model.compile(loss='categorical_crossentropy',
+              optimizer='adam',
+              metrics=['accuracy'])
+</code></pre>
+
+      
+      
+      
+    </article>
+    
+
+
+  </main>
+  
+  <nav class="pagination-single">
+    
+      <span class="previous">&larr; <a href="http://mosko.tokyo/post/dotfiles/" rel="prev">dotfilesを公開</a></span>
+    
+    
+  </nav>
+
+
+  
+  <footer role="contentinfo">
+    <div style="text-align:center;">
+      
+      Written by Ryuichiro Hataya
+    </div>
+  </footer>
+
+
+</div>
+
+<script src="/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+</body>
+</html>
+

@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://mosko.tokyo/post/mnist_kuzushiji/</loc>
+    <lastmod>2017-01-13T13:18:40+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://mosko.tokyo/post/dotfiles/</loc>
     <lastmod>2016-11-12T01:11:08+09:00</lastmod>
   </url>
@@ -94,7 +99,7 @@
   
   <url>
     <loc>http://mosko.tokyo/tags/deep-learning/</loc>
-    <lastmod>2016-10-29T00:16:01+09:00</lastmod>
+    <lastmod>2017-01-13T13:18:40+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -142,13 +147,13 @@
   
   <url>
     <loc>http://mosko.tokyo/post/</loc>
-    <lastmod>2016-11-12T01:11:08+09:00</lastmod>
+    <lastmod>2017-01-13T13:18:40+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://mosko.tokyo/tags/python/</loc>
-    <lastmod>2016-10-29T00:16:01+09:00</lastmod>
+    <lastmod>2017-01-13T13:18:40+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -177,7 +182,7 @@
   
   <url>
     <loc>http://mosko.tokyo/</loc>
-    <lastmod>2016-11-12T01:11:08+09:00</lastmod>
+    <lastmod>2017-01-13T13:18:40+09:00</lastmod>
     <priority>0</priority>
   </url>
   

@@ -10,6 +10,78 @@
     <atom:link href="http://mosko.tokyo/tags/deep-learning/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>「日本古典籍字形データセット」で遊ぶ</title>
+      <link>http://mosko.tokyo/post/mnist_kuzushiji/</link>
+      <pubDate>Fri, 13 Jan 2017 13:18:40 +0900</pubDate>
+      
+      <guid>http://mosko.tokyo/post/mnist_kuzushiji/</guid>
+      <description>&lt;p&gt;日本語版MNIST,というわけではないけれど&lt;a href=&#34;http://codh.rois.ac.jp/char-shape/&#34;&gt;日本古典籍字形データセット&lt;/a&gt;の識別を&lt;code&gt;keras&lt;/code&gt;で実装したresnetによって行った．現在validation accuracyは93.3%．少なくとも自分よりはきちんと分類できるようだ．&lt;/p&gt;
+
+&lt;p&gt;このデータセットには2017年1月現在，「8点の画像データから切り取ったくずし字1,521文字種の字形データ86,176文字」が収録されている．&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://codh.rois.ac.jp/char-shape/unicode/U+30A6/200021712.jpg&#34; alt=&#34;例&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;今回はMNIST的に使うので，つまり文脈を考慮しないので変体仮名の「志」（し）と漢字としての「志」とを区別する，というようなタスクも含まれてしまうが，特に考慮しない．&lt;code&gt;keras&lt;/code&gt;の&lt;code&gt;ImageDataGenerator&lt;/code&gt;で前処理を一括して行う．本当はもう少し丁寧にした方がいいのかもしれないけれど，とりあえず．&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-Python&#34;&gt;
+# data generator
+train_datagen = ImageDataGenerator(
+    shear_range=0.05,
+    width_shift_range=0.05,
+    height_shift_range=0.05,
+    rotation_range=10,
+    fill_mode=&amp;quot;constant&amp;quot;,
+    cval=200,
+    zoom_range=0.2)
+train_generator = train_datagen.flow_from_directory(
+    &#39;train&#39;,
+    color_mode=&amp;quot;grayscale&amp;quot;,
+    target_size=target_size,
+    batch_size=batch_size,
+    class_mode=&#39;categorical&#39;
+)
+
+val_datagen = ImageDataGenerator()
+val_generator = val_datagen.flow_from_directory(
+    &#39;val&#39;,
+    color_mode=&amp;quot;grayscale&amp;quot;,
+    target_size=target_size,
+    batch_size=batch_size,
+    class_mode=&#39;categorical&#39;
+)
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;training dataには変形を施した．resnetは&lt;a href=&#34;https://transcranial.github.io/keras-js/#/resnet50&#34;&gt;keras.js&lt;/a&gt;を参考にして実装(下記の&lt;code&gt;res_a&lt;/code&gt;,&lt;code&gt;res_b&lt;/code&gt;)．&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-Python&#34;&gt;# model
+input_layer = Input(shape=input_shape)
+x = Convolution2D(nb_filters, 4, 4, subsample=(2,2))(input_layer)
+x = BatchNormalization()(x)
+x = Activation(&#39;relu&#39;)(x)
+x = MaxPooling2D(pool_size, strides=stride_size)(x)
+x = res_a([32,32,128])(x)
+x = res_b([32,32,128])(x)
+x = res_b([32,32,128])(x)
+x = res_a([64,64,256])(x)
+x = res_b([64,64,256])(x)
+x = res_b([128,128,256])(x)
+x = res_a([128,128,512])(x)
+x = res_b([128,128,512])(x)
+x = res_b([256,256,512])(x)
+x = AveragePooling2D((4,4))(x)
+x = Flatten()(x)
+output_layer = Dense(nb_classes, activation=&#39;softmax&#39;)(x)
+
+model = Model(input=input_layer, output=output_layer)
+model.compile(loss=&#39;categorical_crossentropy&#39;,
+              optimizer=&#39;adam&#39;,
+              metrics=[&#39;accuracy&#39;])
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
       <title>scikit-learn, Xgboost そしてTensorFlow</title>
       <link>http://mosko.tokyo/post/on-sklearn-xgboost-and-tensorflow/</link>
       <pubDate>Sat, 29 Oct 2016 00:16:01 +0900</pubDate>

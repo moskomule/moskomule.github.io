@@ -7,8 +7,80 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>Written by Ryuichiro Hataya</copyright>
-    <lastBuildDate>Sat, 12 Nov 2016 01:11:08 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 13 Jan 2017 13:18:40 +0900</lastBuildDate>
     <atom:link href="http://mosko.tokyo/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>「日本古典籍字形データセット」で遊ぶ</title>
+      <link>http://mosko.tokyo/post/mnist_kuzushiji/</link>
+      <pubDate>Fri, 13 Jan 2017 13:18:40 +0900</pubDate>
+      
+      <guid>http://mosko.tokyo/post/mnist_kuzushiji/</guid>
+      <description>&lt;p&gt;日本語版MNIST,というわけではないけれど&lt;a href=&#34;http://codh.rois.ac.jp/char-shape/&#34;&gt;日本古典籍字形データセット&lt;/a&gt;の識別を&lt;code&gt;keras&lt;/code&gt;で実装したresnetによって行った．現在validation accuracyは93.3%．少なくとも自分よりはきちんと分類できるようだ．&lt;/p&gt;
+
+&lt;p&gt;このデータセットには2017年1月現在，「8点の画像データから切り取ったくずし字1,521文字種の字形データ86,176文字」が収録されている．&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://codh.rois.ac.jp/char-shape/unicode/U+30A6/200021712.jpg&#34; alt=&#34;例&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;今回はMNIST的に使うので，つまり文脈を考慮しないので変体仮名の「志」（し）と漢字としての「志」とを区別する，というようなタスクも含まれてしまうが，特に考慮しない．&lt;code&gt;keras&lt;/code&gt;の&lt;code&gt;ImageDataGenerator&lt;/code&gt;で前処理を一括して行う．本当はもう少し丁寧にした方がいいのかもしれないけれど，とりあえず．&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-Python&#34;&gt;
+# data generator
+train_datagen = ImageDataGenerator(
+    shear_range=0.05,
+    width_shift_range=0.05,
+    height_shift_range=0.05,
+    rotation_range=10,
+    fill_mode=&amp;quot;constant&amp;quot;,
+    cval=200,
+    zoom_range=0.2)
+train_generator = train_datagen.flow_from_directory(
+    &#39;train&#39;,
+    color_mode=&amp;quot;grayscale&amp;quot;,
+    target_size=target_size,
+    batch_size=batch_size,
+    class_mode=&#39;categorical&#39;
+)
+
+val_datagen = ImageDataGenerator()
+val_generator = val_datagen.flow_from_directory(
+    &#39;val&#39;,
+    color_mode=&amp;quot;grayscale&amp;quot;,
+    target_size=target_size,
+    batch_size=batch_size,
+    class_mode=&#39;categorical&#39;
+)
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;training dataには変形を施した．resnetは&lt;a href=&#34;https://transcranial.github.io/keras-js/#/resnet50&#34;&gt;keras.js&lt;/a&gt;を参考にして実装(下記の&lt;code&gt;res_a&lt;/code&gt;,&lt;code&gt;res_b&lt;/code&gt;)．&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-Python&#34;&gt;# model
+input_layer = Input(shape=input_shape)
+x = Convolution2D(nb_filters, 4, 4, subsample=(2,2))(input_layer)
+x = BatchNormalization()(x)
+x = Activation(&#39;relu&#39;)(x)
+x = MaxPooling2D(pool_size, strides=stride_size)(x)
+x = res_a([32,32,128])(x)
+x = res_b([32,32,128])(x)
+x = res_b([32,32,128])(x)
+x = res_a([64,64,256])(x)
+x = res_b([64,64,256])(x)
+x = res_b([128,128,256])(x)
+x = res_a([128,128,512])(x)
+x = res_b([128,128,512])(x)
+x = res_b([256,256,512])(x)
+x = AveragePooling2D((4,4))(x)
+x = Flatten()(x)
+output_layer = Dense(nb_classes, activation=&#39;softmax&#39;)(x)
+
+model = Model(input=input_layer, output=output_layer)
+model.compile(loss=&#39;categorical_crossentropy&#39;,
+              optimizer=&#39;adam&#39;,
+              metrics=[&#39;accuracy&#39;])
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
     
     <item>
       <title>dotfilesを公開</title>
@@ -1519,96 +1591,6 @@ EOS
  &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:3&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>イタリア旅行記2日目</title>
-      <link>http://mosko.tokyo/post/italy2/</link>
-      <pubDate>Fri, 30 Sep 2016 12:12:55 +0900</pubDate>
-      
-      <guid>http://mosko.tokyo/post/italy2/</guid>
-      <description>&lt;p&gt;続いて2日目の記事．&lt;/p&gt;
-
-&lt;p&gt;2日目は日曜日なので大人しく，中央駅で翌日以降の切符を購入することから始まった．イタリアの公共鉄道の券売機では英語表示も可能で，クレジットカードを使うことが出来て便利である．&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;イタリア王国建国の英雄であるGaribaldiの像や彼を記念した広場が各地で見られる．これはBolognaのもの．&lt;/p&gt;
-
-&lt;p&gt;&lt;a data-flickr-embed=&#34;true&#34;  href=&#34;https://www.flickr.com/photos/96448979@N05/29375701613/in/album-72157673293980762/&#34; title=&#34;DSC01575&#34;&gt;&lt;img src=&#34;https://c6.staticflickr.com/6/5241/29375701613_fc0baf1362.jpg&#34; width=&#34;333&#34; height=&#34;500&#34; alt=&#34;DSC01575&#34;&gt;&lt;/a&gt;&lt;script async src=&#34;//embedr.flickr.com/assets/client-code.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;中世史博物館．キリスト教美術も多いのだが，古くからの大学街とだけあって，大学の風景がレリーフになっていたりするのが興味深い．&lt;/p&gt;
-
-&lt;p&gt;&lt;a data-flickr-embed=&#34;true&#34;  href=&#34;https://www.flickr.com/photos/96448979@N05/29375701243/in/album-72157673293980762/&#34; title=&#34;DSC01588&#34;&gt;&lt;img src=&#34;https://c4.staticflickr.com/9/8358/29375701243_84db3d2af3.jpg&#34; width=&#34;500&#34; height=&#34;333&#34; alt=&#34;DSC01588&#34;&gt;&lt;/a&gt;&lt;script async src=&#34;//embedr.flickr.com/assets/client-code.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a data-flickr-embed=&#34;true&#34;  href=&#34;https://www.flickr.com/photos/96448979@N05/29902782312/in/dateposted-public/&#34; title=&#34;DSC01598&#34;&gt;&lt;img src=&#34;https://c1.staticflickr.com/6/5563/29902782312_7639a6ca76.jpg&#34; width=&#34;500&#34; height=&#34;333&#34; alt=&#34;DSC01598&#34;&gt;&lt;/a&gt;&lt;script async src=&#34;//embedr.flickr.com/assets/client-code.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
-
-&lt;p&gt;墓碑の一部か．本は大学教授の象徴らしい．&lt;/p&gt;
-
-&lt;p&gt;&lt;a data-flickr-embed=&#34;true&#34;  href=&#34;https://www.flickr.com/photos/96448979@N05/29919317241/in/album-72157673293980762/&#34; title=&#34;DSC01604&#34;&gt;&lt;img src=&#34;https://c2.staticflickr.com/6/5133/29919317241_b5aea682d4.jpg&#34; width=&#34;500&#34; height=&#34;333&#34; alt=&#34;DSC01604&#34;&gt;&lt;/a&gt;&lt;script async src=&#34;//embedr.flickr.com/assets/client-code.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;街角．Bolognaの中心部はこのようにアーケードのようなものが続いていて，Maggiore広場付近では絵などを売る人がいる．&lt;/p&gt;
-
-&lt;p&gt;&lt;a data-flickr-embed=&#34;true&#34;  href=&#34;https://www.flickr.com/photos/96448979@N05/29389785283/in/album-72157673293980762/&#34; title=&#34;DSC01645&#34;&gt;&lt;img src=&#34;https://c4.staticflickr.com/6/5031/29389785283_799cea4779.jpg&#34; width=&#34;333&#34; height=&#34;500&#34; alt=&#34;DSC01645&#34;&gt;&lt;/a&gt;&lt;script async src=&#34;//embedr.flickr.com/assets/client-code.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a data-flickr-embed=&#34;true&#34;  href=&#34;https://www.flickr.com/photos/96448979@N05/29919316211/in/album-72157673293980762/&#34; title=&#34;DSC01634&#34;&gt;&lt;img src=&#34;https://c4.staticflickr.com/9/8085/29919316211_8127d9fa30.jpg&#34; width=&#34;333&#34; height=&#34;500&#34; alt=&#34;DSC01634&#34;&gt;&lt;/a&gt;&lt;script async src=&#34;//embedr.flickr.com/assets/client-code.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Santa Maria della vita教会．亡くなったキリストを取り囲む人々が，猛烈に嘆いているようにも或いは遺骸から何か強烈なものが放射されているようにも見える．&lt;/p&gt;
-
-&lt;p&gt;&lt;a data-flickr-embed=&#34;true&#34;  href=&#34;https://www.flickr.com/photos/96448979@N05/29919315501/in/album-72157673293980762/&#34; title=&#34;DSC01671&#34;&gt;&lt;img src=&#34;https://c6.staticflickr.com/8/7538/29919315501_f18162c671.jpg&#34; width=&#34;500&#34; height=&#34;333&#34; alt=&#34;DSC01671&#34;&gt;&lt;/a&gt;&lt;script async src=&#34;//embedr.flickr.com/assets/client-code.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
-
-&lt;p&gt;聖母被昇天の像がある2階の一室．絢爛豪華の一言に尽きる．&lt;/p&gt;
-
-&lt;p&gt;&lt;a data-flickr-embed=&#34;true&#34;  href=&#34;https://www.flickr.com/photos/96448979@N05/29903414202/in/datetaken-public/&#34; title=&#34;DSC01686_HDR&#34;&gt;&lt;img src=&#34;https://c3.staticflickr.com/6/5136/29903414202_5294b1f6ab.jpg&#34; width=&#34;333&#34; height=&#34;500&#34; alt=&#34;DSC01686_HDR&#34;&gt;&lt;/a&gt;&lt;script async src=&#34;//embedr.flickr.com/assets/client-code.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a data-flickr-embed=&#34;true&#34;  href=&#34;https://www.flickr.com/photos/96448979@N05/29919315091/in/album-72157673293980762/&#34; title=&#34;DSC01677_HDR&#34;&gt;&lt;img src=&#34;https://c4.staticflickr.com/6/5734/29919315091_17303e65c8.jpg&#34; width=&#34;500&#34; height=&#34;333&#34; alt=&#34;DSC01677_HDR&#34;&gt;&lt;/a&gt;&lt;script async src=&#34;//embedr.flickr.com/assets/client-code.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Poggi宮博物館．Bologna大学の施設なのだろうか，人体解剖像や胎児の成長を追った像などがある．かつては貴族や豪族がこのようなものを蒐集していて，それが寄付されたもののようだ．&lt;/p&gt;
-
-&lt;p&gt;&lt;a data-flickr-embed=&#34;true&#34;  href=&#34;https://www.flickr.com/photos/96448979@N05/29968335366/in/album-72157673293980762/&#34; title=&#34;DSC01718&#34;&gt;&lt;img src=&#34;https://c7.staticflickr.com/9/8358/29968335366_ff01bcba38.jpg&#34; width=&#34;333&#34; height=&#34;500&#34; alt=&#34;DSC01718&#34;&gt;&lt;/a&gt;&lt;script async src=&#34;//embedr.flickr.com/assets/client-code.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
-
-&lt;p&gt;築城学，というのだろうか，五稜郭のような城を築く学問や軍事系の学問に関するコーナーもある．&lt;/p&gt;
-
-&lt;p&gt;&lt;a data-flickr-embed=&#34;true&#34;  href=&#34;https://www.flickr.com/photos/96448979@N05/29968335116/in/album-72157673293980762/&#34; title=&#34;DSC01723&#34;&gt;&lt;img src=&#34;https://c5.staticflickr.com/6/5121/29968335116_52f7d0d110.jpg&#34; width=&#34;500&#34; height=&#34;333&#34; alt=&#34;DSC01723&#34;&gt;&lt;/a&gt;&lt;script async src=&#34;//embedr.flickr.com/assets/client-code.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
-
-&lt;p&gt;Galvaniが動物電気を発見したのもBolognaなのだろう，肖像画や像がある．ちなみに，無線電信を始めたMarconiもBolognaの人で，空港の名前は彼からとられている．&lt;/p&gt;
-
-&lt;p&gt;&lt;a data-flickr-embed=&#34;true&#34;  href=&#34;https://www.flickr.com/photos/96448979@N05/29903412882/in/datetaken-public/&#34; title=&#34;DSC01719&#34;&gt;&lt;img src=&#34;https://c3.staticflickr.com/6/5297/29903412882_392b2d27bd.jpg&#34; width=&#34;500&#34; height=&#34;333&#34; alt=&#34;DSC01719&#34;&gt;&lt;/a&gt;&lt;script async src=&#34;//embedr.flickr.com/assets/client-code.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;S.Dominico教会．本陣の裏にも入れる．&lt;/p&gt;
-
-&lt;p&gt;&lt;a data-flickr-embed=&#34;true&#34;  href=&#34;https://www.flickr.com/photos/96448979@N05/29374745964/in/album-72157673293980762/&#34; title=&#34;DSC01742&#34;&gt;&lt;img src=&#34;https://c5.staticflickr.com/6/5450/29374745964_cf6e3095b4.jpg&#34; width=&#34;333&#34; height=&#34;500&#34; alt=&#34;DSC01742&#34;&gt;&lt;/a&gt;&lt;script async src=&#34;//embedr.flickr.com/assets/client-code.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a data-flickr-embed=&#34;true&#34;  href=&#34;https://www.flickr.com/photos/96448979@N05/29374744794/in/album-72157673293980762/&#34; title=&#34;DSC01761&#34;&gt;&lt;img src=&#34;https://c3.staticflickr.com/9/8269/29374744794_6e55dd4ebc.jpg&#34; width=&#34;333&#34; height=&#34;500&#34; alt=&#34;DSC01761&#34;&gt;&lt;/a&gt;&lt;script async src=&#34;//embedr.flickr.com/assets/client-code.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
-
-&lt;p&gt;扉の文様．&lt;/p&gt;
-
-&lt;p&gt;&lt;a data-flickr-embed=&#34;true&#34;  href=&#34;https://www.flickr.com/photos/96448979@N05/29888796982/in/album-72157673293980762/&#34; title=&#34;DSC01749&#34;&gt;&lt;img src=&#34;https://c7.staticflickr.com/9/8272/29888796982_ec0128860e.jpg&#34; width=&#34;333&#34; height=&#34;500&#34; alt=&#34;DSC01749&#34;&gt;&lt;/a&gt;&lt;script async src=&#34;//embedr.flickr.com/assets/client-code.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;もとは宮殿の市庁舎．この部屋も会議室か何かのようで，何気ない部屋にも装飾が施されている．&lt;/p&gt;
-
-&lt;p&gt;&lt;a data-flickr-embed=&#34;true&#34;  href=&#34;https://www.flickr.com/photos/96448979@N05/29919310051/in/album-72157673293980762/&#34; title=&#34;DSC01795&#34;&gt;&lt;img src=&#34;https://c4.staticflickr.com/9/8220/29919310051_eca2cc99ac.jpg&#34; width=&#34;500&#34; height=&#34;333&#34; alt=&#34;DSC01795&#34;&gt;&lt;/a&gt;&lt;script async src=&#34;//embedr.flickr.com/assets/client-code.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;この日は結構強いにわか雨がありここで終了．一瞬前までセルカ棒を売っていた人々が今度は傘を売り始めた．&lt;/p&gt;
-
-&lt;p&gt;&lt;a data-flickr-embed=&#34;true&#34;  href=&#34;https://www.flickr.com/photos/96448979@N05/29374743524/in/album-72157673293980762/&#34; title=&#34;DSC01787_HDR&#34;&gt;&lt;img src=&#34;https://c5.staticflickr.com/9/8172/29374743524_41e58fe3dc.jpg&#34; width=&#34;500&#34; height=&#34;333&#34; alt=&#34;DSC01787_HDR&#34;&gt;&lt;/a&gt;&lt;script async src=&#34;//embedr.flickr.com/assets/client-code.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a data-flickr-embed=&#34;true&#34;  href=&#34;https://www.flickr.com/photos/96448979@N05/29919309661/in/album-72157673293980762/&#34; title=&#34;DSC01805&#34;&gt;&lt;img src=&#34;https://c6.staticflickr.com/9/8491/29919309661_d0fe2a1e18.jpg&#34; width=&#34;500&#34; height=&#34;333&#34; alt=&#34;DSC01805&#34;&gt;&lt;/a&gt;&lt;script async src=&#34;//embedr.flickr.com/assets/client-code.js&#34; charset=&#34;utf-8&#34;&gt;&amp;lt;/script&lt;/p&gt;
 </description>
     </item>
     
