@@ -18,7 +18,7 @@
       <guid>http://mosko.tokyo/post/mnist_kuzushiji/</guid>
       <description>&lt;p&gt;日本語版MNIST,というわけではないけれど&lt;a href=&#34;http://codh.rois.ac.jp/char-shape/&#34;&gt;日本古典籍字形データセット&lt;/a&gt;の識別を&lt;code&gt;keras&lt;/code&gt;で実装したresnetによって行った．現在validation accuracyは93.3%．少なくとも自分よりはきちんと分類できるようだ．&lt;/p&gt;
 
-&lt;p&gt;このデータセットには2017年1月現在，「8点の画像データから切り取ったくずし字1,521文字種の字形データ86,176文字」が収録されている．&lt;/p&gt;
+&lt;p&gt;このデータセットには2017年1月現在，「8点の画像データから切り取ったくずし字1,521文字種の字形データ86,176文字」が収録されているので，そのまま1521に分類している．&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&#34;http://codh.rois.ac.jp/char-shape/unicode/U+30A6/200021712.jpg&#34; alt=&#34;例&#34; /&gt;&lt;/p&gt;
 
