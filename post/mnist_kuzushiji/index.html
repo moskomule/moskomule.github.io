@@ -83,7 +83,7 @@
 
 <p>今回はMNIST的に使うので，つまり文脈を考慮しないので変体仮名の「志」（し）と漢字としての「志」とを区別する，というようなタスクも含まれてしまうが，特に考慮しない．<code>keras</code>の<code>ImageDataGenerator</code>で前処理を一括して行う．本当はもう少し丁寧にした方がいいのかもしれないけれど，とりあえず．</p>
 
-<pre><code class="language-Python">
+<pre><code>
 # data generator
 train_datagen = ImageDataGenerator(
     shear_range=0.05,
@@ -114,7 +114,7 @@ val_generator = val_datagen.flow_from_directory(
 
 <p>training dataには変形を施した．resnetは<a href="https://transcranial.github.io/keras-js/#/resnet50">keras.js</a>を参考にして実装(下記の<code>res_a</code>,<code>res_b</code>)．</p>
 
-<pre><code class="language-Python"># model
+<pre><code># model
 input_layer = Input(shape=input_shape)
 x = Convolution2D(nb_filters, 4, 4, subsample=(2,2))(input_layer)
 x = BatchNormalization()(x)

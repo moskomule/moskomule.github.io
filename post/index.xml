@@ -24,7 +24,7 @@
 
 &lt;p&gt;今回はMNIST的に使うので，つまり文脈を考慮しないので変体仮名の「志」（し）と漢字としての「志」とを区別する，というようなタスクも含まれてしまうが，特に考慮しない．&lt;code&gt;keras&lt;/code&gt;の&lt;code&gt;ImageDataGenerator&lt;/code&gt;で前処理を一括して行う．本当はもう少し丁寧にした方がいいのかもしれないけれど，とりあえず．&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-Python&#34;&gt;
+&lt;pre&gt;&lt;code&gt;
 # data generator
 train_datagen = ImageDataGenerator(
     shear_range=0.05,
@@ -55,7 +55,7 @@ val_generator = val_datagen.flow_from_directory(
 
 &lt;p&gt;training dataには変形を施した．resnetは&lt;a href=&#34;https://transcranial.github.io/keras-js/#/resnet50&#34;&gt;keras.js&lt;/a&gt;を参考にして実装(下記の&lt;code&gt;res_a&lt;/code&gt;,&lt;code&gt;res_b&lt;/code&gt;)．&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-Python&#34;&gt;# model
+&lt;pre&gt;&lt;code&gt;# model
 input_layer = Input(shape=input_shape)
 x = Convolution2D(nb_filters, 4, 4, subsample=(2,2))(input_layer)
 x = BatchNormalization()(x)
@@ -298,7 +298,7 @@ res = sess.run(fetches=[y],
 
 &lt;p&gt;Juliaは &lt;a href=&#34;http://julialang.org/&#34;&gt;ここ&lt;/a&gt;から導入する．ターミナルから開いて，&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-julia&#34;&gt;
+&lt;pre&gt;&lt;code&gt;
 Package.add(&amp;quot;IJulia&amp;quot;)
 
 using IJulia
@@ -313,62 +313,34 @@ notebook()
 
 &lt;p&gt;折角なので手元にあったPRMLにあった，一様乱数からガウス分布を得るBox-Muller法によって得られる分布をプロットする．以下ではプロットツールの&lt;code&gt;Gadfly&lt;/code&gt;を用いている．&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-julia&#34;&gt;
-using Gadfly
-
+&lt;pre&gt;&lt;code&gt;using Gadfly
 set_default_plot_size(10cm,10cm);
-
 # Box-Muller法
-
-
-
 function box_muller(num)
 
-    x = []
-
-    y = []
-
-    for i = 0:num
-
-        a = rand()
-
-        b = rand()
-
+    x = [] 
+    y = [] 
+    for i = 0:num 
+        a = rand() 
+        b = rand() 
         η = 2a -1 #1
-
         ζ = 2b -1
-
         r2 = η ^ 2 + ζ ^ 2
-
         if (r2) &amp;lt;= 1
-
             x = push!(x, η  * √(-2 * log(r2) / r2)) #2
-
             y = push!(y, ζ  * √(-2 * log(r2) / r2))
-
         else
-
             skip
-
         end
-
     end
-
     return (x, y) 
-
-end
-
-
-
-(x,y) = box_muller(10000)
-
+end 
+(x,y) = box_muller(10000) 
 plot(x=x,y=y)
 
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;#1,#2に示したように，Juliaでは&lt;code&gt;\eta,\zeta&lt;/code&gt;と入力してタブを押すと &amp;lsquo;η，ζ&amp;rsquo; と補完されて変数として用いることが出来る．また，&amp;rsquo;\sqrt&amp;rsquo;は&amp;rsquo;√&amp;rsquo;になってそのまま&lt;code&gt;sqrt&lt;/code&gt;として使用できる．数学よりのことをするときには数式に与えられている変数と一致させられて便利かもしれないし，何より面白い．&lt;/p&gt;
-
-&lt;p&gt;{% asset_img output.svg 出力 %}&lt;/p&gt;
 
 &lt;p&gt;PythonとScalaで満足しているし，情報も少ないのでいまのところ使う当てはないけれど，少し触った感じは軽快でよいし，プログラムをよく書く人にはRよりは取っつきやすいのかもしれない&lt;/p&gt;
 </description>
