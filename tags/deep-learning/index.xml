@@ -26,7 +26,7 @@
 &lt;pre&gt;&lt;code&gt;conda install pytorch torchvision cuda80 -c soumith
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;を叩くだけでよい．その下にはMNISTなどの例やJupyterのチュートリアルへのリンクがあるのも丁寧．ただ，ニューラルネットワークの知識に乏しくともレイヤーを重ねて&lt;code&gt;scikit-learn&lt;/code&gt;風によしなにすればよい&lt;code&gt;keras&lt;/code&gt;よりは難しいが，その分柔軟に書けそう．&lt;/p&gt;
+&lt;p&gt;を叩くだけでよい．その下にはMNISTなどの例やJupyterのチュートリアルへのリンクがあるのも丁寧．ただ，ニューラルネットワークの知識に乏しくともレイヤーを重ねて&lt;code&gt;scikit-learn&lt;/code&gt;風によしなにすればよい&lt;code&gt;keras&lt;/code&gt;よりは難しいが，その分柔軟に書けそう．メモリを大量消費する&lt;code&gt;TensorFlow&lt;/code&gt;に較べて，GPUに対する負荷はかなり小さそう．&lt;/p&gt;
 
 &lt;hr /&gt;
 
