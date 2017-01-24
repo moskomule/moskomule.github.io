@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pytorch on moskomule log</title>
+    <link>http://mosko.tokyo/tags/pytorch/index.xml</link>
+    <description>Recent content in Pytorch on moskomule log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <copyright>Written by Ryuichiro Hataya</copyright>
+    <atom:link href="http://mosko.tokyo/tags/pytorch/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Pytorchはじめ</title>
+      <link>http://mosko.tokyo/post/getting_started_pytorch/</link>
+      <pubDate>Tue, 24 Jan 2017 15:15:55 +0900</pubDate>
+      
+      <guid>http://mosko.tokyo/post/getting_started_pytorch/</guid>
+      <description>&lt;p&gt;先日Facebookが &lt;a href=&#34;http://pytorch.org/&#34;&gt;Pytorch&lt;/a&gt; を公開していたので，早速試してみた．&lt;code&gt;Pytorch&lt;/code&gt;は&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Tensors and Dynamic neural networks in Python with strong GPU acceleration.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;とのことで，&lt;code&gt;TensorFlow&lt;/code&gt;や&lt;code&gt;Theano&lt;/code&gt;より，&lt;code&gt;Chainer&lt;/code&gt;に似ている気がする．後発ということもあってか，ウェブページにある導入の説明が丁寧で，Linux，Python 3.5，conda，Cuda8.0なら&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;conda install pytorch torchvision cuda80 -c soumith
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;を叩くだけでよい．その下にはMNISTなどの例やJupyterのチュートリアルへのリンクがあるのも丁寧．ただ，ニューラルネットワークの知識に乏しくともレイヤーを重ねて&lt;code&gt;scikit-learn&lt;/code&gt;風によしなにすればよい&lt;code&gt;keras&lt;/code&gt;よりは難しいが，その分柔軟に書けそう．&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;基本的には&lt;code&gt;nn.Module&lt;/code&gt;を継承してネットワークを定義する． 以下のコードは&lt;a href=&#34;https://github.com/moskomule/pytorch_learn/blob/master/simple/mnist.py&#34;&gt;Github&lt;/a&gt;に挙げた．&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;class Net(nn.Module):
+  def __init__(self):
+    super(Net, self).__init__()
+    self.conv1 = nn.Conv2d(in_channels=1, out_channels=10,
+                           kernel_size=5,
+                           stride=1)
+    self.conv2 = nn.Conv2d(10, 20, kernel_size=5)
+    self.conv2_bn = nn.BatchNorm2d(20)
+    self.dense1 = nn.Linear(in_features=320, out_features=50)
+    self.dense1_bn = nn.BatchNorm1d(50)
+    self.dense2 = nn.Linear(50, 10)
+
+  def forward(self, x):
+    x = F.relu(F.max_pool2d(self.conv1(x), 2))
+    x = F.relu(F.max_pool2d(self.conv2_bn(self.conv2(x)), 2))
+    x = x.view(-1, 320) #reshape
+    x = F.relu(self.dense1_bn(self.dense1(x)))
+    x = F.relu(self.dense2(x))
+    return F.log_softmax(x)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;__init__&lt;/code&gt;で層を用意して&lt;code&gt;forward&lt;/code&gt;でレイヤーを繋げる感じ．各レイヤーでは入力数と出力数を明示する必要があって，&lt;code&gt;keras&lt;/code&gt;慣れしていたので畳み込み数の入出力数が分からず最初は戸惑ってしまった．&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;model = Net()
+
+optimizer = optim.Adam(model.parameters(),lr=5e-4)
+
+model.train()
+for batch_idx, (data, target) in enumerate(train_loader):
+  data, target = Variable(data), Variable(target)
+  optimizer.zero_grad() # optimizerの勾配を0にする
+  output = model(data)
+  loss = F.nll_loss(output, target) # negative log likelihood loss
+  loss.backward() # 逆伝播させる
+  optimizer.step() # 進める
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;train_loader&lt;/code&gt;から出てきた&lt;code&gt;data&lt;/code&gt;,&lt;code&gt;target&lt;/code&gt;は&lt;code&gt;Tensor&lt;/code&gt;型だが，そのままではネットワークに渡せないので&lt;code&gt;Variable&lt;/code&gt;で包む．&lt;code&gt;Chainer&lt;/code&gt;もこのような感じで，&lt;code&gt;Tensorflow&lt;/code&gt;では&lt;code&gt;placeholder&lt;/code&gt;と呼ばれているもの．&lt;code&gt;keras&lt;/code&gt;では何も考えずに&lt;code&gt;Numpy&lt;/code&gt;配列のまま与えられたので気をつけないと．&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;code&gt;Keras&lt;/code&gt;でRNNを書こうとしたら，難しそうだったのでこうして&lt;code&gt;Pytorch&lt;/code&gt;を触っているのだけれども，&lt;code&gt;Chainer&lt;/code&gt;とどちらの方がいいのだろうか．&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
