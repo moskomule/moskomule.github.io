@@ -10,6 +10,66 @@
     <atom:link href="http://mosko.tokyo/tags/deep-learning/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>PyTorchでテキスト生成</title>
+      <link>http://mosko.tokyo/post/pytorch_text_generation/</link>
+      <pubDate>Sat, 28 Jan 2017 07:31:45 +0900</pubDate>
+      
+      <guid>http://mosko.tokyo/post/pytorch_text_generation/</guid>
+      <description>&lt;p&gt;相変わらずPyTorchをいじっている．後発のこともあって，まだDocは完全ではないけれど，Discussionなどのサポート体制は充実している(気がする)．&lt;/p&gt;
+
+&lt;p&gt;コミュニティの助けを借りてRNNでの&lt;a href=&#34;https://github.com/moskomule/pytorch_learn/blob/master/simple/rnn_text_gen.py&#34;&gt;テキスト生成&lt;/a&gt;をおこなった．これはKerasの&lt;a href=&#34;https://github.com/fchollet/keras/blob/master/examples/lstm_text_generation.py&#34;&gt;サンプル&lt;/a&gt;をPyTorchで書き換えたもので時流に乗ってオーウェルの &lt;em&gt;1984&lt;/em&gt; を学習する．Kerasのように内部状態を特に考える必要がないのとは異なって，隠れ変数$h_{\star}$を意識しなくてはいけないので勉強になる．&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;function &lt;code&gt;var&lt;/code&gt;: CUDAが使えれば&lt;code&gt;torch.autograd.Variable&lt;/code&gt;をGPUにおく(&lt;code&gt;variable.cuda()&lt;/code&gt;)．&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;function &lt;code&gt;sample&lt;/code&gt;: RNNモデルの出力から適当なindexを取り出す．&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;function &lt;code&gt;__init__&lt;/code&gt; in class &lt;code&gt;Net&lt;/code&gt;: &lt;code&gt;input&lt;/code&gt;はfeature数で，今回であればアルファベットをonehotにしているので，&lt;code&gt;len(chars)&lt;/code&gt;．&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;def __init__(self, features, cls_size):
+    super(Net, self).__init__()
+    self.rnn1 = nn.GRU(input_size=features,
+                        hidden_size=hidden_size,
+                        num_layers=1)
+    self.dense1 = nn.Linear(hidden_size, cls_size)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;function &lt;code&gt;forward&lt;/code&gt; in class &lt;code&gt;Net&lt;/code&gt;: 系列の最後の入力に対する隠れ層の状態をとるために&lt;code&gt;x=select(0, maxlen-1)&lt;/code&gt;を行っている．&lt;code&gt;reshape&lt;/code&gt;に相当する&lt;code&gt;view&lt;/code&gt;を行うためにはcontiguousが必要．またテンソル&lt;code&gt;x&lt;/code&gt;は$\text{系列の長さ}\times\text{バッチ数}\times\text{feature数}$である点に注意．&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;def forward(self, x, hidden):
+    x, hidden = self.rnn1(x, hidden)
+    x = x.select(0, maxlen-1).contiguous()
+    x = x.view(-1, hidden_size)
+    x = F.softmax(self.dense1(x))
+    return x, hidden
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;function &lt;code&gt;train&lt;/code&gt;: 入力した文を1通り読み込むのを1エポックにしている．Kerasと異なり，PyTorchの&lt;code&gt;CrossEntropyLoss&lt;/code&gt;では&lt;code&gt;target&lt;/code&gt;はクラスのインデックスである．この目標のインデクス配列の型は&lt;code&gt;np.array(dtype=np.int)&lt;/code&gt;だが，これは&lt;code&gt;torch.Tensor&lt;/code&gt;では&lt;code&gt;Tensor&lt;/code&gt;に変換できないので&lt;code&gt;torch.LongTensor&lt;/code&gt;を用いている．&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;def train():
+    model.train()
+    hidden = model.init_hidden()
+    for epoch in range(len(sentences) // batch_size):
+        X_batch = var(torch.FloatTensor(X[:, epoch*batch_size: (epoch+1)*batch_size, :]))
+        y_batch = var(torch.LongTensor(y[epoch*batch_size: (epoch+1)*batch_size]))
+        model.zero_grad()
+        output, hidden = model(X_batch, var(hidden.data))
+        loss = criterion(output, y_batch)
+        loss.backward()
+        optimizer.step()
+    print(&amp;quot;\r{}&amp;quot;.format(loss.data[0]), end=&amp;quot;&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;主要な部分は以上．特に&lt;code&gt;Variable&lt;/code&gt;に&lt;code&gt;Variable&lt;/code&gt;を与えるとエラーになったり，いちいち&lt;code&gt;Variable().cuda()&lt;/code&gt;をしなくてはいけないところで躓いたりした．また，&lt;code&gt;Tensor&lt;/code&gt;は暗黙的に&lt;code&gt;FloatTensor&lt;/code&gt;に&lt;a href=&#34;http://pytorch.org/docs/tensors.html&#34;&gt;変換される&lt;/a&gt;のもポイント．&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Pytorchはじめ</title>
       <link>http://mosko.tokyo/post/getting_started_pytorch/</link>
       <pubDate>Tue, 24 Jan 2017 15:15:55 +0900</pubDate>

@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://mosko.tokyo/post/pytorch_text_generation/</loc>
+    <lastmod>2017-01-28T07:31:45+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://mosko.tokyo/post/getting_started_pytorch/</loc>
     <lastmod>2017-01-24T15:15:55+09:00</lastmod>
   </url>
@@ -104,7 +109,7 @@
   
   <url>
     <loc>http://mosko.tokyo/tags/deep-learning/</loc>
-    <lastmod>2017-01-24T15:15:55+09:00</lastmod>
+    <lastmod>2017-01-28T07:31:45+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -152,7 +157,7 @@
   
   <url>
     <loc>http://mosko.tokyo/post/</loc>
-    <lastmod>2017-01-24T15:15:55+09:00</lastmod>
+    <lastmod>2017-01-28T07:31:45+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -164,7 +169,7 @@
   
   <url>
     <loc>http://mosko.tokyo/tags/pytorch/</loc>
-    <lastmod>2017-01-24T15:15:55+09:00</lastmod>
+    <lastmod>2017-01-28T07:31:45+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -193,7 +198,7 @@
   
   <url>
     <loc>http://mosko.tokyo/</loc>
-    <lastmod>2017-01-24T15:15:55+09:00</lastmod>
+    <lastmod>2017-01-28T07:31:45+09:00</lastmod>
     <priority>0</priority>
   </url>
   

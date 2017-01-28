@@ -7,8 +7,68 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>Written by Ryuichiro Hataya</copyright>
-    <lastBuildDate>Tue, 24 Jan 2017 15:15:55 +0900</lastBuildDate>
+    <lastBuildDate>Sat, 28 Jan 2017 07:31:45 +0900</lastBuildDate>
     <atom:link href="http://mosko.tokyo/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>PyTorchでテキスト生成</title>
+      <link>http://mosko.tokyo/post/pytorch_text_generation/</link>
+      <pubDate>Sat, 28 Jan 2017 07:31:45 +0900</pubDate>
+      
+      <guid>http://mosko.tokyo/post/pytorch_text_generation/</guid>
+      <description>&lt;p&gt;相変わらずPyTorchをいじっている．後発のこともあって，まだDocは完全ではないけれど，Discussionなどのサポート体制は充実している(気がする)．&lt;/p&gt;
+
+&lt;p&gt;コミュニティの助けを借りてRNNでの&lt;a href=&#34;https://github.com/moskomule/pytorch_learn/blob/master/simple/rnn_text_gen.py&#34;&gt;テキスト生成&lt;/a&gt;をおこなった．これはKerasの&lt;a href=&#34;https://github.com/fchollet/keras/blob/master/examples/lstm_text_generation.py&#34;&gt;サンプル&lt;/a&gt;をPyTorchで書き換えたもので時流に乗ってオーウェルの &lt;em&gt;1984&lt;/em&gt; を学習する．Kerasのように内部状態を特に考える必要がないのとは異なって，隠れ変数$h_{\star}$を意識しなくてはいけないので勉強になる．&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;function &lt;code&gt;var&lt;/code&gt;: CUDAが使えれば&lt;code&gt;torch.autograd.Variable&lt;/code&gt;をGPUにおく(&lt;code&gt;variable.cuda()&lt;/code&gt;)．&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;function &lt;code&gt;sample&lt;/code&gt;: RNNモデルの出力から適当なindexを取り出す．&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;function &lt;code&gt;__init__&lt;/code&gt; in class &lt;code&gt;Net&lt;/code&gt;: &lt;code&gt;input&lt;/code&gt;はfeature数で，今回であればアルファベットをonehotにしているので，&lt;code&gt;len(chars)&lt;/code&gt;．&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;def __init__(self, features, cls_size):
+    super(Net, self).__init__()
+    self.rnn1 = nn.GRU(input_size=features,
+                        hidden_size=hidden_size,
+                        num_layers=1)
+    self.dense1 = nn.Linear(hidden_size, cls_size)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;function &lt;code&gt;forward&lt;/code&gt; in class &lt;code&gt;Net&lt;/code&gt;: 系列の最後の入力に対する隠れ層の状態をとるために&lt;code&gt;x=select(0, maxlen-1)&lt;/code&gt;を行っている．&lt;code&gt;reshape&lt;/code&gt;に相当する&lt;code&gt;view&lt;/code&gt;を行うためにはcontiguousが必要．またテンソル&lt;code&gt;x&lt;/code&gt;は$\text{系列の長さ}\times\text{バッチ数}\times\text{feature数}$である点に注意．&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;def forward(self, x, hidden):
+    x, hidden = self.rnn1(x, hidden)
+    x = x.select(0, maxlen-1).contiguous()
+    x = x.view(-1, hidden_size)
+    x = F.softmax(self.dense1(x))
+    return x, hidden
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;function &lt;code&gt;train&lt;/code&gt;: 入力した文を1通り読み込むのを1エポックにしている．Kerasと異なり，PyTorchの&lt;code&gt;CrossEntropyLoss&lt;/code&gt;では&lt;code&gt;target&lt;/code&gt;はクラスのインデックスである．この目標のインデクス配列の型は&lt;code&gt;np.array(dtype=np.int)&lt;/code&gt;だが，これは&lt;code&gt;torch.Tensor&lt;/code&gt;では&lt;code&gt;Tensor&lt;/code&gt;に変換できないので&lt;code&gt;torch.LongTensor&lt;/code&gt;を用いている．&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;def train():
+    model.train()
+    hidden = model.init_hidden()
+    for epoch in range(len(sentences) // batch_size):
+        X_batch = var(torch.FloatTensor(X[:, epoch*batch_size: (epoch+1)*batch_size, :]))
+        y_batch = var(torch.LongTensor(y[epoch*batch_size: (epoch+1)*batch_size]))
+        model.zero_grad()
+        output, hidden = model(X_batch, var(hidden.data))
+        loss = criterion(output, y_batch)
+        loss.backward()
+        optimizer.step()
+    print(&amp;quot;\r{}&amp;quot;.format(loss.data[0]), end=&amp;quot;&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;主要な部分は以上．特に&lt;code&gt;Variable&lt;/code&gt;に&lt;code&gt;Variable&lt;/code&gt;を与えるとエラーになったり，いちいち&lt;code&gt;Variable().cuda()&lt;/code&gt;をしなくてはいけないところで躓いたりした．また，&lt;code&gt;Tensor&lt;/code&gt;は暗黙的に&lt;code&gt;FloatTensor&lt;/code&gt;に&lt;a href=&#34;http://pytorch.org/docs/tensors.html&#34;&gt;変換される&lt;/a&gt;のもポイント．&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Pytorchはじめ</title>
@@ -1238,176 +1298,6 @@ EOS
 &lt;p&gt;当時は気付かなかったが，左下の罪人達の虐げられている様は地獄篇のCocytusで悪魔大王がJuda達を噛んでいるさまを想起させる，気がする．&lt;/p&gt;
 
 &lt;p&gt;&lt;a data-flickr-embed=&#34;true&#34;  href=&#34;https://www.flickr.com/photos/96448979@N05/29968254366/in/datetaken-public/&#34; title=&#34;DSC03026_HDR&#34;&gt;&lt;img src=&#34;https://c7.staticflickr.com/9/8540/29968254366_91a39c5b31.jpg&#34; width=&#34;500&#34; height=&#34;333&#34; alt=&#34;DSC03026_HDR&#34;&gt;&lt;/a&gt;&lt;script async src=&#34;//embedr.flickr.com/assets/client-code.js&#34; charset=&#34;utf-8&#34;&gt;&amp;lt;/script&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>イタリア旅行記4日目</title>
-      <link>http://mosko.tokyo/post/italy4/</link>
-      <pubDate>Sun, 02 Oct 2016 11:15:13 +0900</pubDate>
-      
-      <guid>http://mosko.tokyo/post/italy4/</guid>
-      <description>
-
-&lt;p&gt;華の都，頽廃の都．Fiorenzaへ．&lt;/p&gt;
-
-&lt;p&gt;Firenzeには幾つか駅があるのだが，Bologna発の電車は主にFirenze Santa Maria Novella駅に到着する．BolognaやRavennaと較べると，ローマからも近く，世界的な観光地であるから人が圧倒的に多くて驚く．駅の名前通り，駅前にはSanta Maria Novella教会がある．&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h4 id=&#34;santa-maria-novella&#34;&gt;Santa Maria Novella&lt;/h4&gt;
-
-&lt;p&gt;Dominico会系の教会．&lt;/p&gt;
-
-&lt;p&gt;&lt;a data-flickr-embed=&#34;true&#34;  href=&#34;https://www.flickr.com/photos/96448979@N05/30002293035/in/datetaken-public/&#34; title=&#34;DSC02281&#34;&gt;&lt;img src=&#34;https://c4.staticflickr.com/6/5664/30002293035_78d4faaedc.jpg&#34; width=&#34;500&#34; height=&#34;333&#34; alt=&#34;DSC02281&#34;&gt;&lt;/a&gt;&lt;script async src=&#34;//embedr.flickr.com/assets/client-code.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
-
-&lt;p&gt;墓碑の並ぶ回廊．往時の繁栄が偲ばれる．&lt;/p&gt;
-
-&lt;p&gt;&lt;a data-flickr-embed=&#34;true&#34;  href=&#34;https://www.flickr.com/photos/96448979@N05/29427834024/in/datetaken-public/&#34; title=&#34;DSC02218&#34;&gt;&lt;img src=&#34;https://c1.staticflickr.com/6/5170/29427834024_b2ef09527d.jpg&#34; width=&#34;333&#34; height=&#34;500&#34; alt=&#34;DSC02218&#34;&gt;&lt;/a&gt;&lt;script async src=&#34;//embedr.flickr.com/assets/client-code.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a data-flickr-embed=&#34;true&#34;  href=&#34;https://www.flickr.com/photos/96448979@N05/30055389995/in/datetaken-public/&#34; title=&#34;DSC02217&#34;&gt;&lt;img src=&#34;https://c4.staticflickr.com/9/8275/30055389995_3622f6b458.jpg&#34; width=&#34;500&#34; height=&#34;333&#34; alt=&#34;DSC02217&#34;&gt;&lt;/a&gt;&lt;script async src=&#34;//embedr.flickr.com/assets/client-code.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
-
-&lt;p&gt;礼拝堂．壁天井にいたるまで絵で覆い尽くされていて，豊かさを感じる．&lt;/p&gt;
-
-&lt;p&gt;&lt;a data-flickr-embed=&#34;true&#34;  href=&#34;https://www.flickr.com/photos/96448979@N05/29888775782/in/datetaken-public/&#34; title=&#34;DSC02224&#34;&gt;&lt;img src=&#34;https://c7.staticflickr.com/9/8268/29888775782_3644930ba3.jpg&#34; width=&#34;500&#34; height=&#34;333&#34; alt=&#34;DSC02224&#34;&gt;&lt;/a&gt;&lt;script async src=&#34;//embedr.flickr.com/assets/client-code.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a data-flickr-embed=&#34;true&#34;  href=&#34;https://www.flickr.com/photos/96448979@N05/29888775242/in/datetaken-public/&#34; title=&#34;DSC02229&#34;&gt;&lt;img src=&#34;https://c3.staticflickr.com/9/8073/29888775242_a563060e42.jpg&#34; width=&#34;500&#34; height=&#34;333&#34; alt=&#34;DSC02229&#34;&gt;&lt;/a&gt;&lt;script async src=&#34;//embedr.flickr.com/assets/client-code.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;ｓ&lt;/p&gt;
-
-&lt;p&gt;聖堂．縞模様の大理石が美しい．&lt;/p&gt;
-
-&lt;p&gt;&lt;a data-flickr-embed=&#34;true&#34;  href=&#34;https://www.flickr.com/photos/96448979@N05/29428892843/in/datetaken-public/&#34; title=&#34;DSC02266_HDR&#34;&gt;&lt;img src=&#34;https://c4.staticflickr.com/6/5745/29428892843_373f927bc6.jpg&#34; width=&#34;332&#34; height=&#34;500&#34; alt=&#34;DSC02266_HDR&#34;&gt;&lt;/a&gt;&lt;script async src=&#34;//embedr.flickr.com/assets/client-code.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a data-flickr-embed=&#34;true&#34;  href=&#34;https://www.flickr.com/photos/96448979@N05/30002294335/in/datetaken-public/&#34; title=&#34;DSC02254_HDR&#34;&gt;&lt;img src=&#34;https://c8.staticflickr.com/9/8266/30002294335_90c0408c6e.jpg&#34; width=&#34;333&#34; height=&#34;500&#34; alt=&#34;DSC02254_HDR&#34;&gt;&lt;/a&gt;&lt;script async src=&#34;//embedr.flickr.com/assets/client-code.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h4 id=&#34;chiesa-di-santa-maria-maggiore&#34;&gt;Chiesa di Santa Maria Maggiore&lt;/h4&gt;
-
-&lt;p&gt;Firenzeの大聖堂に向かう途中で見かけた小さな教会．落ち着いた感じでよい．&lt;/p&gt;
-
-&lt;p&gt;&lt;a data-flickr-embed=&#34;true&#34;  href=&#34;https://www.flickr.com/photos/96448979@N05/30002291785/in/datetaken-public/&#34; title=&#34;DSC02286&#34;&gt;&lt;img src=&#34;https://c2.staticflickr.com/9/8397/30002291785_d936e339e5.jpg&#34; width=&#34;500&#34; height=&#34;333&#34; alt=&#34;DSC02286&#34;&gt;&lt;/a&gt;&lt;script async src=&#34;//embedr.flickr.com/assets/client-code.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a data-flickr-embed=&#34;true&#34;  href=&#34;https://www.flickr.com/photos/96448979@N05/29888772632/in/datetaken-public/&#34; title=&#34;DSC02290&#34;&gt;&lt;img src=&#34;https://c1.staticflickr.com/6/5259/29888772632_c3ecafa679.jpg&#34; width=&#34;333&#34; height=&#34;500&#34; alt=&#34;DSC02290&#34;&gt;&lt;/a&gt;&lt;script async src=&#34;//embedr.flickr.com/assets/client-code.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h4 id=&#34;firenze-card&#34;&gt;Firenze Card&lt;/h4&gt;
-
-&lt;p&gt;Firenzeの72の博物館や教会が72時間使えて€72，というカードを購入して巡った．優先入場権がついているので，混んでいる入り口でもこのカードを見せるだけですぐには入れることがある．&lt;/p&gt;
-
-&lt;p&gt;美術館，教会などの施設でこのFirenze Cardを示すと，Suicaが使える検札器のような装置で読み取ってレシートが発行される．大きな施設ではFirenze Cardと書かれた受付に行き発行して貰う．施設内ではカードではなく，このレシートを見せることになる．Pitti宮のように巨大な施設には複数の付属施設があるが，一度にそれらを回りきれるとは限らない．有効期限内であれば，そのレシートを見せることで見ていない付属施設に入場できるので，小さな紙切れではあるがなくさないようにした方がよい．&lt;/p&gt;
-
-&lt;p&gt;注意事項として，公共交通機関が乗り放題になる訳ではない，ということがある．購入時に渡される地図にはバスのアイコンが描かれているのでバスも72時間乗り放題かと思いきやそんなことはない．&lt;/p&gt;
-
-&lt;p&gt;知らずにバスに乗っていると抜き打ちで検査があって引っかかると罰金を払う羽目になる．結構頻繁にあることなのか，「またFirenze Cardだよ」というような話をしているように見えたので，最近改訂があったのかもしれない．&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h4 id=&#34;mercato-centrale&#34;&gt;Mercato Centrale&lt;/h4&gt;
-
-&lt;p&gt;1階は地元の人も使うだろう市場．野菜，肉，チーズ，パンから調味料まで，食料品は何でも揃いそう．日本人も大勢訪れるようで，調味料売り場には「真空パックできます」などという表示もある．&lt;/p&gt;
-
-&lt;p&gt;&lt;a data-flickr-embed=&#34;true&#34;  href=&#34;https://www.flickr.com/photos/96448979@N05/29888771522/in/datetaken-public/&#34; title=&#34;DSC02333&#34;&gt;&lt;img src=&#34;https://c3.staticflickr.com/9/8353/29888771522_aa1059c624.jpg&#34; width=&#34;500&#34; height=&#34;333&#34; alt=&#34;DSC02333&#34;&gt;&lt;/a&gt;&lt;script async src=&#34;//embedr.flickr.com/assets/client-code.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a data-flickr-embed=&#34;true&#34;  href=&#34;https://www.flickr.com/photos/96448979@N05/29888772302/in/datetaken-public/&#34; title=&#34;DSC02330&#34;&gt;&lt;img src=&#34;https://c7.staticflickr.com/9/8377/29888772302_4b6da20108.jpg&#34; width=&#34;500&#34; height=&#34;333&#34; alt=&#34;DSC02330&#34;&gt;&lt;/a&gt;&lt;script async src=&#34;//embedr.flickr.com/assets/client-code.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
-
-&lt;p&gt;2階はフードコートが揃っている．ステーキを食べた．&lt;/p&gt;
-
-&lt;p&gt;&lt;a data-flickr-embed=&#34;true&#34;  href=&#34;https://www.flickr.com/photos/96448979@N05/29708438730/in/datetaken-public/&#34; title=&#34;DSC02336&#34;&gt;&lt;img src=&#34;https://c3.staticflickr.com/9/8215/29708438730_77d02fa0aa.jpg&#34; width=&#34;500&#34; height=&#34;333&#34; alt=&#34;DSC02336&#34;&gt;&lt;/a&gt;&lt;script async src=&#34;//embedr.flickr.com/assets/client-code.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h4 id=&#34;le-cappelle-medicee&#34;&gt;Le Cappelle Medicee&lt;/h4&gt;
-
-&lt;p&gt;Medici家の礼拝堂で1階が博物館になっており聖遺物の容器などが展示されている．2階の礼拝堂の天井以外は工事中．&lt;/p&gt;
-
-&lt;p&gt;&lt;a data-flickr-embed=&#34;true&#34;  href=&#34;https://www.flickr.com/photos/96448979@N05/29708438360/in/datetaken-public/&#34; title=&#34;DSC02348_HDR&#34;&gt;&lt;img src=&#34;https://c1.staticflickr.com/6/5010/29708438360_4781697a2c.jpg&#34; width=&#34;500&#34; height=&#34;332&#34; alt=&#34;DSC02348_HDR&#34;&gt;&lt;/a&gt;&lt;script async src=&#34;//embedr.flickr.com/assets/client-code.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
-
-&lt;p&gt;Michelangeloによる墓碑などもある．&lt;/p&gt;
-
-&lt;p&gt;&lt;a data-flickr-embed=&#34;true&#34;  href=&#34;https://www.flickr.com/photos/96448979@N05/29708437550/in/datetaken-public/&#34; title=&#34;DSC02359&#34;&gt;&lt;img src=&#34;https://c7.staticflickr.com/6/5808/29708437550_f581a66669.jpg&#34; width=&#34;500&#34; height=&#34;333&#34; alt=&#34;DSC02359&#34;&gt;&lt;/a&gt;&lt;script async src=&#34;//embedr.flickr.com/assets/client-code.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h4 id=&#34;il-duomo-di-firenze-cattedrale-di-santa-maria-del-fiore&#34;&gt;Il Duomo di Firenze: Cattedrale di Santa Maria del Fiore&lt;/h4&gt;
-
-&lt;p&gt;Filippo Brunelleschiが設計したcupolaはFirenzeの象徴で，登ることが出来るのだが長蛇の列ができている．また，人が多く集まるため聖堂前では軍が警備を行っている．&lt;/p&gt;
-
-&lt;p&gt;&lt;a data-flickr-embed=&#34;true&#34;  href=&#34;https://www.flickr.com/photos/96448979@N05/29919275861/in/datetaken-public/&#34; title=&#34;DSC02365_HDR&#34;&gt;&lt;img src=&#34;https://c6.staticflickr.com/6/5644/29919275861_0a88761f6d.jpg&#34; width=&#34;500&#34; height=&#34;333&#34; alt=&#34;DSC02365_HDR&#34;&gt;&lt;/a&gt;&lt;script async src=&#34;//embedr.flickr.com/assets/client-code.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a data-flickr-embed=&#34;true&#34;  href=&#34;https://www.flickr.com/photos/96448979@N05/29968296556/in/datetaken-public/&#34; title=&#34;DSC02375&#34;&gt;&lt;img src=&#34;https://c5.staticflickr.com/9/8523/29968296556_2a8137c225.jpg&#34; width=&#34;333&#34; height=&#34;500&#34; alt=&#34;DSC02375&#34;&gt;&lt;/a&gt;&lt;script async src=&#34;//embedr.flickr.com/assets/client-code.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a data-flickr-embed=&#34;true&#34;  href=&#34;https://www.flickr.com/photos/96448979@N05/29968297396/in/datetaken-public/&#34; title=&#34;DSC02373&#34;&gt;&lt;img src=&#34;https://c5.staticflickr.com/9/8285/29968297396_9252bc0e38.jpg&#34; width=&#34;500&#34; height=&#34;333&#34; alt=&#34;DSC02373&#34;&gt;&lt;/a&gt;&lt;script async src=&#34;//embedr.flickr.com/assets/client-code.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h4 id=&#34;palazzo-pitti&#34;&gt;Palazzo Pitti&lt;/h4&gt;
-
-&lt;p&gt;Arno川を渡った先にある，Pitti宮はToscana大公の離宮として建てられ，美術品の蒐集品が充実している．また庭園が高台に沿って造営されているため，登りきると街が一望できる．&lt;/p&gt;
-
-&lt;p&gt;&lt;a data-flickr-embed=&#34;true&#34;  href=&#34;https://www.flickr.com/photos/96448979@N05/29919273421/in/datetaken-public/&#34; title=&#34;DSC02399&#34;&gt;&lt;img src=&#34;https://c6.staticflickr.com/9/8269/29919273421_c05e238a6d.jpg&#34; width=&#34;500&#34; height=&#34;333&#34; alt=&#34;DSC02399&#34;&gt;&lt;/a&gt;&lt;script async src=&#34;//embedr.flickr.com/assets/client-code.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a data-flickr-embed=&#34;true&#34;  href=&#34;https://www.flickr.com/photos/96448979@N05/29968295146/in/datetaken-public/&#34; title=&#34;DSC02402&#34;&gt;&lt;img src=&#34;https://c3.staticflickr.com/9/8285/29968295146_f847273869.jpg&#34; width=&#34;500&#34; height=&#34;333&#34; alt=&#34;DSC02402&#34;&gt;&lt;/a&gt;&lt;script async src=&#34;//embedr.flickr.com/assets/client-code.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a data-flickr-embed=&#34;true&#34;  href=&#34;https://www.flickr.com/photos/96448979@N05/29888765542/in/datetaken-public/&#34; title=&#34;DSC02410&#34;&gt;&lt;img src=&#34;https://c7.staticflickr.com/6/5297/29888765542_c217526f27.jpg&#34; width=&#34;500&#34; height=&#34;333&#34; alt=&#34;DSC02410&#34;&gt;&lt;/a&gt;&lt;script async src=&#34;//embedr.flickr.com/assets/client-code.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a data-flickr-embed=&#34;true&#34;  href=&#34;https://www.flickr.com/photos/96448979@N05/29968292686/in/datetaken-public/&#34; title=&#34;DSC02418-Pano&#34;&gt;&lt;img src=&#34;https://c7.staticflickr.com/8/7764/29968292686_9006e35f8e.jpg&#34; width=&#34;500&#34; height=&#34;91&#34; alt=&#34;DSC02418-Pano&#34;&gt;&lt;/a&gt;&lt;script async src=&#34;//embedr.flickr.com/assets/client-code.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
-
-&lt;p&gt;Arno川のPitti宮側は，元来は坂が多く使いにくい土地である上に湿地帯だったようで，寂れた土地であったらしい．実際こちら側は散策するのも大変．&lt;/p&gt;
-
-&lt;p&gt;&lt;a data-flickr-embed=&#34;true&#34;  href=&#34;https://www.flickr.com/photos/96448979@N05/29888760722/in/datetaken-public/&#34; title=&#34;DSC02457&#34;&gt;&lt;img src=&#34;https://c3.staticflickr.com/9/8583/29888760722_9db5f0d5dd.jpg&#34; width=&#34;333&#34; height=&#34;500&#34; alt=&#34;DSC02457&#34;&gt;&lt;/a&gt;&lt;script async src=&#34;//embedr.flickr.com/assets/client-code.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
-
-&lt;p&gt;Pitti宮のある丘を越えて，次の丘を登るとMichelangelo広場という高台に出る．Arno川を含めて旧市街が一望できるとあって観光客で賑わっている．特に夕日の頃になると欄干には人が群がる．&lt;/p&gt;
-
-&lt;p&gt;&lt;a data-flickr-embed=&#34;true&#34;  href=&#34;https://www.flickr.com/photos/96448979@N05/29968287116/in/datetaken-public/&#34; title=&#34;DSC02463-Pano&#34;&gt;&lt;img src=&#34;https://c5.staticflickr.com/9/8116/29968287116_fdca60f560.jpg&#34; width=&#34;500&#34; height=&#34;144&#34; alt=&#34;DSC02463-Pano&#34;&gt;&lt;/a&gt;&lt;script async src=&#34;//embedr.flickr.com/assets/client-code.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h4 id=&#34;abbazia-di-san-miniato-al-monte&#34;&gt;Abbazia di San Miniato al Monte&lt;/h4&gt;
-
-&lt;p&gt;更に歩を進めると霊園の中にSan Miniato al Monte教会が現れる．白と緑のファサードはPitti宮の丘からも望むことが出来る．&lt;/p&gt;
-
-&lt;p&gt;&lt;a data-flickr-embed=&#34;true&#34;  href=&#34;https://www.flickr.com/photos/96448979@N05/29888755022/in/datetaken-public/&#34; title=&#34;DSC02513&#34;&gt;&lt;img src=&#34;https://c7.staticflickr.com/9/8410/29888755022_d84a540576.jpg&#34; width=&#34;500&#34; height=&#34;333&#34; alt=&#34;DSC02513&#34;&gt;&lt;/a&gt;&lt;script async src=&#34;//embedr.flickr.com/assets/client-code.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
-
-&lt;p&gt;中も壮麗の一言．細かい箇所にも細工が為されていて飽きることがない．&lt;/p&gt;
-
-&lt;p&gt;&lt;a data-flickr-embed=&#34;true&#34;  href=&#34;https://www.flickr.com/photos/96448979@N05/29968285956/in/datetaken-public/&#34; title=&#34;DSC02475_HDR&#34;&gt;&lt;img src=&#34;https://c5.staticflickr.com/6/5075/29968285956_25e93fcb67.jpg&#34; width=&#34;333&#34; height=&#34;500&#34; alt=&#34;DSC02475_HDR&#34;&gt;&lt;/a&gt;&lt;script async src=&#34;//embedr.flickr.com/assets/client-code.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a data-flickr-embed=&#34;true&#34;  href=&#34;https://www.flickr.com/photos/96448979@N05/29968285366/in/datetaken-public/&#34; title=&#34;DSC02478&#34;&gt;&lt;img src=&#34;https://c7.staticflickr.com/6/5184/29968285366_96e6126a13.jpg&#34; width=&#34;500&#34; height=&#34;333&#34; alt=&#34;DSC02478&#34;&gt;&lt;/a&gt;&lt;script async src=&#34;//embedr.flickr.com/assets/client-code.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
-
-&lt;p&gt;結構な古刹なのだろう，不思議な装飾も多い．&lt;/p&gt;
-
-&lt;p&gt;&lt;a data-flickr-embed=&#34;true&#34;  href=&#34;https://www.flickr.com/photos/96448979@N05/29919270311/in/datetaken-public/&#34; title=&#34;DSC02483&#34;&gt;&lt;img src=&#34;https://c8.staticflickr.com/9/8640/29919270311_de40bd73ef.jpg&#34; width=&#34;500&#34; height=&#34;333&#34; alt=&#34;DSC02483&#34;&gt;&lt;/a&gt;&lt;script async src=&#34;//embedr.flickr.com/assets/client-code.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a data-flickr-embed=&#34;true&#34;  href=&#34;https://www.flickr.com/photos/96448979@N05/29919270131/in/datetaken-public/&#34; title=&#34;DSC02484&#34;&gt;&lt;img src=&#34;https://c4.staticflickr.com/6/5785/29919270131_742aaefb56.jpg&#34; width=&#34;333&#34; height=&#34;500&#34; alt=&#34;DSC02484&#34;&gt;&lt;/a&gt;&lt;script async src=&#34;//embedr.flickr.com/assets/client-code.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
-
-&lt;p&gt;apseには聖母，聖Miniatoおよび福音書記者に囲まれたキリスト．MiniatoまたはMiniasはFirenze初の殉教者らしい．&lt;/p&gt;
-
-&lt;p&gt;&lt;a data-flickr-embed=&#34;true&#34;  href=&#34;https://www.flickr.com/photos/96448979@N05/29374713084/in/datetaken-public/&#34; title=&#34;DSC02485_HDR&#34;&gt;&lt;img src=&#34;https://c5.staticflickr.com/9/8546/29374713084_153b8dd95d.jpg&#34; width=&#34;500&#34; height=&#34;333&#34; alt=&#34;DSC02485_HDR&#34;&gt;&lt;/a&gt;&lt;script async src=&#34;//embedr.flickr.com/assets/client-code.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h4 id=&#34;la-basilica-di-santa-croce&#34;&gt;La Basilica di Santa Croce&lt;/h4&gt;
-
-&lt;p&gt;Arno川を再び渡り，Francisco会系のSanta Croce教会へ．&lt;/p&gt;
-
-&lt;p&gt;&lt;a data-flickr-embed=&#34;true&#34;  href=&#34;https://www.flickr.com/photos/96448979@N05/29973651532/in/datetaken-public/&#34; title=&#34;DSC02584&#34;&gt;&lt;img src=&#34;https://c5.staticflickr.com/6/5683/29973651532_3ca79082f3.jpg&#34; width=&#34;500&#34; height=&#34;333&#34; alt=&#34;DSC02584&#34;&gt;&lt;/a&gt;&lt;script async src=&#34;//embedr.flickr.com/assets/client-code.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a data-flickr-embed=&#34;true&#34;  href=&#34;https://www.flickr.com/photos/96448979@N05/29375666263/in/datetaken-public/&#34; title=&#34;DSC02521_HDR&#34;&gt;&lt;img src=&#34;https://c8.staticflickr.com/9/8172/29375666263_53aae6a9e7.jpg&#34; width=&#34;334&#34; height=&#34;500&#34; alt=&#34;DSC02521_HDR&#34;&gt;&lt;/a&gt;&lt;script async src=&#34;//embedr.flickr.com/assets/client-code.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a data-flickr-embed=&#34;true&#34;  href=&#34;https://www.flickr.com/photos/96448979@N05/30002256405/in/datetaken-public/&#34; title=&#34;DSC02563&#34;&gt;&lt;img src=&#34;https://c6.staticflickr.com/9/8125/30002256405_ca771ea7e9.jpg&#34; width=&#34;333&#34; height=&#34;500&#34; alt=&#34;DSC02563&#34;&gt;&lt;/a&gt;&lt;script async src=&#34;//embedr.flickr.com/assets/client-code.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
-
-&lt;p&gt;Firenzeを代表する有名人の墓碑や記念碑がある．Niccolò Machiavelli，Galileo Galilei，Dante Alighieriなど．&lt;/p&gt;
-
-&lt;p&gt;&lt;a data-flickr-embed=&#34;true&#34;  href=&#34;https://www.flickr.com/photos/96448979@N05/29888752422/in/datetaken-public/&#34; title=&#34;DSC02564&#34;&gt;&lt;img src=&#34;https://c7.staticflickr.com/6/5597/29888752422_f10565c97e.jpg&#34; width=&#34;333&#34; height=&#34;500&#34; alt=&#34;DSC02564&#34;&gt;&lt;/a&gt;&lt;script async src=&#34;//embedr.flickr.com/assets/client-code.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a data-flickr-embed=&#34;true&#34;  href=&#34;https://www.flickr.com/photos/96448979@N05/29888751572/in/datetaken-public/&#34; title=&#34;DSC02569&#34;&gt;&lt;img src=&#34;https://c5.staticflickr.com/9/8176/29888751572_ce0efeebe1.jpg&#34; width=&#34;333&#34; height=&#34;500&#34; alt=&#34;DSC02569&#34;&gt;&lt;/a&gt;&lt;script async src=&#34;//embedr.flickr.com/assets/client-code.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a data-flickr-embed=&#34;true&#34;  href=&#34;https://www.flickr.com/photos/96448979@N05/29888752042/in/datetaken-public/&#34; title=&#34;DSC02565&#34;&gt;&lt;img src=&#34;https://c3.staticflickr.com/6/5535/29888752042_e033a76031.jpg&#34; width=&#34;500&#34; height=&#34;333&#34; alt=&#34;DSC02565&#34;&gt;&lt;/a&gt;&lt;script async src=&#34;//embedr.flickr.com/assets/client-code.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
-
-&lt;p&gt;教会前にはDanteの像もある．&lt;/p&gt;
-
-&lt;p&gt;&lt;a data-flickr-embed=&#34;true&#34;  href=&#34;https://www.flickr.com/photos/96448979@N05/29888750412/in/datetaken-public/&#34; title=&#34;DSC02580&#34;&gt;&lt;img src=&#34;https://c5.staticflickr.com/9/8552/29888750412_7d572abc8c.jpg&#34; width=&#34;333&#34; height=&#34;500&#34; alt=&#34;DSC02580&#34;&gt;&lt;/a&gt;&lt;script async src=&#34;//embedr.flickr.com/assets/client-code.js&#34; charset=&#34;utf-8&#34;&gt;&amp;lt;/script&lt;/p&gt;
 </description>
     </item>
     
