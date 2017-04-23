@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://mosko.tokyo/post/pytorch-seq2seq/</loc>
+    <lastmod>2017-02-19T10:10:34+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://mosko.tokyo/post/pytorch_text_generation/</loc>
     <lastmod>2017-01-28T07:31:45+09:00</lastmod>
   </url>
@@ -37,7 +42,7 @@
   </url>
   
   <url>
-    <loc>http://mosko.tokyo/post/started-CNN-with-Tensorflow/</loc>
+    <loc>http://mosko.tokyo/post/started-cnn-with-tensorflow/</loc>
     <lastmod>2016-10-19T20:04:20+09:00</lastmod>
   </url>
   
@@ -47,7 +52,7 @@
   </url>
   
   <url>
-    <loc>http://mosko.tokyo/post/use-mecab-java-with-intelliJ/</loc>
+    <loc>http://mosko.tokyo/post/use-mecab-java-with-intellij/</loc>
     <lastmod>2016-10-08T19:57:29+09:00</lastmod>
   </url>
   
@@ -97,8 +102,13 @@
   </url>
   
   <url>
-    <loc>http://mosko.tokyo/post/using-Jupyter-on-an-external-server/</loc>
+    <loc>http://mosko.tokyo/post/using-jupyter-on-an-external-server/</loc>
     <lastmod>2016-08-31T18:30:08+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://mosko.tokyo/categories/</loc>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -109,7 +119,7 @@
   
   <url>
     <loc>http://mosko.tokyo/tags/deep-learning/</loc>
-    <lastmod>2017-01-28T07:31:45+09:00</lastmod>
+    <lastmod>2017-02-19T10:10:34+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -157,7 +167,7 @@
   
   <url>
     <loc>http://mosko.tokyo/post/</loc>
-    <lastmod>2017-01-28T07:31:45+09:00</lastmod>
+    <lastmod>2017-02-19T10:10:34+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -169,12 +179,13 @@
   
   <url>
     <loc>http://mosko.tokyo/tags/pytorch/</loc>
-    <lastmod>2017-01-28T07:31:45+09:00</lastmod>
+    <lastmod>2017-02-19T10:10:34+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://mosko.tokyo/tags/</loc>
+    <lastmod>2016-10-22T00:21:34+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -198,7 +209,7 @@
   
   <url>
     <loc>http://mosko.tokyo/</loc>
-    <lastmod>2017-01-28T07:31:45+09:00</lastmod>
+    <lastmod>2017-02-19T10:10:34+09:00</lastmod>
     <priority>0</priority>
   </url>
   

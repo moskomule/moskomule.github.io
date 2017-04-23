@@ -2,78 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Nlp on moskomule log</title>
-    <link>http://mosko.tokyo/tags/nlp/index.xml</link>
+    <link>http://mosko.tokyo/tags/nlp/</link>
     <description>Recent content in Nlp on moskomule log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>Written by Ryuichiro Hataya</copyright>
-    <atom:link href="http://mosko.tokyo/tags/nlp/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 08 Oct 2016 19:57:29 +0900</lastBuildDate>
+    
+	<atom:link href="http://mosko.tokyo/tags/nlp/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>MeCabのJavaバインドをIntelliJで使う．</title>
-      <link>http://mosko.tokyo/post/use-mecab-java-with-intelliJ/</link>
+      <link>http://mosko.tokyo/post/use-mecab-java-with-intellij/</link>
       <pubDate>Sat, 08 Oct 2016 19:57:29 +0900</pubDate>
       
-      <guid>http://mosko.tokyo/post/use-mecab-java-with-intelliJ/</guid>
-      <description>
-
-&lt;h2 id=&#34;mecabのjavaバインドのセットアップ&#34;&gt;MeCabのJavaバインドのセットアップ&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://taku910.github.io/mecab/#download&#34;&gt;MeCab公式&lt;/a&gt;からJavaバインドをダウンロードし，解凍する．Linuxであればこのまま&lt;code&gt;make&lt;/code&gt;なのだが，macOSであれば， &lt;a href=&#34;http://blog.kenkov.jp/2013/04/04/mecab_scala.html&#34;&gt;MeCab のJava バインディングをMacOSX10.8.3(Mountain Lion) でScala から使う&lt;/a&gt;を参考に，&lt;code&gt;Makefile&lt;/code&gt;を書き換えて&lt;code&gt;make&lt;/code&gt;．&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;code&gt;xcode-select --install&lt;/code&gt;を実行し，xcodeのコマンドラインツールを導入する．&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;&lt;code&gt;Makefile&lt;/code&gt;のスペースをタブで置き換える．&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;必要があった．ここで&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;
-javac org/chasen/mecab/*.java
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;などを試す．エラーが出なければ，インストールは出来ているはず．&lt;/p&gt;
-
-&lt;h2 id=&#34;intellijで使う&#34;&gt;IntelliJで使う．&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://stackoverflow.com/questions/19308010/how-to-set-the-java-library-path-in-intellij-idea&#34;&gt;stackoverflow&lt;/a&gt;にあった通りなのだが，&lt;code&gt;run/debug congfiguration&lt;/code&gt;のJava&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;
-VM option: -Djava.library.path=&amp;quot;/usr/local/bin/mecab-java&amp;quot;
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;とする必要があった．これがないと，以下のエラーが生じる．&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;
-Exception in thread &amp;quot;main&amp;quot; java.lang.UnsatisfiedLinkError: no MeCab in java.library.path
-
-	at java.lang.ClassLoader.loadLibrary(ClassLoader.java:1867)
-
-	at java.lang.Runtime.loadLibrary0(Runtime.java:870)
-
-	at java.lang.System.loadLibrary(System.java:1122)
-
-	at Mecab_test$.main(Mecab_test.scala:11)
-
-	at Mecab_test.main(Mecab_test.scala)
-
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-
-	at java.lang.reflect.Method.invoke(Method.java:498)
-
-	at com.intellij.rt.execution.application.AppMain.main(AppMain.java:147)
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;はじめ，&lt;code&gt;java.library.path&lt;/code&gt;というのは環境変数で設定するものと思って苦労した&lt;/p&gt;
-</description>
+      <guid>http://mosko.tokyo/post/use-mecab-java-with-intellij/</guid>
+      <description>MeCabのJavaバインドのセットアップ MeCab公式からJavaバインドをダウンロードし，解凍する．Linuxであればこのままmakeなのだが，macOSであれば， MeCab のJava バインディングをMacOSX10.8.3(Mountain Lion) でScala から使うを参考に，Makefileを書き換えてmake．
+ xcode-select --installを実行し，xcodeのコマンドラインツールを導入する．
+ Makefileのスペースをタブで置き換える．
+  必要があった．ここで
+javac org/chasen/mecab/*.java  などを試す．エラーが出なければ，インストールは出来ているはず．
+IntelliJで使う． stackoverflowにあった通りなのだが，run/debug congfigurationのJava
+ VM option: -Djava.library.path=&amp;quot;/usr/local/bin/mecab-java&amp;quot;  とする必要があった．これがないと，以下のエラーが生じる．
+ Exception in thread &amp;quot;main&amp;quot; java.lang.UnsatisfiedLinkError: no MeCab in java.library.path at java.lang.ClassLoader.loadLibrary(ClassLoader.java:1867) at java.lang.Runtime.loadLibrary0(Runtime.java:870) at java.lang.System.loadLibrary(System.java:1122) at Mecab_test$.main(Mecab_test.scala:11) at Mecab_test.main(Mecab_test.scala) at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) at java.lang.reflect.Method.invoke(Method.java:498) at com.intellij.rt.execution.application.AppMain.main(AppMain.java:147)  はじめ，java.library.pathというのは環境変数で設定するものと思って苦労した</description>
     </item>
     
     <item>
@@ -82,196 +34,18 @@ Exception in thread &amp;quot;main&amp;quot; java.lang.UnsatisfiedLinkError: no 
       <pubDate>Wed, 05 Oct 2016 14:40:43 +0900</pubDate>
       
       <guid>http://mosko.tokyo/post/juman-install/</guid>
-      <description>
-
-&lt;p&gt;日本語形態素解析には &lt;a href=&#34;https://taku910.github.io/mecab/&#34;&gt;MeCab&lt;/a&gt;を使ってきたが，京大の &lt;a href=&#34;http://nlp.ist.i.kyoto-u.ac.jp/index.php?JUMAN%2B%2B&#34;&gt;JUMAN++&lt;/a&gt;が進化してWikipediaやWiktionaryの用語を取り込んでMeCabを追い越した，とのことなのでインストールしてみた．&lt;/p&gt;
-
-&lt;h2 id=&#34;インストール&#34;&gt;インストール&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;必須ライブラリ&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;gcc (4.9+)&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Boost C++ Libraries (1.57+)&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;推奨ライブラリ&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;gpreftool&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;libunwind(gpreftoolを64bit環境で使用する場合)&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;gccと推奨ライブラリは&lt;code&gt;apt-get install&lt;/code&gt;で導入できたのだが，Boostは&lt;code&gt;apt-get&lt;/code&gt;では1.57以上が入らなかったので，&lt;a href=&#34;http://www.boost.org/&#34;&gt;boost.org&lt;/a&gt;から最新版を解凍して&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;
-cd boost_*
-
-sudo ./bootstrap.sh --prefix=&amp;lt;INSTALL_PATH&amp;gt;
-
-sudo ./b2 install
-
-export PATH=$PATH:&amp;lt;INSTALL_PATH&amp;gt;/include/:&amp;lt;INSTALL_PATH&amp;gt;/lib/
-
-export BOOST_ROOT=&amp;lt;INSTALL_PATH&amp;gt;
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;続いて，JUMAN++をダウンロードし，解凍する．&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;
-cd jumanapp-1.0*
-
-./configure --with-boost=&amp;lt;INSTALL_PATH&amp;gt;
-
-sudo make install
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;こうして，&lt;code&gt;jumanapp&lt;/code&gt;が使えるようになる．&lt;/p&gt;
-
-&lt;h2 id=&#34;比較&#34;&gt;比較&lt;/h2&gt;
-
-&lt;p&gt;JUMAN++&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;
-入り口から入って振り返ると，善き羊飼いとしてのキリストの図像がある．
-
-入り口 いりぐち 入り口 名詞 6 普通名詞 1 * 0 * 0 &amp;quot;代表表記:入り口/いりぐち カテゴリ:場所-その他&amp;quot;
-
-から から から 助詞 9 格助詞 1 * 0 * 0 NIL
-
-入って はいって 入る 動詞 2 * 0 子音動詞ラ行 10 タ系連用テ形 14 &amp;quot;代表表記:入る/はいる 自他動詞:他:入れる/いれる 反義:動詞:出る/でる&amp;quot;
-
-振り返る ふりかえる 振り返る 動詞 2 * 0 子音動詞ラ行 10 基本形 2 &amp;quot;代表表記:振り返る/ふりかえる&amp;quot;
-
-と と と 助詞 9 格助詞 1 * 0 * 0 NIL
-
-， ， ， 特殊 1 読点 2 * 0 * 0 NIL
-
-善き よき 善い 形容詞 3 * 0 イ形容詞アウオ段 18 文語連体形 21 &amp;quot;代表表記:良い/よい 反義:形容詞:悪い/わるい&amp;quot;
-
-@ 善き よき 善い 形容詞 3 * 0 イ形容詞アウオ段 18 文語連体形 21 &amp;quot;代表表記:良い/よい 反義:形容詞:悪い/わるい&amp;quot;
-
-羊飼い ひつじかい 羊飼い 名詞 6 普通名詞 1 * 0 * 0 &amp;quot;代表表記:羊飼い/ひつじかい カテゴリ:人&amp;quot;
-
-と と と 助詞 9 格助詞 1 * 0 * 0 NIL
-
-して して する 動詞 2 * 0 サ変動詞 16 タ系連用テ形 14 &amp;quot;代表表記:する/する 付属動詞候補（基本） 自他動詞:自:成る/なる&amp;quot;
-
-の の の 助詞 9 接続助詞 3 * 0 * 0 NIL
-
-キリスト キリスト キリスト 名詞 6 普通名詞 1 * 0 * 0 &amp;quot;自動獲得:Wikipedia Wikipedia多義&amp;quot;
-
-の の の 助詞 9 接続助詞 3 * 0 * 0 NIL
-
-図像 ずぞう 図像 名詞 6 普通名詞 1 * 0 * 0 &amp;quot;代表表記:図像/ずぞう カテゴリ:抽象物 ドメイン:文化・芸術&amp;quot;
-
-が が が 助詞 9 格助詞 1 * 0 * 0 NIL
-
-ある ある ある 動詞 2 * 0 子音動詞ラ行 10 基本形 2 &amp;quot;代表表記:有る/ある 補文ト 反義:形容詞:無い/ない&amp;quot;
-
-． ． ． 特殊 1 句点 1 * 0 * 0 NIL
-
-EOS
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;MeCab&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;
-入り口から入って振り返ると，善き羊飼いとしてのキリストの図像がある．
-
-入り口	名詞,一般,*,*,*,*,入り口,イリクチ,イリクチ
-
-から	助詞,格助詞,一般,*,*,*,から,カラ,カラ
-
-入っ	動詞,自立,*,*,五段・ラ行,連用タ接続,入る,ハイッ,ハイッ
-
-て	助詞,接続助詞,*,*,*,*,て,テ,テ
-
-振り返る	動詞,自立,*,*,五段・ラ行,基本形,振り返る,フリカエル,フリカエル
-
-と	助詞,接続助詞,*,*,*,*,と,ト,ト
-
-，	記号,読点,*,*,*,*,，,，,，
-
-善き	形容詞,自立,*,*,形容詞・アウオ段,体言接続,善い,ヨキ,ヨキ
-
-羊	名詞,一般,*,*,*,*,羊,ヒツジ,ヒツジ
-
-飼い	動詞,自立,*,*,五段・ワ行促音便,連用形,飼う,カイ,カイ
-
-として	助詞,格助詞,連語,*,*,*,として,トシテ,トシテ
-
-の	助詞,連体化,*,*,*,*,の,ノ,ノ
-
-キリスト	名詞,固有名詞,一般,*,*,*,キリスト,キリスト,キリスト
-
-の	助詞,連体化,*,*,*,*,の,ノ,ノ
-
-図像	名詞,一般,*,*,*,*,図像,ズゾウ,ズゾー
-
-が	助詞,格助詞,一般,*,*,*,が,ガ,ガ
-
-ある	動詞,自立,*,*,五段・ラ行,基本形,ある,アル,アル
-
-．	記号,句点,*,*,*,*,．,．,．
-
-EOS
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;羊飼いが認識できている．&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;JUMAN++&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;
-スマートフォンを買い換えた
-
-スマートフォン スマートフォン スマートフォン 名詞 6 普通名詞 1 * 0 * 0 &amp;quot;自動獲得:Wikipedia Wikipedia上位語:用語/ようご&amp;quot;
-
-を を を 助詞 9 格助詞 1 * 0 * 0 NIL
-
-買い かい 買う 動詞 2 * 0 子音動詞ワ行 12 基本連用形 8 &amp;quot;代表表記:買う/かう ドメイン:家庭・暮らし;ビジネス 反義:動詞:売る/うる&amp;quot;
-
-換えた かえた 換える 動詞 2 * 0 母音動詞 1 タ形 10 &amp;quot;代表表記:換える/かえる 付属動詞候補（基本） 自他動詞:自:換わる/かわる&amp;quot;
-
-EOS
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;MeCab&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;
-スマートフォンを買い換えた
-
-スマート	名詞,固有名詞,人名,姓,*,*,スマート,スマート,スマート
-
-フォン	名詞,一般,*,*,*,*,フォン,フォン,フォン
-
-を	助詞,格助詞,一般,*,*,*,を,ヲ,ヲ
-
-買い換え	動詞,自立,*,*,一段,連用形,買い換える,カイカエ,カイカエ
-
-た	助動詞,*,*,*,特殊・タ,基本形,た,タ,タ
-
-EOS
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;スマートフォンなど，最近の用語にも強い．&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;この程度の文章では気にならなかったが，JUMAN++は精度と引き替えに速度がMecabの100分の1以下という話もあるので，必要に応じて使い分けるのがよいのだろう&lt;/p&gt;
-</description>
+      <description>日本語形態素解析には MeCabを使ってきたが，京大の JUMAN++が進化してWikipediaやWiktionaryの用語を取り込んでMeCabを追い越した，とのことなのでインストールしてみた．
+インストール  必須ライブラリ
+ gcc (4.9+)
+ Boost C++ Libraries (1.57+)
+  推奨ライブラリ
+ gpreftool
+ libunwind(gpreftoolを64bit環境で使用する場合)
+   gccと推奨ライブラリはapt-get installで導入できたのだが，Boostはapt-getでは1.57以上が入らなかったので，boost.orgから最新版を解凍して
+cd boost_* sudo ./bootstrap.sh --prefix=&amp;lt;INSTALL_PATH&amp;gt; sudo ./b2 install export PATH=$PATH:&amp;lt;INSTALL_PATH&amp;gt;/include/:&amp;lt;INSTALL_PATH&amp;gt;/lib/ export BOOST_ROOT=&amp;lt;INSTALL_PATH&amp;gt;  続いて，JUMAN++をダウンロードし，解凍する．
+cd jumanapp-1.0* ./configure --with-boost=&amp;lt;INSTALL_PATH&amp;gt; sudo make install  こうして，jumanappが使えるようになる．
+比較 JUMAN++
+ 入り口から入って振り返ると，善き羊飼いとしてのキリストの図像がある． 入り口 いりぐち 入り口 名詞 6 普通名詞 1 * 0 * 0 &amp;quot;代表表記:入り口/いりぐち カテゴリ:場所-その他&amp;quot; から から から 助詞 9 格助詞 1 * 0 * 0 NIL 入って はいって 入る 動詞 2 * 0 子音動詞ラ行 10 タ系連用テ形 14 &amp;quot;代表表記:入る/はいる 自他動詞:他:入れる/いれる 反義:動詞:出る/でる&amp;quot; 振り返る ふりかえる 振り返る 動詞 2 * 0 子音動詞ラ行 10 基本形 2 &amp;quot;代表表記:振り返る/ふりかえる&amp;quot; と と と 助詞 9 格助詞 1 * 0 * 0 NIL ， ， ， 特殊 1 読点 2 * 0 * 0 NIL 善き よき 善い 形容詞 3 * 0 イ形容詞アウオ段 18 文語連体形 21 &amp;quot;代表表記:良い/よい 反義:形容詞:悪い/わるい&amp;quot; @ 善き よき 善い 形容詞 3 * 0 イ形容詞アウオ段 18 文語連体形 21 &amp;quot;代表表記:良い/よい 反義:形容詞:悪い/わるい&amp;quot; 羊飼い ひつじかい 羊飼い 名詞 6 普通名詞 1 * 0 * 0 &amp;quot;代表表記:羊飼い/ひつじかい カテゴリ:人&amp;quot; と と と 助詞 9 格助詞 1 * 0 * 0 NIL して して する 動詞 2 * 0 サ変動詞 16 タ系連用テ形 14 &amp;quot;代表表記:する/する 付属動詞候補（基本） 自他動詞:自:成る/なる&amp;quot; の の の 助詞 9 接続助詞 3 * 0 * 0 NIL キリスト キリスト キリスト 名詞 6 普通名詞 1 * 0 * 0 &amp;quot;自動獲得:Wikipedia Wikipedia多義&amp;quot; の の の 助詞 9 接続助詞 3 * 0 * 0 NIL 図像 ずぞう 図像 名詞 6 普通名詞 1 * 0 * 0 &amp;quot;代表表記:図像/ずぞう カテゴリ:抽象物 ドメイン:文化・芸術&amp;quot; が が が 助詞 9 格助詞 1 * 0 * 0 NIL ある ある ある 動詞 2 * 0 子音動詞ラ行 10 基本形 2 &amp;quot;代表表記:有る/ある 補文ト 反義:形容詞:無い/ない&amp;quot; ． ． ． 特殊 1 句点 1 * 0 * 0 NIL EOS  MeCab</description>
     </item>
     
   </channel>

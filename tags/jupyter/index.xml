@@ -2,12 +2,15 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Jupyter on moskomule log</title>
-    <link>http://mosko.tokyo/tags/jupyter/index.xml</link>
+    <link>http://mosko.tokyo/tags/jupyter/</link>
     <description>Recent content in Jupyter on moskomule log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>Written by Ryuichiro Hataya</copyright>
-    <atom:link href="http://mosko.tokyo/tags/jupyter/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 23 Oct 2016 22:36:34 +0900</lastBuildDate>
+    
+	<atom:link href="http://mosko.tokyo/tags/jupyter/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Juliaに触ってみた</title>
@@ -15,199 +18,51 @@
       <pubDate>Sun, 23 Oct 2016 22:36:34 +0900</pubDate>
       
       <guid>http://mosko.tokyo/post/julia-boxmuller/</guid>
-      <description>
-
-&lt;p&gt;我らがJupyterの&lt;strong&gt;Ju&lt;/strong&gt;,であるところのJupyterに触って，IPythonに相当するIJuliaを導入してJupyterから操作してみた．ちょっと触った感想は，強いR-lang．&lt;/p&gt;
-
-&lt;h2 id=&#34;ijuliaの導入&#34;&gt;IJuliaの導入．&lt;/h2&gt;
-
-&lt;p&gt;Juliaは &lt;a href=&#34;http://julialang.org/&#34;&gt;ここ&lt;/a&gt;から導入する．ターミナルから開いて，&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;
-Package.add(&amp;quot;IJulia&amp;quot;)
-
-using IJulia
-
-notebook()
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;これでJupyterが起動する．あとは普段通り．&lt;/p&gt;
-
-&lt;h2 id=&#34;触る&#34;&gt;触る．&lt;/h2&gt;
-
-&lt;p&gt;折角なので手元にあったPRMLにあった，一様乱数からガウス分布を得るBox-Muller法によって得られる分布をプロットする．以下ではプロットツールの&lt;code&gt;Gadfly&lt;/code&gt;を用いている．&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;using Gadfly
-set_default_plot_size(10cm,10cm);
-# Box-Muller法
-function box_muller(num)
-
-    x = [] 
-    y = [] 
-    for i = 0:num 
-        a = rand() 
-        b = rand() 
-        η = 2a -1 #1
-        ζ = 2b -1
-        r2 = η ^ 2 + ζ ^ 2
-        if (r2) &amp;lt;= 1
-            x = push!(x, η  * √(-2 * log(r2) / r2)) #2
-            y = push!(y, ζ  * √(-2 * log(r2) / r2))
-        else
-            skip
-        end
-    end
-    return (x, y) 
-end 
-(x,y) = box_muller(10000) 
-plot(x=x,y=y)
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;#1,#2に示したように，Juliaでは&lt;code&gt;\eta,\zeta&lt;/code&gt;と入力してタブを押すと &amp;lsquo;η，ζ&amp;rsquo; と補完されて変数として用いることが出来る．また，&amp;rsquo;\sqrt&amp;rsquo;は&amp;rsquo;√&amp;rsquo;になってそのまま&lt;code&gt;sqrt&lt;/code&gt;として使用できる．数学よりのことをするときには数式に与えられている変数と一致させられて便利かもしれないし，何より面白い．&lt;/p&gt;
-
-&lt;p&gt;PythonとScalaで満足しているし，情報も少ないのでいまのところ使う当てはないけれど，少し触った感じは軽快でよいし，プログラムをよく書く人にはRよりは取っつきやすいのかもしれない&lt;/p&gt;
-</description>
+      <description>我らがJupyterのJu,であるところのJupyterに触って，IPythonに相当するIJuliaを導入してJupyterから操作してみた．ちょっと触った感想は，強いR-lang．
+IJuliaの導入． Juliaは ここから導入する．ターミナルから開いて，
+ Package.add(&amp;quot;IJulia&amp;quot;) using IJulia notebook()  これでJupyterが起動する．あとは普段通り．
+触る． 折角なので手元にあったPRMLにあった，一様乱数からガウス分布を得るBox-Muller法によって得られる分布をプロットする．以下ではプロットツールのGadflyを用いている．
+using Gadfly set_default_plot_size(10cm,10cm); # Box-Muller法 function box_muller(num) x = [] y = [] for i = 0:num a = rand() b = rand() η = 2a -1 #1 ζ = 2b -1 r2 = η ^ 2 + ζ ^ 2 if (r2) &amp;lt;= 1 x = push!(x, η * √(-2 * log(r2) / r2)) #2 y = push!</description>
     </item>
     
     <item>
       <title>TensorflowでCNN入門</title>
-      <link>http://mosko.tokyo/post/started-CNN-with-Tensorflow/</link>
+      <link>http://mosko.tokyo/post/started-cnn-with-tensorflow/</link>
       <pubDate>Wed, 19 Oct 2016 20:04:20 +0900</pubDate>
       
-      <guid>http://mosko.tokyo/post/started-CNN-with-Tensorflow/</guid>
-      <description>
-
-&lt;p&gt;いよいよDeep Learningからは逃れられない運命，真剣に向かい合わざるを得ないことを悟り，&lt;a href=&#34;https://github.com/alrojo/tensorflow-tutorial&#34;&gt;TensorFlow Tutorial-used by Nvidia&lt;/a&gt;を始めた．&lt;/p&gt;
-
-&lt;p&gt;前半は実は正しくなくて，今までも何度か&lt;a href=&#34;https://www.tensorflow.org/versions/r0.11/tutorials/index.html&#34;&gt;TensorflowのTutorial&lt;/a&gt;を触ったものの，また，TensorFlowやChainerを使ったものの，まったく理解できないまま終わってしまっていた．&lt;/p&gt;
-
-&lt;p&gt;今回は偶然にも前述のTutorialと出逢うことが出来たので試してみた．&lt;/p&gt;
-
-&lt;h2 id=&#34;環境構築&#34;&gt;環境構築&lt;/h2&gt;
-
-&lt;p&gt;細かいことは考えずに&lt;a href=&#34;https://www.continuum.io/downloads&#34;&gt;Anaconda&lt;/a&gt;を入れてしまうのが早い．基本的なパッケージは揃っているし，IntelのMKLが使えるNumpyなども特に設定せずに導入できる．導入後，&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;
-conda update --all
-
-conda install tensorflow
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;を行えば終了．ではあるが，GPUを使いたい場合は&lt;a href=&#34;https://www.tensorflow.org/versions/master/get_started/os_setup.html#pip-installation&#34;&gt;公式&lt;/a&gt;にしたがって&lt;code&gt;pip&lt;/code&gt;を叩く必要がある．なお，このTutorialはPython2向けに書かれているので，すでにAnaconda py35を入れてしまっている場合には&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;
-conda create -n py27 python=2.7 anaconda
-
-source activate py27
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;が必要となる．&lt;code&gt;pyenv&lt;/code&gt;を使うと環境への影響が少ないのだけれど，自分の環境ではAnacondaのIntel Math Kernel Libraryが上手く動かないようなので使っていない．&lt;/p&gt;
-
-&lt;h2 id=&#34;tutorial&#34;&gt;Tutorial&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://github.com/alrojo/tensorflow-tutorial/blob/master/lab2_CNN/lab2_CNN.ipynb&#34;&gt;Tutorial Lab2&lt;/a&gt;．Jupyter Notebookの偉大さが分かる．&lt;/p&gt;
-
-&lt;p&gt;構成もよく出来ていて，MNISTをMulti-Layer Parceptronで解く，Convolutional層を追加する，Pooling層を追加する，重ねてみる，Dropoutも追加してみる，というような流れなのでそれぞれの層の意味がよく理解できるし，&lt;a href=&#34;http://amzn.to/2el8pLx&#34;&gt;岡谷先生の本&lt;/a&gt;ではそうかそうか，と式だけ追っていたようなことが目に見える形で現れるのは純粋に楽しいので捗るし，理解が深まる．&lt;/p&gt;
-
-&lt;p&gt;MNISTなので上手くいって当然なのだろうけれど，試行錯誤していくと正答率があがって過学習が減っていくのは面白い．&lt;/p&gt;
-
-&lt;p&gt;{% asset_img mnist.png 最終結果 %}&lt;/p&gt;
-
-&lt;h2 id=&#34;チャネル数&#34;&gt;チャネル数&lt;/h2&gt;
-
-&lt;p&gt;途中で，&lt;code&gt;channels&lt;/code&gt;，チャネル数がよく分からなかったのだけれども，岡谷先生の本が参考になった．入力がRGB画像の場合は入力層の場合はチャンネル数はRGBの3である．ここで，チャンネル数 $K$ ,大きさ $W\times W$ であるものを $W\times W\times K$ と表すこととする．&lt;/p&gt;
-
-&lt;p&gt;いま，Convolutional層の入力のサイズを$W\times W\times K$，$m$種類のフィルターのサイズを$H\times H\times K$とすると，&lt;/p&gt;
-
-&lt;p&gt;$$&lt;/p&gt;
-
-&lt;p&gt;u_{ijm}=\sum_{k=0}^{K-1}\sum_{p=0}^{H-1}\sum_{q=0}^{H-1}z_{i+p,j+q,k}^{(l-1)}h_{pqkm}+b_{ijm}&lt;/p&gt;
-
-&lt;p&gt;$$&lt;/p&gt;
-
-&lt;p&gt;畳み込み層の出力としてはこれに活性化函数を適用した $z_{ijm}=f(u_{ijm})$  が得られる．したがって，$W\times W\times K$であった入力は，出力時には$W\times W\times M$となっている．この$M$が次の層ではチャネル数となる．ということのようだ．&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&#34;備忘録-sqlの最適化&#34;&gt;備忘録:SQLの最適化&lt;/h2&gt;
-
-&lt;p&gt;いま携わっているプロジェクトではSQLのクエリを投げ続けるので速度が重要なのだが，いじっているうちに1件の応答に数秒かかるほど遅くなってしまった．このときの解決手順．今までDBで大きなデータを取り扱うことはなかっただけに，DBの応答が遅いのは予想外で気付くのに時間を要した．&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;
-OPTIMIZE TABLE TABLE_NAME;
-
-ALTER TABLE TABLE_NAME ADD INDEX(id, name);
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;後者のインデックスの張り直しが重要そう．&lt;/p&gt;
-</description>
+      <guid>http://mosko.tokyo/post/started-cnn-with-tensorflow/</guid>
+      <description>いよいよDeep Learningからは逃れられない運命，真剣に向かい合わざるを得ないことを悟り，TensorFlow Tutorial-used by Nvidiaを始めた．
+前半は実は正しくなくて，今までも何度かTensorflowのTutorialを触ったものの，また，TensorFlowやChainerを使ったものの，まったく理解できないまま終わってしまっていた．
+今回は偶然にも前述のTutorialと出逢うことが出来たので試してみた．
+環境構築 細かいことは考えずにAnacondaを入れてしまうのが早い．基本的なパッケージは揃っているし，IntelのMKLが使えるNumpyなども特に設定せずに導入できる．導入後，
+conda update --all conda install tensorflow  を行えば終了．ではあるが，GPUを使いたい場合は公式にしたがってpipを叩く必要がある．なお，このTutorialはPython2向けに書かれているので，すでにAnaconda py35を入れてしまっている場合には
+conda create -n py27 python=2.7 anaconda source activate py27  が必要となる．pyenvを使うと環境への影響が少ないのだけれど，自分の環境ではAnacondaのIntel Math Kernel Libraryが上手く動かないようなので使っていない．
+Tutorial Tutorial Lab2．Jupyter Notebookの偉大さが分かる．
+構成もよく出来ていて，MNISTをMulti-Layer Parceptronで解く，Convolutional層を追加する，Pooling層を追加する，重ねてみる，Dropoutも追加してみる，というような流れなのでそれぞれの層の意味がよく理解できるし，岡谷先生の本ではそうかそうか，と式だけ追っていたようなことが目に見える形で現れるのは純粋に楽しいので捗るし，理解が深まる．
+MNISTなので上手くいって当然なのだろうけれど，試行錯誤していくと正答率があがって過学習が減っていくのは面白い．
+{% asset_img mnist.png 最終結果 %}
+チャネル数 途中で，channels，チャネル数がよく分からなかったのだけれども，岡谷先生の本が参考になった．入力がRGB画像の場合は入力層の場合はチャンネル数はRGBの3である．ここで，チャンネル数 $K$ ,大きさ $W\times W$ であるものを $W\times W\times K$ と表すこととする．
+いま，Convolutional層の入力のサイズを$W\times W\times K$，$m$種類のフィルターのサイズを$H\times H\times K$とすると，
+$$
+u_{ijm}=\sum_{k=0}^{K-1}\sum_{p=0}^{H-1}\sum_{q=0}^{H-1}z_{i+p,j+q,k}^{(l-1)}h_{pqkm}+b_{ijm}
+$$
+畳み込み層の出力としてはこれに活性化函数を適用した $z_{ijm}=f(u_{ijm})$ が得られる．したがって，$W\times W\times K$であった入力は，出力時には$W\times W\times M$となっている．この$M$が次の層ではチャネル数となる．ということのようだ．</description>
     </item>
     
     <item>
       <title>Jupyterをサーバー上で使う</title>
-      <link>http://mosko.tokyo/post/using-Jupyter-on-an-external-server/</link>
+      <link>http://mosko.tokyo/post/using-jupyter-on-an-external-server/</link>
       <pubDate>Wed, 31 Aug 2016 18:30:08 +0900</pubDate>
       
-      <guid>http://mosko.tokyo/post/using-Jupyter-on-an-external-server/</guid>
-      <description>
-
-&lt;h1 id=&#34;2016-08-29&#34;&gt;2016-08-29&lt;/h1&gt;
-
-&lt;h2 id=&#34;サーバー上のjupyter-notebookを使う&#34;&gt;サーバー上のJupyter notebookを使う&lt;/h2&gt;
-
-&lt;p&gt;サーバー上でPythonを実行するのに，ターミナルで弄っていたが何かと不便だったのでJupyterを導入した．&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;
-jupyter notebook --generate-config
-
-vim ~/.jupyter/jupyter_notebook_config.py
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;で&lt;code&gt;jupyter_notebook_config.py&lt;/code&gt;に以下を加える．&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;
-c.NotebookApp.ip = &#39;*&#39;  # localhost以外からもアクセス可能にする。
-
-c.NotebookApp.port = 9999  # サーバのポートを指定。デフォルト8888。
-
-c.NotebookApp.open_browser = False  # ブラウザが自動で開かないようにする。
-
-c.NotebookApp.notebook_dir = &#39;/home/USER_NAME/notebooks&#39;  # 作業ディレクトリを指定。デフォルト起動ディレクトリ。
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;かくして，&lt;code&gt;jupyter notebook&lt;/code&gt;コマンドを叩くと&lt;code&gt;http://hoge.hoge:9999&lt;/code&gt;でJupyterが扱える．&lt;/p&gt;
-
-&lt;h2 id=&#34;scikit-learnでのmklエラー解決&#34;&gt;scikit-learnでのMKLエラー解決&lt;/h2&gt;
-
-&lt;p&gt;Ubuntuサーバー上のAnaconda3でscikit-learnを動かしたところ&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;
-Intel MKL FATAL ERROR: Cannot load libmkl_avx.so or libmkl_def.so
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;というような表示が出て終了してしまう．とりあえず&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;
-conda install nomkl numpy scipy scikit-learn numexpr
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;で解決させたものの，&lt;code&gt;MKL&lt;/code&gt;使った方が速そうなので早々に解決したい．&lt;code&gt;MRO&lt;/code&gt;の&lt;code&gt;MKL&lt;/code&gt;が悪かったりするのだろうか．&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;参考&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://www.task-notes.com/entry/20160204/1454513778&#34;&gt;Jupyter Notebook（IPython）サーバの起動方法&lt;/a&gt;&lt;/p&gt;
-</description>
+      <guid>http://mosko.tokyo/post/using-jupyter-on-an-external-server/</guid>
+      <description>2016-08-29 サーバー上のJupyter notebookを使う サーバー上でPythonを実行するのに，ターミナルで弄っていたが何かと不便だったのでJupyterを導入した．
+ jupyter notebook --generate-config vim ~/.jupyter/jupyter_notebook_config.py  でjupyter_notebook_config.pyに以下を加える．
+ c.NotebookApp.ip = &#39;*&#39; # localhost以外からもアクセス可能にする。 c.NotebookApp.port = 9999 # サーバのポートを指定。デフォルト8888。 c.NotebookApp.open_browser = False # ブラウザが自動で開かないようにする。 c.NotebookApp.notebook_dir = &#39;/home/USER_NAME/notebooks&#39; # 作業ディレクトリを指定。デフォルト起動ディレクトリ。  かくして，jupyter notebookコマンドを叩くとhttp://hoge.hoge:9999でJupyterが扱える．
+scikit-learnでのMKLエラー解決 Ubuntuサーバー上のAnaconda3でscikit-learnを動かしたところ
+ Intel MKL FATAL ERROR: Cannot load libmkl_avx.so or libmkl_def.so  というような表示が出て終了してしまう．とりあえず
+ conda install nomkl numpy scipy scikit-learn numexpr  で解決させたものの，MKL使った方が速そうなので早々に解決したい．MROのMKLが悪かったりするのだろうか．
+参考
+Jupyter Notebook（IPython）サーバの起動方法</description>
     </item>
     
   </channel>

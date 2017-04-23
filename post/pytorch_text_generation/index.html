@@ -22,7 +22,7 @@
   <link rel="stylesheet" href="/css/highlight_monokai.css">
   <link rel="stylesheet" href="/css/theme.css">
   <link rel="stylesheet" href="/css/custom.css">
-  
+
   
   <link href="http://mosko.tokyo/index.xml" rel="alternate" type="application/rss+xml" title="moskomule log" />
   <link href="http://mosko.tokyo/index.xml" rel="feed" type="application/rss+xml" title="moskomule log" />
@@ -58,9 +58,9 @@ MathJax.Hub.Config({
       </div>
       <div id="social" class="col span_6">
         <ul>
-          <li><a href="https://twitter.com/mosko_mule" target="_blank">Twitter</a></li>
+          <li><a href="mosko_mule" target="_blank">Twitter</a></li>
           
-          <li><a href="https://github.com/moskomule" target="_blank">GitHub</a></li>
+          <li><a href="moskomule" target="_blank">GitHub</a></li>
           <li><a href="http://mosko.tokyo/index.xml" type="application/rss+xml" target="_blank">RSS</a></li>
         </ul>
       </div>
@@ -77,14 +77,14 @@ MathJax.Hub.Config({
         
           #<a href="/tags/deep-learning">Deep Learning</a>&nbsp;
         
-          #<a href="/tags/pytorch">Pytorch</a>&nbsp;
+          #<a href="/tags/pytorch">PyTorch</a>&nbsp;
         
       </div>
     </div>
     <article>
       <p>相変わらずPyTorchをいじっている．後発のこともあって，まだDocは完全ではないけれど，Discussionなどのサポート体制は充実している(気がする)．</p>
 
-<p>コミュニティの助けを借りてRNNでの<a href="https://github.com/moskomule/pytorch_learn/blob/master/simple/rnn_text_gen.py">テキスト生成</a>をおこなった．これはKerasの<a href="https://github.com/fchollet/keras/blob/master/examples/lstm_text_generation.py">サンプル</a>をPyTorchで書き換えたもので時流に乗ってオーウェルの <em>1984</em> を学習する．Kerasのように内部状態を特に考える必要がないのとは異なって，隠れ変数$h_{\star}$を意識しなくてはいけないので勉強になる．</p>
+<p>コミュニティの助けを借りてRNNでの<a href="https://github.com/moskomule/PyTorch_learn/blob/master/simple/rnn_text_gen.py">テキスト生成</a>をおこなった．これはKerasの<a href="https://github.com/fchollet/keras/blob/master/examples/lstm_text_generation.py">サンプル</a>をPyTorchで書き換えたもので時流に乗ってオーウェルの <em>1984</em> を学習する．Kerasのように内部状態を特に考える必要がないのとは異なって，隠れ変数$h_{\star}$を意識しなくてはいけないので勉強になる．</p>
 
 <ul>
 <li><p>function <code>var</code>: CUDAが使えれば<code>torch.autograd.Variable</code>をGPUにおく(<code>variable.cuda()</code>)．</p></li>
@@ -103,7 +103,7 @@ MathJax.Hub.Config({
 </code></pre>
 
 <ul>
-<li>function <code>forward</code> in class <code>Net</code>: 系列の最後の入力に対する隠れ層の状態をとるために<code>x=select(0, maxlen-1)</code>を行っている．<code>reshape</code>に相当する<code>view</code>を行うためにはcontiguousが必要．またテンソル<code>x</code>は$\text{系列の長さ}\times\text{バッチ数}\times\text{feature数}$である点に注意．</li>
+<li>function <code>forward</code> in class <code>Net</code>: 系列の最後の入力に対する隠れ層の状態をとるために<code>x=select(0, maxlen-1)</code>を行っている(追記:実は<code>x[-1]</code>で充分)．<code>reshape</code>に相当する<code>view</code>を行うためにはcontiguousが必要．またテンソル<code>x</code>は$\text{系列の長さ}\times\text{バッチ数}\times\text{feature数}$である点に注意．</li>
 </ul>
 
 <pre><code>def forward(self, x, hidden):
@@ -132,7 +132,7 @@ MathJax.Hub.Config({
     print(&quot;\r{}&quot;.format(loss.data[0]), end=&quot;&quot;)
 </code></pre>
 
-<p>主要な部分は以上．特に<code>Variable</code>に<code>Variable</code>を与えるとエラーになったり，いちいち<code>Variable().cuda()</code>をしなくてはいけないところで躓いたりした．また，<code>Tensor</code>は暗黙的に<code>FloatTensor</code>に<a href="http://pytorch.org/docs/tensors.html">変換される</a>のもポイント．</p>
+<p>主要な部分は以上．特に<code>Variable</code>に<code>Variable</code>を与えるとエラーになったり，いちいち<code>Variable().cuda()</code>をしなくてはいけないところで躓いたりした．また，<code>Tensor</code>は暗黙的に<code>FloatTensor</code>に<a href="http://PyTorch.org/docs/tensors.html">変換される</a>のもポイント．</p>
 
       
       
@@ -145,8 +145,10 @@ MathJax.Hub.Config({
   
   <nav class="pagination-single">
     
-      <span class="previous">&larr; <a href="http://mosko.tokyo/post/getting_started_pytorch/" rel="prev">Pytorchはじめ</a></span>
+      <span class="previous">&larr; <a href="http://mosko.tokyo/post/getting_started_pytorch/" rel="prev">PyTorchはじめ</a></span>
     
+    
+      <span class="next"><a href="http://mosko.tokyo/post/pytorch-seq2seq/" rel="next">PyTorchでSeq2Seq</a> &rarr;</span>
     
   </nav>
 

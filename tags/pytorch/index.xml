@@ -2,12 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Pytorch on moskomule log</title>
-    <link>http://mosko.tokyo/tags/pytorch/index.xml</link>
+    <link>http://mosko.tokyo/tags/pytorch/</link>
     <description>Recent content in Pytorch on moskomule log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>Written by Ryuichiro Hataya</copyright>
-    <atom:link href="http://mosko.tokyo/tags/pytorch/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 19 Feb 2017 10:10:34 +0900</lastBuildDate>
+    
+	<atom:link href="http://mosko.tokyo/tags/pytorch/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>PyTorchでSeq2Seq</title>
+      <link>http://mosko.tokyo/post/pytorch-seq2seq/</link>
+      <pubDate>Sun, 19 Feb 2017 10:10:34 +0900</pubDate>
+      
+      <guid>http://mosko.tokyo/post/pytorch-seq2seq/</guid>
+      <description>相変わらずPyTorchを．今回はSeq2Seqモデルに挑戦してみた．</description>
+    </item>
     
     <item>
       <title>PyTorchでテキスト生成</title>
@@ -15,126 +27,26 @@
       <pubDate>Sat, 28 Jan 2017 07:31:45 +0900</pubDate>
       
       <guid>http://mosko.tokyo/post/pytorch_text_generation/</guid>
-      <description>&lt;p&gt;相変わらずPyTorchをいじっている．後発のこともあって，まだDocは完全ではないけれど，Discussionなどのサポート体制は充実している(気がする)．&lt;/p&gt;
-
-&lt;p&gt;コミュニティの助けを借りてRNNでの&lt;a href=&#34;https://github.com/moskomule/pytorch_learn/blob/master/simple/rnn_text_gen.py&#34;&gt;テキスト生成&lt;/a&gt;をおこなった．これはKerasの&lt;a href=&#34;https://github.com/fchollet/keras/blob/master/examples/lstm_text_generation.py&#34;&gt;サンプル&lt;/a&gt;をPyTorchで書き換えたもので時流に乗ってオーウェルの &lt;em&gt;1984&lt;/em&gt; を学習する．Kerasのように内部状態を特に考える必要がないのとは異なって，隠れ変数$h_{\star}$を意識しなくてはいけないので勉強になる．&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;function &lt;code&gt;var&lt;/code&gt;: CUDAが使えれば&lt;code&gt;torch.autograd.Variable&lt;/code&gt;をGPUにおく(&lt;code&gt;variable.cuda()&lt;/code&gt;)．&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;function &lt;code&gt;sample&lt;/code&gt;: RNNモデルの出力から適当なindexを取り出す．&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;function &lt;code&gt;__init__&lt;/code&gt; in class &lt;code&gt;Net&lt;/code&gt;: &lt;code&gt;input&lt;/code&gt;はfeature数で，今回であればアルファベットをonehotにしているので，&lt;code&gt;len(chars)&lt;/code&gt;．&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code&gt;def __init__(self, features, cls_size):
-    super(Net, self).__init__()
-    self.rnn1 = nn.GRU(input_size=features,
-                        hidden_size=hidden_size,
-                        num_layers=1)
-    self.dense1 = nn.Linear(hidden_size, cls_size)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ul&gt;
-&lt;li&gt;function &lt;code&gt;forward&lt;/code&gt; in class &lt;code&gt;Net&lt;/code&gt;: 系列の最後の入力に対する隠れ層の状態をとるために&lt;code&gt;x=select(0, maxlen-1)&lt;/code&gt;を行っている．&lt;code&gt;reshape&lt;/code&gt;に相当する&lt;code&gt;view&lt;/code&gt;を行うためにはcontiguousが必要．またテンソル&lt;code&gt;x&lt;/code&gt;は$\text{系列の長さ}\times\text{バッチ数}\times\text{feature数}$である点に注意．&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code&gt;def forward(self, x, hidden):
-    x, hidden = self.rnn1(x, hidden)
-    x = x.select(0, maxlen-1).contiguous()
-    x = x.view(-1, hidden_size)
-    x = F.softmax(self.dense1(x))
-    return x, hidden
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ul&gt;
-&lt;li&gt;function &lt;code&gt;train&lt;/code&gt;: 入力した文を1通り読み込むのを1エポックにしている．Kerasと異なり，PyTorchの&lt;code&gt;CrossEntropyLoss&lt;/code&gt;では&lt;code&gt;target&lt;/code&gt;はクラスのインデックスである．この目標のインデクス配列の型は&lt;code&gt;np.array(dtype=np.int)&lt;/code&gt;だが，これは&lt;code&gt;torch.Tensor&lt;/code&gt;では&lt;code&gt;Tensor&lt;/code&gt;に変換できないので&lt;code&gt;torch.LongTensor&lt;/code&gt;を用いている．&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code&gt;def train():
-    model.train()
-    hidden = model.init_hidden()
-    for epoch in range(len(sentences) // batch_size):
-        X_batch = var(torch.FloatTensor(X[:, epoch*batch_size: (epoch+1)*batch_size, :]))
-        y_batch = var(torch.LongTensor(y[epoch*batch_size: (epoch+1)*batch_size]))
-        model.zero_grad()
-        output, hidden = model(X_batch, var(hidden.data))
-        loss = criterion(output, y_batch)
-        loss.backward()
-        optimizer.step()
-    print(&amp;quot;\r{}&amp;quot;.format(loss.data[0]), end=&amp;quot;&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;主要な部分は以上．特に&lt;code&gt;Variable&lt;/code&gt;に&lt;code&gt;Variable&lt;/code&gt;を与えるとエラーになったり，いちいち&lt;code&gt;Variable().cuda()&lt;/code&gt;をしなくてはいけないところで躓いたりした．また，&lt;code&gt;Tensor&lt;/code&gt;は暗黙的に&lt;code&gt;FloatTensor&lt;/code&gt;に&lt;a href=&#34;http://pytorch.org/docs/tensors.html&#34;&gt;変換される&lt;/a&gt;のもポイント．&lt;/p&gt;
-</description>
+      <description>相変わらずPyTorchをいじっている．後発のこともあって，まだDocは完全ではないけれど，Discussionなどのサポート体制は充実している(気がする)．
+コミュニティの助けを借りてRNNでのテキスト生成をおこなった．これはKerasのサンプルをPyTorchで書き換えたもので時流に乗ってオーウェルの 1984 を学習する．Kerasのように内部状態を特に考える必要がないのとは異なって，隠れ変数$h_{\star}$を意識しなくてはいけないので勉強になる．
+ function var: CUDAが使えればtorch.autograd.VariableをGPUにおく(variable.cuda())．
+ function sample: RNNモデルの出力から適当なindexを取り出す．
+ function __init__ in class Net: inputはfeature数で，今回であればアルファベットをonehotにしているので，len(chars)．
+  def __init__(self, features, cls_size): super(Net, self).__init__() self.rnn1 = nn.GRU(input_size=features, hidden_size=hidden_size, num_layers=1) self.dense1 = nn.Linear(hidden_size, cls_size)   function forward in class Net: 系列の最後の入力に対する隠れ層の状態をとるためにx=select(0, maxlen-1)を行っている(追記:実はx[-1]で充分)．reshapeに相当するviewを行うためにはcontiguousが必要．またテンソルxは$\text{系列の長さ}\times\text{バッチ数}\times\text{feature数}$である点に注意．  def forward(self, x, hidden): x, hidden = self.rnn1(x, hidden) x = x.select(0, maxlen-1).contiguous() x = x.view(-1, hidden_size) x = F.softmax(self.dense1(x)) return x, hidden   function train: 入力した文を1通り読み込むのを1エポックにしている．Kerasと異なり，PyTorchのCrossEntropyLossではtargetはクラスのインデックスである．この目標のインデクス配列の型はnp.</description>
     </item>
     
     <item>
-      <title>Pytorchはじめ</title>
+      <title>PyTorchはじめ</title>
       <link>http://mosko.tokyo/post/getting_started_pytorch/</link>
       <pubDate>Tue, 24 Jan 2017 15:15:55 +0900</pubDate>
       
       <guid>http://mosko.tokyo/post/getting_started_pytorch/</guid>
-      <description>&lt;p&gt;先日Facebookが &lt;a href=&#34;http://pytorch.org/&#34;&gt;Pytorch&lt;/a&gt; を公開していたので，早速試してみた．&lt;code&gt;Pytorch&lt;/code&gt;は&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Tensors and Dynamic neural networks in Python with strong GPU acceleration.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;とのことで，&lt;code&gt;TensorFlow&lt;/code&gt;や&lt;code&gt;Theano&lt;/code&gt;より，&lt;code&gt;Chainer&lt;/code&gt;に似ている気がする．後発ということもあってか，ウェブページにある導入の説明が丁寧で，Linux，Python 3.5，conda，Cuda8.0なら&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;conda install pytorch torchvision cuda80 -c soumith
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;を叩くだけでよい．その下にはMNISTなどの例やJupyterのチュートリアルへのリンクがあるのも丁寧．ただ，ニューラルネットワークの知識に乏しくともレイヤーを重ねて&lt;code&gt;scikit-learn&lt;/code&gt;風によしなにすればよい&lt;code&gt;keras&lt;/code&gt;よりは難しいが，その分柔軟に書けそう．メモリを大量消費する&lt;code&gt;TensorFlow&lt;/code&gt;に較べて，GPUに対する負荷はかなり小さそう．&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;基本的には&lt;code&gt;nn.Module&lt;/code&gt;を継承してネットワークを定義する． 以下のコードは&lt;a href=&#34;https://github.com/moskomule/pytorch_learn/blob/master/simple/mnist.py&#34;&gt;Github&lt;/a&gt;に挙げた．&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;class Net(nn.Module):
-  def __init__(self):
-    super(Net, self).__init__()
-    self.conv1 = nn.Conv2d(in_channels=1, out_channels=10,
-                           kernel_size=5,
-                           stride=1)
-    self.conv2 = nn.Conv2d(10, 20, kernel_size=5)
-    self.conv2_bn = nn.BatchNorm2d(20)
-    self.dense1 = nn.Linear(in_features=320, out_features=50)
-    self.dense1_bn = nn.BatchNorm1d(50)
-    self.dense2 = nn.Linear(50, 10)
-
-  def forward(self, x):
-    x = F.relu(F.max_pool2d(self.conv1(x), 2))
-    x = F.relu(F.max_pool2d(self.conv2_bn(self.conv2(x)), 2))
-    x = x.view(-1, 320) #reshape
-    x = F.relu(self.dense1_bn(self.dense1(x)))
-    x = F.relu(self.dense2(x))
-    return F.log_softmax(x)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;code&gt;__init__&lt;/code&gt;で層を用意して&lt;code&gt;forward&lt;/code&gt;でレイヤーを繋げる感じ．各レイヤーでは入力数と出力数を明示する必要があって，&lt;code&gt;keras&lt;/code&gt;慣れしていたので畳み込み数の入出力数が分からず最初は戸惑ってしまった．&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;model = Net()
-
-optimizer = optim.Adam(model.parameters(),lr=5e-4)
-
-model.train()
-for batch_idx, (data, target) in enumerate(train_loader):
-  data, target = Variable(data), Variable(target)
-  optimizer.zero_grad() # optimizerの勾配を0にする
-  output = model(data)
-  loss = F.nll_loss(output, target) # negative log likelihood loss
-  loss.backward() # 逆伝播させる
-  optimizer.step() # 進める
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;code&gt;train_loader&lt;/code&gt;から出てきた&lt;code&gt;data&lt;/code&gt;,&lt;code&gt;target&lt;/code&gt;は&lt;code&gt;Tensor&lt;/code&gt;型だが，そのままではネットワークに渡せないので&lt;code&gt;Variable&lt;/code&gt;で包む．&lt;code&gt;Chainer&lt;/code&gt;もこのような感じで，&lt;code&gt;Tensorflow&lt;/code&gt;では&lt;code&gt;placeholder&lt;/code&gt;と呼ばれているもの．&lt;code&gt;keras&lt;/code&gt;では何も考えずに&lt;code&gt;Numpy&lt;/code&gt;配列のまま与えられたので気をつけないと．&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;code&gt;Keras&lt;/code&gt;でRNNを書こうとしたら，難しそうだったのでこうして&lt;code&gt;Pytorch&lt;/code&gt;を触っているのだけれども，&lt;code&gt;Chainer&lt;/code&gt;とどちらの方がいいのだろうか．&lt;/p&gt;
-</description>
+      <description>先日Facebookが PyTorch を公開していたので，早速試してみた．PyTorchは
+ Tensors and Dynamic neural networks in Python with strong GPU acceleration.
+ とのことで，TensorFlowやTheanoより，Chainerに似ている気がする．後発ということもあってか，ウェブページにある導入の説明が丁寧で，Linux，Python 3.5，conda，Cuda8.0なら
+conda install pytorch torchvision cuda80 -c soumith  を叩くだけでよい．その下にはMNISTなどの例やJupyterのチュートリアルへのリンクがあるのも丁寧．ただ，ニューラルネットワークの知識に乏しくともレイヤーを重ねてscikit-learn風によしなにすればよいkerasよりは難しいが，その分柔軟に書けそう．メモリを大量消費するTensorFlowに較べて，GPUに対する負荷はかなり小さそう．
+基本的にはnn.Moduleを継承してネットワークを定義する． 以下のコードはGithubに挙げた．
+class Net(nn.Module): def __init__(self): super(Net, self).__init__() self.conv1 = nn.Conv2d(in_channels=1, out_channels=10, kernel_size=5, stride=1) self.conv2 = nn.Conv2d(10, 20, kernel_size=5) self.conv2_bn = nn.BatchNorm2d(20) self.dense1 = nn.Linear(in_features=320, out_features=50) self.dense1_bn = nn.BatchNorm1d(50) self.dense2 = nn.Linear(50, 10) def forward(self, x): x = F.relu(F.max_pool2d(self.conv1(x), 2)) x = F.relu(F.max_pool2d(self.conv2_bn(self.conv2(x)), 2)) x = x.</description>
     </item>
     
   </channel>

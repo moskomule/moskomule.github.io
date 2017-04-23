@@ -2,12 +2,15 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Python on moskomule log</title>
-    <link>http://mosko.tokyo/tags/python/index.xml</link>
+    <link>http://mosko.tokyo/tags/python/</link>
     <description>Recent content in Python on moskomule log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>Written by Ryuichiro Hataya</copyright>
-    <atom:link href="http://mosko.tokyo/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 13 Jan 2017 13:18:40 +0900</lastBuildDate>
+    
+	<atom:link href="http://mosko.tokyo/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>「日本古典籍字形データセット」で遊ぶ</title>
@@ -15,70 +18,11 @@
       <pubDate>Fri, 13 Jan 2017 13:18:40 +0900</pubDate>
       
       <guid>http://mosko.tokyo/post/mnist_kuzushiji/</guid>
-      <description>&lt;p&gt;日本語版MNIST,というわけではないけれど&lt;a href=&#34;http://codh.rois.ac.jp/char-shape/&#34;&gt;日本古典籍字形データセット&lt;/a&gt;の識別を&lt;code&gt;keras&lt;/code&gt;で実装したresnetによって行った．現在validation accuracyは93.3%．少なくとも自分よりはきちんと分類できるようだ．&lt;/p&gt;
-
-&lt;p&gt;このデータセットには2017年1月現在，「8点の画像データから切り取ったくずし字1,521文字種の字形データ86,176文字」が収録されているので，そのまま1521に分類している．&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://codh.rois.ac.jp/char-shape/unicode/U+30A6/200021712.jpg&#34; alt=&#34;例&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;今回はMNIST的に使うので，つまり文脈を考慮しないので変体仮名の「志」（し）と漢字としての「志」とを区別する，というようなタスクも含まれてしまうが，特に考慮しない．&lt;code&gt;keras&lt;/code&gt;の&lt;code&gt;ImageDataGenerator&lt;/code&gt;で前処理を一括して行う．本当はもう少し丁寧にした方がいいのかもしれないけれど，とりあえず．&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;
-# data generator
-train_datagen = ImageDataGenerator(
-    shear_range=0.05,
-    width_shift_range=0.05,
-    height_shift_range=0.05,
-    rotation_range=10,
-    fill_mode=&amp;quot;constant&amp;quot;,
-    cval=200,
-    zoom_range=0.2)
-train_generator = train_datagen.flow_from_directory(
-    &#39;train&#39;,
-    color_mode=&amp;quot;grayscale&amp;quot;,
-    target_size=target_size,
-    batch_size=batch_size,
-    class_mode=&#39;categorical&#39;
-)
-
-val_datagen = ImageDataGenerator()
-val_generator = val_datagen.flow_from_directory(
-    &#39;val&#39;,
-    color_mode=&amp;quot;grayscale&amp;quot;,
-    target_size=target_size,
-    batch_size=batch_size,
-    class_mode=&#39;categorical&#39;
-)
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;training dataには変形を施した．resnetは&lt;a href=&#34;https://transcranial.github.io/keras-js/#/resnet50&#34;&gt;keras.js&lt;/a&gt;を参考にして実装(下記の&lt;code&gt;res_a&lt;/code&gt;,&lt;code&gt;res_b&lt;/code&gt;)．&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;# model
-input_layer = Input(shape=input_shape)
-x = Convolution2D(nb_filters, 4, 4, subsample=(2,2))(input_layer)
-x = BatchNormalization()(x)
-x = Activation(&#39;relu&#39;)(x)
-x = MaxPooling2D(pool_size, strides=stride_size)(x)
-x = res_a([32,32,128])(x)
-x = res_b([32,32,128])(x)
-x = res_b([32,32,128])(x)
-x = res_a([64,64,256])(x)
-x = res_b([64,64,256])(x)
-x = res_b([128,128,256])(x)
-x = res_a([128,128,512])(x)
-x = res_b([128,128,512])(x)
-x = res_b([256,256,512])(x)
-x = AveragePooling2D((4,4))(x)
-x = Flatten()(x)
-output_layer = Dense(nb_classes, activation=&#39;softmax&#39;)(x)
-
-model = Model(input=input_layer, output=output_layer)
-model.compile(loss=&#39;categorical_crossentropy&#39;,
-              optimizer=&#39;adam&#39;,
-              metrics=[&#39;accuracy&#39;])
-&lt;/code&gt;&lt;/pre&gt;
-</description>
+      <description>日本語版MNIST,というわけではないけれど日本古典籍字形データセットの識別をkerasで実装したresnetによって行った．現在validation accuracyは93.3%．少なくとも自分よりはきちんと分類できるようだ．
+このデータセットには2017年1月現在，「8点の画像データから切り取ったくずし字1,521文字種の字形データ86,176文字」が収録されているので，そのまま1521に分類している．
+今回はMNIST的に使うので，つまり文脈を考慮しないので変体仮名の「志」（し）と漢字としての「志」とを区別する，というようなタスクも含まれてしまうが，特に考慮しない．kerasのImageDataGeneratorで前処理を一括して行う．本当はもう少し丁寧にした方がいいのかもしれないけれど，とりあえず．
+ # data generator train_datagen = ImageDataGenerator( shear_range=0.05, width_shift_range=0.05, height_shift_range=0.05, rotation_range=10, fill_mode=&amp;quot;constant&amp;quot;, cval=200, zoom_range=0.2) train_generator = train_datagen.flow_from_directory( &#39;train&#39;, color_mode=&amp;quot;grayscale&amp;quot;, target_size=target_size, batch_size=batch_size, class_mode=&#39;categorical&#39; ) val_datagen = ImageDataGenerator() val_generator = val_datagen.flow_from_directory( &#39;val&#39;, color_mode=&amp;quot;grayscale&amp;quot;, target_size=target_size, batch_size=batch_size, class_mode=&#39;categorical&#39; )  training dataには変形を施した．resnetはkeras.jsを参考にして実装(下記のres_a,res_b)．
+# model input_layer = Input(shape=input_shape) x = Convolution2D(nb_filters, 4, 4, subsample=(2,2))(input_layer) x = BatchNormalization()(x) x = Activation(&#39;relu&#39;)(x) x = MaxPooling2D(pool_size, strides=stride_size)(x) x = res_a([32,32,128])(x) x = res_b([32,32,128])(x) x = res_b([32,32,128])(x) x = res_a([64,64,256])(x) x = res_b([64,64,256])(x) x = res_b([128,128,256])(x) x = res_a([128,128,512])(x) x = res_b([128,128,512])(x) x = res_b([256,256,512])(x) x = AveragePooling2D((4,4))(x) x = Flatten()(x) output_layer = Dense(nb_classes, activation=&#39;softmax&#39;)(x) model = Model(input=input_layer, output=output_layer) model.</description>
     </item>
     
     <item>
@@ -87,125 +31,12 @@ model.compile(loss=&#39;categorical_crossentropy&#39;,
       <pubDate>Sat, 29 Oct 2016 00:16:01 +0900</pubDate>
       
       <guid>http://mosko.tokyo/post/on-sklearn-xgboost-and-tensorflow/</guid>
-      <description>
-
-&lt;p&gt;新しいもの好きなので色々と触ってはみるものの，必要とならないと理解しようとしないので結果的には無駄に時間を使ってしまう．研究でPythonの機械学習・ディープラーニングライブラリに触っているので備忘録に．&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&#34;scikit-learn&#34;&gt;scikit-learn&lt;/h2&gt;
-
-&lt;p&gt;scikit-learn a.k.a. sklearnは機械学習のライブラリで，多くの機械学習アルゴリズムが収録されている．機械学習プロパーの人からすると色々問題もあるのかもしれないが，とりあえず色々な手法が同じような書き方で使えるのはありがたい．とはいいながら，結局今回使っているのはSVMとRandom Forestだけなのだけれど．&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;
-from sklearn import svm
-
-svc = svm.SVC(kernel=&#39;linear&#39;)
-
-svc.fit(train_X,train_Y)
-
-predict_Y = svc.predict(test_X)
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;これだけ．あと便利なのが&lt;code&gt;classification_report&lt;/code&gt;と&lt;code&gt;GridSearchCV&lt;/code&gt;．&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;
-from sklearn.metrics import classification_report
-
-print(classification_report(test_Y, predict_Y))
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;で&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;
-             precision    recall  f1-score   support
-
-        0.0       0.56      0.96      0.71       364
-
-        1.0       0.87      0.24      0.38       364
-
-avg / total       0.72      0.60      0.55       728
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;まで表示される．グリッドサーチの方はクロスバリデーション付きで以下のように使う．&lt;code&gt;n_jobs&lt;/code&gt;は使用するCPU数で，&lt;code&gt;-1&lt;/code&gt;のときは全CPUを使って並列で処理を進めるので，モデルによっては注意が必要．今回はCPUはよいのだけれども，並列で処理するためかメモリを相当喰っている印象を受けた．&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;
-from sklearn.model_selection import GridSearchCV
-
-
-
-tuned_parameters = [{&#39;kernel&#39;: [&#39;poly&#39;,&#39;linear&#39;],
-
-                     &#39;gamma&#39;: [1e-3, 1e-4],
-
-                     &#39;C&#39;: [0.1,1,10]}]
-
-gsc = GridSearchCV(svm.SVC(), tuned_parameters, cv=5, scoring=score, n_jobs=-1)
-
-gsc.fit(train_X, train_Y)
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;この結果得られる&lt;code&gt;gsc&lt;/code&gt;には最良のモデルが入っているので&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;
-predict_Y = gsc.predict(test_X)
-
-print(classification_report(test_Y, predict_Y))
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;などとしてやればよい．当然グリッドは隙間があるので，&lt;code&gt;RandomizedSearchCV&lt;/code&gt;で細かく見ていってもいいのかもしれない．&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&#34;xgboost&#34;&gt;Xgboost&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://github.com/dmlc/xgboost&#34;&gt;Xgboost&lt;/a&gt;はgradient boostingの高速な実装．インストール方法は&lt;a href=&#34;https://github.com/dmlc/xgboost/blob/master/doc/build.md&#34;&gt;ここ&lt;/a&gt;を読めばよいはずで，各種バインディングが用意されている．今回はPythonバインディングを導入した．&lt;/p&gt;
-
-&lt;p&gt;Pythonバインディングはよくできていてimportしてしまえばsklearnのように使えてしまう．そして，&lt;code&gt;GridSearchCV&lt;/code&gt;なども使えてしまうので，非常に便利．&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;
-from xgboost import XGBClassifier
-
-xgb = XGBClassifier()
-
-xgb.fit(train_X, train_Y)
-
-predict_Y = xgb.predict(test_X)
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;tensorflow&#34;&gt;TensorFlow&lt;/h2&gt;
-
-&lt;p&gt;TensorFlowでは，DLの重い計算を行うグラフ部分の中身は隠されていて，そのグラフの構築や何をするかの指示をPythonで構築していく．&lt;/p&gt;
-
-&lt;p&gt;グラフへの入力や教師データは&lt;code&gt;tf.placeholder(...)&lt;/code&gt;で与えられている．&lt;code&gt;Session.run()&lt;/code&gt;で指定する&lt;code&gt;feed_dict&lt;/code&gt;は何を入力や教師データとして用いるか，ということを指していて，&lt;code&gt;fetches&lt;/code&gt;は演算の結果返すものを指定している．&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;
-# グラフ構築
-
-l_in = tf.placeholder(...) # 入力
-
-...
-
-y = fully_connected(...)
-
-y_ = tf.placeholder(...) # 教師データ
-
-...
-
-res = sess.run(fetches=[y], 
-
-               feed_dict={l_in: batch_X, y_: batch_Y})
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;であれば，&lt;code&gt;fetches&lt;/code&gt;で[y]を指定することで&lt;code&gt;res[0]&lt;/code&gt;には演算の結果&lt;code&gt;y&lt;/code&gt;に来た値が入ることになる．&lt;code&gt;feed_dict&lt;/code&gt;にはグラフの&lt;code&gt;l_in&lt;/code&gt;には&lt;code&gt;batch_X&lt;/code&gt;を，&lt;code&gt;y_&lt;/code&gt;には&lt;code&gt;batch_Y&lt;/code&gt;が対応することを示している．各所のチュートリアルでは解説されておらず難儀したけれど，よくよく字面を見れば，何の捻りもなくて当然解説されないわけである&lt;/p&gt;
-</description>
+      <description>新しいもの好きなので色々と触ってはみるものの，必要とならないと理解しようとしないので結果的には無駄に時間を使ってしまう．研究でPythonの機械学習・ディープラーニングライブラリに触っているので備忘録に．
+scikit-learn scikit-learn a.k.a. sklearnは機械学習のライブラリで，多くの機械学習アルゴリズムが収録されている．機械学習プロパーの人からすると色々問題もあるのかもしれないが，とりあえず色々な手法が同じような書き方で使えるのはありがたい．とはいいながら，結局今回使っているのはSVMとRandom Forestだけなのだけれど．
+from sklearn import svm svc = svm.SVC(kernel=&#39;linear&#39;) svc.fit(train_X,train_Y) predict_Y = svc.predict(test_X)  これだけ．あと便利なのがclassification_reportとGridSearchCV．
+from sklearn.metrics import classification_report print(classification_report(test_Y, predict_Y))  で
+ precision recall f1-score support 0.0 0.56 0.96 0.71 364 1.0 0.87 0.24 0.38 364 avg / total 0.72 0.60 0.55 728  まで表示される．グリッドサーチの方はクロスバリデーション付きで以下のように使う．n_jobsは使用するCPU数で，-1のときは全CPUを使って並列で処理を進めるので，モデルによっては注意が必要．今回はCPUはよいのだけれども，並列で処理するためかメモリを相当喰っている印象を受けた．
+from sklearn.model_selection import GridSearchCV tuned_parameters = [{&#39;kernel&#39;: [&#39;poly&#39;,&#39;linear&#39;], &#39;gamma&#39;: [1e-3, 1e-4], &#39;C&#39;: [0.1,1,10]}] gsc = GridSearchCV(svm.SVC(), tuned_parameters, cv=5, scoring=score, n_jobs=-1) gsc.</description>
     </item>
     
     <item>
@@ -214,188 +45,50 @@ res = sess.run(fetches=[y],
       <pubDate>Sat, 22 Oct 2016 00:21:34 +0900</pubDate>
       
       <guid>http://mosko.tokyo/post/python-and-mysql/</guid>
-      <description>&lt;p&gt;現在開発しているものはScalaで前処理を行っているので，本番の処理も本当は全部Scalaで書ければよかったのだけれども，そうは問屋が卸さず，種々の原因によりPythonが必要になってしまった． これなら最初から全部Pythonでよかったのでは，とも思うけれど，PythonはJupyterで小さなものを色々弄るのには使うものの，大きいものをPythonで書いた経験が無いので心配．型が違う，という注意が沢山出そうだ．&lt;/p&gt;
-
-&lt;p&gt;ともかく，そのためにPythonからMySQLを扱う必要が出てきた．Pythonists3は新しいもの好きなのか，いまやNoSQLを使うのがトレンドなのか，MySQL周りの情報が少ないのだが，&lt;code&gt;pymysql&lt;/code&gt;を使うことに落ち着いた．&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;
-connection = pymysql.connect(host=&amp;quot;HOSTNAME&amp;quot;,
-
-                            user=&amp;quot;USERNAME&amp;quot;,
-
-                            password=&amp;quot;PASSWORD&amp;quot;,
-
-                            db=&amp;quot;DB_NAME&amp;quot;,
-
-                            charset=&#39;utf8&#39;,
-
-                            cursorclass=pymysql.cursors.DictCursor) #1
-
-
-
-with connection.cursor() as cursor:
-
-
-
-    sql = &amp;quot;SELECT name FROM table WHERE id=%s&amp;quot;
-
-    cursor.execute(sql, (900))
-
-
-
-    results = cursor.fetchall()
-
-    for r in results:
-
-        b = r[&#39;name&#39;]
-
-        print(bytes.decode(b)) #2
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;#1を指定することで，返ってくる結果がdict形式になって分かりやすい．&lt;/p&gt;
-
-&lt;p&gt;最後，#2で&lt;code&gt;name&lt;/code&gt;に相当する列が&lt;code&gt;varbinary&lt;/code&gt;であったので，文字列に変換するのに&lt;code&gt;bytes.decode()&lt;/code&gt;が必要だった．とりあえずこれで一件落着．&lt;/p&gt;
-</description>
+      <description>現在開発しているものはScalaで前処理を行っているので，本番の処理も本当は全部Scalaで書ければよかったのだけれども，そうは問屋が卸さず，種々の原因によりPythonが必要になってしまった． これなら最初から全部Pythonでよかったのでは，とも思うけれど，PythonはJupyterで小さなものを色々弄るのには使うものの，大きいものをPythonで書いた経験が無いので心配．型が違う，という注意が沢山出そうだ．
+ともかく，そのためにPythonからMySQLを扱う必要が出てきた．Pythonists3は新しいもの好きなのか，いまやNoSQLを使うのがトレンドなのか，MySQL周りの情報が少ないのだが，pymysqlを使うことに落ち着いた．
+connection = pymysql.connect(host=&amp;quot;HOSTNAME&amp;quot;, user=&amp;quot;USERNAME&amp;quot;, password=&amp;quot;PASSWORD&amp;quot;, db=&amp;quot;DB_NAME&amp;quot;, charset=&#39;utf8&#39;, cursorclass=pymysql.cursors.DictCursor) #1 with connection.cursor() as cursor: sql = &amp;quot;SELECT name FROM table WHERE id=%s&amp;quot; cursor.execute(sql, (900)) results = cursor.fetchall() for r in results: b = r[&#39;name&#39;] print(bytes.decode(b)) #2  #1を指定することで，返ってくる結果がdict形式になって分かりやすい．
+最後，#2でnameに相当する列がvarbinaryであったので，文字列に変換するのにbytes.decode()が必要だった．とりあえずこれで一件落着．</description>
     </item>
     
     <item>
       <title>TensorflowでCNN入門</title>
-      <link>http://mosko.tokyo/post/started-CNN-with-Tensorflow/</link>
+      <link>http://mosko.tokyo/post/started-cnn-with-tensorflow/</link>
       <pubDate>Wed, 19 Oct 2016 20:04:20 +0900</pubDate>
       
-      <guid>http://mosko.tokyo/post/started-CNN-with-Tensorflow/</guid>
-      <description>
-
-&lt;p&gt;いよいよDeep Learningからは逃れられない運命，真剣に向かい合わざるを得ないことを悟り，&lt;a href=&#34;https://github.com/alrojo/tensorflow-tutorial&#34;&gt;TensorFlow Tutorial-used by Nvidia&lt;/a&gt;を始めた．&lt;/p&gt;
-
-&lt;p&gt;前半は実は正しくなくて，今までも何度か&lt;a href=&#34;https://www.tensorflow.org/versions/r0.11/tutorials/index.html&#34;&gt;TensorflowのTutorial&lt;/a&gt;を触ったものの，また，TensorFlowやChainerを使ったものの，まったく理解できないまま終わってしまっていた．&lt;/p&gt;
-
-&lt;p&gt;今回は偶然にも前述のTutorialと出逢うことが出来たので試してみた．&lt;/p&gt;
-
-&lt;h2 id=&#34;環境構築&#34;&gt;環境構築&lt;/h2&gt;
-
-&lt;p&gt;細かいことは考えずに&lt;a href=&#34;https://www.continuum.io/downloads&#34;&gt;Anaconda&lt;/a&gt;を入れてしまうのが早い．基本的なパッケージは揃っているし，IntelのMKLが使えるNumpyなども特に設定せずに導入できる．導入後，&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;
-conda update --all
-
-conda install tensorflow
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;を行えば終了．ではあるが，GPUを使いたい場合は&lt;a href=&#34;https://www.tensorflow.org/versions/master/get_started/os_setup.html#pip-installation&#34;&gt;公式&lt;/a&gt;にしたがって&lt;code&gt;pip&lt;/code&gt;を叩く必要がある．なお，このTutorialはPython2向けに書かれているので，すでにAnaconda py35を入れてしまっている場合には&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;
-conda create -n py27 python=2.7 anaconda
-
-source activate py27
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;が必要となる．&lt;code&gt;pyenv&lt;/code&gt;を使うと環境への影響が少ないのだけれど，自分の環境ではAnacondaのIntel Math Kernel Libraryが上手く動かないようなので使っていない．&lt;/p&gt;
-
-&lt;h2 id=&#34;tutorial&#34;&gt;Tutorial&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://github.com/alrojo/tensorflow-tutorial/blob/master/lab2_CNN/lab2_CNN.ipynb&#34;&gt;Tutorial Lab2&lt;/a&gt;．Jupyter Notebookの偉大さが分かる．&lt;/p&gt;
-
-&lt;p&gt;構成もよく出来ていて，MNISTをMulti-Layer Parceptronで解く，Convolutional層を追加する，Pooling層を追加する，重ねてみる，Dropoutも追加してみる，というような流れなのでそれぞれの層の意味がよく理解できるし，&lt;a href=&#34;http://amzn.to/2el8pLx&#34;&gt;岡谷先生の本&lt;/a&gt;ではそうかそうか，と式だけ追っていたようなことが目に見える形で現れるのは純粋に楽しいので捗るし，理解が深まる．&lt;/p&gt;
-
-&lt;p&gt;MNISTなので上手くいって当然なのだろうけれど，試行錯誤していくと正答率があがって過学習が減っていくのは面白い．&lt;/p&gt;
-
-&lt;p&gt;{% asset_img mnist.png 最終結果 %}&lt;/p&gt;
-
-&lt;h2 id=&#34;チャネル数&#34;&gt;チャネル数&lt;/h2&gt;
-
-&lt;p&gt;途中で，&lt;code&gt;channels&lt;/code&gt;，チャネル数がよく分からなかったのだけれども，岡谷先生の本が参考になった．入力がRGB画像の場合は入力層の場合はチャンネル数はRGBの3である．ここで，チャンネル数 $K$ ,大きさ $W\times W$ であるものを $W\times W\times K$ と表すこととする．&lt;/p&gt;
-
-&lt;p&gt;いま，Convolutional層の入力のサイズを$W\times W\times K$，$m$種類のフィルターのサイズを$H\times H\times K$とすると，&lt;/p&gt;
-
-&lt;p&gt;$$&lt;/p&gt;
-
-&lt;p&gt;u_{ijm}=\sum_{k=0}^{K-1}\sum_{p=0}^{H-1}\sum_{q=0}^{H-1}z_{i+p,j+q,k}^{(l-1)}h_{pqkm}+b_{ijm}&lt;/p&gt;
-
-&lt;p&gt;$$&lt;/p&gt;
-
-&lt;p&gt;畳み込み層の出力としてはこれに活性化函数を適用した $z_{ijm}=f(u_{ijm})$  が得られる．したがって，$W\times W\times K$であった入力は，出力時には$W\times W\times M$となっている．この$M$が次の層ではチャネル数となる．ということのようだ．&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&#34;備忘録-sqlの最適化&#34;&gt;備忘録:SQLの最適化&lt;/h2&gt;
-
-&lt;p&gt;いま携わっているプロジェクトではSQLのクエリを投げ続けるので速度が重要なのだが，いじっているうちに1件の応答に数秒かかるほど遅くなってしまった．このときの解決手順．今までDBで大きなデータを取り扱うことはなかっただけに，DBの応答が遅いのは予想外で気付くのに時間を要した．&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;
-OPTIMIZE TABLE TABLE_NAME;
-
-ALTER TABLE TABLE_NAME ADD INDEX(id, name);
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;後者のインデックスの張り直しが重要そう．&lt;/p&gt;
-</description>
+      <guid>http://mosko.tokyo/post/started-cnn-with-tensorflow/</guid>
+      <description>いよいよDeep Learningからは逃れられない運命，真剣に向かい合わざるを得ないことを悟り，TensorFlow Tutorial-used by Nvidiaを始めた．
+前半は実は正しくなくて，今までも何度かTensorflowのTutorialを触ったものの，また，TensorFlowやChainerを使ったものの，まったく理解できないまま終わってしまっていた．
+今回は偶然にも前述のTutorialと出逢うことが出来たので試してみた．
+環境構築 細かいことは考えずにAnacondaを入れてしまうのが早い．基本的なパッケージは揃っているし，IntelのMKLが使えるNumpyなども特に設定せずに導入できる．導入後，
+conda update --all conda install tensorflow  を行えば終了．ではあるが，GPUを使いたい場合は公式にしたがってpipを叩く必要がある．なお，このTutorialはPython2向けに書かれているので，すでにAnaconda py35を入れてしまっている場合には
+conda create -n py27 python=2.7 anaconda source activate py27  が必要となる．pyenvを使うと環境への影響が少ないのだけれど，自分の環境ではAnacondaのIntel Math Kernel Libraryが上手く動かないようなので使っていない．
+Tutorial Tutorial Lab2．Jupyter Notebookの偉大さが分かる．
+構成もよく出来ていて，MNISTをMulti-Layer Parceptronで解く，Convolutional層を追加する，Pooling層を追加する，重ねてみる，Dropoutも追加してみる，というような流れなのでそれぞれの層の意味がよく理解できるし，岡谷先生の本ではそうかそうか，と式だけ追っていたようなことが目に見える形で現れるのは純粋に楽しいので捗るし，理解が深まる．
+MNISTなので上手くいって当然なのだろうけれど，試行錯誤していくと正答率があがって過学習が減っていくのは面白い．
+{% asset_img mnist.png 最終結果 %}
+チャネル数 途中で，channels，チャネル数がよく分からなかったのだけれども，岡谷先生の本が参考になった．入力がRGB画像の場合は入力層の場合はチャンネル数はRGBの3である．ここで，チャンネル数 $K$ ,大きさ $W\times W$ であるものを $W\times W\times K$ と表すこととする．
+いま，Convolutional層の入力のサイズを$W\times W\times K$，$m$種類のフィルターのサイズを$H\times H\times K$とすると，
+$$
+u_{ijm}=\sum_{k=0}^{K-1}\sum_{p=0}^{H-1}\sum_{q=0}^{H-1}z_{i+p,j+q,k}^{(l-1)}h_{pqkm}+b_{ijm}
+$$
+畳み込み層の出力としてはこれに活性化函数を適用した $z_{ijm}=f(u_{ijm})$ が得られる．したがって，$W\times W\times K$であった入力は，出力時には$W\times W\times M$となっている．この$M$が次の層ではチャネル数となる．ということのようだ．</description>
     </item>
     
     <item>
       <title>Jupyterをサーバー上で使う</title>
-      <link>http://mosko.tokyo/post/using-Jupyter-on-an-external-server/</link>
+      <link>http://mosko.tokyo/post/using-jupyter-on-an-external-server/</link>
       <pubDate>Wed, 31 Aug 2016 18:30:08 +0900</pubDate>
       
-      <guid>http://mosko.tokyo/post/using-Jupyter-on-an-external-server/</guid>
-      <description>
-
-&lt;h1 id=&#34;2016-08-29&#34;&gt;2016-08-29&lt;/h1&gt;
-
-&lt;h2 id=&#34;サーバー上のjupyter-notebookを使う&#34;&gt;サーバー上のJupyter notebookを使う&lt;/h2&gt;
-
-&lt;p&gt;サーバー上でPythonを実行するのに，ターミナルで弄っていたが何かと不便だったのでJupyterを導入した．&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;
-jupyter notebook --generate-config
-
-vim ~/.jupyter/jupyter_notebook_config.py
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;で&lt;code&gt;jupyter_notebook_config.py&lt;/code&gt;に以下を加える．&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;
-c.NotebookApp.ip = &#39;*&#39;  # localhost以外からもアクセス可能にする。
-
-c.NotebookApp.port = 9999  # サーバのポートを指定。デフォルト8888。
-
-c.NotebookApp.open_browser = False  # ブラウザが自動で開かないようにする。
-
-c.NotebookApp.notebook_dir = &#39;/home/USER_NAME/notebooks&#39;  # 作業ディレクトリを指定。デフォルト起動ディレクトリ。
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;かくして，&lt;code&gt;jupyter notebook&lt;/code&gt;コマンドを叩くと&lt;code&gt;http://hoge.hoge:9999&lt;/code&gt;でJupyterが扱える．&lt;/p&gt;
-
-&lt;h2 id=&#34;scikit-learnでのmklエラー解決&#34;&gt;scikit-learnでのMKLエラー解決&lt;/h2&gt;
-
-&lt;p&gt;Ubuntuサーバー上のAnaconda3でscikit-learnを動かしたところ&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;
-Intel MKL FATAL ERROR: Cannot load libmkl_avx.so or libmkl_def.so
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;というような表示が出て終了してしまう．とりあえず&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;
-conda install nomkl numpy scipy scikit-learn numexpr
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;で解決させたものの，&lt;code&gt;MKL&lt;/code&gt;使った方が速そうなので早々に解決したい．&lt;code&gt;MRO&lt;/code&gt;の&lt;code&gt;MKL&lt;/code&gt;が悪かったりするのだろうか．&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;参考&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://www.task-notes.com/entry/20160204/1454513778&#34;&gt;Jupyter Notebook（IPython）サーバの起動方法&lt;/a&gt;&lt;/p&gt;
-</description>
+      <guid>http://mosko.tokyo/post/using-jupyter-on-an-external-server/</guid>
+      <description>2016-08-29 サーバー上のJupyter notebookを使う サーバー上でPythonを実行するのに，ターミナルで弄っていたが何かと不便だったのでJupyterを導入した．
+ jupyter notebook --generate-config vim ~/.jupyter/jupyter_notebook_config.py  でjupyter_notebook_config.pyに以下を加える．
+ c.NotebookApp.ip = &#39;*&#39; # localhost以外からもアクセス可能にする。 c.NotebookApp.port = 9999 # サーバのポートを指定。デフォルト8888。 c.NotebookApp.open_browser = False # ブラウザが自動で開かないようにする。 c.NotebookApp.notebook_dir = &#39;/home/USER_NAME/notebooks&#39; # 作業ディレクトリを指定。デフォルト起動ディレクトリ。  かくして，jupyter notebookコマンドを叩くとhttp://hoge.hoge:9999でJupyterが扱える．
+scikit-learnでのMKLエラー解決 Ubuntuサーバー上のAnaconda3でscikit-learnを動かしたところ
+ Intel MKL FATAL ERROR: Cannot load libmkl_avx.so or libmkl_def.so  というような表示が出て終了してしまう．とりあえず
+ conda install nomkl numpy scipy scikit-learn numexpr  で解決させたものの，MKL使った方が速そうなので早々に解決したい．MROのMKLが悪かったりするのだろうか．
+参考
+Jupyter Notebook（IPython）サーバの起動方法</description>
     </item>
     
   </channel>
