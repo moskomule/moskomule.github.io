@@ -1,0 +1,121 @@
+#social {
+  margin-top: 20px;
+  text-align: center;
+}
+
+article h1 {
+  margin: 50px 0 25px 0;
+}
+article h2 {
+  border-bottom: 2px solid #ddd;
+  margin: 50px 0 25px 0;
+  padding-bottom: 10px;
+}
+article h3,
+article h4,
+article h5,
+article h6 {
+  margin: 40px 0 25px 0;
+}
+article {
+  margin: 25px 0;
+  font-size: 10pt;
+  line-height: 1.6em;
+}
+article code {
+  font-family: consolas, "Courier New", monospace;
+  font-style: bold;
+  color: #f66;
+  background-color: #fee;
+  border-radius: 3px;
+  margin: 3px 3px;
+}
+article pre code {
+  padding-left: 20px;
+  font-family: consolas, "Courier New", monospace;
+}
+article blockquote {
+  margin: 10px 0;
+  padding-left: 20px;
+  border-left: 4px solid #ccc;
+  font-style: italic;
+}
+article img {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.article-header {
+  border-left: 4px solid #29abe2;
+  margin: 10px 0 25px -4px;
+  padding: 5px 0 5px 10px;
+}
+
+article hr {
+  border: 1px dashed #ddd;
+  margin: 20px;
+}
+
+nav ul.pagination {
+  font-size: 0;
+  text-align: center;
+  margin: 0;
+}
+nav ul.pagination li {
+  display: inline-block;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  background-color: #eee;
+  padding: 3px 10px;
+  margin: 0 3px;
+}
+nav ul.pagination li.active {
+  border: 2px solid #29abe2;
+  font-size: 14px;
+}
+nav ul.pagination li:hover {
+  border-color: #29abe2;
+}
+nav.pagination-single {
+  padding: 20px 0 20px 0;
+  overflow: hidden;
+  font-size: 14px;
+}
+nav.pagination-single span.previous {
+  float: left;
+  padding: 10px 0 10px 0;
+  max-width: 300px;
+  font-size: 14px;
+}
+nav.pagination-single span.next {
+  float: right;
+  padding: 10px 0 10px 0;
+  max-width: 300px;
+  font-size: 14px;
+}
+nav.pagination-single a {
+  color: #29abe2;
+  font-size: 14px;
+}
+.summary {
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ddd;
+}
+.meta {
+  color: #999;
+  font-size: 12px;
+}
+
+.light-gray {
+  color: #999;
+}
+
+main#list{
+  margin: 10px 15px 10px 15px;
+}
+
+main#list h2{
+  font-size: 14pt;
+}
