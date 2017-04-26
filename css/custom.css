@@ -22,6 +22,10 @@ article {
   font-size: 10pt;
   line-height: 1.6em;
 }
+.item header h3 {
+  font-size: 14pt;
+}
+
 article code {
   font-family: consolas, "Courier New", monospace;
   font-style: bold;

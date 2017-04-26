@@ -2,7 +2,7 @@
 
 <html>
   <head>
-	<meta name="generator" content="Hugo 0.20.2" />
+	<meta name="generator" content="Hugo 0.20.5" />
     <title>
       moskomule log
     </title>
@@ -14,17 +14,11 @@
     <link rel="stylesheet" href="/css/highlight_monokai.css">
     <link rel="stylesheet" href="/css/custom.css">
 
-    <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      tex2jax: {
-        inlineMath: [['$','$'], ['\\(','\\)']],
-        processEscapes: true
-      },
-      CommonHTML: { matchFontHeight: false }
-    });
-    </script>
-    <script async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
-    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/contrib/auto-render.min.js"></script>
+    <script>$(document).ready(function(){renderMathInElement(document.body,{delimiters: [{left: "$$", right: "$$", display: true},{left: "$", right: "$", display: false}]})});</script>
+
   </head>
   <body>
 
@@ -118,67 +112,44 @@
     <div class="container">
 
       <header>
-        <h2>blog articles</h2>
+        <h2>articles</h2>
       </header>
 
-      <h3>Recent Articles</h3>
+      <h3>topics</h3>
 
       <div class="row">
         
+        <div class="4u 12u$(mobile)">
+          <article class="item">
+            <a href="post" class="image fit"><img src="img/tech.jpg" alt="articles about technology" /></a>
+            <header>
+              <h3>tech</h3>
+            </header>
+          </article>
+        </div>
+        
+        <div class="4u 12u$(mobile)">
+          <article class="item">
+            <a href="travel" class="image fit"><img src="img/tech.jpg" alt="articles about travel" /></a>
+            <header>
+              <h3>travel</h3>
+            </header>
+          </article>
+        </div>
+        
+      </div>
 
+      <h3>recent articles</h3>
+
+      
           
-          
-            <div class="recent articles">
-              <a href="http://mosko.tokyo/post/italy8/">イタリア旅行記8日目 </a>
-                <sub>Oct 7, 2016</sub>
-            </div>
-          
-            <div class="recent articles">
-              <a href="http://mosko.tokyo/post/italy7/">イタリア旅行記7日目 </a>
-                <sub>Oct 5, 2016</sub>
-            </div>
-          
-            <div class="recent articles">
-              <a href="http://mosko.tokyo/post/juman-install/">JUMAN&#43;&#43; on Ubuntu </a>
-                <sub>Oct 5, 2016</sub>
-            </div>
-          
-            <div class="recent articles">
-              <a href="http://mosko.tokyo/post/italy6/">イタリア旅行記6日目 </a>
-                <sub>Oct 4, 2016</sub>
-            </div>
-          
-            <div class="recent articles">
-              <a href="http://mosko.tokyo/post/italy5/">イタリア旅行記5日目 </a>
-                <sub>Oct 3, 2016</sub>
-            </div>
-          
-            <div class="recent articles">
-              <a href="http://mosko.tokyo/post/italy4/">イタリア旅行記4日目 </a>
-                <sub>Oct 2, 2016</sub>
-            </div>
-          
-            <div class="recent articles">
-              <a href="http://mosko.tokyo/post/italy3/">イタリア旅行記3日目 </a>
-                <sub>Oct 1, 2016</sub>
-            </div>
-          
-            <div class="recent articles">
-              <a href="http://mosko.tokyo/post/italy2/">イタリア旅行記2日目 </a>
-                <sub>Sep 30, 2016</sub>
-            </div>
-          
-            <div class="recent articles">
-              <a href="http://mosko.tokyo/post/italy1/">イタリア旅行記1日目 </a>
-                <sub>Sep 29, 2016</sub>
-            </div>
           
             <div class="recent articles">
               <a href="http://mosko.tokyo/post/using-jupyter-on-an-external-server/">Jupyterをサーバー上で使う </a>
                 <sub>Aug 31, 2016</sub>
             </div>
           
-      </div>
+      
 
 
     </div>

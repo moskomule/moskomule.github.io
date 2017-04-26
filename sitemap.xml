@@ -42,7 +42,7 @@
   </url>
   
   <url>
-    <loc>http://mosko.tokyo/post/italy-misc/</loc>
+    <loc>http://mosko.tokyo/travel/italy-misc/</loc>
     <lastmod>2016-10-09T23:51:10+09:00</lastmod>
   </url>
   
@@ -52,12 +52,12 @@
   </url>
   
   <url>
-    <loc>http://mosko.tokyo/post/italy8/</loc>
+    <loc>http://mosko.tokyo/travel/italy8/</loc>
     <lastmod>2016-10-07T00:46:48+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://mosko.tokyo/post/italy7/</loc>
+    <loc>http://mosko.tokyo/travel/italy7/</loc>
     <lastmod>2016-10-05T21:21:06+09:00</lastmod>
   </url>
   
@@ -67,32 +67,32 @@
   </url>
   
   <url>
-    <loc>http://mosko.tokyo/post/italy6/</loc>
+    <loc>http://mosko.tokyo/travel/italy6/</loc>
     <lastmod>2016-10-04T08:34:59+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://mosko.tokyo/post/italy5/</loc>
+    <loc>http://mosko.tokyo/travel/italy5/</loc>
     <lastmod>2016-10-03T21:52:14+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://mosko.tokyo/post/italy4/</loc>
+    <loc>http://mosko.tokyo/travel/italy4/</loc>
     <lastmod>2016-10-02T11:15:13+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://mosko.tokyo/post/italy3/</loc>
+    <loc>http://mosko.tokyo/travel/italy3/</loc>
     <lastmod>2016-10-01T13:03:11+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://mosko.tokyo/post/italy2/</loc>
+    <loc>http://mosko.tokyo/travel/italy2/</loc>
     <lastmod>2016-09-30T12:12:55+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://mosko.tokyo/post/italy1/</loc>
+    <loc>http://mosko.tokyo/travel/italy1/</loc>
     <lastmod>2016-09-29T21:44:20+09:00</lastmod>
   </url>
   
@@ -181,6 +181,12 @@
   <url>
     <loc>http://mosko.tokyo/tags/</loc>
     <lastmod>2016-10-22T00:21:34+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://mosko.tokyo/travel/</loc>
+    <lastmod>2016-10-09T23:51:10+09:00</lastmod>
     <priority>0</priority>
   </url>
   

@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Italy on moskomule log</title>
-    <link>http://mosko.tokyo/tags/italy/</link>
-    <description>Recent content in Italy on moskomule log</description>
+    <title>Travels on moskomule log</title>
+    <link>http://mosko.tokyo/travel/</link>
+    <description>Recent content in Travels on moskomule log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>Written by Ryuichiro Hataya</copyright>
     <lastBuildDate>Sun, 09 Oct 2016 23:51:10 +0900</lastBuildDate>
     
-	<atom:link href="http://mosko.tokyo/tags/italy/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://mosko.tokyo/travel/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
