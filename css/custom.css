@@ -123,3 +123,7 @@ main#list{
 main#list h2{
   font-size: 14pt;
 }
+
+.row {
+  margin: 10px;
+}
