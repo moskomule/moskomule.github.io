@@ -4,10 +4,15 @@
 }
 
 article h1 {
+  font-size: 18px;
+  border-left: 2px solid #bcc;
+  border-bottom: 2px dotted #bcc;
   margin: 50px 0 25px 0;
+  padding-left: 10px;
 }
 article h2 {
-  border-bottom: 2px solid #ddd;
+  font-size: 14px;
+  border-bottom: 2px solid #bcc;
   margin: 50px 0 25px 0;
   padding-bottom: 10px;
 }
@@ -126,4 +131,30 @@ main#list h2{
 
 .row {
   margin: 10px;
+}
+
+figcaption{
+  text-align: center;
+}
+
+figcaption h4:before{
+  content: "fig."
+}
+
+iframe{
+  margin: 30px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+figure img{
+  width: 480px;
+}
+
+.footnotes{
+
+}
+.footnotes li:before {
+  content: "▷";
 }
