@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>http://mosko.tokyo/travel/iran3/</loc>
+    <lastmod>2017-05-04T08:54:33+09:00</lastmod>
+  </url>
   
   <url>
     <loc>http://mosko.tokyo/travel/iran2/</loc>
@@ -142,7 +146,7 @@
   
   <url>
     <loc>http://mosko.tokyo/tags/iran/</loc>
-    <lastmod>2017-04-30T12:10:54+09:00</lastmod>
+    <lastmod>2017-05-04T08:54:33+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -208,13 +212,13 @@
   
   <url>
     <loc>http://mosko.tokyo/tags/travel/</loc>
-    <lastmod>2017-04-30T12:10:54+09:00</lastmod>
+    <lastmod>2017-05-04T08:54:33+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://mosko.tokyo/travel/</loc>
-    <lastmod>2017-04-30T12:10:54+09:00</lastmod>
+    <lastmod>2017-05-04T08:54:33+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -238,7 +242,7 @@
   
   <url>
     <loc>http://mosko.tokyo/</loc>
-    <lastmod>2017-04-30T12:10:54+09:00</lastmod>
+    <lastmod>2017-05-04T08:54:33+09:00</lastmod>
     <priority>0</priority>
   </url>
   
