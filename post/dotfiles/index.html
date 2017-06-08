@@ -13,13 +13,14 @@
     <link rel="stylesheet" href="/css/highlight_monokai.css">
     <link rel="stylesheet" href="/css/custom.css">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/contrib/auto-render.min.js"></script>
-    <script>$(document).ready(function(){renderMathInElement(document.body,{delimiters: [{left: "$$", right: "$$", display: true},{left: "$", right: "$", display: false}]})});</script>
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha256-tkzDFSl16wERzhCWg0ge2tON2+D6Qe9iEaJqM4ZGd4E=" crossorigin="anonymous" type="text/css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha256-gNVpJCw01Tg4rruvtWJp9vS0rRchXP2YF+U+b2lp8Po=" crossorigin="anonymous" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha256-ExtbCSBuYA7kq1Pz362ibde9nnsHYPt6JxuxYeZbU+c=" crossorigin="anonymous" type="text/javascript"></script>
 
   </head>
   <body>
+
 
     
     <div id="header">
@@ -92,41 +93,28 @@
 
 <p><code>dein.nvim</code>の設定ファイルに</p>
 
-<pre><code>
-[[plugins]]
-
+<pre><code>[[plugins]]
 repo = 'Shougo/denite.nvim'
-
 </code></pre>
 
 <p>を追加する．基本的に<a href="http://qiita.com/okamos/items/4e1665ecd416ef77df7c">ここ</a>を参考にしてマッピングした．<code>&lt;C-u&gt;&lt;C-g&gt;</code>でgrepによるファイルの検索のようなことが高速に行える．</p>
 
 <h3 id="vim-easy-align">vim-easy-align</h3>
 
-<pre><code>
-[[plugins]]
-
+<pre><code>[[plugins]]
 repo = 'junegunn/vim-easy-align'
-
 </code></pre>
 
 <p><a href="https://github.com/junegunn/vim-easy-align">Github</a>を見れば一目瞭然なのだが，<code>ga</code>で起動するように設定しておくだけで，<code>vipga=</code>のみで上から下を実現する．</p>
 
-<pre><code>
-apple  = red
-
+<pre><code>apple  = red
 sky = blue
-
 banana=yellow
-
 ---------------
 
 apple  = red
-
 sky    = blue
-
 banana = yellow
-
 </code></pre>
 
 <p>ともかく上記のREADMEが非常に充実しているのでこれを見る．</p>
@@ -185,6 +173,28 @@ banana = yellow
   <script src="/js/skel.min.js"></script>
   <script src="/js/util.js"></script>
   <script src="/js/main.js"></script>
+
+
+      <script>
+      renderMathInElement(
+      document.body,
+      {
+        delimiters: [
+          {left: "$$", right: "$$", display: false},
+          {left: "\\[", right: "\\]", display: true},
+          {left: "$", right: "$", display: false}
+        ],
+        ignoredTags: [
+          "script",
+          "noscript",
+          "style",
+          "textarea",
+          "pre",
+          "code"
+        ]
+      }
+      );
+      </script>
 
 </body>
 </html>

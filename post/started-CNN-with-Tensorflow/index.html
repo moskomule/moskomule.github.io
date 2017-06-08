@@ -13,13 +13,14 @@
     <link rel="stylesheet" href="/css/highlight_monokai.css">
     <link rel="stylesheet" href="/css/custom.css">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/contrib/auto-render.min.js"></script>
-    <script>$(document).ready(function(){renderMathInElement(document.body,{delimiters: [{left: "$$", right: "$$", display: true},{left: "$", right: "$", display: false}]})});</script>
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha256-tkzDFSl16wERzhCWg0ge2tON2+D6Qe9iEaJqM4ZGd4E=" crossorigin="anonymous" type="text/css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha256-gNVpJCw01Tg4rruvtWJp9vS0rRchXP2YF+U+b2lp8Po=" crossorigin="anonymous" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha256-ExtbCSBuYA7kq1Pz362ibde9nnsHYPt6JxuxYeZbU+c=" crossorigin="anonymous" type="text/javascript"></script>
 
   </head>
   <body>
+
 
     
     <div id="header">
@@ -92,20 +93,14 @@
 
 <p>細かいことは考えずに<a href="https://www.continuum.io/downloads">Anaconda</a>を入れてしまうのが早い．基本的なパッケージは揃っているし，IntelのMKLが使えるNumpyなども特に設定せずに導入できる．導入後，</p>
 
-<pre><code class="language-shell">
-conda update --all
-
+<pre><code class="language-shell">conda update --all
 conda install tensorflow
-
 </code></pre>
 
 <p>を行えば終了．ではあるが，GPUを使いたい場合は<a href="https://www.tensorflow.org/versions/master/get_started/os_setup.html#pip-installation">公式</a>にしたがって<code>pip</code>を叩く必要がある．なお，このTutorialはPython2向けに書かれているので，すでにAnaconda py35を入れてしまっている場合には</p>
 
-<pre><code class="language-shell">
-conda create -n py27 python=2.7 anaconda
-
+<pre><code class="language-shell">conda create -n py27 python=2.7 anaconda
 source activate py27
-
 </code></pre>
 
 <p>が必要となる．<code>pyenv</code>を使うと環境への影響が少ないのだけれど，自分の環境ではAnacondaのIntel Math Kernel Libraryが上手く動かないようなので使っていない．</p>
@@ -126,11 +121,7 @@ source activate py27
 
 <p>いま，Convolutional層の入力のサイズを$W\times W\times K$，$m$種類のフィルターのサイズを$H\times H\times K$とすると，</p>
 
-<p>$$</p>
-
-<p>u_{ijm}=\sum_{k=0}^{K-1}\sum_{p=0}^{H-1}\sum_{q=0}^{H-1}z_{i+p,j+q,k}^{(l-1)}h_{pqkm}+b_{ijm}</p>
-
-<p>$$</p>
+<p>$$ u_{ijm}=\sum_{k=0}^{K-1}\sum_{p=0}^{H-1}\sum_{q=0}^{H-1}z_{i+p,j+q,k}^{(l-1)}h_{pqkm}+b_{ijm} $$</p>
 
 <p>畳み込み層の出力としてはこれに活性化函数を適用した $z_{ijm}=f(u_{ijm})$  が得られる．したがって，$W\times W\times K$であった入力は，出力時には$W\times W\times M$となっている．この$M$が次の層ではチャネル数となる．ということのようだ．</p>
 
@@ -189,6 +180,28 @@ ALTER TABLE TABLE_NAME ADD INDEX(id, name);
   <script src="/js/skel.min.js"></script>
   <script src="/js/util.js"></script>
   <script src="/js/main.js"></script>
+
+
+      <script>
+      renderMathInElement(
+      document.body,
+      {
+        delimiters: [
+          {left: "$$", right: "$$", display: false},
+          {left: "\\[", right: "\\]", display: true},
+          {left: "$", right: "$", display: false}
+        ],
+        ignoredTags: [
+          "script",
+          "noscript",
+          "style",
+          "textarea",
+          "pre",
+          "code"
+        ]
+      }
+      );
+      </script>
 
 </body>
 </html>

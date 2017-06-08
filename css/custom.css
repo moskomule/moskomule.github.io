@@ -39,6 +39,7 @@ article code {
   margin: 3px 3px;
 }
 article pre code {
+  margin: 20px;
   padding-left: 20px;
   font-family: consolas, "Courier New", monospace;
 }

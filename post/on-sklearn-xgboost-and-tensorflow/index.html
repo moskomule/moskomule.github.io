@@ -13,13 +13,14 @@
     <link rel="stylesheet" href="/css/highlight_monokai.css">
     <link rel="stylesheet" href="/css/custom.css">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/contrib/auto-render.min.js"></script>
-    <script>$(document).ready(function(){renderMathInElement(document.body,{delimiters: [{left: "$$", right: "$$", display: true},{left: "$", right: "$", display: false}]})});</script>
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha256-tkzDFSl16wERzhCWg0ge2tON2+D6Qe9iEaJqM4ZGd4E=" crossorigin="anonymous" type="text/css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha256-gNVpJCw01Tg4rruvtWJp9vS0rRchXP2YF+U+b2lp8Po=" crossorigin="anonymous" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha256-ExtbCSBuYA7kq1Pz362ibde9nnsHYPt6JxuxYeZbU+c=" crossorigin="anonymous" type="text/javascript"></script>
 
   </head>
   <body>
+
 
     
     <div id="header">
@@ -92,33 +93,22 @@
 
 <pre><code class="language-python">
 from sklearn import svm
-
 svc = svm.SVC(kernel='linear')
-
 svc.fit(train_X,train_Y)
-
 predict_Y = svc.predict(test_X)
-
 </code></pre>
 
 <p>これだけ．あと便利なのが<code>classification_report</code>と<code>GridSearchCV</code>．</p>
 
-<pre><code class="language-python">
-from sklearn.metrics import classification_report
-
+<pre><code class="language-python">from sklearn.metrics import classification_report
 print(classification_report(test_Y, predict_Y))
-
 </code></pre>
 
 <p>で</p>
 
-<pre><code>
-             precision    recall  f1-score   support
-
+<pre><code>             precision    recall  f1-score   support
         0.0       0.56      0.96      0.71       364
-
         1.0       0.87      0.24      0.38       364
-
 avg / total       0.72      0.60      0.55       728
 
 </code></pre>
@@ -128,27 +118,18 @@ avg / total       0.72      0.60      0.55       728
 <pre><code class="language-python">
 from sklearn.model_selection import GridSearchCV
 
-
-
 tuned_parameters = [{'kernel': ['poly','linear'],
-
                      'gamma': [1e-3, 1e-4],
-
                      'C': [0.1,1,10]}]
 
 gsc = GridSearchCV(svm.SVC(), tuned_parameters, cv=5, scoring=score, n_jobs=-1)
-
 gsc.fit(train_X, train_Y)
-
 </code></pre>
 
 <p>この結果得られる<code>gsc</code>には最良のモデルが入っているので</p>
 
-<pre><code class="language-python">
-predict_Y = gsc.predict(test_X)
-
+<pre><code class="language-python">predict_Y = gsc.predict(test_X)
 print(classification_report(test_Y, predict_Y))
-
 </code></pre>
 
 <p>などとしてやればよい．当然グリッドは隙間があるので，<code>RandomizedSearchCV</code>で細かく見ていってもいいのかもしれない．</p>
@@ -161,15 +142,10 @@ print(classification_report(test_Y, predict_Y))
 
 <p>Pythonバインディングはよくできていてimportしてしまえばsklearnのように使えてしまう．そして，<code>GridSearchCV</code>なども使えてしまうので，非常に便利．</p>
 
-<pre><code class="language-python">
-from xgboost import XGBClassifier
-
+<pre><code class="language-python">from xgboost import XGBClassifier
 xgb = XGBClassifier()
-
 xgb.fit(train_X, train_Y)
-
 predict_Y = xgb.predict(test_X)
-
 </code></pre>
 
 <h2 id="tensorflow">TensorFlow</h2>
@@ -186,13 +162,11 @@ l_in = tf.placeholder(...) # 入力
 ...
 
 y = fully_connected(...)
-
 y_ = tf.placeholder(...) # 教師データ
 
 ...
 
-res = sess.run(fetches=[y], 
-
+res = sess.run(fetches=[y],
                feed_dict={l_in: batch_X, y_: batch_Y})
 
 </code></pre>
@@ -239,6 +213,28 @@ res = sess.run(fetches=[y],
   <script src="/js/skel.min.js"></script>
   <script src="/js/util.js"></script>
   <script src="/js/main.js"></script>
+
+
+      <script>
+      renderMathInElement(
+      document.body,
+      {
+        delimiters: [
+          {left: "$$", right: "$$", display: false},
+          {left: "\\[", right: "\\]", display: true},
+          {left: "$", right: "$", display: false}
+        ],
+        ignoredTags: [
+          "script",
+          "noscript",
+          "style",
+          "textarea",
+          "pre",
+          "code"
+        ]
+      }
+      );
+      </script>
 
 </body>
 </html>

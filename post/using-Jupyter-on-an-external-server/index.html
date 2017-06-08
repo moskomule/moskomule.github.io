@@ -13,13 +13,14 @@
     <link rel="stylesheet" href="/css/highlight_monokai.css">
     <link rel="stylesheet" href="/css/custom.css">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/contrib/auto-render.min.js"></script>
-    <script>$(document).ready(function(){renderMathInElement(document.body,{delimiters: [{left: "$$", right: "$$", display: true},{left: "$", right: "$", display: false}]})});</script>
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha256-tkzDFSl16wERzhCWg0ge2tON2+D6Qe9iEaJqM4ZGd4E=" crossorigin="anonymous" type="text/css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha256-gNVpJCw01Tg4rruvtWJp9vS0rRchXP2YF+U+b2lp8Po=" crossorigin="anonymous" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha256-ExtbCSBuYA7kq1Pz362ibde9nnsHYPt6JxuxYeZbU+c=" crossorigin="anonymous" type="text/javascript"></script>
 
   </head>
   <body>
+
 
     
     <div id="header">
@@ -86,9 +87,7 @@
 
 <p>サーバー上でPythonを実行するのに，ターミナルで弄っていたが何かと不便だったのでJupyterを導入した．</p>
 
-<pre><code>
-jupyter notebook --generate-config
-
+<pre><code>jupyter notebook --generate-config
 vim ~/.jupyter/jupyter_notebook_config.py
 
 </code></pre>
@@ -97,11 +96,8 @@ vim ~/.jupyter/jupyter_notebook_config.py
 
 <pre><code>
 c.NotebookApp.ip = '*'  # localhost以外からもアクセス可能にする。
-
 c.NotebookApp.port = 9999  # サーバのポートを指定。デフォルト8888。
-
 c.NotebookApp.open_browser = False  # ブラウザが自動で開かないようにする。
-
 c.NotebookApp.notebook_dir = '/home/USER_NAME/notebooks'  # 作業ディレクトリを指定。デフォルト起動ディレクトリ。
 
 </code></pre>
@@ -112,16 +108,12 @@ c.NotebookApp.notebook_dir = '/home/USER_NAME/notebooks'  # 作業ディレク�
 
 <p>Ubuntuサーバー上のAnaconda3でscikit-learnを動かしたところ</p>
 
-<pre><code>
-Intel MKL FATAL ERROR: Cannot load libmkl_avx.so or libmkl_def.so
-
+<pre><code>Intel MKL FATAL ERROR: Cannot load libmkl_avx.so or libmkl_def.so
 </code></pre>
 
 <p>というような表示が出て終了してしまう．とりあえず</p>
 
-<pre><code>
-conda install nomkl numpy scipy scikit-learn numexpr
-
+<pre><code>conda install nomkl numpy scipy scikit-learn numexpr
 </code></pre>
 
 <p>で解決させたものの，<code>MKL</code>使った方が速そうなので早々に解決したい．<code>MRO</code>の<code>MKL</code>が悪かったりするのだろうか．</p>
@@ -170,6 +162,28 @@ conda install nomkl numpy scipy scikit-learn numexpr
   <script src="/js/skel.min.js"></script>
   <script src="/js/util.js"></script>
   <script src="/js/main.js"></script>
+
+
+      <script>
+      renderMathInElement(
+      document.body,
+      {
+        delimiters: [
+          {left: "$$", right: "$$", display: false},
+          {left: "\\[", right: "\\]", display: true},
+          {left: "$", right: "$", display: false}
+        ],
+        ignoredTags: [
+          "script",
+          "noscript",
+          "style",
+          "textarea",
+          "pre",
+          "code"
+        ]
+      }
+      );
+      </script>
 
 </body>
 </html>
