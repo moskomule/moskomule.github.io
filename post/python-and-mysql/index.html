@@ -85,35 +85,20 @@
 
 <pre><code class="language-python">
 connection = pymysql.connect(host=&quot;HOSTNAME&quot;,
-
                             user=&quot;USERNAME&quot;,
-
                             password=&quot;PASSWORD&quot;,
-
                             db=&quot;DB_NAME&quot;,
-
                             charset='utf8',
-
                             cursorclass=pymysql.cursors.DictCursor) #1
-
-
 
 with connection.cursor() as cursor:
 
-
-
     sql = &quot;SELECT name FROM table WHERE id=%s&quot;
-
     cursor.execute(sql, (900))
 
-
-
     results = cursor.fetchall()
-
     for r in results:
-
         b = r['name']
-
         print(bytes.decode(b)) #2
 
 </code></pre>
@@ -132,7 +117,7 @@ with connection.cursor() as cursor:
     <nav class="pagination-single">
       <div class="container">
       
-        <span class="previous">&larr; <a href="http://mosko.tokyo/post/started-cnn-with-tensorflow/" rel="prev">TensorflowでCNN入門</a></span>
+        <span class="previous">&larr; <a href="http://mosko.tokyo/travel/italy-misc/" rel="prev">イタリア旅行記補遺(1)</a></span>
       
       
         <span class="next"><a href="http://mosko.tokyo/post/julia-boxmuller/" rel="next">Juliaに触ってみた</a> &rarr;</span>

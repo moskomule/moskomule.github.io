@@ -26,28 +26,6 @@ using Gadfly set_default_plot_size(10cm,10cm); # Box-Muller法 function box_mull
     </item>
     
     <item>
-      <title>TensorflowでCNN入門</title>
-      <link>http://mosko.tokyo/post/started-cnn-with-tensorflow/</link>
-      <pubDate>Wed, 19 Oct 2016 20:04:20 +0900</pubDate>
-      
-      <guid>http://mosko.tokyo/post/started-cnn-with-tensorflow/</guid>
-      <description>いよいよDeep Learningからは逃れられない運命，真剣に向かい合わざるを得ないことを悟り，TensorFlow Tutorial-used by Nvidiaを始めた．
-前半は実は正しくなくて，今までも何度かTensorflowのTutorialを触ったものの，また，TensorFlowやChainerを使ったものの，まったく理解できないまま終わってしまっていた．
-今回は偶然にも前述のTutorialと出逢うことが出来たので試してみた．
-環境構築 細かいことは考えずにAnacondaを入れてしまうのが早い．基本的なパッケージは揃っているし，IntelのMKLが使えるNumpyなども特に設定せずに導入できる．導入後，
-conda update --all conda install tensorflow  を行えば終了．ではあるが，GPUを使いたい場合は公式にしたがってpipを叩く必要がある．なお，このTutorialはPython2向けに書かれているので，すでにAnaconda py35を入れてしまっている場合には
-conda create -n py27 python=2.7 anaconda source activate py27  が必要となる．pyenvを使うと環境への影響が少ないのだけれど，自分の環境ではAnacondaのIntel Math Kernel Libraryが上手く動かないようなので使っていない．
-Tutorial Tutorial Lab2．Jupyter Notebookの偉大さが分かる．
-構成もよく出来ていて，MNISTをMulti-Layer Parceptronで解く，Convolutional層を追加する，Pooling層を追加する，重ねてみる，Dropoutも追加してみる，というような流れなのでそれぞれの層の意味がよく理解できるし，岡谷先生の本ではそうかそうか，と式だけ追っていたようなことが目に見える形で現れるのは純粋に楽しいので捗るし，理解が深まる．
-MNISTなので上手くいって当然なのだろうけれど，試行錯誤していくと正答率があがって過学習が減っていくのは面白い．
-{% asset_img mnist.png 最終結果 %}
-チャネル数 途中で，channels，チャネル数がよく分からなかったのだけれども，岡谷先生の本が参考になった．入力がRGB画像の場合は入力層の場合はチャンネル数はRGBの3である．ここで，チャンネル数 $K$ ,大きさ $W\times W$ であるものを $W\times W\times K$ と表すこととする．
-いま，Convolutional層の入力のサイズを$W\times W\times K$，$m$種類のフィルターのサイズを$H\times H\times K$とすると，
-$$ u_{ijm}=\sum_{k=0}^{K-1}\sum_{p=0}^{H-1}\sum_{q=0}^{H-1}z_{i+p,j+q,k}^{(l-1)}h_{pqkm}+b_{ijm} $$
-畳み込み層の出力としてはこれに活性化函数を適用した $z_{ijm}=f(u_{ijm})$ が得られる．したがって，$W\times W\times K$であった入力は，出力時には$W\times W\times M$となっている．この$M$が次の層ではチャネル数となる．ということのようだ．</description>
-    </item>
-    
-    <item>
       <title>Jupyterをサーバー上で使う</title>
       <link>http://mosko.tokyo/post/using-jupyter-on-an-external-server/</link>
       <pubDate>Wed, 31 Aug 2016 18:30:08 +0900</pubDate>

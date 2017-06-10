@@ -4,21 +4,27 @@
 }
 
 article h1 {
-  font-size: 18px;
+  font-size: 20px;
   border-left: 2px solid #bcc;
   border-bottom: 2px dotted #bcc;
   margin: 50px 0 25px 0;
   padding-left: 10px;
 }
 article h2 {
-  font-size: 14px;
+  font-size: 18px;
   border-bottom: 2px solid #bcc;
   margin: 50px 0 25px 0;
 }
-article h3,
+article h3 {
+  font-size: 16px;
+  margin: 40px 10px 25px 0;
+  border-left: 2px solid #bcc;
+  padding-left: 5px;
+}
 article h4,
 article h5,
 article h6 {
+  font-size: 16px;
   margin: 40px 0 25px 0;
 }
 article {
@@ -138,6 +144,10 @@ figcaption{
   margin-bottom: 20px;
 }
 
+figcaption h4{
+  font-size: 12pt;
+}
+
 figcaption h4:before{
   content: "fig. ";
 }
@@ -161,4 +171,7 @@ figure img{
 .footnotes li:before {
   counter-increment: annotation;
   content: "▷" counters(annotation, ".") ". ";
+}
+article li p:before{
+  content: "・";
 }

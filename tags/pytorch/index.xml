@@ -7,10 +7,43 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>Written by Ryuichiro Hataya</copyright>
-    <lastBuildDate>Thu, 08 Jun 2017 16:33:50 +0900</lastBuildDate>
+    <lastBuildDate>Sat, 10 Jun 2017 15:37:12 +0900</lastBuildDate>
     
 	<atom:link href="http://mosko.tokyo/tags/pytorch/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>PyTorchでCNN入門</title>
+      <link>http://mosko.tokyo/post/pytorch_cnn/</link>
+      <pubDate>Sat, 10 Jun 2017 15:37:12 +0900</pubDate>
+      
+      <guid>http://mosko.tokyo/post/pytorch_cnn/</guid>
+      <description>CNNの概説 CNNは畳み込みニューラルネットワーク(convolutional neural network)の略です．CNNは四天王のひとりLeCun(1989)に始まり，2012年の一般物体認識のコンテスト(ILSVRC)で優勝しディープラーニングを一躍有名にしたAlexNet(Krizhevsky)を経て，現在の画像認識には欠かせないネットワークです．
+畳み込み CNNでは畳み込み(convolution)という操作を行います．ここでは簡単のためにすべて2次元で考えます．
+以下のように入力の行列とフィルタが与えられたときに，
+\[I=ar+bs+tc+du+ev+fw+gz+hy+iz\]
+を畳み込みと呼びます．本来画像認識の分野では$ax+by+cz+\cdots$を畳み込みと呼び，上記の演算は相関と呼ばれるようですが，CNNの文脈ではこれを畳み込みと呼ぶよう1なので慣例に倣います．
+ 左が入力の一部，右がフィルター．   入力に対して，この操作を同じフィルタをずらしながら適用していきます．下の図では上部の入力とフィルタの畳み込み結果を下の出力行列の各要素にする様子を書きました．こうして畳み込みによる出力が得られます．
+ 上が入力とフィルタ，下が出力．   畳み込みは画像の対応部分とフィルタとの内積を取ることですから，それらの関連ぐらいを見ていることになります（それ故に相関と呼ばれるのですが）．従って，出力は入力画像のフィルタとの関連度を凝縮したものになるわけです．以上の畳み込み（あるいは相関）自体はCNN以前から画像認識の分野で用いられてきましたが，CNNではフィルタ自体を誤差逆伝播法で学習していく点が従来とは異なります2．
+上では入力，フィルタとも1枚ずつである場合を考えましたが，一般にそれらは複数枚あり，テンソルとして扱われます．この「枚数方向」の次元はチャネルと呼ばれます．特にRGB画像は3チャネルです．
+複数チャネルの場合は，入力の各チャネルに対して同一のフィルタを適用し，その和をとります．従って，出力のチャネル数はフィルタ数と一致します．
+プーリング CNNではその他にプーリングという操作を行う場合もあります．その中でもよく用いられる最大プーリング(max pooling)は下に示したように，領域内の最大値を取り出して出力とする操作です．画像認識では位置がずれた同じ物体も同じものとして認識したいので，この操作を加えて位置に対する不変性を向上させます．
+ 最大プーリング．上部が入力で下部が出力．   最大プーリングのほかに，平均値を用いるプーリングもあります．
+用語 説明に用いる画像はこちらのもので，今までと異なり下が入力，上が出力です．
+kernel 上記の畳み込みのフィルタやプーリングの領域のことをカーネルと呼ぶこともあります．
+stride カーネルの動く際のステップです．プーリングの場合は領域幅と同じ幅で動かし，重複する範囲がないようにすることが多い気がします．
+ stride=1   padding 畳み込み，プーリングを上記のように行った場合，出力は入力よりも小さくなります．入力の周りに「枠」を付けることで出力サイズを調整するのがpaddingです．「枠」を0で埋めるゼロパディングがしばしば用いられます．
+ stride=1,padding=1   dilation カーネルにあける隙間の大きさです．プーリングの代わりにdilationを用いることもあるようです．
+ stride=1,dilation=1   relu 活性化函数の一つで，“rectified linear unit”の略です．函数としては
+\[\mathrm{relu}(x)=\max(0,x)\]
+と極めて単純ですが，これがなければ現在のディープニューラルネットワーク時代はなかった，とも言えるような，強力な存在です．以前はsigmoid函数(S字状函数)，たとえば
+\[\mathrm{sigmoid}(x)=\frac{1}{1+e^{-x}}\]
+が用いられていましたが，ネットワークが深くなると勾配が消失する問題を抱えていました．
+ sigmoid函数とrelu函数との比較   PyTorch PyTorchの簡単なチュートリアルはこちらにあります．
+コード中のFはnn.functionalのことです．
+nn nn.Conv2dを用います．F.conv2dというものもありますが，こちらは自分で明示的にweight,biasのテンソルを用意し，必要であれば重みを更新しなくてはいけません．他方，nn.Conv2dであれば入出力のチャネル数およびカーネルの大きさを定めるだけです．今回は用いていませんが，上で説明したpadding,dilationを用いることもできます．
+プーリングには，畳み込みのように更新すべきテンソルがないのでF.max_pool2dを用いても差はありません．</description>
+    </item>
     
     <item>
       <title>PyTorchでディープラーニング</title>
@@ -28,20 +61,6 @@ GPUを利用する場合，環境の設定が面倒なことが多いですがPy
 Tensor PyTorchの基本はテンソルを操作するTensorです．テンソルというと難しく聞こえますが，この場合は多次元配列と同義で，物理学のテンソルのような共変・反変を意識する必要はありません．慣例に従ってテンソル，と言う語を用います．
 PyTorchにおけるTensorは端的に言えば「GPU上でも動くnumpy.ndarrayのようなもの」ですが，違いも多いので注意が必要です．例えば
 import numpy as np import torch # PyTorch &amp;gt;&amp;gt;&amp;gt; np_tensor = np.zeros([1, 2, 3]) array([[[ 0., 0., 0.</description>
-    </item>
-    
-    <item>
-      <title>PyTorchでテキスト生成</title>
-      <link>http://mosko.tokyo/post/pytorch_text_generation/</link>
-      <pubDate>Sat, 28 Jan 2017 07:31:45 +0900</pubDate>
-      
-      <guid>http://mosko.tokyo/post/pytorch_text_generation/</guid>
-      <description>相変わらずPyTorchをいじっている．後発のこともあって，まだDocは完全ではないけれど，Discussionなどのサポート体制は充実している(気がする)．
-コミュニティの助けを借りてRNNでのテキスト生成をおこなった．これはKerasのサンプルをPyTorchで書き換えたもので時流に乗ってオーウェルの 1984 を学習する．Kerasのように内部状態を特に考える必要がないのとは異なって，隠れ変数$h_{\star}$を意識しなくてはいけないので勉強になる．
- function var: CUDAが使えればtorch.autograd.VariableをGPUにおく(variable.cuda())．
- function sample: RNNモデルの出力から適当なindexを取り出す．
- function __init__ in class Net: inputはfeature数で，今回であればアルファベットをonehotにしているので，len(chars)．
-  def __init__(self, features, cls_size): super(Net, self).__init__() self.rnn1 = nn.GRU(input_size=features, hidden_size=hidden_size, num_layers=1) self.dense1 = nn.Linear(hidden_size, cls_size)   function forward in class Net: 系列の最後の入力に対する隠れ層の状態をとるためにx=select(0, maxlen-1)を行っている(追記:実はx[-1]で充分)．reshapeに相当するviewを行うためにはcontiguousが必要．またテンソルxは$\text{系列の長さ}\times\text{バッチ数}\times\text{feature数}$である点に注意．  def forward(self, x, hidden): x, hidden = self.rnn1(x, hidden) x = x.select(0, maxlen-1).contiguous() x = x.view(-1, hidden_size) x = F.softmax(self.dense1(x)) return x, hidden   function train: 入力した文を1通り読み込むのを1エポックにしている．Kerasと異なり，PyTorchのCrossEntropyLossではtargetはクラスのインデックスである．この目標のインデクス配列の型はnp.</description>
     </item>
     
     <item>

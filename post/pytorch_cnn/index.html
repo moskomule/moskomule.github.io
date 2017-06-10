@@ -1,0 +1,449 @@
+<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <title>
+      PyTorchでCNN入門 | moskomule log
+    </title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/sanitize.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+    <link rel="stylesheet" href="/css/highlight_monokai.css">
+    <link rel="stylesheet" href="/css/custom.css">
+
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha256-tkzDFSl16wERzhCWg0ge2tON2+D6Qe9iEaJqM4ZGd4E=" crossorigin="anonymous" type="text/css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha256-gNVpJCw01Tg4rruvtWJp9vS0rRchXP2YF+U+b2lp8Po=" crossorigin="anonymous" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha256-ExtbCSBuYA7kq1Pz362ibde9nnsHYPt6JxuxYeZbU+c=" crossorigin="anonymous" type="text/javascript"></script>
+
+  </head>
+  <body>
+
+
+    
+    <div id="header">
+
+      <div class="top">
+
+        
+        <div id="logo">
+          <a href="http://mosko.tokyo/"><span class="image avatar48"><img src="/img/avatar.jpg" alt="avator" /></span></a>
+          <h1 id="title">moskomule</h1>
+          <p>in Tokyo, Bachelor (Engineering), currently interested in ML, DL.</p>
+        </div>
+
+        
+        <nav id="nav">
+
+          <ul>
+              <li><a href="http://mosko.tokyo/#top" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-home">Introduction</span></a></li>
+              <li><a href="http://mosko.tokyo/#about" id="about-link" class="skel-layers-ignoreHref"><span class="icon fa-user">About Me</span></a></li>
+              <li><a href="http://mosko.tokyo/#articles" id="articles-link" class="skel-layers-ignoreHref"><span class="icon fa-th">Articles</span></a></li>
+              <li><a href="http://mosko.tokyo/#contact" id="contact-link" class="skel-layers-ignoreHref"><span class="icon fa-envelope">Contact</span></a></li>
+          </ul>
+        </nav>
+
+      </div>
+
+      <div class="bottom">
+
+        
+        <ul class="icons">
+          
+          <li><a href="https://twitter.com/mosko_mule" class="icon fa-twitter"><span class="label">twitter</span></a></li>
+          
+          <li><a href="https://github.com/moskomule" class="icon fa-github"><span class="label">github</span></a></li>
+          
+        </ul>
+
+      </div>
+
+    </div>
+
+
+  
+  <div id="main">
+    <main id="single" role="main">
+      <div class="container">
+        <div class="article-header">
+          <h1>PyTorchでCNN入門</h1>
+          <div class="meta">
+            Jun 10, 2017 &nbsp;
+            
+              #<a href="/tags/pytorch">PyTorch</a>&nbsp;
+            
+              #<a href="/tags/python">Python</a>&nbsp;
+            
+          </div>
+        </div>
+        <article>
+          
+
+<h1 id="cnnの概説">CNNの概説</h1>
+
+<p>CNNは畳み込みニューラルネットワーク(convolutional neural network)の略です．CNNは四天王のひとりLeCun(1989)に始まり，2012年の一般物体認識のコンテスト(ILSVRC)で優勝しディープラーニングを一躍有名にしたAlexNet(Krizhevsky)を経て，現在の画像認識には欠かせないネットワークです．</p>
+
+<h2 id="畳み込み">畳み込み</h2>
+
+<p>CNNでは畳み込み(convolution)という操作を行います．ここでは簡単のためにすべて2次元で考えます．</p>
+
+<p>以下のように入力の行列とフィルタが与えられたときに，</p>
+
+<p>\[I=ar+bs+tc+du+ev+fw+gz+hy+iz\]</p>
+
+<p>を畳み込みと呼びます．本来画像認識の分野では$ax+by+cz+\cdots$を畳み込みと呼び，上記の演算は相関と呼ばれるようですが，CNNの文脈ではこれを畳み込みと呼ぶよう<sup class="footnote-ref" id="fnref:1"><a rel="footnote" href="#fn:1">1</a></sup>なので慣例に倣います．</p>
+
+
+<figure >
+    
+        <img src="/img/post/pytorch/conv_2.png" />
+    
+    
+    <figcaption>
+        <h4>左が入力の一部，右がフィルター．</h4>
+        
+    </figcaption>
+    
+</figure>
+
+
+<p>入力に対して，この操作を同じフィルタをずらしながら適用していきます．下の図では上部の入力とフィルタの畳み込み結果を下の出力行列の各要素にする様子を書きました．こうして畳み込みによる出力が得られます．</p>
+
+
+<figure >
+    
+        <img src="/img/post/pytorch/conv_1.png" />
+    
+    
+    <figcaption>
+        <h4>上が入力とフィルタ，下が出力．</h4>
+        
+    </figcaption>
+    
+</figure>
+
+
+<p>畳み込みは画像の対応部分とフィルタとの内積を取ることですから，それらの関連ぐらいを見ていることになります（それ故に相関と呼ばれるのですが）．従って，出力は入力画像のフィルタとの関連度を凝縮したものになるわけです．以上の畳み込み（あるいは相関）自体はCNN以前から画像認識の分野で用いられてきましたが，CNNではフィルタ自体を誤差逆伝播法で学習していく点が従来とは異なります<sup class="footnote-ref" id="fnref:2"><a rel="footnote" href="#fn:2">2</a></sup>．</p>
+
+<p>上では入力，フィルタとも1枚ずつである場合を考えましたが，一般にそれらは複数枚あり，テンソルとして扱われます．この「枚数方向」の次元はチャネルと呼ばれます．特にRGB画像は3チャネルです．</p>
+
+<p>複数チャネルの場合は，入力の各チャネルに対して同一のフィルタを適用し，その和をとります．従って，出力のチャネル数はフィルタ数と一致します．</p>
+
+<h2 id="プーリング">プーリング</h2>
+
+<p>CNNではその他にプーリングという操作を行う場合もあります．その中でもよく用いられる最大プーリング(max pooling)は下に示したように，領域内の最大値を取り出して出力とする操作です．画像認識では位置がずれた同じ物体も同じものとして認識したいので，この操作を加えて位置に対する不変性を向上させます．</p>
+
+
+<figure >
+    
+        <img src="/img/post/pytorch/conv_3.png" />
+    
+    
+    <figcaption>
+        <h4>最大プーリング．上部が入力で下部が出力．</h4>
+        
+    </figcaption>
+    
+</figure>
+
+
+<p>最大プーリングのほかに，平均値を用いるプーリングもあります．</p>
+
+<h2 id="用語">用語</h2>
+
+<p>説明に用いる画像は<a href="https://github.com/vdumoulin/conv_arithmetic">こちら</a>のもので，今までと異なり下が入力，上が出力です．</p>
+
+<h3 id="kernel">kernel</h3>
+
+<p>上記の畳み込みのフィルタやプーリングの領域のことをカーネルと呼ぶこともあります．</p>
+
+<h3 id="stride">stride</h3>
+
+<p>カーネルの動く際のステップです．プーリングの場合は領域幅と同じ幅で動かし，重複する範囲がないようにすることが多い気がします．</p>
+
+
+<figure >
+    
+        <img src="https://github.com/vdumoulin/conv_arithmetic/raw/master/gif/no_padding_no_strides.gif" />
+    
+    
+    <figcaption>
+        <h4>stride=1</h4>
+        
+    </figcaption>
+    
+</figure>
+
+
+<h3 id="padding">padding</h3>
+
+<p>畳み込み，プーリングを上記のように行った場合，出力は入力よりも小さくなります．入力の周りに「枠」を付けることで出力サイズを調整するのがpaddingです．「枠」を0で埋めるゼロパディングがしばしば用いられます．</p>
+
+
+<figure >
+    
+        <img src="https://github.com/vdumoulin/conv_arithmetic/raw/master/gif/same_padding_no_strides.gif" />
+    
+    
+    <figcaption>
+        <h4>stride=1,padding=1</h4>
+        
+    </figcaption>
+    
+</figure>
+
+
+<h3 id="dilation">dilation</h3>
+
+<p>カーネルにあける隙間の大きさです．プーリングの代わりにdilationを用いることもあるようです．</p>
+
+
+<figure >
+    
+        <img src="https://github.com/vdumoulin/conv_arithmetic/raw/master/gif/dilation.gif" />
+    
+    
+    <figcaption>
+        <h4>stride=1,dilation=1</h4>
+        
+    </figcaption>
+    
+</figure>
+
+
+<h3 id="relu">relu</h3>
+
+<p>活性化函数の一つで，“rectified linear unit”の略です．函数としては</p>
+
+<p>\[\mathrm{relu}(x)=\max(0,x)\]</p>
+
+<p>と極めて単純ですが，これがなければ現在のディープニューラルネットワーク時代はなかった，とも言えるような，強力な存在です．以前はsigmoid函数(S字状函数)，たとえば</p>
+
+<p>\[\mathrm{sigmoid}(x)=\frac{1}{1+e^{-x}}\]</p>
+
+<p>が用いられていましたが，ネットワークが深くなると勾配が消失する問題を抱えていました．</p>
+
+
+<figure >
+    
+        <img src="/img/post/pytorch/relu.png" />
+    
+    
+    <figcaption>
+        <h4>sigmoid函数とrelu函数との比較</h4>
+        
+    </figcaption>
+    
+</figure>
+
+
+<h1 id="pytorch">PyTorch</h1>
+
+<p>PyTorchの簡単なチュートリアルは<a href="../pytorch_tutorial">こちら</a>にあります．</p>
+
+<p>コード中の<code>F</code>は<code>nn.functional</code>のことです．</p>
+
+<h2 id="nn"><code>nn</code></h2>
+
+<p><code>nn.Conv2d</code>を用います．<code>F.conv2d</code>というものもありますが，こちらは自分で明示的にweight,biasのテンソルを用意し，必要であれば重みを更新しなくてはいけません．他方，<code>nn.Conv2d</code>であれば入出力のチャネル数およびカーネルの大きさを定めるだけです．今回は用いていませんが，上で説明した<code>padding</code>,<code>dilation</code>を用いることもできます．</p>
+
+<p>プーリングには，畳み込みのように更新すべきテンソルがないので<code>F.max_pool2d</code>を用いても差はありません．</p>
+
+<pre><code class="language-python">class Net1(nn.Module):
+    def __init__(self):
+        super(Net1, self).__init__()
+        self.conv1 = nn.Conv2d(in_channels=1,
+                               out_channels=10,
+                               kernel_size=5,
+                               stride=1)
+        self.conv2 = nn.Conv2d(10, 20, kernel_size=5)
+        self.dense1 = nn.Linear(in_features=320,
+                                out_features=50)
+        self.dense2 = nn.Linear(50, 10)
+
+    def forward(self, x):
+        x = self.conv1(x)
+        x = F.max_pool2d(x, kernel_size=2)
+        x = F.relu(x)
+        x = self.conv2(x)
+        x = F.max_pool2d(x, 2)
+        x = F.relu(x)
+        x = x.view(-1, 320)
+        x = self.dense1(x)
+        x = F.relu(x)
+        x = self.dense2(x)
+        return F.log_softmax(x)
+</code></pre>
+
+<p>一方で，モデルの一部をほかのモデルに流用したい場合などは以下のように書くと便利かもしれません．</p>
+
+<pre><code class="language-python"># alternative way
+class Net2(nn.Module):
+    def __init__(self):
+        super(Net2, self).__init__()
+        self.head = nn.Sequential(
+            nn.Conv2d(in_channels=1, out_channels=10,
+                      kernel_size=5, stride=1),
+            nn.MaxPool2d(kernel_size=2),
+            nn.ReLU(),
+            nn.Conv2d(10, 20, kernel_size=5),
+            nn.MaxPool2d(kernel_size=2),
+            nn.ReLU())
+        self.tail = nn.Sequential(
+            nn.Linear(320, 50),
+            nn.ReLU(),
+            nn.Linear(50, 10))
+
+    def forward(self, x):
+        x = self.head(x)
+        x = x.view(-1, 320)
+        x = self.tail(x)
+        return F.log_softmax(x)
+</code></pre>
+
+<p>こうすれば，この分類のモデルによってアルファベットの分類を行いたい場合，</p>
+
+<pre><code class="language-python">class Net3(nn.Module):
+    def __init__(self):
+        super(Net2, self).__init__()
+        net2 = Net2()
+        self.head = net2.head
+        self.tail = nn.Sequential(
+            nn.Linear(320, 50),
+            nn.ReLU(),
+            nn.Linear(50, 52))    
+</code></pre>
+
+<p>と表せるので簡便です．</p>
+
+<h2 id="その他">その他</h2>
+
+<h3 id="強力なモデルを使う">強力なモデルを使う</h3>
+
+<p>PyTorchの便利ツール<code>torchvision</code>には強力なモデルであるAlexNet，VGG，ResNet，SqueezeNet，DenseNetが用意されています．特にAlexNet，VGGおよびResNetはImageNet2012での学習済みの重みをダウンロードすることができます．</p>
+
+<pre><code class="language-python">from torchvision import models
+alexnet = models.AlexNet(pretrained=True)
+output = alexnet(input)
+</code></pre>
+
+<p>また，この重みを初期値として，少ないデータ量でも学習を行うことがあります(fine-tuning)．その場合は先ほど紹介したような方法で，classifier部をつなぎ替えることができます．</p>
+
+<pre><code class="language-python">class Net3(nn.Module):
+    def __init__(self):
+        super(Net2, self).__init__()
+        self.head = alexnet.features
+        self.tail = nn.Sequential(
+            ...)    
+</code></pre>
+
+<h3 id="重みの初期化">重みの初期化</h3>
+
+<p>CNNにおいては重みの初期値が重要でさまざまな初期値が提案されています[<a href="http://jmlr.org/proceedings/papers/v9/glorot10a/glorot10a.pdf">Glorot et al. 2010</a>, <a href="https://arxiv.org/abs/1502.01852">He et al. 2015</a>]．PyTorchでは<code>nn.init</code>にさまざまな初期化方法が収録されています．Xavier initializationであれば以下によって初期化できます．</p>
+
+<pre><code class="language-python">from torch.nn import init
+ torch.nn.init.xavier_normal(alexnet.features[0].weight)
+</code></pre>
+
+<h3 id="重みの保存-読み込み">重みの保存，読み込み</h3>
+
+<p>保存は</p>
+
+<pre><code class="language-python">torch.save({&quot;state_dict&quot;: model.state_dict(),
+            &quot;epoch&quot;:...},
+            filename)
+</code></pre>
+
+<p>です．読み込む際には</p>
+
+<pre><code>model = Model()
+weights = torch.load(filename)
+model.load_state_dict(weights[&quot;state_dict&quot;])
+</code></pre>
+
+<p>です．一部のみを読み込む場合，例えば<code>resnet</code>の最終出力層<code>resnet.fc</code>の重みをFully Convolutionのカーネル<code>fcn.conv</code>に入れたい場合は</p>
+
+<pre><code class="language-python">res_weight = resnet.fc.state_dict()
+fcn.conv.load_state_dict({&quot;weight&quot;: res_weight[&quot;weight&quot;].view(1000, 2048, 1, 1),
+                          &quot;bias&quot;: res_weight[&quot;bias&quot;]})
+</code></pre>
+
+<p>となります．</p>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:1">岡谷「深層学習」2015，原田「画像認識」2017
+ <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
+<li id="fn:2">筆者は深層学習以前を知らないので実はよく分かりません．
+ <a class="footnote-return" href="#fnref:2"><sup>[return]</sup></a></li>
+</ol>
+</div>
+
+
+          
+          
+        </article>
+      </div>
+    </main>
+
+    <nav class="pagination-single">
+      <div class="container">
+      
+        <span class="previous">&larr; <a href="http://mosko.tokyo/travel/iran13/" rel="prev">イラン旅行記13日目</a></span>
+      
+      
+      </div>
+    </nav>
+  </div>
+
+
+  <div id="footer">
+
+    
+      <ul class="copyright">
+        <li><a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="クリエイティブ・コモンズ・ライセンス" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/80x15.png" /></a>&nbspWritten by Ryuichiro Hataya</li><li>Powered by <a href="https://gohugo.io/">Hugo</a></li>
+      </ul>
+
+  </div>
+
+
+
+  <script src="/js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/jquery.scrolly.min.js"></script>
+  <script src="/js/jquery.scrollzer.min.js"></script>
+  <script src="/js/skel.min.js"></script>
+  <script src="/js/util.js"></script>
+  <script src="/js/main.js"></script>
+
+
+      <script>
+      renderMathInElement(
+      document.body,
+      {
+        delimiters: [
+          {left: "$$", right: "$$", display: false},
+          {left: "\\[", right: "\\]", display: true},
+          {left: "$", right: "$", display: false}
+        ],
+        ignoredTags: [
+          "script",
+          "noscript",
+          "style",
+          "textarea",
+          "pre",
+          "code"
+        ]
+      }
+      );
+      </script>
+
+</body>
+</html>
+

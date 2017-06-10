@@ -7,24 +7,10 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>Written by Ryuichiro Hataya</copyright>
-    <lastBuildDate>Sat, 28 Jan 2017 07:31:45 +0900</lastBuildDate>
+    <lastBuildDate>Tue, 24 Jan 2017 15:15:55 +0900</lastBuildDate>
     
 	<atom:link href="http://mosko.tokyo/tags/deep-learning/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>PyTorchでテキスト生成</title>
-      <link>http://mosko.tokyo/post/pytorch_text_generation/</link>
-      <pubDate>Sat, 28 Jan 2017 07:31:45 +0900</pubDate>
-      
-      <guid>http://mosko.tokyo/post/pytorch_text_generation/</guid>
-      <description>相変わらずPyTorchをいじっている．後発のこともあって，まだDocは完全ではないけれど，Discussionなどのサポート体制は充実している(気がする)．
-コミュニティの助けを借りてRNNでのテキスト生成をおこなった．これはKerasのサンプルをPyTorchで書き換えたもので時流に乗ってオーウェルの 1984 を学習する．Kerasのように内部状態を特に考える必要がないのとは異なって，隠れ変数$h_{\star}$を意識しなくてはいけないので勉強になる．
- function var: CUDAが使えればtorch.autograd.VariableをGPUにおく(variable.cuda())．
- function sample: RNNモデルの出力から適当なindexを取り出す．
- function __init__ in class Net: inputはfeature数で，今回であればアルファベットをonehotにしているので，len(chars)．
-  def __init__(self, features, cls_size): super(Net, self).__init__() self.rnn1 = nn.GRU(input_size=features, hidden_size=hidden_size, num_layers=1) self.dense1 = nn.Linear(hidden_size, cls_size)   function forward in class Net: 系列の最後の入力に対する隠れ層の状態をとるためにx=select(0, maxlen-1)を行っている(追記:実はx[-1]で充分)．reshapeに相当するviewを行うためにはcontiguousが必要．またテンソルxは$\text{系列の長さ}\times\text{バッチ数}\times\text{feature数}$である点に注意．  def forward(self, x, hidden): x, hidden = self.rnn1(x, hidden) x = x.select(0, maxlen-1).contiguous() x = x.view(-1, hidden_size) x = F.softmax(self.dense1(x)) return x, hidden   function train: 入力した文を1通り読み込むのを1エポックにしている．Kerasと異なり，PyTorchのCrossEntropyLossではtargetはクラスのインデックスである．この目標のインデクス配列の型はnp.</description>
-    </item>
     
     <item>
       <title>PyTorchはじめ</title>
@@ -51,42 +37,6 @@ class Net(nn.Module): def __init__(self): super(Net, self).__init__() self.conv1
 今回はMNIST的に使うので，つまり文脈を考慮しないので変体仮名の「志」（し）と漢字としての「志」とを区別する，というようなタスクも含まれてしまうが，特に考慮しない．kerasのImageDataGeneratorで前処理を一括して行う．本当はもう少し丁寧にした方がいいのかもしれないけれど，とりあえず．
  # data generator train_datagen = ImageDataGenerator( shear_range=0.05, width_shift_range=0.05, height_shift_range=0.05, rotation_range=10, fill_mode=&amp;quot;constant&amp;quot;, cval=200, zoom_range=0.2) train_generator = train_datagen.flow_from_directory( &#39;train&#39;, color_mode=&amp;quot;grayscale&amp;quot;, target_size=target_size, batch_size=batch_size, class_mode=&#39;categorical&#39; ) val_datagen = ImageDataGenerator() val_generator = val_datagen.flow_from_directory( &#39;val&#39;, color_mode=&amp;quot;grayscale&amp;quot;, target_size=target_size, batch_size=batch_size, class_mode=&#39;categorical&#39; )  training dataには変形を施した．resnetはkeras.jsを参考にして実装(下記のres_a,res_b)．
 # model input_layer = Input(shape=input_shape) x = Convolution2D(nb_filters, 4, 4, subsample=(2,2))(input_layer) x = BatchNormalization()(x) x = Activation(&#39;relu&#39;)(x) x = MaxPooling2D(pool_size, strides=stride_size)(x) x = res_a([32,32,128])(x) x = res_b([32,32,128])(x) x = res_b([32,32,128])(x) x = res_a([64,64,256])(x) x = res_b([64,64,256])(x) x = res_b([128,128,256])(x) x = res_a([128,128,512])(x) x = res_b([128,128,512])(x) x = res_b([256,256,512])(x) x = AveragePooling2D((4,4))(x) x = Flatten()(x) output_layer = Dense(nb_classes, activation=&#39;softmax&#39;)(x) model = Model(input=input_layer, output=output_layer) model.</description>
-    </item>
-    
-    <item>
-      <title>scikit-learn, Xgboost そしてTensorFlow</title>
-      <link>http://mosko.tokyo/post/on-sklearn-xgboost-and-tensorflow/</link>
-      <pubDate>Sat, 29 Oct 2016 00:16:01 +0900</pubDate>
-      
-      <guid>http://mosko.tokyo/post/on-sklearn-xgboost-and-tensorflow/</guid>
-      <description>新しいもの好きなので色々と触ってはみるものの，必要とならないと理解しようとしないので結果的には無駄に時間を使ってしまう．研究でPythonの機械学習・ディープラーニングライブラリに触っているので備忘録に．
-scikit-learn scikit-learn a.k.a. sklearnは機械学習のライブラリで，多くの機械学習アルゴリズムが収録されている．機械学習プロパーの人からすると色々問題もあるのかもしれないが，とりあえず色々な手法が同じような書き方で使えるのはありがたい．とはいいながら，結局今回使っているのはSVMとRandom Forestだけなのだけれど．
-from sklearn import svm svc = svm.SVC(kernel=&#39;linear&#39;) svc.fit(train_X,train_Y) predict_Y = svc.predict(test_X)  これだけ．あと便利なのがclassification_reportとGridSearchCV．
-from sklearn.metrics import classification_report print(classification_report(test_Y, predict_Y))  で
- precision recall f1-score support 0.0 0.56 0.96 0.71 364 1.0 0.87 0.24 0.38 364 avg / total 0.72 0.60 0.55 728  まで表示される．グリッドサーチの方はクロスバリデーション付きで以下のように使う．n_jobsは使用するCPU数で，-1のときは全CPUを使って並列で処理を進めるので，モデルによっては注意が必要．今回はCPUはよいのだけれども，並列で処理するためかメモリを相当喰っている印象を受けた．
-from sklearn.model_selection import GridSearchCV tuned_parameters = [{&#39;kernel&#39;: [&#39;poly&#39;,&#39;linear&#39;], &#39;gamma&#39;: [1e-3, 1e-4], &#39;C&#39;: [0.1,1,10]}] gsc = GridSearchCV(svm.SVC(), tuned_parameters, cv=5, scoring=score, n_jobs=-1) gsc.</description>
-    </item>
-    
-    <item>
-      <title>TensorflowでCNN入門</title>
-      <link>http://mosko.tokyo/post/started-cnn-with-tensorflow/</link>
-      <pubDate>Wed, 19 Oct 2016 20:04:20 +0900</pubDate>
-      
-      <guid>http://mosko.tokyo/post/started-cnn-with-tensorflow/</guid>
-      <description>いよいよDeep Learningからは逃れられない運命，真剣に向かい合わざるを得ないことを悟り，TensorFlow Tutorial-used by Nvidiaを始めた．
-前半は実は正しくなくて，今までも何度かTensorflowのTutorialを触ったものの，また，TensorFlowやChainerを使ったものの，まったく理解できないまま終わってしまっていた．
-今回は偶然にも前述のTutorialと出逢うことが出来たので試してみた．
-環境構築 細かいことは考えずにAnacondaを入れてしまうのが早い．基本的なパッケージは揃っているし，IntelのMKLが使えるNumpyなども特に設定せずに導入できる．導入後，
-conda update --all conda install tensorflow  を行えば終了．ではあるが，GPUを使いたい場合は公式にしたがってpipを叩く必要がある．なお，このTutorialはPython2向けに書かれているので，すでにAnaconda py35を入れてしまっている場合には
-conda create -n py27 python=2.7 anaconda source activate py27  が必要となる．pyenvを使うと環境への影響が少ないのだけれど，自分の環境ではAnacondaのIntel Math Kernel Libraryが上手く動かないようなので使っていない．
-Tutorial Tutorial Lab2．Jupyter Notebookの偉大さが分かる．
-構成もよく出来ていて，MNISTをMulti-Layer Parceptronで解く，Convolutional層を追加する，Pooling層を追加する，重ねてみる，Dropoutも追加してみる，というような流れなのでそれぞれの層の意味がよく理解できるし，岡谷先生の本ではそうかそうか，と式だけ追っていたようなことが目に見える形で現れるのは純粋に楽しいので捗るし，理解が深まる．
-MNISTなので上手くいって当然なのだろうけれど，試行錯誤していくと正答率があがって過学習が減っていくのは面白い．
-{% asset_img mnist.png 最終結果 %}
-チャネル数 途中で，channels，チャネル数がよく分からなかったのだけれども，岡谷先生の本が参考になった．入力がRGB画像の場合は入力層の場合はチャンネル数はRGBの3である．ここで，チャンネル数 $K$ ,大きさ $W\times W$ であるものを $W\times W\times K$ と表すこととする．
-いま，Convolutional層の入力のサイズを$W\times W\times K$，$m$種類のフィルターのサイズを$H\times H\times K$とすると，
-$$ u_{ijm}=\sum_{k=0}^{K-1}\sum_{p=0}^{H-1}\sum_{q=0}^{H-1}z_{i+p,j+q,k}^{(l-1)}h_{pqkm}+b_{ijm} $$
-畳み込み層の出力としてはこれに活性化函数を適用した $z_{ijm}=f(u_{ijm})$ が得られる．したがって，$W\times W\times K$であった入力は，出力時には$W\times W\times M$となっている．この$M$が次の層ではチャネル数となる．ということのようだ．</description>
     </item>
     
   </channel>

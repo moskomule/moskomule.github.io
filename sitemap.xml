@@ -3,6 +3,16 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://mosko.tokyo/post/pytorch_cnn/</loc>
+    <lastmod>2017-06-10T15:37:12+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://mosko.tokyo/travel/iran13/</loc>
+    <lastmod>2017-06-10T13:21:59+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://mosko.tokyo/post/pytorch_tutorial/</loc>
     <lastmod>2017-06-08T16:33:50+09:00</lastmod>
   </url>
@@ -73,11 +83,6 @@
   </url>
   
   <url>
-    <loc>http://mosko.tokyo/post/pytorch_text_generation/</loc>
-    <lastmod>2017-01-28T07:31:45+09:00</lastmod>
-  </url>
-  
-  <url>
     <loc>http://mosko.tokyo/post/getting_started_pytorch/</loc>
     <lastmod>2017-01-24T15:15:55+09:00</lastmod>
   </url>
@@ -93,11 +98,6 @@
   </url>
   
   <url>
-    <loc>http://mosko.tokyo/post/on-sklearn-xgboost-and-tensorflow/</loc>
-    <lastmod>2016-10-29T00:16:01+09:00</lastmod>
-  </url>
-  
-  <url>
     <loc>http://mosko.tokyo/post/julia-boxmuller/</loc>
     <lastmod>2016-10-23T22:36:34+09:00</lastmod>
   </url>
@@ -105,11 +105,6 @@
   <url>
     <loc>http://mosko.tokyo/post/python-and-mysql/</loc>
     <lastmod>2016-10-22T00:21:34+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://mosko.tokyo/post/started-cnn-with-tensorflow/</loc>
-    <lastmod>2016-10-19T20:04:20+09:00</lastmod>
   </url>
   
   <url>
@@ -185,7 +180,7 @@
   
   <url>
     <loc>http://mosko.tokyo/tags/deep-learning/</loc>
-    <lastmod>2017-01-28T07:31:45+09:00</lastmod>
+    <lastmod>2017-01-24T15:15:55+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -197,7 +192,7 @@
   
   <url>
     <loc>http://mosko.tokyo/tags/iran/</loc>
-    <lastmod>2017-06-04T20:38:19+09:00</lastmod>
+    <lastmod>2017-06-10T13:21:59+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -226,12 +221,6 @@
   </url>
   
   <url>
-    <loc>http://mosko.tokyo/tags/machine-learning/</loc>
-    <lastmod>2016-10-29T00:16:01+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>http://mosko.tokyo/tags/nlp/</loc>
     <lastmod>2016-10-08T19:57:29+09:00</lastmod>
     <priority>0</priority>
@@ -239,19 +228,19 @@
   
   <url>
     <loc>http://mosko.tokyo/post/</loc>
-    <lastmod>2017-06-08T16:33:50+09:00</lastmod>
+    <lastmod>2017-06-10T15:37:12+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://mosko.tokyo/tags/python/</loc>
-    <lastmod>2017-06-08T16:33:50+09:00</lastmod>
+    <lastmod>2017-06-10T15:37:12+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://mosko.tokyo/tags/pytorch/</loc>
-    <lastmod>2017-06-08T16:33:50+09:00</lastmod>
+    <lastmod>2017-06-10T15:37:12+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -263,13 +252,13 @@
   
   <url>
     <loc>http://mosko.tokyo/travel/</loc>
-    <lastmod>2017-06-04T20:38:19+09:00</lastmod>
+    <lastmod>2017-06-10T13:21:59+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://mosko.tokyo/tags/trip/</loc>
-    <lastmod>2017-06-04T20:38:19+09:00</lastmod>
+    <lastmod>2017-06-10T13:21:59+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -287,7 +276,7 @@
   
   <url>
     <loc>http://mosko.tokyo/</loc>
-    <lastmod>2017-06-08T16:33:50+09:00</lastmod>
+    <lastmod>2017-06-10T15:37:12+09:00</lastmod>
     <priority>0</priority>
   </url>
   
