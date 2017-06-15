@@ -7,10 +7,30 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>Written by Ryuichiro Hataya</copyright>
-    <lastBuildDate>Sat, 10 Jun 2017 15:37:12 +0900</lastBuildDate>
+    <lastBuildDate>Wed, 14 Jun 2017 23:14:37 +0900</lastBuildDate>
     
 	<atom:link href="http://mosko.tokyo/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>イラン旅行記14日目</title>
+      <link>http://mosko.tokyo/travel/iran14/</link>
+      <pubDate>Wed, 14 Jun 2017 23:14:37 +0900</pubDate>
+      
+      <guid>http://mosko.tokyo/travel/iran14/</guid>
+      <description>Tehran イランの滞在はこの日が最後で，空港に向かう時間帯までフロントに荷物を預けてTehran市内を廻ることにした．
+先日の記事に書いたようにイラン国内では国際クレジットカードが使えない．一方でTehranは物価が高く，殊に宿賃が高かったために手持ちの現金が尽きかけていて，最終日は安いものも中々買えない辛い状態であった．
+まず，この日は旅で出逢った人がContemporary Museumと同様に推していたGolestan Parkに行った．
+  公園の風景．    ビルのイラストがイランらしさを感じさせる．   Golestan Park Qajar朝の宮殿群で，英露を中心とする「親切な」国々のお陰であろう，洋風とペルシャ風の折衷した，豪奢な空間である．屋内には鏡張りの宮殿や美術館があるのだが，それらは残念ながら撮影禁止である．鏡張りの宮殿は西洋風で，Versailles宮殿の鏡の間より華やかな印象があった．
+今までツアー客，とというとヨーロッパから来ている老人達しか見かけなかったが，ここで日本人の老人達を見かけた．
+  やる気のある獅子．    やる気のない獅子．    折衷建築    やはりこの噴水施設は宮殿には欠かせないらしい．    玉座？    王書が原典，といった感じ．    鼓笛隊   今まで見てきた吸風塔は土作りであったが，近代化されている．
+ 吸風塔   建物毎に入場料を払う必要があって，更に外国人価格なので全ての宮殿に入ることはできなかった．
+途中，中高生の引率で来ていた先生にドイツ語で集合写真を撮るよう，頼まれた．以前もイランでドイツ人に間違われたので，これ自体は不思議ではないのだが，あまりのことに«d&amp;rsquo;accord»と答えてしまったのだが，カメラを返すときには«merci»と言われたので，何だか面白かった．
+Bazaar Tehranにもbazaarがあって，Golestan Parkから歩いて数分で到着する．ちょうど入り口付近でデモが始まりそうな感じで，運動員がビラを配り始めていたので早めに中に避難した．
+流石に首都のbazaarだけあり人が非情に多い．Tehran市は東京都と人口も同じくらいで，親近感が沸くというものだ．
+ Bazaar，人が多い．   このように「ブランド品」をつくるためのタグなども売られているが，undergroundな空気はしない．
+  ブランド品をつくる．    街角．   市内から空港までは地下鉄が開通しておらず，タクシーだと\$25と高額であるので，国内向けの空港に行き，そこからシャトルバスを使うことを考えた．ところがタクシーの運転手が\$15だ，というので利用したところ，案の定空港の入り口で言った言わない論争になってしまい，近くの越前守に\$20で両成敗された．</description>
+    </item>
     
     <item>
       <title>PyTorchでCNN入門</title>

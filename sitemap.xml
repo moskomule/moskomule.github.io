@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://mosko.tokyo/travel/iran14/</loc>
+    <lastmod>2017-06-14T23:14:37+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://mosko.tokyo/post/pytorch_cnn/</loc>
     <lastmod>2017-06-10T15:37:12+09:00</lastmod>
   </url>
@@ -192,7 +197,7 @@
   
   <url>
     <loc>http://mosko.tokyo/tags/iran/</loc>
-    <lastmod>2017-06-10T13:21:59+09:00</lastmod>
+    <lastmod>2017-06-14T23:14:37+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -252,13 +257,13 @@
   
   <url>
     <loc>http://mosko.tokyo/travel/</loc>
-    <lastmod>2017-06-10T13:21:59+09:00</lastmod>
+    <lastmod>2017-06-14T23:14:37+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://mosko.tokyo/tags/trip/</loc>
-    <lastmod>2017-06-10T13:21:59+09:00</lastmod>
+    <lastmod>2017-06-14T23:14:37+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -276,7 +281,7 @@
   
   <url>
     <loc>http://mosko.tokyo/</loc>
-    <lastmod>2017-06-10T15:37:12+09:00</lastmod>
+    <lastmod>2017-06-14T23:14:37+09:00</lastmod>
     <priority>0</priority>
   </url>
   
