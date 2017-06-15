@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Julia on moskomule log</title>
-    <link>http://mosko.tokyo/tags/julia/</link>
+    <link>https://mosko.tokyo/tags/julia/</link>
     <description>Recent content in Julia on moskomule log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>Written by Ryuichiro Hataya</copyright>
     <lastBuildDate>Sun, 23 Oct 2016 22:36:34 +0900</lastBuildDate>
     
-	<atom:link href="http://mosko.tokyo/tags/julia/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://mosko.tokyo/tags/julia/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Juliaに触ってみた</title>
-      <link>http://mosko.tokyo/post/julia-boxmuller/</link>
+      <link>https://mosko.tokyo/post/julia-boxmuller/</link>
       <pubDate>Sun, 23 Oct 2016 22:36:34 +0900</pubDate>
       
-      <guid>http://mosko.tokyo/post/julia-boxmuller/</guid>
+      <guid>https://mosko.tokyo/post/julia-boxmuller/</guid>
       <description>我らがJupyterのJu,であるところのJupyterに触って，IPythonに相当するIJuliaを導入してJupyterから操作してみた．ちょっと触った感想は，強いR-lang．
 IJuliaの導入． Juliaは ここから導入する．ターミナルから開いて，
  Package.add(&amp;quot;IJulia&amp;quot;) using IJulia notebook()  これでJupyterが起動する．あとは普段通り．

@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Intellij on moskomule log</title>
-    <link>http://mosko.tokyo/tags/intellij/</link>
+    <link>https://mosko.tokyo/tags/intellij/</link>
     <description>Recent content in Intellij on moskomule log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>Written by Ryuichiro Hataya</copyright>
     <lastBuildDate>Sat, 08 Oct 2016 19:57:29 +0900</lastBuildDate>
     
-	<atom:link href="http://mosko.tokyo/tags/intellij/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://mosko.tokyo/tags/intellij/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>MeCabのJavaバインドをIntelliJで使う．</title>
-      <link>http://mosko.tokyo/post/use-mecab-java-with-intellij/</link>
+      <link>https://mosko.tokyo/post/use-mecab-java-with-intellij/</link>
       <pubDate>Sat, 08 Oct 2016 19:57:29 +0900</pubDate>
       
-      <guid>http://mosko.tokyo/post/use-mecab-java-with-intellij/</guid>
+      <guid>https://mosko.tokyo/post/use-mecab-java-with-intellij/</guid>
       <description>MeCabのJavaバインドのセットアップ MeCab公式からJavaバインドをダウンロードし，解凍する．Linuxであればこのままmakeなのだが，macOSであれば， MeCab のJava バインディングをMacOSX10.8.3(Mountain Lion) でScala から使うを参考に，Makefileを書き換えてmake．
  xcode-select --installを実行し，xcodeのコマンドラインツールを導入する．
  Makefileのスペースをタブで置き換える．

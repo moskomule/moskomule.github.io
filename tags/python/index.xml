@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Python on moskomule log</title>
-    <link>http://mosko.tokyo/tags/python/</link>
+    <link>https://mosko.tokyo/tags/python/</link>
     <description>Recent content in Python on moskomule log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>Written by Ryuichiro Hataya</copyright>
     <lastBuildDate>Sat, 10 Jun 2017 15:37:12 +0900</lastBuildDate>
     
-	<atom:link href="http://mosko.tokyo/tags/python/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://mosko.tokyo/tags/python/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>PyTorchでCNN入門</title>
-      <link>http://mosko.tokyo/post/pytorch_cnn/</link>
+      <link>https://mosko.tokyo/post/pytorch_cnn/</link>
       <pubDate>Sat, 10 Jun 2017 15:37:12 +0900</pubDate>
       
-      <guid>http://mosko.tokyo/post/pytorch_cnn/</guid>
+      <guid>https://mosko.tokyo/post/pytorch_cnn/</guid>
       <description>CNNの概説 CNNは畳み込みニューラルネットワーク(convolutional neural network)の略です．CNNは四天王のひとりLeCun(1989)に始まり，2012年の一般物体認識のコンテスト(ILSVRC)で優勝しディープラーニングを一躍有名にしたAlexNet(Krizhevsky)を経て，現在の画像認識には欠かせないネットワークです．
 畳み込み CNNでは畳み込み(convolution)という操作を行います．ここでは簡単のためにすべて2次元で考えます．
 以下のように入力の行列とフィルタが与えられたときに，
@@ -47,10 +47,10 @@ nn nn.Conv2dを用います．F.conv2dというものもありますが，こち
     
     <item>
       <title>PyTorchでディープラーニング</title>
-      <link>http://mosko.tokyo/post/pytorch_tutorial/</link>
+      <link>https://mosko.tokyo/post/pytorch_tutorial/</link>
       <pubDate>Thu, 08 Jun 2017 16:33:50 +0900</pubDate>
       
-      <guid>http://mosko.tokyo/post/pytorch_tutorial/</guid>
+      <guid>https://mosko.tokyo/post/pytorch_tutorial/</guid>
       <description>PyTorchとは PyTorchはFacebookの開発するPython上でのテンソル計算・自動微分ライブラリで，特にディープラーニングに必要な機能が充実しています．2017年の初頭に公開され，瞬く間にTensorflow, Keras, Caffeに続くディープラーニングライブラリとして人気を博すこととなりました．
 Bonus: stars (not an indicator of usage, just proportional to how many people have landed on the GitHub page over the period). pic.twitter.com/IugHJqHSii
 &amp;mdash; François Chollet (@fchollet) April 12, 2017  PyTorchはPreferred NetworkのディープラーニングライブラリChainerから影響を受けており，GoogleのTensorFlowやUniversité de MontréalのTheanoとは異なり，実行時に動的にグラフを構築するため，柔軟なコードを書くことができます．
@@ -65,10 +65,10 @@ import numpy as np import torch # PyTorch &amp;gt;&amp;gt;&amp;gt; np_tensor = n
     
     <item>
       <title>「日本古典籍字形データセット」で遊ぶ</title>
-      <link>http://mosko.tokyo/post/mnist_kuzushiji/</link>
+      <link>https://mosko.tokyo/post/mnist_kuzushiji/</link>
       <pubDate>Fri, 13 Jan 2017 13:18:40 +0900</pubDate>
       
-      <guid>http://mosko.tokyo/post/mnist_kuzushiji/</guid>
+      <guid>https://mosko.tokyo/post/mnist_kuzushiji/</guid>
       <description>日本語版MNIST,というわけではないけれど日本古典籍字形データセットの識別をkerasで実装したresnetによって行った．現在validation accuracyは93.3%．少なくとも自分よりはきちんと分類できるようだ．
 このデータセットには2017年1月現在，「8点の画像データから切り取ったくずし字1,521文字種の字形データ86,176文字」が収録されているので，そのまま1521に分類している．
 今回はMNIST的に使うので，つまり文脈を考慮しないので変体仮名の「志」（し）と漢字としての「志」とを区別する，というようなタスクも含まれてしまうが，特に考慮しない．kerasのImageDataGeneratorで前処理を一括して行う．本当はもう少し丁寧にした方がいいのかもしれないけれど，とりあえず．
@@ -78,10 +78,10 @@ import numpy as np import torch # PyTorch &amp;gt;&amp;gt;&amp;gt; np_tensor = n
     
     <item>
       <title>PythonでMySQLを使う</title>
-      <link>http://mosko.tokyo/post/python-and-mysql/</link>
+      <link>https://mosko.tokyo/post/python-and-mysql/</link>
       <pubDate>Sat, 22 Oct 2016 00:21:34 +0900</pubDate>
       
-      <guid>http://mosko.tokyo/post/python-and-mysql/</guid>
+      <guid>https://mosko.tokyo/post/python-and-mysql/</guid>
       <description>現在開発しているものはScalaで前処理を行っているので，本番の処理も本当は全部Scalaで書ければよかったのだけれども，そうは問屋が卸さず，種々の原因によりPythonが必要になってしまった． これなら最初から全部Pythonでよかったのでは，とも思うけれど，PythonはJupyterで小さなものを色々弄るのには使うものの，大きいものをPythonで書いた経験が無いので心配．型が違う，という注意が沢山出そうだ．
 ともかく，そのためにPythonからMySQLを扱う必要が出てきた．Pythonists3は新しいもの好きなのか，いまやNoSQLを使うのがトレンドなのか，MySQL周りの情報が少ないのだが，pymysqlを使うことに落ち着いた．
 connection = pymysql.connect(host=&amp;quot;HOSTNAME&amp;quot;, user=&amp;quot;USERNAME&amp;quot;, password=&amp;quot;PASSWORD&amp;quot;, db=&amp;quot;DB_NAME&amp;quot;, charset=&#39;utf8&#39;, cursorclass=pymysql.cursors.DictCursor) #1 with connection.cursor() as cursor: sql = &amp;quot;SELECT name FROM table WHERE id=%s&amp;quot; cursor.execute(sql, (900)) results = cursor.fetchall() for r in results: b = r[&#39;name&#39;] print(bytes.decode(b)) #2  #1を指定することで，返ってくる結果がdict形式になって分かりやすい．
@@ -90,10 +90,10 @@ connection = pymysql.connect(host=&amp;quot;HOSTNAME&amp;quot;, user=&amp;quot;U
     
     <item>
       <title>Jupyterをサーバー上で使う</title>
-      <link>http://mosko.tokyo/post/using-jupyter-on-an-external-server/</link>
+      <link>https://mosko.tokyo/post/using-jupyter-on-an-external-server/</link>
       <pubDate>Wed, 31 Aug 2016 18:30:08 +0900</pubDate>
       
-      <guid>http://mosko.tokyo/post/using-jupyter-on-an-external-server/</guid>
+      <guid>https://mosko.tokyo/post/using-jupyter-on-an-external-server/</guid>
       <description>2016-08-29 サーバー上のJupyter notebookを使う サーバー上でPythonを実行するのに，ターミナルで弄っていたが何かと不便だったのでJupyterを導入した．
 jupyter notebook --generate-config vim ~/.jupyter/jupyter_notebook_config.py  でjupyter_notebook_config.pyに以下を加える．
  c.NotebookApp.ip = &#39;*&#39; # localhost以外からもアクセス可能にする。 c.NotebookApp.port = 9999 # サーバのポートを指定。デフォルト8888。 c.NotebookApp.open_browser = False # ブラウザが自動で開かないようにする。 c.NotebookApp.notebook_dir = &#39;/home/USER_NAME/notebooks&#39; # 作業ディレクトリを指定。デフォルト起動ディレクトリ。  かくして，jupyter notebookコマンドを叩くとhttp://hoge.hoge:9999でJupyterが扱える．

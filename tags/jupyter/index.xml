@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Jupyter on moskomule log</title>
-    <link>http://mosko.tokyo/tags/jupyter/</link>
+    <link>https://mosko.tokyo/tags/jupyter/</link>
     <description>Recent content in Jupyter on moskomule log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>Written by Ryuichiro Hataya</copyright>
     <lastBuildDate>Sun, 23 Oct 2016 22:36:34 +0900</lastBuildDate>
     
-	<atom:link href="http://mosko.tokyo/tags/jupyter/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://mosko.tokyo/tags/jupyter/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Juliaに触ってみた</title>
-      <link>http://mosko.tokyo/post/julia-boxmuller/</link>
+      <link>https://mosko.tokyo/post/julia-boxmuller/</link>
       <pubDate>Sun, 23 Oct 2016 22:36:34 +0900</pubDate>
       
-      <guid>http://mosko.tokyo/post/julia-boxmuller/</guid>
+      <guid>https://mosko.tokyo/post/julia-boxmuller/</guid>
       <description>我らがJupyterのJu,であるところのJupyterに触って，IPythonに相当するIJuliaを導入してJupyterから操作してみた．ちょっと触った感想は，強いR-lang．
 IJuliaの導入． Juliaは ここから導入する．ターミナルから開いて，
  Package.add(&amp;quot;IJulia&amp;quot;) using IJulia notebook()  これでJupyterが起動する．あとは普段通り．
@@ -27,10 +27,10 @@ using Gadfly set_default_plot_size(10cm,10cm); # Box-Muller法 function box_mull
     
     <item>
       <title>Jupyterをサーバー上で使う</title>
-      <link>http://mosko.tokyo/post/using-jupyter-on-an-external-server/</link>
+      <link>https://mosko.tokyo/post/using-jupyter-on-an-external-server/</link>
       <pubDate>Wed, 31 Aug 2016 18:30:08 +0900</pubDate>
       
-      <guid>http://mosko.tokyo/post/using-jupyter-on-an-external-server/</guid>
+      <guid>https://mosko.tokyo/post/using-jupyter-on-an-external-server/</guid>
       <description>2016-08-29 サーバー上のJupyter notebookを使う サーバー上でPythonを実行するのに，ターミナルで弄っていたが何かと不便だったのでJupyterを導入した．
 jupyter notebook --generate-config vim ~/.jupyter/jupyter_notebook_config.py  でjupyter_notebook_config.pyに以下を加える．
  c.NotebookApp.ip = &#39;*&#39; # localhost以外からもアクセス可能にする。 c.NotebookApp.port = 9999 # サーバのポートを指定。デフォルト8888。 c.NotebookApp.open_browser = False # ブラウザが自動で開かないようにする。 c.NotebookApp.notebook_dir = &#39;/home/USER_NAME/notebooks&#39; # 作業ディレクトリを指定。デフォルト起動ディレクトリ。  かくして，jupyter notebookコマンドを叩くとhttp://hoge.hoge:9999でJupyterが扱える．

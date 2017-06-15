@@ -2,13 +2,13 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on moskomule log</title>
-    <link>http://mosko.tokyo/categories/</link>
+    <link>https://mosko.tokyo/categories/</link>
     <description>Recent content in Categories on moskomule log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>Written by Ryuichiro Hataya</copyright>
     
-	<atom:link href="http://mosko.tokyo/categories/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://mosko.tokyo/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
   </channel>

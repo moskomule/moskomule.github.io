@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Deep Learning on moskomule log</title>
-    <link>http://mosko.tokyo/tags/deep-learning/</link>
+    <link>https://mosko.tokyo/tags/deep-learning/</link>
     <description>Recent content in Deep Learning on moskomule log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>Written by Ryuichiro Hataya</copyright>
     <lastBuildDate>Tue, 24 Jan 2017 15:15:55 +0900</lastBuildDate>
     
-	<atom:link href="http://mosko.tokyo/tags/deep-learning/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://mosko.tokyo/tags/deep-learning/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>PyTorchはじめ</title>
-      <link>http://mosko.tokyo/post/getting_started_pytorch/</link>
+      <link>https://mosko.tokyo/post/getting_started_pytorch/</link>
       <pubDate>Tue, 24 Jan 2017 15:15:55 +0900</pubDate>
       
-      <guid>http://mosko.tokyo/post/getting_started_pytorch/</guid>
+      <guid>https://mosko.tokyo/post/getting_started_pytorch/</guid>
       <description>先日Facebookが PyTorch を公開していたので，早速試してみた．PyTorchは
  Tensors and Dynamic neural networks in Python with strong GPU acceleration.
  とのことで，TensorFlowやTheanoより，Chainerに似ている気がする．後発ということもあってか，ウェブページにある導入の説明が丁寧で，Linux，Python 3.5，conda，Cuda8.0なら
@@ -28,10 +28,10 @@ class Net(nn.Module): def __init__(self): super(Net, self).__init__() self.conv1
     
     <item>
       <title>「日本古典籍字形データセット」で遊ぶ</title>
-      <link>http://mosko.tokyo/post/mnist_kuzushiji/</link>
+      <link>https://mosko.tokyo/post/mnist_kuzushiji/</link>
       <pubDate>Fri, 13 Jan 2017 13:18:40 +0900</pubDate>
       
-      <guid>http://mosko.tokyo/post/mnist_kuzushiji/</guid>
+      <guid>https://mosko.tokyo/post/mnist_kuzushiji/</guid>
       <description>日本語版MNIST,というわけではないけれど日本古典籍字形データセットの識別をkerasで実装したresnetによって行った．現在validation accuracyは93.3%．少なくとも自分よりはきちんと分類できるようだ．
 このデータセットには2017年1月現在，「8点の画像データから切り取ったくずし字1,521文字種の字形データ86,176文字」が収録されているので，そのまま1521に分類している．
 今回はMNIST的に使うので，つまり文脈を考慮しないので変体仮名の「志」（し）と漢字としての「志」とを区別する，というようなタスクも含まれてしまうが，特に考慮しない．kerasのImageDataGeneratorで前処理を一括して行う．本当はもう少し丁寧にした方がいいのかもしれないけれど，とりあえず．

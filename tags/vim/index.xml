@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Vim on moskomule log</title>
-    <link>http://mosko.tokyo/tags/vim/</link>
+    <link>https://mosko.tokyo/tags/vim/</link>
     <description>Recent content in Vim on moskomule log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>Written by Ryuichiro Hataya</copyright>
     <lastBuildDate>Sat, 12 Nov 2016 01:11:08 +0900</lastBuildDate>
     
-	<atom:link href="http://mosko.tokyo/tags/vim/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://mosko.tokyo/tags/vim/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>dotfilesを公開</title>
-      <link>http://mosko.tokyo/post/dotfiles/</link>
+      <link>https://mosko.tokyo/post/dotfiles/</link>
       <pubDate>Sat, 12 Nov 2016 01:11:08 +0900</pubDate>
       
-      <guid>http://mosko.tokyo/post/dotfiles/</guid>
+      <guid>https://mosko.tokyo/post/dotfiles/</guid>
       <description>研究室の人々もすなるdotfilesなるものを，我も公開してみんとてするなり．それの年のかむなつきの廿日あまり一日の，戌の時に部屋の人のいふやう，「dotfilesを見せよ」．
 公開して，人のdotfilesを見るようになると段々充実してきて諸々使いやすくなった一方忘れやすくもなったので備忘録をば．
 Vim(NeoVim) 新しいもの好きなのでNeoVim ，プラグインマネージャーとしてdein.nvimを使っている．
