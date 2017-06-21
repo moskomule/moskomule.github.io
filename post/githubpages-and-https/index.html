@@ -3,7 +3,7 @@
 <html>
   <head>
     <title>
-      404 Page not found | moskomule log
+      カスタムドメインのGitHub Pagesをhttps化する | moskomule log
     </title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -63,16 +63,76 @@
     </div>
 
 
-<div id="main">
-    <h1> 404 not found error </h1>
-    <ul>
-        <li>お探しのページはありません</li>
+  
+  <div id="main">
+    <main id="single" role="main">
+      <div class="container">
+        <div class="article-header">
+          <h1>カスタムドメインのGitHub Pagesをhttps化する</h1>
+          <div class="meta">
+            Jun 15, 2017 &nbsp;
+            
+              #<a href="/tags/web">web</a>&nbsp;
+            
+          </div>
+        </div>
+        <article>
+          
 
-    </ul>
+<h1 id="はじめに">はじめに</h1>
 
-    <p> <a href="mosko.tokyo">mosko.tokyo</a> </p>
+<p>このmosko.tokyoは何年か前に試しに買ってみたカスタムドメインである．現在，このページは<a href="https://pages.github.com/">Github Pages</a>によってホスティングされていて，<a href="https://gohugo.io/">Hugo</a>によって生成されている．</p>
 
-</div>
+<p>今回，<a href="https://www.cloudflare.com/">Cloudflare</a>を使うことでhttps化した．</p>
+
+<h1 id="github-pages">GitHub Pages</h1>
+
+<p>GitHub PagesはGitHub上に個人・組織，プロジェクトの静的なページを作れるサービスで，<code>username.github.io</code>というドメインが割り当てられる．このドメインを使う限りはhttpsが有効にである．</p>
+
+<p>&ldquo;Settings&gt;custom domain&rdquo;を編輯することで，カスタムドメインが使用できるが，その場合はhttpsが無効化される．</p>
+
+<h1 id="cloudflare">Cloudflare</h1>
+
+<p>初めは<a href="https://letsencrypt.org/">Let&rsquo;s Encrypt</a>の利用を考えていたが，<a href="https://www.jonathan-petitcolas.com/2017/01/13/using-https-with-custom-domain-name-on-github-pages.html">このページ</a>を読み，より簡単そうなCloudflareを用いることとした．</p>
+
+<p>CloudflareはDNS/CDNで，機能が制限された個人の使用に限れば無料である．</p>
+
+<ol>
+<li>登録する</li>
+<li>カスタムドメインを入力する</li>
+<li>ネームサーバをCloudflareのものに移行する</li>
+</ol>
+
+<p>ネームサーバの変更までに1日ほどかかった．その後，Dashboardにて</p>
+
+<ol>
+<li>&ldquo;Crypto&gt;SSL&rdquo;を&rdquo;full&rdquo;に変更</li>
+<li>&ldquo;Page Rules&rdquo;の&rdquo;create page rule&rdquo;に
+
+<ul>
+<li>if <code>http://hoge.hoge/*</code> then &ldquo;always use https&rdquo;</li>
+<li>if <code>https://hoge.hoge/*</code> then &ldquo;cache everything&rdquo;</li>
+</ul></li>
+</ol>
+
+<p>を設定する．前者でhttpでの接続をhttpsに切り替え，後者でドメイン以下のコンテンツをキャッシュさせている．</p>
+
+
+          
+          
+        </article>
+      </div>
+    </main>
+
+    <nav class="pagination-single">
+      <div class="container">
+      
+        <span class="previous">&larr; <a href="https://mosko.tokyo/travel/iran14/" rel="prev">イラン旅行記14日目</a></span>
+      
+      
+      </div>
+    </nav>
+  </div>
 
 
   <div id="footer">

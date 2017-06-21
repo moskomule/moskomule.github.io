@@ -145,7 +145,7 @@ figcaption{
 }
 
 figcaption h4{
-  font-size: 12pt;
+  font-size: 10pt;
 }
 
 figcaption h4:before{
@@ -172,6 +172,7 @@ figure img{
   counter-increment: annotation;
   content: "▷" counters(annotation, ".") ". ";
 }
-article li p:before{
+article li:before{
   content: "・";
+  padding-left: 10px;
 }

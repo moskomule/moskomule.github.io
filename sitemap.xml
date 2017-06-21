@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://mosko.tokyo/post/githubpages-and-https/</loc>
+    <lastmod>2017-06-15T22:14:39+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://mosko.tokyo/travel/iran14/</loc>
     <lastmod>2017-06-14T23:14:37+09:00</lastmod>
   </url>
@@ -233,7 +238,7 @@
   
   <url>
     <loc>https://mosko.tokyo/post/</loc>
-    <lastmod>2017-06-10T15:37:12+09:00</lastmod>
+    <lastmod>2017-06-15T22:14:39+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -280,8 +285,14 @@
   </url>
   
   <url>
+    <loc>https://mosko.tokyo/tags/web/</loc>
+    <lastmod>2017-06-15T22:14:39+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://mosko.tokyo/</loc>
-    <lastmod>2017-06-14T23:14:37+09:00</lastmod>
+    <lastmod>2017-06-15T22:14:39+09:00</lastmod>
     <priority>0</priority>
   </url>
   
