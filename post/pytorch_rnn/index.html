@@ -1,0 +1,503 @@
+<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <title>
+      PyTorchでRNN入門 | moskomule log
+    </title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/sanitize.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+    <link rel="stylesheet" href="/css/highlight_monokai.css">
+    <link rel="stylesheet" href="/css/custom.css">
+
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha256-tkzDFSl16wERzhCWg0ge2tON2+D6Qe9iEaJqM4ZGd4E=" crossorigin="anonymous" type="text/css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha256-gNVpJCw01Tg4rruvtWJp9vS0rRchXP2YF+U+b2lp8Po=" crossorigin="anonymous" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha256-ExtbCSBuYA7kq1Pz362ibde9nnsHYPt6JxuxYeZbU+c=" crossorigin="anonymous" type="text/javascript"></script>
+
+  </head>
+  <body>
+
+
+    
+    <div id="header">
+
+      <div class="top">
+
+        
+        <div id="logo">
+          <a href="https://mosko.tokyo/"><span class="image avatar48"><img src="/img/avatar.jpg" alt="avator" /></span></a>
+          <h1 id="title">moskomule</h1>
+          <p>in Tokyo, Bachelor (Engineering), currently interested in ML, DL.</p>
+        </div>
+
+        
+        <nav id="nav">
+
+          <ul>
+              <li><a href="https://mosko.tokyo/#top" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-home">Introduction</span></a></li>
+              <li><a href="https://mosko.tokyo/#about" id="about-link" class="skel-layers-ignoreHref"><span class="icon fa-user">About Me</span></a></li>
+              <li><a href="https://mosko.tokyo/#articles" id="articles-link" class="skel-layers-ignoreHref"><span class="icon fa-th">Articles</span></a></li>
+              <li><a href="https://mosko.tokyo/#contact" id="contact-link" class="skel-layers-ignoreHref"><span class="icon fa-envelope">Contact</span></a></li>
+          </ul>
+        </nav>
+
+      </div>
+
+      <div class="bottom">
+
+        
+        <ul class="icons">
+          
+          <li><a href="https://twitter.com/mosko_mule" class="icon fa-twitter"><span class="label">twitter</span></a></li>
+          
+          <li><a href="https://github.com/moskomule" class="icon fa-github"><span class="label">github</span></a></li>
+          
+        </ul>
+
+      </div>
+
+    </div>
+
+
+  
+  <div id="main">
+    <main id="single" role="main">
+      <div class="container">
+        <div class="article-header">
+          <h1>PyTorchでRNN入門</h1>
+          <div class="meta">
+            Jun 24, 2017 &nbsp;
+            
+              #<a href="/tags/pytorch">PyTorch</a>&nbsp;
+            
+              #<a href="/tags/python">Python</a>&nbsp;
+            
+          </div>
+        </div>
+        <article>
+          
+
+<h1 id="rnnの概説">RNNの概説</h1>
+
+<p>RNNは再帰型ニューラルネットワーク(recurrent neural network)の略です．各層は以前の自分自身の出力も入力とする再帰的な構造をもつため，この名がつけられています．時間依存のある文や信号といった入力を処理することができます．</p>
+
+
+<figure >
+    
+        <img src="/img/post/pytorch/rnn_compare.png" />
+    
+    
+    <figcaption>
+        <h4>RNN（左）とCNNなどのネットワーク（右）．RNNは自分自身の出力も入力として取り込むことで，時間に依存した情報を扱うことができると考えられた．</h4>
+        
+    </figcaption>
+    
+</figure>
+
+
+<p>RNN自体は90年代初頭にJ.Elmanらによって提案され<sup class="footnote-ref" id="fnref:1"><a rel="footnote" href="#fn:1">1</a></sup>，文生成や分散表現の獲得などの研究が行われています．現在でもよく使われる，より長い系列にも対応できるLSTMも90年代末に提案されており，伝統のあるネットワークであるといえるでしょう．</p>
+
+<p>画像におけるCNNの華々しい活躍と比較すると劣りますが，それでもGoogle翻訳の昨今の「自然な」翻訳の背景にはRNNがあります．</p>
+
+<h2 id="単純なrnn">単純なRNN</h2>
+
+<p>入力とする系列$x_0,x_1,\cdots,x_T$を$x_0$から順次与えていきます．ここでは下付き文字$\star_t$は時刻を表します．また上付き文字$\star^l$を$l$層目の状態として，時刻$t$における$l$層目の隠れ状態を$h_t^l$，出力を$y_t$と表します．</p>
+
+<p>再帰型ではないニューラルネットワークでは，ある層$l$の隠れ状態$h^l$は，その前の層への状態に重み$W^l$をかけ，活性化函数$f$に与えたもので，</p>
+
+<p>\[h^l = f(W^lh^{l-1})\]</p>
+
+<p>でした（ただし簡便のためにバイアスは省きました．今後も同様です．）．</p>
+
+<p>一方で，RNNには時刻の概念があり，さらに一つ前の状態を考慮するため，ある時刻$t$における，層$l$の状態$h^l_t$は</p>
+
+<p>\[h^l_t = f(W^lh_{t}^{l-1}+U^lh_{t-1}^l)\]</p>
+
+<p>です．つまり，前の層の出力$W^lh_t^{l-1}$に，前時刻の自分の出力$U^lh_{t-1}^l$が加わったものを活性化函数に与えることとなります．活性化函数$f$としては$\tanh,\mathrm{relu},\mathrm{sigmoid}$などが用いられます．</p>
+
+<p>それでは実際に系列を入力してみましょう．まず，$x_0$を入力します．</p>
+
+
+<figure >
+    
+        <img src="/img/post/pytorch/rnn1.png" />
+    
+    
+    <figcaption>
+        <h4>時刻 $\sim 0$</h4>
+        
+    </figcaption>
+    
+</figure>
+
+
+<p>このとき$t=0$では，上の式から</p>
+
+<p>\[h^1_0=f(W^1x_0+U^1h_{-1}^1),h^2_0=f(W^2h^1_0+U^2h_{-1}^2)\]</p>
+
+<p>となります．この$h_{-1}^1,h_{-1}^2$は最初は隠れ状態がないために与える必要がある「仮の隠れ状態」で，$0$など適当に初期化されたベクトルを用います．同様にして，recurrent層が$L$層あれば時刻0において$x_0$と$h_{-1}^1,h_{-1}^2,\cdots,h_{-1}^L$を用意する必要があります．また，最終層は</p>
+
+<p>\[y_t=f_y(W^{L}h_t^{L})\]</p>
+
+<p>で与えられます．</p>
+
+<p>その後は隠れ状態があるので，順次</p>
+
+<p>\[h^1_1=f(W^1x_1+U^lh_{0}^1)\]</p>
+
+<p>などとなります．</p>
+
+<p>
+<figure >
+    
+        <img src="/img/post/pytorch/rnn2.png" />
+    
+    
+    <figcaption>
+        <h4>時刻 $0\sim 1$</h4>
+        
+    </figcaption>
+    
+</figure>
+
+
+<figure >
+    
+        <img src="/img/post/pytorch/rnn3.png" />
+    
+    
+    <figcaption>
+        <h4>時刻 $1\sim 2$</h4>
+        
+    </figcaption>
+    
+</figure>
+
+
+<figure >
+    
+        <img src="/img/post/pytorch/rnn4.png" />
+    
+    
+    <figcaption>
+        <h4>時刻 $2\sim $</h4>
+        
+    </figcaption>
+    
+</figure>
+</p>
+
+<p>重みの更新は一つの系列が終了してから行います．このとき用いる損失は，目標を$d_0,d_1,\cdots,d_T$として，すべての時刻に対して出力が必要な場合，例えば文章生成の場合，</p>
+
+<p>\[\sum_t\mathrm{loss}(y_t,d_t)\]</p>
+
+<p>とします．または，二値分類などでは$y_T$には$y_0,\cdots,y_{T-1}$の情報が蓄積されていると考えて</p>
+
+<p>\[\mathrm{loss}(y_T, d_T)\]</p>
+
+<p>を用います．</p>
+
+<p>いずれにしても，このとき$t=T$での損失から$t=0$での隠れ状態も考慮することとなります．上の図では$t=2$までしかありませんが，$h_0^1$から$y_2$までの経路は，例えば$h_0^1\to h_1^1\to h_1^2\to h_2^2\to y_2$などのように，一般のネットワークでは隠れ層4のネットワークに相当します．</p>
+
+<p>そのため，理論的には長い系列を処理することができますが，実際にはこのような単純なRNNでは容易に勾配消失がおこり，長い系列は学習できなくなることが知られています．</p>
+
+<p>PyTorchではこの単純なRNNは<a href="http://pytorch.org/docs/nn.html#recurrent-layers"><code>nn.RNN</code></a>に用意されています（後述）．</p>
+
+<h2 id="gated-rnn">Gated RNN</h2>
+
+<p>CNNでは勾配消失を防ぎつつより深く層を重ねるためにResNetなどが発表されています．</p>
+
+
+<figure >
+    
+        <img src="/img/post/pytorch/res.png" />
+    
+    
+    <figcaption>
+        <h4>ResNetの一部の概略図</h4>
+        
+    </figcaption>
+    
+</figure>
+
+
+<p>これらは簡略化すれば</p>
+
+<p>\[h^l=f(h^{l-1})+h^{l-1}\]</p>
+
+<p>と表されます．これによって第1項の勾配が0になるような場合であっても，全体の勾配が消失しないことが期待されます．</p>
+
+<p>これを一般化して，要素積$\odot$を使い</p>
+
+<p>\[h^l = g\odot f(h^{l-1})+i\odot h^{l-1}\]</p>
+
+<p>を考えます．上は$g=i=1$の特殊な場合です．ただし，RNNの場合問題となるのは時間方向ですから，以下では</p>
+
+<p>\[h_t = g_{t}\odot f(h_{t-1})+i_{t}\odot h_{t-1}\]</p>
+
+<p>を考えます．これは再帰的に</p>
+
+<p>\[g_t\odot f(h_{t-1})+\sum_{s=1}^{t-1}(\bigodot_{\tau=s+1}^t i_{\tau})\odot g_{s}\odot f(h_{s-1})+(\bigodot_{\tau=1}^t i_{\tau})\odot h_0\]</p>
+
+<p>となります．ただし$\bigodot_{t=0}^T x_t=x_0\odot x_1\odot\cdots\odot x_T$です．</p>
+
+<p>$i_{\tau}\in [0, 1]$とすれば$\bigodot_{\tau=t}^t i_{\tau} \leq \bigodot_{\tau=t+1}^t i_{\tau}$ですから，時間が経ったことほど忘れやすくなります．この$i$も$h_t$の函数として学習し忘却の度合いも調節することで，短期の記憶だけでなく長期の記憶を適度に活かすことが期待されます．</p>
+
+<p>以上の説明は<sup class="footnote-ref" id="fnref:2"><a rel="footnote" href="#fn:2">2</a></sup>を参考にしました．</p>
+
+<h3 id="gru">GRU</h3>
+
+<p>GRU(Gated Recurrent Unit)はCho et al.(2014)<sup class="footnote-ref" id="fnref:3"><a rel="footnote" href="#fn:3">3</a></sup>で提案された手法です．後発にもかかわらず，LSTMと較べてセルが少なくシンプルな構造ですが，特に性能に大きな差はないとされています．上のgated RNNの式にも近く理解しやすいと思います．</p>
+
+<p>\[\begin{aligned}
+r_t^l &amp;= \mathrm{sigmoid}(W_r^{l}h_t^{l-1}+U_r^lh_{t-1}^l) \cr\cr
+z_t^l &amp;= \mathrm{sigmoid}(W_z^{l}h_t^{l-1}+U_z^lh_{t-1}^l) \cr\cr
+n_t^l &amp;= \tanh(W_n^{l}h_t^{l-1}+r_t^l\odot U_n^lh_{t-1}^l) \cr\cr
+h_t^l &amp;= (1-z_t^l)\odot n_t^l + z_t^l\odot h_{t-1}^l
+\end{aligned}\]</p>
+
+<p>$r_t,z_t,n_t$は文献によって異なりますが，Cho et al.(2014)ではそれぞれreset gate, update gateおよびcandidate gateと呼ばれています．下に<sup class="footnote-ref" id="fnref:5"><a rel="footnote" href="#fn:5">4</a></sup>のGRUのイラストを示しました．sigmoid函数によって0から1の間の値を取るreset gate $r_t$,やupdate gate $z_t$にはスイッチのような役割があることがわかります．</p>
+
+
+<figure >
+    
+        <img src="/img/post/pytorch/gru.png" />
+    
+    
+    <figcaption>
+        <h4>GRUのイラスト．$z,r$はそれぞれupdate gate, reset gate，$\tilde{h}$は我々の記法では$n$のcandidate gateのこと．</h4>
+        
+    </figcaption>
+    
+</figure>
+
+
+<h3 id="lstm">LSTM</h3>
+
+<p>LSTM(Long Short-Term Memory, <sup class="footnote-ref" id="fnref:4"><a rel="footnote" href="#fn:4">5</a></sup>)は1997年にS.Hochreiterらによって提案されたGated RNN手法の一つで，現在でもよく使われています．</p>
+
+<p>\[\begin{aligned}
+i_t^l &amp;=\mathrm{sigmoid}(W_i^lh_t^{l-1}+U_i^lh_l^{t-1}) \cr\cr
+f_t^l &amp;=\mathrm{sigmoid}(W_f^lh_t^{l-1}+U_f^lh_l^{t-1}) \cr\cr
+g_t^l &amp;=\tanh(W_g^lh_t^{l-1}+U_g^lh_l^{t-1}) \cr\cr
+o_t^l &amp;=\mathrm{sigmoid}(W_o^lh_t^{l-1}+U_o^lh_l^{t-1}) \cr\cr
+c_t^l &amp;= f_t^l\odot c_{t-1}^{l}+z_t^l\odot g_t^l \cr\cr
+h_t^l &amp;= o_t^l\odot\tanh(c_t^l)
+\end{aligned}\]</p>
+
+<p>GRUと較べるとかなり複雑で，隠れ状態として$h_t$だけでなく，memory cell $c_t$を用います．そのため，はじめに$(h_{-1}, c_{-1})$を用意する必要があります．</p>
+
+<p>$i_t,f_t,g_t,o_t$はそれぞれinput gate, forget gate, cell gateおよびouput gateなどと呼ばれています．</p>
+
+
+<figure >
+    
+        <img src="/img/post/pytorch/lstm.png" />
+    
+    
+    <figcaption>
+        <h4>LSTMのイラスト．$i,o,f$はそれぞれinput gate, output gate, forget gates，$\tilde{c}$は我々の記法では$g$のgate gateのこと．</h4>
+        
+    </figcaption>
+    
+</figure>
+
+
+<h1 id="pytorchにおけるrnn">PyTorchにおけるRNN</h1>
+
+<p>PyTorchにおけるRNNレイヤーとしては<code>nn.RNN</code>,<code>nn.LSTM</code>,<code>nn.GRU</code>，Cellとしては<code>nn.RNNCell</code>,<code>nn.LSTMCell</code>,<code>nn.GRUCell</code>があります．以下ではそれぞれの使い方を解説します．</p>
+
+<h2 id="課題の解説">課題の解説</h2>
+
+<p>今回は3桁の数2つを文字列として受け取り，その数の和を予測するネットワークを例として説明を行います．たとえば入力として&rdquo;123+234&rdquo;を受け取った場合&rdquo; 357&rdquo;を予想します．簡単のため，ネットワークの入出力の長さは固定します．数字が足りない箇所にはスペース&rdquo; &ldquo;を入れることで，入力は7文字，出力は4文字とします．</p>
+
+<p>今回，各数字，&rdquo;1&rdquo;や&rdquo;8&rdquo;は記号としての意味が重要で，その大小は肝心ではありません．そのため，ネットワークにそのまま数値を入れることは望ましくありません．また，文字を用いたタスクの場合はそもそも数字として表すことができません．そのため，RNNの入力としては入力の値を何らかの規則でベクトルとして表したものを用いることが一般的です．</p>
+
+<p>今回は0から9までの数字と&rdquo;+&ldquo;,&rdquo; &ldquo;の12種類の記号のみを扱うためonehotと呼ばれる表現を用います．これは記号と対応する位置の要素だけが1，残りが0のようなベクトルで&rdquo;+&ldquo;を2番目の要素とすると&rdquo;010000000000&rdquo;が&rdquo;+&ldquo;に対応するonehot表現です．onehot化した足し算の問題を入力として，onehotの4ベクトルを出力として得て，正解とのcross entropy lossを最小化していきます．つまり</p>
+
+<pre><code>loss = sum(F.cross_entropy(o, t) for o, t in zip(output, target))
+</code></pre>
+
+<p>です．なお，PyTorchでは目標<code>target</code>はonehot表現ではなく，インデックスで与えます．</p>
+
+<p>なお簡単のため以下の例ではRNNは1層，全結合層も1層とします．</p>
+
+<h2 id="nn-rnncell-nn-lstmcell-nn-grucell"><code>nn.RNNCell</code>,<code>nn.LSTMCell</code>,<code>nn.GRUCell</code></h2>
+
+<p>Cellは以下の図のcellに相当し，ある時刻での隠れ状態と入力とを受け取り，隠れ状態を返します．</p>
+
+
+<figure >
+    
+        <img src="/img/post/pytorch/cell.png" />
+    
+    
+    <figcaption>
+        <h4>Cellを用いたネットワークの説明</h4>
+        
+    </figcaption>
+    
+</figure>
+
+
+<p><code>nn.**Cell</code>のパラメーター<code>input_size</code>は入力ベクトルの次元数で，今回はonehotベクトルなので12です．</p>
+
+<pre><code class="language-python">class Cell(RNNBase):
+    def __init__(self, rnn_name, char_num, batch_size, output_size):
+        super(Cell, self).__init__(rnn_name, char_num, batch_size, output_size, num_layers=1)
+
+        self.rnn = getattr(nn, self.rnn_name+&quot;Cell&quot;)(
+            input_size=char_num,
+            hidden_size=self.hidden_size)
+        for i in range(output_size):  # 出力文字数分の隠れ層を用意します
+            setattr(self, f&quot;fc_{i}&quot;, nn.Linear(self.hidden_size, char_num))
+
+    def forward(self, x):
+        h = self.get_hidden() # 隠れ状態を初期化
+        for input in x:  # 入力を一文字ずつ取得します
+            h = self.rnn(input, h) # 隠れ状態を更新し，受け継いでいきます
+
+        if self.rnn_name is &quot;LSTM&quot;: # LSTMはh,cと2つの隠れ状態を持ちます．ここではhのみを使います
+            h = h[0]
+        h = F.relu(h)
+        output = []
+        for i in range(self.output_size):
+            output += getattr(self, f&quot;fc_{i}&quot;)(h)  # 各隠れ層に隠れ状態を入力として与えます
+        return output
+</code></pre>
+
+<h2 id="nn-rnn-nn-lstm-nn-gru"><code>nn.RNN</code>,<code>nn.LSTM</code>,<code>nn.GRU</code></h2>
+
+<p>こちらはレイヤーのように扱い，以下の図の緑の長方形に囲まれた部分が相当します．初期の隠れ状態と入力系列全体（図の黄色の長方形）を入力として受け取ります．入力系列は(入力系列の長さ，バッチサイズ，入力ベクトルの次元数)です．パラメーター<code>num_layers</code>によってRNNを何層重ねるかを決めることができます．</p>
+
+
+<figure >
+    
+        <img src="/img/post/pytorch/layer.png" />
+    
+    
+    <figcaption>
+        <h4>緑の長方形で囲まれた部分がレイヤー．</h4>
+        
+    </figcaption>
+    
+</figure>
+
+
+<p>出力は全時刻における最終層出力<code>output</code>と，系列の最後の時刻における各層の隠れ状態<code>h_n</code>を返します．今回は最後の時刻の最終層の隠れ状態のみを必要とするので，<code>output[-1]</code>，<code>h_n[-1]</code>のどちらも使うことが出来ますが，今回は<code>h_n</code>を用いています．</p>
+
+<pre><code class="language-python">class RNN(RNNBase):
+    def __init__(self, rnn_name, char_num, batch_size, output_size, num_layers):
+        super(RNN, self).__init__(rnn_name, char_num, batch_size, output_size, num_layers)
+
+        self.rnn = getattr(nn, self.rnn_name)(
+            input_size=char_num,
+            hidden_size=self.hidden_size)
+        for i in range(output_size):
+            setattr(self, f&quot;fc_{i}&quot;, nn.Linear(self.hidden_size, char_num))
+
+    def forward(self, x):
+        output, h = self.rnn(x)
+        if self.rnn_name is &quot;LSTM&quot;: # LSTMはh,cと2つの隠れ状態を持ちます．ここではhのみを使います
+            h = h[0]
+        h = F.relu(h[-1]) # h は(num_layers, batch_size, hidden_size)なので[-1]で最終層の隠れ状態を得ます
+        return [getattr(self, f&quot;fc_{i}&quot;)(h) for i in range(self.output_size)]
+</code></pre>
+
+<hr />
+
+<p>このように，PyTorchではcellとlayerを用いることで柔軟にRNNを用いたネットワークをつくることができます．</p>
+
+<p>今回説明に用いたコードの全体は[こちら]()にあります．54000組の学習によって95%程度の正答率を得ることができました．</p>
+
+<p>なお，今回正答率を求めるに当たって以下のようなコードを用いましたが，はじめ<code>torch.max()</code>の返すインデックスが<code>ByteTensor</code>のために正解数を<code>Tensor</code>のまま扱うと警告なしにオーバーフローしてしまい，lossは下がれど正答率は上がらず，ということがありました．<code>LongTensor</code>にキャストするか，以下のように<code>sum()</code>によって<code>int</code>に変換すると良いと思います．</p>
+
+<pre><code>tmp = sum([F.log_softmax(o).data.max(1)[1] == t.data for o, t in zip(output, target)])
+count += (tmp == DIGITS+1).sum()
+</code></pre>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:1">Elman, J. L. (1991). Distributed Representations, Simple Recurrent Networks, And Grammatical Structure. Machine Learning, 7(2), 195–225. <a href="http://doi.org/10.1023/A:1022699029236">http://doi.org/10.1023/A:1022699029236</a>
+ <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
+<li id="fn:2">深井裕太・海野裕也・鈴木潤 (2017)．『深層学習による自然言語処理』．講談社．
+ <a class="footnote-return" href="#fnref:2"><sup>[return]</sup></a></li>
+<li id="fn:3">Cho, K., van Merrienboer, B., Bahdanau, D., &amp; Bengio, Y. (2014). On the Properties of Neural Machine Translation: Encoder-Decoder Approaches. <a href="http://doi.org/10.3115/v1/W14-4012">http://doi.org/10.3115/v1/W14-4012</a>
+ <a class="footnote-return" href="#fnref:3"><sup>[return]</sup></a></li>
+<li id="fn:5">Chung, J., Gulcehre, C., Cho, K., &amp; Bengio, Y. (2014). Empirical Evaluation of Gated Recurrent Neural Networks on Sequence Modeling, 1–9. Retrieved from <a href="http://arxiv.org/abs/1412.3555">http://arxiv.org/abs/1412.3555</a>
+ <a class="footnote-return" href="#fnref:5"><sup>[return]</sup></a></li>
+<li id="fn:4">Hochreiter, S., &amp; Urgen Schmidhuber, J. (1997). Long Short-Term Memory. Neural Computation, 9(8), 1735–1780. <a href="http://doi.org/10.1162/neco.1997.9.8.1735">http://doi.org/10.1162/neco.1997.9.8.1735</a>
+ <a class="footnote-return" href="#fnref:4"><sup>[return]</sup></a></li>
+</ol>
+</div>
+
+
+          
+          
+        </article>
+      </div>
+    </main>
+
+    <nav class="pagination-single">
+      <div class="container">
+      
+        <span class="previous">&larr; <a href="https://mosko.tokyo/post/githubpages-and-https/" rel="prev">カスタムドメインのGitHub Pagesをhttps化する</a></span>
+      
+      
+      </div>
+    </nav>
+  </div>
+
+
+  <div id="footer">
+
+    
+      <ul class="copyright">
+        <li><a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="クリエイティブ・コモンズ・ライセンス" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/80x15.png" /></a>&nbspWritten by Ryuichiro Hataya</li><li>Powered by <a href="https://gohugo.io/">Hugo</a></li>
+      </ul>
+
+  </div>
+
+
+
+  <script src="/js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/jquery.scrolly.min.js"></script>
+  <script src="/js/jquery.scrollzer.min.js"></script>
+  <script src="/js/skel.min.js"></script>
+  <script src="/js/util.js"></script>
+  <script src="/js/main.js"></script>
+
+
+      <script>
+      renderMathInElement(
+      document.body,
+      {
+        delimiters: [
+          {left: "$$", right: "$$", display: false},
+          {left: "\\[", right: "\\]", display: true},
+          {left: "$", right: "$", display: false}
+        ],
+        ignoredTags: [
+          "script",
+          "noscript",
+          "style",
+          "textarea",
+          "pre",
+          "code"
+        ]
+      }
+      );
+      </script>
+
+</body>
+</html>
+
