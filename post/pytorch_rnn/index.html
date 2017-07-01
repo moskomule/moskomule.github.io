@@ -412,7 +412,7 @@ h_t^l &amp;= o_t^l\odot\tanh(c_t^l)
 
 <p>このように，PyTorchではcellとlayerを用いることで柔軟にRNNを用いたネットワークをつくることができます．</p>
 
-<p>今回説明に用いたコードの全体は[こちら]()にあります．54000組の学習によって95%程度の正答率を得ることができました．</p>
+<p>今回説明に用いたコードの全体は<a href="https://github.com/moskomule/pytorch.learning/blob/master/tutorial/rnn.py">こちら</a>にあります．54000組の学習によって95%程度の正答率を得ることができました．</p>
 
 <p>なお，今回正答率を求めるに当たって以下のようなコードを用いましたが，はじめ<code>torch.max()</code>の返すインデックスが<code>ByteTensor</code>のために正解数を<code>Tensor</code>のまま扱うと警告なしにオーバーフローしてしまい，lossは下がれど正答率は上がらず，ということがありました．<code>LongTensor</code>にキャストするか，以下のように<code>sum()</code>によって<code>int</code>に変換すると良いと思います．</p>
 
