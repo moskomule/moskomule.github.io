@@ -7,10 +7,33 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>Written by Ryuichiro Hataya</copyright>
-    <lastBuildDate>Sat, 24 Jun 2017 15:37:12 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 09 Jul 2017 12:37:12 +0900</lastBuildDate>
     
 	<atom:link href="https://mosko.tokyo/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>最適化手法について</title>
+      <link>https://mosko.tokyo/post/optimization/</link>
+      <pubDate>Sun, 09 Jul 2017 12:37:12 +0900</pubDate>
+      
+      <guid>https://mosko.tokyo/post/optimization/</guid>
+      <description>以前Eve optimizerの実装を行ったのですが，肝心の非線型函数の最適化手法について知らなかったので調べました．
+はじめに 最適化に関して，微分を用いない手法としてはランダム法やシンプレックス法がありますが，今回は微分を用いて反復的に解に近づく方法である反復法について述べます．
+なお今回可視化に際して利用した函数は$(x+1)x(x-1)(x-3)+y^2+xy$で，2つの局所解と1つの鞍点を持ちます．
+反復法 反復法は函数$f(x)$について，
+\[\begin{aligned} d_k &amp;amp;= -H_k\nabla f(x_k) \cr\cr x_{k+1} &amp;amp;= x_{k}+\alpha_{k}d_{k} \end{aligned}\]
+によって位置を更新しながら列$(x_k)_{k\in\mathscr{N}}$を局所解または大局解$x^{\star}$に近づけていく手法です．
+実際は$k$は有限なので，適当な回数で打ち切ったり，$|x_{k+1}-x_{k}|&amp;lt;\epsilon$で中止したりします．
+$x$から$x+\delta x$へと移動した際の$f$の変化$\delta f(x)$とします．$\delta f(x)=\delta x\nabla f(x)$は$\delta x$と$\nabla f(x)$とが並行の時に最大となりますので，$\nabla f(x)$は$x$において$f(x)$の値が最も変化する方向です．そのため局所的には$-\nabla f(x)$に進むのが望ましいですが，それが全体として望ましいとは必ずしもいえません．反復法ではこの方向に適当な$H_k$をかけて調整した上で，順次移動していきます．
+$a_k$は学習率，ステップ幅などと呼ばれ一回の更新で進む量を表します．$\alpha_k$にはヒューリスティックな更新方法もありますが($\alpha_k \sim \frac{1}{\sqrt{k}}$など)，Armijoの基準やWolfeの基準といったより客観的な指標もあります．
+\[\begin{aligned} f(x_k+\alpha_k d_k) &amp;amp;\le f(x_k)+c_1\alpha_k\nabla f(x_k)^{\top}d_k \cr\cr \nabla f(x_k+\alpha_k d_k)^{\top}d_k &amp;amp;\ge c_2\nabla f(x_k)d_k \end{aligned}\]
+上の式がArmijoの基準で，2つ合わせるとWolfeの基準となります．$\alpha_k$がこの範囲に収まるように変化させていきます(line search method1)．
+勾配降下法 勾配降下法(gradient descent method)，または最急降下法(steepest descent method)は$H_k=I$とする手法です．すなわち
+\[x_{k+1}=x_{k}-\alpha_k\nabla f(x_{k})\]
+によって更新していきます．最急方向に適当な学習率$\alpha_k$を乗じて進んでいくので「直感的には合理的」2ですが，収束が遅く，適切な学習率の調整が難しいなど，実際の性能はあまりよくありません．
+  $\alpha_k=0.1$で100回の更新を行った際の$x_k$の軌跡    $\alpha_k=0.01$で100回の更新を行った際の$x_k$の軌跡    $\alpha_k=0.001$で100回の更新を行った際の$x_k$の軌跡    最急降下法に対してWolfe基準を用いて学習率を調整した際の$x_k$の軌跡   ニュートン法 ニュートン法，またはニュートン・ラフソン法(Newton-Raphson method)は$H_k$に$(\nabla^2 f(x))^{-1}$，つまりHessianの逆行列を用いた手法です．これはニュートンの近似法3によって$f(x)$の極値を求めていると見ることができます．ニュートンの近似法は函数$g(t)=0$の根を</description>
+    </item>
     
     <item>
       <title>PyTorchでRNN入門</title>
