@@ -7,13 +7,35 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>Written by Ryuichiro Hataya</copyright>
-    <lastBuildDate>Sun, 09 Jul 2017 12:37:12 +0900</lastBuildDate>
+    <lastBuildDate>Wed, 12 Jul 2017 12:37:12 +0900</lastBuildDate>
     
 	<atom:link href="https://mosko.tokyo/tags/math/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>最適化手法について</title>
+      <title>最適化手法について—SGDからYelloFinまで—</title>
+      <link>https://mosko.tokyo/post/optimization2/</link>
+      <pubDate>Wed, 12 Jul 2017 12:37:12 +0900</pubDate>
+      
+      <guid>https://mosko.tokyo/post/optimization2/</guid>
+      <description>はじめに 前回の記事に，「ベンチマーク函数があるよ」というフィードバックを頂きました．test functions for optimizationというWikipediaの記事にまとまっていたので，今回はこちらにあるRosenbrock function($f_{R}=100(y-x^2)^2+(x-1)^2$,大域解$f_{R}(1,1)=0$)を使います．Rosenbrock函数には大域解を含む広い濠があって大域解が見つけにくいのが特徴です．
+一般に勾配法の更新方法はバッチ更新と呼ばれます．つまり勾配降下法であれば学習事例$n=1,2,\ldots,N$に対して個々の誤差函数$E_n$の和
+\[E(x)=\sum_n E_n(x)\]
+について$x\gets x-\alpha\nabla E$と更新していました．
+また，確率的な(stochastic)，または逐次的な(online)勾配降下法では$n\in\{1,\ldots,N\}$を乱択し$x\gets x-\alpha\nabla E_n(x)$により更新を行います．
+また，ディープラーニングの文脈では$B\subset\{1,\ldots,N\}$によって$x\gets x-\frac{\alpha}{|B|}\sum_{i\in B}\nabla E_i(x)$を更新するミニバッチ更新がしばしば用いられます．ミニバッチの大きさ$|B|$は32,64,128などがよく用いられるように思われます．この大きさが大きいほど計算は速くなりますが，あまり大きくない方が汎化性能が上がるという話もあります1．
+今回紹介する手法は主にディープラーニングの文脈で用いられるため，ミニバッチ更新を行うことでよりよい性能が出せる可能性がありますが，記事中では可視化の都合もあり$x\gets x-\alpha d$によって更新を行います．
+SGD(Stochastic Gradient Descent) 基本的に勾配降下法と同一で，以下により更新を行います．
+\[x_{k+1}=x_{k}-\alpha_k\nabla f(x_{k})\]
+$\alpha$の調整には段階的に$\alpha$を小さくするstep decay，$\alpha_k=\alpha_0 e^{-rk}$とするexponential decay，$\alpha_k=\frac{\alpha_0}{1+rk}$とする1/k decayなどの手法がありますが，職人の勘による調整法も多いようです．
+ 初期位置(-0.7, -0.7),(0, 2.5),(-1, 2)からのSGDによる1000ステップの移動の軌跡．黄色の点が大域解(1,1)．   Momentum SGDは$\nabla f(x)$が0に近い時に更新ができなくなるという問題がありました．Momentum法では
+\[\begin{aligned} v_{k+1} &amp;amp;= \mu v_k-\alpha\nabla f(x_k)~,v_0=0 \cr\cr x_{k+1} &amp;amp;= x_k+v_{k+1} \end{aligned}\]
+によって更新を行うことでこの問題を解決しています．またSGDは各点の勾配変化に敏感でしたが，以前の状態を引き継ぐ慣性力のようなmomentum term$v$を用いることで些細な変化に対しての感度を低下させているとみることもできます．
+ 初期位置(-0.7, -0.7),(0, 2.5),(-1, 2)からのmomentumつきのSGDによる1000ステップの移動の軌跡．黄色の点が大域解(1,1)．   Nestrov Accelerated Gradient Momentum法を改良し，$v_{k+1}$の更新に$x_k$よりも$x_{k+1}$に近いと期待される$x_k+\mu v_k$を用いたのがNestrov Accelerated Gradientです．</description>
+    </item>
+    
+    <item>
+      <title>最適化手法についてー勾配法，ニュートン法，準ニュートン法などー</title>
       <link>https://mosko.tokyo/post/optimization/</link>
       <pubDate>Sun, 09 Jul 2017 12:37:12 +0900</pubDate>
       

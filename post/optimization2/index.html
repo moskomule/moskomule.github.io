@@ -1,0 +1,482 @@
+<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <title>
+      最適化手法について—SGDからYelloFinまで— | moskomule log
+    </title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/sanitize.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+    <link rel="stylesheet" href="/css/highlight_monokai.css">
+    <link rel="stylesheet" href="/css/custom.css">
+
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha256-tkzDFSl16wERzhCWg0ge2tON2+D6Qe9iEaJqM4ZGd4E=" crossorigin="anonymous" type="text/css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha256-gNVpJCw01Tg4rruvtWJp9vS0rRchXP2YF+U+b2lp8Po=" crossorigin="anonymous" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha256-ExtbCSBuYA7kq1Pz362ibde9nnsHYPt6JxuxYeZbU+c=" crossorigin="anonymous" type="text/javascript"></script>
+
+  </head>
+  <body>
+
+
+    
+    <div id="header">
+
+      <div class="top">
+
+        
+        <div id="logo">
+          <a href="https://mosko.tokyo/"><span class="image avatar48"><img src="/img/avatar.jpg" alt="avator" /></span></a>
+          <h1 id="title">moskomule</h1>
+          <p>in Tokyo, Bachelor (Engineering), currently interested in ML, DL.</p>
+        </div>
+
+        
+        <nav id="nav">
+
+          <ul>
+              <li><a href="https://mosko.tokyo/#top" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-home">Introduction</span></a></li>
+              <li><a href="https://mosko.tokyo/#about" id="about-link" class="skel-layers-ignoreHref"><span class="icon fa-user">About Me</span></a></li>
+              <li><a href="https://mosko.tokyo/#articles" id="articles-link" class="skel-layers-ignoreHref"><span class="icon fa-th">Articles</span></a></li>
+              <li><a href="https://mosko.tokyo/#contact" id="contact-link" class="skel-layers-ignoreHref"><span class="icon fa-envelope">Contact</span></a></li>
+          </ul>
+        </nav>
+
+      </div>
+
+      <div class="bottom">
+
+        
+        <ul class="icons">
+          
+          <li><a href="https://twitter.com/mosko_mule" class="icon fa-twitter"><span class="label">twitter</span></a></li>
+          
+          <li><a href="https://github.com/moskomule" class="icon fa-github"><span class="label">github</span></a></li>
+          
+        </ul>
+
+      </div>
+
+    </div>
+
+
+  
+  <div id="main">
+    <main id="single" role="main">
+      <div class="container">
+        <div class="article-header">
+          <h1>最適化手法について—SGDからYelloFinまで—</h1>
+          <div class="meta">
+            Jul 12, 2017 &nbsp;
+            
+              #<a href="/tags/math">Math</a>&nbsp;
+            
+              #<a href="/tags/python">Python</a>&nbsp;
+            
+          </div>
+        </div>
+        <article>
+          
+
+<h1 id="はじめに">はじめに</h1>
+
+<p><a href="../optimization">前回の記事</a>に，「ベンチマーク函数があるよ」というフィードバックを頂きました．<a href="https://en.wikipedia.org/wiki/Test_functions_for_optimization">test functions for optimization</a>というWikipediaの記事にまとまっていたので，今回はこちらにあるRosenbrock function($f_{R}=100(y-x^2)^2+(x-1)^2$,大域解$f_{R}(1,1)=0$)を使います．Rosenbrock函数には大域解を含む広い濠があって大域解が見つけにくいのが特徴です．</p>
+
+<p>一般に勾配法の更新方法はバッチ更新と呼ばれます．つまり勾配降下法であれば学習事例$n=1,2,\ldots,N$に対して個々の誤差函数$E_n$の和</p>
+
+<p>\[E(x)=\sum_n E_n(x)\]</p>
+
+<p>について$x\gets x-\alpha\nabla E$と更新していました．</p>
+
+<p>また，確率的な(stochastic)，または逐次的な(online)勾配降下法では$n\in\{1,\ldots,N\}$を乱択し$x\gets x-\alpha\nabla E_n(x)$により更新を行います．</p>
+
+<p>また，ディープラーニングの文脈では$B\subset\{1,\ldots,N\}$によって$x\gets x-\frac{\alpha}{|B|}\sum_{i\in B}\nabla E_i(x)$を更新するミニバッチ更新がしばしば用いられます．ミニバッチの大きさ$|B|$は32,64,128などがよく用いられるように思われます．この大きさが大きいほど計算は速くなりますが，あまり大きくない方が汎化性能が上がるという話もあります<sup class="footnote-ref" id="fnref:1"><a rel="footnote" href="#fn:1">1</a></sup>．</p>
+
+<p>今回紹介する手法は主にディープラーニングの文脈で用いられるため，ミニバッチ更新を行うことでよりよい性能が出せる可能性がありますが，記事中では可視化の都合もあり$x\gets x-\alpha d$によって更新を行います．</p>
+
+<h1 id="sgd-stochastic-gradient-descent">SGD(Stochastic Gradient Descent)</h1>
+
+<p>基本的に勾配降下法と同一で，以下により更新を行います．</p>
+
+<p>\[x_{k+1}=x_{k}-\alpha_k\nabla f(x_{k})\]</p>
+
+<p>$\alpha$の調整には段階的に$\alpha$を小さくするstep decay，$\alpha_k=\alpha_0 e^{-rk}$とするexponential decay，$\alpha_k=\frac{\alpha_0}{1+rk}$とする1/k decayなどの手法がありますが，職人の勘による調整法も多いようです．</p>
+
+
+<figure >
+    
+        <img src="/img/post/optim/gd1000.png" />
+    
+    
+    <figcaption>
+        <h4>初期位置(-0.7, -0.7),(0, 2.5),(-1, 2)からのSGDによる1000ステップの移動の軌跡．黄色の点が大域解(1,1)．</h4>
+        
+    </figcaption>
+    
+</figure>
+
+
+<h1 id="momentum">Momentum</h1>
+
+<p>SGDは$\nabla f(x)$が0に近い時に更新ができなくなるという問題がありました．Momentum法では</p>
+
+<p>\[\begin{aligned}
+v_{k+1} &amp;= \mu v_k-\alpha\nabla f(x_k)~,v_0=0 \cr\cr
+x_{k+1} &amp;= x_k+v_{k+1}
+\end{aligned}\]</p>
+
+<p>によって更新を行うことでこの問題を解決しています．またSGDは各点の勾配変化に敏感でしたが，以前の状態を引き継ぐ慣性力のようなmomentum term$v$を用いることで些細な変化に対しての感度を低下させているとみることもできます．</p>
+
+<!-- $f(x)$をポテンシャルとみると$-\nabla f(x)$は$x$における力ですので，$\mu v$は摩擦力（と比例するベクトル）と考えることもできます． -->
+
+
+<figure >
+    
+        <img src="/img/post/optim/mgd1000.png" />
+    
+    
+    <figcaption>
+        <h4>初期位置(-0.7, -0.7),(0, 2.5),(-1, 2)からのmomentumつきのSGDによる1000ステップの移動の軌跡．黄色の点が大域解(1,1)．</h4>
+        
+    </figcaption>
+    
+</figure>
+
+
+<h2 id="nestrov-accelerated-gradient">Nestrov Accelerated Gradient</h2>
+
+<p>Momentum法を改良し，$v_{k+1}$の更新に$x_k$よりも$x_{k+1}$に近いと期待される$x_k+\mu v_k$を用いたのがNestrov Accelerated Gradientです．</p>
+
+<p>\[\begin{aligned}
+v_{k+1} &amp;= \mu v_k-\alpha\nabla f(x_k+\mu v_k)~,v_0=0 \cr\cr
+x_{k+1} &amp;= x_k+v_{k+1}
+\end{aligned}\]</p>
+
+<p><a href="http://climin.readthedocs.io/en/latest/gd.html">clminのdoc</a>では$x_k+\mu v_k$を$x_{k+\frac12}$と表記しており，$x_k$と$x_{k+1}$の間の点であることが分かりやすいです．</p>
+
+
+<figure >
+    
+        <img src="/img/post/optim/nmgd1000.png" />
+    
+    
+    <figcaption>
+        <h4>初期位置(-0.7, -0.7),(0, 2.5),(-1, 2)からのNestrovのmomentumつきのSGDによる1000ステップの移動の軌跡．黄色の点が大域解(1,1)．</h4>
+        
+    </figcaption>
+    
+</figure>
+
+
+<h1 id="adaptive-learning-rate">Adaptive Learning Rate</h1>
+
+<p>Momentum法と異なり，学習率を自動調整することを目指したのがAdaptive Learning Rateを用いた手法です．</p>
+
+<p>前回紹介した手法にはline search methodなど学習率$\alpha$を最適化する方法が含まれていました．それらの手法では，何度も$f(x_k+\alpha_k d_k)$を更新して適当な$\alpha$を求めます．</p>
+
+<p>特にディープラーニングなどパラメータ数が多い場合にはこの計算はコストが大きく，$\alpha$を求めるためだけに何度も繰り返したくはありません．そのためadaptive learning rateを用いる手法においては，そのような手法は用いていません．</p>
+
+<h2 id="adagrad">Adagrad</h2>
+
+<p>Adagrad<sup class="footnote-ref" id="fnref:2"><a rel="footnote" href="#fn:2">2</a></sup>は累積した過去の勾配情報を元に学習率を変更します．</p>
+
+<p>\[\begin{aligned}
+  g_{k+1} &amp;= g_k + (\nabla f(x_k))^2,~g_0=0 \cr\cr
+  x_{k+1} &amp;= x_k - \alpha (g_{k+1}+\epsilon)^{-\frac12}\odot\nabla f(x_k)
+\end{aligned}\]</p>
+
+<p>ただし，$\epsilon=\varepsilon\mathbf{1}$，$(g_{k+1}+\epsilon)^{-\frac12}$は第$i$成分が$(g_{k+1}^{(i)}+\varepsilon)^{-1}$であるようなベクトルで，$\odot$は要素積です．$\varepsilon$は分母が0となるのを防ぐためにあり，$10^{-8}$程度です．$|\nabla f(x_k)|$が大きい要素に対しては学習率を下げ，逆に小さい要素に対しては学習率を上げています．</p>
+
+
+<figure >
+    
+        <img src="/img/post/optim/ag1000.png" />
+    
+    
+    <figcaption>
+        <h4>初期位置(-0.7, -0.7),(0, 2.5),(-1, 2)からのAdagradによる1000ステップの移動の軌跡．黄色の点が大域解(1,1)．</h4>
+        
+    </figcaption>
+    
+</figure>
+
+
+<h2 id="rmsprop">RMSProp</h2>
+
+<p>Adagradの弱点として，$g_k$が$k$とともに単調に増加していく，つまり学習率$\alpha (g_{k}+\epsilon)^{-\frac12}$は単調減少で，一度小さくなった学習率は大きくならないという問題点がありました．RMSProp<sup class="footnote-ref" id="fnref:3"><a rel="footnote" href="#fn:3">3</a></sup>では過去の勾配を適当な割合で「忘れる」ことでこの問題に対応しています．つまり$\gamma$(0.9程度)を用いて</p>
+
+<p>\[\begin{aligned}
+  g_{k+1} &amp;= \gamma g_k + (1-\gamma)(\nabla f(x_k))^2,~g_0=0 \cr\cr
+  x_{k+1} &amp;= x_t - \alpha (g_{k+1}+\epsilon)^{-\frac12}\odot\nabla f(x_k)
+\end{aligned}\]</p>
+
+<p>としています．</p>
+
+
+<figure >
+    
+        <img src="/img/post/optim/rms1000.png" />
+    
+    
+    <figcaption>
+        <h4>初期位置(-0.7, -0.7),(0, 2.5),(-1, 2)からのRMSPropによる1000ステップの移動の軌跡．黄色の点が大域解(1,1)．</h4>
+        
+    </figcaption>
+    
+</figure>
+
+
+<h2 id="adadelta">Adadelta</h2>
+
+<p>Adadelta<sup class="footnote-ref" id="fnref:4"><a rel="footnote" href="#fn:4">4</a></sup>もRMSProp同様，Adagradの学習率の単調減少に対応しています．RMSPropと異なり，過去の勾配だけでなく， 過去の学習ステップも使います．</p>
+
+<p>\[\begin{aligned}
+  g_{k+1} &amp;= \gamma g_k + (1-\gamma)(\nabla f(x_k))^2,~g_0=0 \cr\cr
+  x_{k+1} &amp;= x_k - \alpha (g_{k+1}+\epsilon)^{-\frac12}\odot\nabla f(x_k)\odot(s_k+\epsilon)^{\frac12} \cr\cr
+  s_{k+1} &amp;= (1-\gamma)(x_{k+1}-x_k)^2+\gamma s_k,~s_0=0
+\end{aligned}\]</p>
+
+<p>ただし例によって$(s_k+\epsilon)^{\frac12}$は第$i$成分が$\sqrt{s_k^{(i)}+\varepsilon}$であるようなベクトル， $(x_{k+1}-x_k)^2=(x_{k+1}-x_k)\odot (x_{k+1}-x_k)$とします．$s_0=0$とするためか，$\varepsilon$を小さくしすぎない方がよいようで，<a href="http://climin.readthedocs.io/en/latest/adadelta.html">climin</a>では$10^{-4}$となっています．</p>
+
+
+<figure >
+    
+        <img src="/img/post/optim/ad1000.png" />
+    
+    
+    <figcaption>
+        <h4>初期位置(-0.7, -0.7),(0, 2.5),(-1, 2)からAdadeltaによる1000ステップの移動の軌跡．黄色の点が大域解(1,1)．</h4>
+        
+    </figcaption>
+    
+</figure>
+
+
+<h2 id="adam">Adam</h2>
+
+<p>Adam(adaptive moment estimation)<sup class="footnote-ref" id="fnref:5"><a rel="footnote" href="#fn:5">5</a></sup>では勾配と勾配の2乗の指数移動平均(exponential moving average)をもちいることで，勾配の1次モーメント（平均）と0周りの2次モーメント（0周りの分散）を推定しています．</p>
+
+<p>\[\begin{aligned}
+m_{k+1} &amp;= \beta_1 m_{k}+(1-\beta_1)\nabla f(x_k),~m_0=0 \cr\cr
+v_{k+1} &amp;= \beta_2 v_{k}+(1-\beta_2)(\nabla f(x_k))^2,~v_0=0
+\end{aligned}\]</p>
+
+<p>ただし，$k$が小さいと初期値(0)の影響を強く受けるため</p>
+
+<p>\[\begin{aligned}
+\hat{m}_{k} &amp;= \frac{m_k}{1-\beta_1^k} \cr\cr
+\hat{v}_{k} &amp;= \frac{v_k}{1-\beta_2^k}
+\end{aligned}\]</p>
+
+<p>によって補正を行い，以下によって更新を行います</p>
+
+<p>\[x_{k+1}=x_k-\alpha((\hat{v}_{k+1})^{\frac12}+\epsilon)^{-1}\odot\hat{m}_{k+1}\]</p>
+
+<p>論文中では$\beta_1=0.9,\beta_2=0.999$が用いられています．SGDなどと比較して早く収束するため，ディープラーニングのoptimizerとしては多く用いられているように思われます．</p>
+
+
+<figure >
+    
+        <img src="/img/post/optim/adam1000.png" />
+    
+    
+    <figcaption>
+        <h4>初期位置(-0.7, -0.7),(0, 2.5),(-1, 2)からAdamによる1000ステップの移動の軌跡．黄色の点が大域解(1,1)．</h4>
+        
+    </figcaption>
+    
+</figure>
+
+
+<h2 id="adamax">Adamax</h2>
+
+<p>Adamの2次モーメントを拡張し，</p>
+
+<p>\[v_{k+1} = (\beta_2^p v_{k}+(1-\beta_2^p)|\nabla f(x_k)|^p)^{\frac{1}{p}}\]</p>
+
+<p>とします．この$p\to\infty$の，Maxノルムを用いるのがAdamaxで<sup class="footnote-ref" id="fnref:5"><a rel="footnote" href="#fn:5">5</a></sup>のExtensionsに挙げられています．</p>
+
+<h2 id="eve">Eve</h2>
+
+<p>Eve<sup class="footnote-ref" id="fnref:6"><a rel="footnote" href="#fn:6">6</a></sup>はAdamに目的函数の増減に伴うフィードバックを加えています．</p>
+
+<p>\[\begin{aligned}
+r_k &amp;= \begin{cases}
+\frac{f_{k-1}-f_{k}}{f_{k}} ~ ~\text{if}~ f_{k-1}\geq f_{k}\cr\cr
+\frac{f_{k}-f_{k-1}}{f_{k-1}} ~ ~\text{otherwise}
+\end{cases} \cr\cr
+d_{k+1} &amp;= \beta_3 d_k+(1-\beta_3)r_k \cr\cr
+x_{k+1} &amp;= x_k -\alpha(d_{k+1}\odot(\hat{v}_{k+1})^{\frac12}+\epsilon)^{-1}\odot\hat{m}_{k+1}
+\end{aligned}\]</p>
+
+<p>ただし，$f_k=f(x_k)$です．実際には$\kappa&lt;r_k&lt;K$と範囲を限定し，$f_k$の代わりに，$f$を近似する滑らかな列$\hat{f}_k$を使うなどの工夫がされています．</p>
+
+<h1 id="yellofin">YelloFin</h1>
+
+<p>YelloFin<sup class="footnote-ref" id="fnref:7"><a rel="footnote" href="#fn:7">7</a></sup>はほかの方法が学習率の自動調整を行うのに対し，momentum termの$\mu$も調整しようという試みです． momentum tunerのtunerとtuna(マグロ)をかけてYellowfin(キハダマグロ)と名づけられているようです．</p>
+
+<p><a href="http://cs.stanford.edu/~zjian/project/YellowFin/index.html">公式のブログ</a>が充実しているので此方をご覧下さい．Adamと比較してより早く収束すると述べられています．</p>
+
+<h1 id="手法の比較">手法の比較</h1>
+
+<p>2層の畳み込み層+2層の全結合層のCNNでMNISTを分類した際の学習データの損失，検証データの損失および正答率の20エポックにわたる変動をまとめました．値は3回の実験の平均値です．計算資源の都合でSGD,momentumつきSGD,Adagrad,Adadelta,Adamのみを扱っています．</p>
+
+<p>SGDおよびmomentumつきSGDの学習率は$10^{-3}$，momentumつきSGDのmomentumは$0.9$を用いてい，それ以外はPyTorchの初期値であるAdadelta(lr=1.0),Adagrad(lr=0.01),Adam(lr=0.001)を使いました．</p>
+
+<p>
+<figure >
+    
+        <img src="/img/post/optim/trainloss.png" />
+    
+    
+    <figcaption>
+        <h4>学習データでの損失の変動</h4>
+        
+    </figcaption>
+    
+</figure>
+
+
+<figure >
+    
+        <img src="/img/post/optim/testloss.png" />
+    
+    
+    <figcaption>
+        <h4>検証データでの損失の変動</h4>
+        
+    </figcaption>
+    
+</figure>
+
+
+<figure >
+    
+        <img src="/img/post/optim/testacc.png" />
+    
+    
+    <figcaption>
+        <h4>検証データでの正答率の変動</h4>
+        
+    </figcaption>
+    
+</figure>
+
+
+<figure >
+    
+        <img src="/img/post/optim/testacc_withoutSGD.png" />
+    
+    
+    <figcaption>
+        <h4>検証データでのSGD以外の正答率の変動</h4>
+        
+    </figcaption>
+    
+</figure>
+</p>
+
+<p>今回の結果からはSGD以外の性能に大きな際は見られないものの，強いて言えばAdadeltaが安定していそうです．</p>
+
+<p>この比較については，データやアーキテクチャを変更して，今後さらに検証してみたいと考えています．また今回はRMSPropが異常に大きな損失を返すなど，問題があったのでこの点も確認をしてみます．</p>
+
+<h1 id="まとめ">まとめ</h1>
+
+<p>このようにSGDからさまざまな更新手法が発展してきましたが，最近ではAdamをはじめとする勾配に適応する手法では十分な汎化性能が得られない，SGDに立ち返るべきという研究<sup class="footnote-ref" id="fnref:8"><a rel="footnote" href="#fn:8">8</a></sup>もあります．一方で問題によって適当なoptimizerが異なることも知られており(<a href="https://github.com/soumith/ganhacks">例</a>)，とりあえずAdam，ではいけなくて，optimizerの選択の重要性が分かってきたと言うことかもしれません．銀の弾丸は存在しないのでしょうが，今後も引き続き注目していきたいです．</p>
+
+<p>今回の記事を執筆するに当たってはほかに<sup class="footnote-ref" id="fnref:9"><a rel="footnote" href="#fn:9">9</a></sup>,<sup class="footnote-ref" id="fnref:10"><a rel="footnote" href="#fn:10">10</a></sup>を参考にしました．</p>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:1">Hoffer, E. (2017). Train longer , generalize better : closing the generalization gap in large batch training of neural networks, 1–13.
+ <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
+<li id="fn:2">Duchi, J., Hazan, E., &amp; Singer, Y. (2011). Adaptive Subgradient Methods for Online Learning and Stochastic Optimization. Journal of Machine Learning Research, 12, 2121–2159.
+ <a class="footnote-return" href="#fnref:2"><sup>[return]</sup></a></li>
+<li id="fn:3">これといった初出はないようです．G.HintonのCouseraの授業やTronto大学での授業に出てきたようです．
+ <a class="footnote-return" href="#fnref:3"><sup>[return]</sup></a></li>
+<li id="fn:4">Zeiler, M. D. (2012). ADADELTA: An Adaptive Learning Rate Method. arXiv, 6. Retrieved from <a href="http://arxiv.org/abs/1212.5701">http://arxiv.org/abs/1212.5701</a>
+ <a class="footnote-return" href="#fnref:4"><sup>[return]</sup></a></li>
+<li id="fn:5">Kingma, D. P., &amp; Ba, J. L. (2015). Adam: a Method for Stochastic Optimization. International Conference on Learning Representations 2015, 1–15.
+ <a class="footnote-return" href="#fnref:5"><sup>[return]</sup></a></li>
+<li id="fn:6">Koushik, J., &amp; Hayashi, H. (2016). Improving Stochastic Gradient Descent with Feedback. Arxiv, 1–8. Retrieved from <a href="http://arxiv.org/abs/1611.01505">http://arxiv.org/abs/1611.01505</a>
+ <a class="footnote-return" href="#fnref:6"><sup>[return]</sup></a></li>
+<li id="fn:7">Zhang, J., Mitliagkas, I., &amp; Ré, C. (2017). YellowFin and the Art of Momentum Tuning. arXiv, 1–21. Retrieved from <a href="http://arxiv.org/abs/1706.03471">http://arxiv.org/abs/1706.03471</a>
+ <a class="footnote-return" href="#fnref:7"><sup>[return]</sup></a></li>
+<li id="fn:8">Wilson, A. C., Roelofs, R., Stern, M., Srebro, N., &amp; Recht, B. (2017). The Marginal Value of Adaptive Gradient Methods in Machine Learning. arXiv, 1–14. Retrieved from <a href="http://arxiv.org/abs/1705.08292">http://arxiv.org/abs/1705.08292</a>
+ <a class="footnote-return" href="#fnref:8"><sup>[return]</sup></a></li>
+<li id="fn:9">Sebastian Ruder (2016). An overview of gradient descent optimisation algorithms. arXiv preprint arXiv:1609.04747.
+ <a class="footnote-return" href="#fnref:9"><sup>[return]</sup></a></li>
+<li id="fn:10">Stanford大学 <a href="http://cs231n.github.io/">&ldquo;CS231n: Convolutional Neural Networks for Visual Recognition&rdquo;</a>
+ <a class="footnote-return" href="#fnref:10"><sup>[return]</sup></a></li>
+</ol>
+</div>
+
+
+          
+          
+        </article>
+      </div>
+    </main>
+
+    <nav class="pagination-single">
+      <div class="container">
+      
+        <span class="previous">&larr; <a href="https://mosko.tokyo/post/optimization/" rel="prev">最適化手法についてー勾配法，ニュートン法，準ニュートン法などー</a></span>
+      
+      
+      </div>
+    </nav>
+  </div>
+
+
+  <div id="footer">
+
+    
+      <ul class="copyright">
+        <li><a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="クリエイティブ・コモンズ・ライセンス" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/80x15.png" /></a>&nbspWritten by Ryuichiro Hataya</li><li>Powered by <a href="https://gohugo.io/">Hugo</a></li>
+      </ul>
+
+  </div>
+
+
+
+  <script src="/js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/jquery.scrolly.min.js"></script>
+  <script src="/js/jquery.scrollzer.min.js"></script>
+  <script src="/js/skel.min.js"></script>
+  <script src="/js/util.js"></script>
+  <script src="/js/main.js"></script>
+
+
+      <script>
+      renderMathInElement(
+      document.body,
+      {
+        delimiters: [
+          {left: "$$", right: "$$", display: false},
+          {left: "\\[", right: "\\]", display: true},
+          {left: "$", right: "$", display: false}
+        ],
+        ignoredTags: [
+          "script",
+          "noscript",
+          "style",
+          "textarea",
+          "pre",
+          "code"
+        ]
+      }
+      );
+      </script>
+
+</body>
+</html>
+

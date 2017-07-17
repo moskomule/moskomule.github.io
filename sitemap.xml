@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://mosko.tokyo/post/optimization2/</loc>
+    <lastmod>2017-07-12T12:37:12+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://mosko.tokyo/post/optimization/</loc>
     <lastmod>2017-07-09T12:37:12+09:00</lastmod>
   </url>
@@ -242,7 +247,7 @@
   
   <url>
     <loc>https://mosko.tokyo/tags/math/</loc>
-    <lastmod>2017-07-09T12:37:12+09:00</lastmod>
+    <lastmod>2017-07-12T12:37:12+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -254,13 +259,13 @@
   
   <url>
     <loc>https://mosko.tokyo/post/</loc>
-    <lastmod>2017-07-09T12:37:12+09:00</lastmod>
+    <lastmod>2017-07-12T12:37:12+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://mosko.tokyo/tags/python/</loc>
-    <lastmod>2017-07-09T12:37:12+09:00</lastmod>
+    <lastmod>2017-07-12T12:37:12+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -308,7 +313,7 @@
   
   <url>
     <loc>https://mosko.tokyo/</loc>
-    <lastmod>2017-07-09T12:37:12+09:00</lastmod>
+    <lastmod>2017-07-12T12:37:12+09:00</lastmod>
     <priority>0</priority>
   </url>
   
