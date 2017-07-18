@@ -309,7 +309,7 @@ r_k &amp;= \begin{cases}
 \frac{f_{k}-f_{k-1}}{f_{k-1}} ~ ~\text{otherwise}
 \end{cases} \cr\cr
 d_{k+1} &amp;= \beta_3 d_k+(1-\beta_3)r_k \cr\cr
-x_{k+1} &amp;= x_k -\alpha(d_{k+1}\odot(\hat{v}_{k+1})^{\frac12}+\epsilon)^{-1}\odot\hat{m}_{k+1}
+x_{k+1} &amp;= x_k -\alpha(d_{k+1}(\hat{v}_{k+1})^{\frac12}+\epsilon)^{-1}\odot\hat{m}_{k+1}
 \end{aligned}\]</p>
 
 <p>ただし，$f_k=f(x_k)$です．実際には$\kappa&lt;r_k&lt;K$と範囲を限定し，$f_k$の代わりに，$f$を近似する滑らかな列$\hat{f}_k$を使うなどの工夫がされています．</p>
