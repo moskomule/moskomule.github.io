@@ -91,7 +91,7 @@
 
 <p>について$x\gets x-\alpha\nabla E$と更新していました．</p>
 
-<p>また，確率的な(stochastic)，または逐次的な(online)勾配降下法では$n\in\{1,\ldots,N\}$を乱択し$x\gets x-\alpha\nabla E_n(x)$により更新を行います．</p>
+<p>また，確率的な(stochastic)では$n\in\{1,\ldots,N\}$を乱択して，または逐次的な(online)勾配降下法では$n=1,2,\ldots,$によって$x\gets x-\alpha\nabla E_n(x)$により更新を行います．</p>
 
 <p>また，ディープラーニングの文脈では$B\subset\{1,\ldots,N\}$によって$x\gets x-\frac{\alpha}{|B|}\sum_{i\in B}\nabla E_i(x)$を更新するミニバッチ更新がしばしば用いられます．ミニバッチの大きさ$|B|$は32,64,128などがよく用いられるように思われます．この大きさが大きいほど計算は速くなりますが，あまり大きくない方が汎化性能が上がるという話もあります<sup class="footnote-ref" id="fnref:1"><a rel="footnote" href="#fn:1">1</a></sup>．</p>
 
