@@ -97,6 +97,8 @@
 
 <p>今回紹介する手法は主にディープラーニングの文脈で用いられるため，ミニバッチ更新を行うことでよりよい性能が出せる可能性がありますが，記事中では可視化の都合もあり$x\gets x-\alpha d$によって更新を行います．</p>
 
+<p>なお，表記にはこの記事特有のものも含まれていますので，その点にはお気をつけ下さい．</p>
+
 <h1 id="sgd-stochastic-gradient-descent">SGD(Stochastic Gradient Descent)</h1>
 
 <p>基本的に勾配降下法と同一で，以下により更新を行います．</p>
@@ -181,7 +183,7 @@ x_{k+1} &amp;= x_k+v_{k+1}
 
 <h2 id="adagrad">Adagrad</h2>
 
-<p>Adagrad<sup class="footnote-ref" id="fnref:2"><a rel="footnote" href="#fn:2">2</a></sup>は累積した過去の勾配情報を元に学習率を変更します．</p>
+<p>Adagrad<sup class="footnote-ref" id="fnref:2"><a rel="footnote" href="#fn:2">2</a></sup>は過去の勾配の自乗$(\nabla f(x))^2$を累積し，これを用いて学習率を適応させていきます．</p>
 
 <p>\[\begin{aligned}
   g_{k+1} &amp;= g_k + (\nabla f(x_k))^2,~g_0=0 \cr\cr
@@ -189,6 +191,8 @@ x_{k+1} &amp;= x_k+v_{k+1}
 \end{aligned}\]</p>
 
 <p>ただし，$\epsilon=\varepsilon\mathbf{1}$，$(g_{k+1}+\epsilon)^{-\frac12}$は第$i$成分が$(g_{k+1}^{(i)}+\varepsilon)^{-1}$であるようなベクトルで，$\odot$は要素積です．$\varepsilon$は分母が0となるのを防ぐためにあり，$10^{-8}$程度です．$|\nabla f(x_k)|$が大きい要素に対しては学習率を下げ，逆に小さい要素に対しては学習率を上げています．</p>
+
+<p>$(g_{k+1}+\epsilon)^{-\frac12}$は$f$の$x_{k}$でのHessianの逆行列 $(\nabla^2 f(x_k))^{-1}$を近似していて，理想的にはNewton法に近くなることが期待されます．</p>
 
 
 <figure >
@@ -309,7 +313,6 @@ r_k &amp;= \begin{cases}
 \frac{f_{k}-f_{k-1}}{f_{k-1}} ~ ~\text{otherwise}
 \end{cases} \cr\cr
 d_{k+1} &amp;= \beta_3 d_k+(1-\beta_3)r_k \cr\cr
-x_{k+1} &amp;= x_k -\alpha(d_{k+1}(\hat{v}_{k+1})^{\frac12}+\epsilon)^{-1}\odot\hat{m}_{k+1}
 \end{aligned}\]</p>
 
 <p>ただし，$f_k=f(x_k)$です．実際には$\kappa&lt;r_k&lt;K$と範囲を限定し，$f_k$の代わりに，$f$を近似する滑らかな列$\hat{f}_k$を使うなどの工夫がされています．</p>
@@ -317,6 +320,23 @@ x_{k+1} &amp;= x_k -\alpha(d_{k+1}(\hat{v}_{k+1})^{\frac12}+\epsilon)^{-1}\odot\
 <h1 id="yellofin">YelloFin</h1>
 
 <p>YelloFin<sup class="footnote-ref" id="fnref:7"><a rel="footnote" href="#fn:7">7</a></sup>はほかの方法が学習率の自動調整を行うのに対し，momentum termの$\mu$も調整しようという試みです． momentum tunerのtunerとtuna(マグロ)をかけてYellowfin(キハダマグロ)と名づけられているようです．</p>
+
+<p>YellowFinでは学習率$\alpha$とmomentum項の係数$\mu$を与えます．ハイパーパラメータは共通の$\beta$を用います．</p>
+
+<p>\[\begin{aligned}
+\alpha_{k+1} &amp;= \beta\alpha_{k}+(1-\beta)\hat{a}_{k+1} \cr\cr
+\mu_{k+1} &amp;= \beta\mu_{k}+(1-\beta)\hat{m}_{k+1}
+\end{aligned}\]</p>
+
+<p>ただし，$\hat{a}_{k+1},\hat{m_{k+1}}$は$(\nabla f(x)$と$\beta)$によって定まる曲率の範囲$(h^{\min}_{k+1},h^{\max}_{k+1})$，勾配の分散$V_{k+1}$，最適解までの距離$D_{k+1}$から以下によって得ます．簡単のために下付文字の${}_k$は省略します．</p>
+
+<p>\[\begin{aligned}
+\hat{m},\hat{a} &amp;= \mathop{\mathrm{argmin}}\limits_{m} mD^2 + a^2V \cr\cr
+ s.t. \space\space m &amp;\geq(\frac{\sqrt{h_{\max}/h_{\min}}-1}{\sqrt{h_{\max}/h_{\min}}+1})^2 \cr\cr
+    a &amp;= \frac{(1-\sqrt{m})^2}{h_{\min}}
+\end{aligned}\]</p>
+
+<p>ここで$f(x)$を（局所的には）$\frac12hx^2+V$という形であると仮定しているので，「最適解までの距離」というものが出てきます．</p>
 
 <p><a href="http://cs.stanford.edu/~zjian/project/YellowFin/index.html">公式のブログ</a>が充実しているので此方をご覧下さい．Adamと比較してより早く収束すると述べられています．</p>
 
