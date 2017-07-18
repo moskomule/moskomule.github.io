@@ -91,7 +91,7 @@
 
 <p>について$x\gets x-\alpha\nabla E$と更新していました．</p>
 
-<p>また，確率的な(stochastic)では$n\in\{1,\ldots,N\}$を乱択して，または逐次的な(online)勾配降下法では$n=1,2,\ldots,$によって$x\gets x-\alpha\nabla E_n(x)$により更新を行います．</p>
+<p>確率的な(stochastic)では$n\in\{1,\ldots,N\}$を乱択して，または逐次的な(online)勾配降下法では$n=1,2,\ldots,$によって$x\gets x-\alpha\nabla E_n(x)$により更新を行います．</p>
 
 <p>また，ディープラーニングの文脈では$B\subset\{1,\ldots,N\}$によって$x\gets x-\frac{\alpha}{|B|}\sum_{i\in B}\nabla E_i(x)$を更新するミニバッチ更新がしばしば用いられます．ミニバッチの大きさ$|B|$は32,64,128などがよく用いられるように思われます．この大きさが大きいほど計算は速くなりますが，あまり大きくない方が汎化性能が上がるという話もあります<sup class="footnote-ref" id="fnref:1"><a rel="footnote" href="#fn:1">1</a></sup>．</p>
 
@@ -175,7 +175,7 @@ x_{k+1} &amp;= x_k+v_{k+1}
 
 <h1 id="adaptive-learning-rate">Adaptive Learning Rate</h1>
 
-<p>Momentum法と異なり，学習率を自動調整することを目指したのがAdaptive Learning Rateを用いた手法です．</p>
+<p>momentum法と異なり，学習率を自動調整することを目指したのがAdaptive Learning Rateを用いた手法です．</p>
 
 <p>前回紹介した手法にはline search methodなど学習率$\alpha$を最適化する方法が含まれていました．それらの手法では，何度も$f(x_k+\alpha_k d_k)$を更新して適当な$\alpha$を求めます．</p>
 
@@ -261,21 +261,21 @@ x_{k+1} &amp;= x_k+v_{k+1}
 
 <h2 id="adam">Adam</h2>
 
-<p>Adam(adaptive moment estimation)<sup class="footnote-ref" id="fnref:5"><a rel="footnote" href="#fn:5">5</a></sup>では勾配と勾配の2乗の指数移動平均(exponential moving average)をもちいることで，勾配の1次モーメント（平均）と0周りの2次モーメント（0周りの分散）を推定しています．</p>
+<p>Adam(adaptive moment estimation)<sup class="footnote-ref" id="fnref:5"><a rel="footnote" href="#fn:5">5</a></sup>では勾配と勾配の2乗の指数移動平均(exponential moving average, EMA)をもちいることで，勾配の1次モーメント（$m$ 平均）と0周りの2次モーメント（$v$ 0周りの分散）を推定しています．指数移動平均は時系列データの文脈で使われる言葉で，Googleで調べるとFX系のページが出てきました．</p>
 
 <p>\[\begin{aligned}
 m_{k+1} &amp;= \beta_1 m_{k}+(1-\beta_1)\nabla f(x_k),~m_0=0 \cr\cr
 v_{k+1} &amp;= \beta_2 v_{k}+(1-\beta_2)(\nabla f(x_k))^2,~v_0=0
 \end{aligned}\]</p>
 
-<p>ただし，$k$が小さいと初期値(0)の影響を強く受けるため</p>
+<p>ただし，$k$が小さいと初期値($m_0=v_0=0$)の影響を強く受けるため</p>
 
 <p>\[\begin{aligned}
 \hat{m}_{k} &amp;= \frac{m_k}{1-\beta_1^k} \cr\cr
 \hat{v}_{k} &amp;= \frac{v_k}{1-\beta_2^k}
 \end{aligned}\]</p>
 
-<p>によって補正を行い，以下によって更新を行います</p>
+<p>によって補正を行い，以下によって更新します．</p>
 
 <p>\[x_{k+1}=x_k-\alpha((\hat{v}_{k+1})^{\frac12}+\epsilon)^{-1}\odot\hat{m}_{k+1}\]</p>
 
