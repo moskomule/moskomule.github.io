@@ -401,11 +401,21 @@ h_t^l &amp;= o_t^l\odot\tanh(c_t^l)
             setattr(self, f&quot;fc_{i}&quot;, nn.Linear(self.hidden_size, char_num))
 
     def forward(self, x):
-        output, h = self.rnn(x)
+      h_0 = self.get_hidden()
+        output, h = self.rnn(x, h_0)  
+        # h_0を与えない場合，0ベクトルが与えられます．つまり，
+        # output, h = self.rnn(x) も動きます．
         if self.rnn_name is &quot;LSTM&quot;: # LSTMはh,cと2つの隠れ状態を持ちます．ここではhのみを使います
             h = h[0]
         h = F.relu(h[-1]) # h は(num_layers, batch_size, hidden_size)なので[-1]で最終層の隠れ状態を得ます
         return [getattr(self, f&quot;fc_{i}&quot;)(h) for i in range(self.output_size)]
+
+    def get_hidden(self):
+        h_0 = torch.zeros(self.num_layers, self.batch_size, self.hidden_size)
+        if self.rnn_name is &quot;LSTM&quot;:
+            return (Variable(h_0), Variable(h_0))
+        else:
+            return Variable(h_0)
 </code></pre>
 
 <hr />
