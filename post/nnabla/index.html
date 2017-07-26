@@ -1,0 +1,266 @@
+<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <title>
+      NNablaの静的・動的計算グラフの比較 | moskomule log
+    </title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/sanitize.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+    <link rel="stylesheet" href="/css/highlight_monokai.css">
+    <link rel="stylesheet" href="/css/custom.css">
+
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha256-tkzDFSl16wERzhCWg0ge2tON2+D6Qe9iEaJqM4ZGd4E=" crossorigin="anonymous" type="text/css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha256-gNVpJCw01Tg4rruvtWJp9vS0rRchXP2YF+U+b2lp8Po=" crossorigin="anonymous" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha256-ExtbCSBuYA7kq1Pz362ibde9nnsHYPt6JxuxYeZbU+c=" crossorigin="anonymous" type="text/javascript"></script>
+
+  </head>
+  <body>
+
+
+    
+    <div id="header">
+
+      <div class="top">
+
+        
+        <div id="logo">
+          <a href="https://mosko.tokyo/"><span class="image avatar48"><img src="/img/avatar.jpg" alt="avator" /></span></a>
+          <h1 id="title">moskomule</h1>
+          <p>in Tokyo, Bachelor (Engineering), currently interested in ML, DL.</p>
+        </div>
+
+        
+        <nav id="nav">
+
+          <ul>
+              <li><a href="https://mosko.tokyo/#top" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-home">Introduction</span></a></li>
+              <li><a href="https://mosko.tokyo/#about" id="about-link" class="skel-layers-ignoreHref"><span class="icon fa-user">About Me</span></a></li>
+              <li><a href="https://mosko.tokyo/#articles" id="articles-link" class="skel-layers-ignoreHref"><span class="icon fa-th">Articles</span></a></li>
+              <li><a href="https://mosko.tokyo/#contact" id="contact-link" class="skel-layers-ignoreHref"><span class="icon fa-envelope">Contact</span></a></li>
+          </ul>
+        </nav>
+
+      </div>
+
+      <div class="bottom">
+
+        
+        <ul class="icons">
+          
+          <li><a href="https://twitter.com/mosko_mule" class="icon fa-twitter"><span class="label">twitter</span></a></li>
+          
+          <li><a href="https://github.com/moskomule" class="icon fa-github"><span class="label">github</span></a></li>
+          
+        </ul>
+
+      </div>
+
+    </div>
+
+
+  
+  <div id="main">
+    <main id="single" role="main">
+      <div class="container">
+        <div class="article-header">
+          <h1>NNablaの静的・動的計算グラフの比較</h1>
+          <div class="meta">
+            Jul 25, 2017 &nbsp;
+            
+              #<a href="/tags/nnabla">nnabla</a>&nbsp;
+            
+              #<a href="/tags/python">Python</a>&nbsp;
+            
+          </div>
+        </div>
+        <article>
+          
+
+<h1 id="はじめに">はじめに</h1>
+
+<p><a href="https://nnabla.org/ja/">NNabla</a>はSonyによるニューラルネットワークライブラリです．特徴としては公式ページにあるように動的計算グラフと性的計算グラフの双方をサポートすること，PythonとC++のAPIが用意されていること，Xperia Earなどの小型端末をはじめ，さまざまな機器の上で動き実際に利用されていることなどがあります．</p>
+
+<p>加えてレイヤーがParametric Functionsという名前で表されていること，バイナリレイヤーが用意されていること，学習のモニタ機能が充実していること(<code>Monitors</code>)なども特徴と言えるのではないでしょうか．逆にRNNレイヤーなどは用意されていません．</p>
+
+<p>最近Python3に対応し使えるようになったこともあり，Sonyに愛着があったので試してみました．MNISTをやるだけです．</p>
+
+<h1 id="インストール">インストール</h1>
+
+<p>LinuxとWindowsでは<code>pip install -U nnabla</code>で導入できるのですが，macOSではソースからのビルドの必要があります(2017/07/26現在)．</p>
+
+<pre><code>brew install protoc
+git clone https://github.com/sony/nnabla
+cd nnabla
+sudo pip install -U -r python/setup_requirements.txt
+sudo pip install -U -r python/requirements.txt
+mkdir build
+cd build
+export MACOSX_DEPLOYMENT_TARGET=10.9
+cmake ../
+make -j 16
+cp lib/libnnabla.dylib /usr/local/lib/
+cd dist
+sudo pip install -U &lt;build-wheel-file&gt;.whl
+</code></pre>
+
+<h1 id="モデル">モデル</h1>
+
+<p>LeNetの活性化函数をreluに変えたものを使います．とりあえずPyTorch風に書いています．<code>nnabla.get_parameters()</code>は<code>parameter_scope</code>内を参照するようですので適宜設定します．</p>
+
+<pre><code class="language-python">import nnabla
+from nnabla import Variable
+import nnabla.functions as F
+import nnabla.parametric_functions as PF
+from nnabla import solvers
+
+class Lenet(object):
+    self.param_dict = None
+    def __init__(self):
+        self.conv1 = lambda x: PF.convolution(x, 16, (5, 5), name=&quot;conv1&quot;)
+        self.conv2 = lambda x: PF.convolution(x, 16, (5, 5), name=&quot;conv2&quot;)
+        self.fc3 = lambda x: PF.affine(x, 50, name='fc3')
+        self.fc4 = lambda x: PF.affine(x, 10, name='fc4')
+
+    def __call__(self, x):
+        with nnabla.parameter_scope(&quot;lenet&quot;):
+            x = self.conv1(x)
+            x = F.relu(F.max_pooling(x, (2, 2)), inplace=True)
+            x = self.conv2(x)
+            x = F.relu(F.max_pooling(x, (2, 2)), inplace=True)
+            x = F.relu(self.fc3(x), inplace=True)
+            x = self.fc4(x)
+            self.param_dict = nnabla.get_parameters()
+        return x
+</code></pre>
+
+<h1 id="静的計算グラフ">静的計算グラフ</h1>
+
+<p>define-and-runです．</p>
+
+<pre><code class="language-python">def static():
+    ##  計算グラフの構築
+    input = Variable((batch_size, *image_size))
+    target = Variable((batch_size, 1))
+    model = Lenet()
+    loss = F.mean(F.softmax_cross_entropy(output, target))
+
+    optimizer = solvers.Adam()
+    optimizer.set_parameters(model.param_dict)
+
+    for step, data in enumerate(train_data_iter):
+        input.d, target.d = data
+        ## 順伝播
+        loss.forward()
+        ## 勾配を初期化
+        optimizer.zero_grad()
+        ## 逆伝播，勾配を更新
+        loss.backward()
+        ## パラメーターを更新
+        optimizer.update()
+
+        if step % 100 == 0:
+           logger.info(&quot;step: {}  loss: {:.2f}.&quot;.format(step, float(loss)))
+</code></pre>
+
+<h1 id="動的計算グラフ">動的計算グラフ</h1>
+
+<p>define-by-runです．動的計算グラフを使う場合にはグラフ構築箇所で<code>nnabla.auto_forward</code>を使います．</p>
+
+<pre><code class="language-python">def dynamic():
+
+    model = Lenet()
+    optimizer = solvers.Adam()
+
+    for step, (input, target) in enumerate(train_data_iter):
+        input = Variable.from_numpy_array(input)
+        target = Variable.from_numpy_array(target)
+        ##  計算グラフを構築
+        with nnabla.auto_forward():
+            output = model(input)
+            loss = F.mean(F.softmax_cross_entropy(output, target))
+        optimizer.set_parameters(self.model.param_dict, reset=False,
+                                 retain_state=True)
+        ## 勾配を初期化
+        optimizer.zero_grad()
+        ## 逆伝播，勾配を更新
+        loss.backward()
+        ## パラメーターを更新
+        optimizer.update()
+
+        if step % 100 == 0:
+           logger.info(&quot;step: {}  loss: {:.2f}.&quot;.format(step, float(loss)))
+</code></pre>
+
+<h1 id="まとめ">まとめ</h1>
+
+<p>簡単にNNablaでMNISTを動かしてみました．静的計算グラフではTensorFlowよりも簡潔に書ける気がします．</p>
+
+
+          
+          
+        </article>
+      </div>
+    </main>
+
+    <nav class="pagination-single">
+      <div class="container">
+      
+        <span class="previous">&larr; <a href="https://mosko.tokyo/post/optimization2/" rel="prev">最適化手法について—SGDからYelloFinまで—</a></span>
+      
+      
+      </div>
+    </nav>
+  </div>
+
+
+  <div id="footer">
+
+    
+      <ul class="copyright">
+        <li><a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="クリエイティブ・コモンズ・ライセンス" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/80x15.png" /></a>&nbspWritten by Ryuichiro Hataya</li><li>Powered by <a href="https://gohugo.io/">Hugo</a></li>
+      </ul>
+
+  </div>
+
+
+
+  <script src="/js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/jquery.scrolly.min.js"></script>
+  <script src="/js/jquery.scrollzer.min.js"></script>
+  <script src="/js/skel.min.js"></script>
+  <script src="/js/util.js"></script>
+  <script src="/js/main.js"></script>
+
+
+      <script>
+      renderMathInElement(
+      document.body,
+      {
+        delimiters: [
+          {left: "$$", right: "$$", display: false},
+          {left: "\\[", right: "\\]", display: true},
+          {left: "$", right: "$", display: false}
+        ],
+        ignoredTags: [
+          "script",
+          "noscript",
+          "style",
+          "textarea",
+          "pre",
+          "code"
+        ]
+      }
+      );
+      </script>
+
+</body>
+</html>
+
