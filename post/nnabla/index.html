@@ -119,8 +119,8 @@ import nnabla.parametric_functions as PF
 from nnabla import solvers
 
 class Lenet(object):
-    self.param_dict = None
     def __init__(self):
+        self.param_dict = None
         self.conv1 = lambda x: PF.convolution(x, 16, (5, 5), name=&quot;conv1&quot;)
         self.conv2 = lambda x: PF.convolution(x, 16, (5, 5), name=&quot;conv2&quot;)
         self.fc3 = lambda x: PF.affine(x, 50, name='fc3')

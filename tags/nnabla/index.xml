@@ -23,7 +23,7 @@
 最近Python3に対応し使えるようになったこともあり，Sonyに愛着があったので試してみました．MNISTをやるだけです．
 インストール LinuxとWindowsではpip install -U nnablaで導入できるのですが，macOSではソースからのビルドの必要があります(2017/07/26現在)．
 brew install protoc git clone https://github.com/sony/nnabla cd nnabla sudo pip install -U -r python/setup_requirements.txt sudo pip install -U -r python/requirements.txt mkdir build cd build export MACOSX_DEPLOYMENT_TARGET=10.9 cmake ../ make -j 16 cp lib/libnnabla.dylib /usr/local/lib/ cd dist sudo pip install -U &amp;lt;build-wheel-file&amp;gt;.whl  モデル LeNetの活性化函数をreluに変えたものを使います．とりあえずPyTorch風に書いています．nnabla.get_parameters()はparameter_scope内を参照するようですので適宜設定します．
-import nnabla from nnabla import Variable import nnabla.functions as F import nnabla.parametric_functions as PF from nnabla import solvers class Lenet(object): self.</description>
+import nnabla from nnabla import Variable import nnabla.functions as F import nnabla.parametric_functions as PF from nnabla import solvers class Lenet(object): def __init__(self): self.</description>
     </item>
     
   </channel>
