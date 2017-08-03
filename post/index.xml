@@ -27,7 +27,7 @@ import nnabla from nnabla import Variable import nnabla.functions as F import nn
     </item>
     
     <item>
-      <title>最適化手法について—SGDからYelloFinまで—</title>
+      <title>最適化手法について—SGDからYellowFinまで—</title>
       <link>https://mosko.tokyo/post/optimization2/</link>
       <pubDate>Wed, 12 Jul 2017 12:37:12 +0900</pubDate>
       

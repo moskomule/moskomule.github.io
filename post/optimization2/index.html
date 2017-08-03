@@ -3,7 +3,7 @@
 <html>
   <head>
     <title>
-      最適化手法について—SGDからYelloFinまで— | moskomule log
+      最適化手法について—SGDからYellowFinまで— | moskomule log
     </title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -68,7 +68,7 @@
     <main id="single" role="main">
       <div class="container">
         <div class="article-header">
-          <h1>最適化手法について—SGDからYelloFinまで—</h1>
+          <h1>最適化手法について—SGDからYellowFinまで—</h1>
           <div class="meta">
             Jul 12, 2017 &nbsp;
             
@@ -317,9 +317,9 @@ d_{k+1} &amp;= \beta_3 d_k+(1-\beta_3)r_k \cr\cr
 
 <p>ただし，$f_k=f(x_k)$です．実際には$\kappa&lt;r_k&lt;K$と範囲を限定し，$f_k$の代わりに，$f$を近似する滑らかな列$\hat{f}_k$を使うなどの工夫がされています．</p>
 
-<h1 id="yellofin">YelloFin</h1>
+<h1 id="yellowfin">YellowFin</h1>
 
-<p>YelloFin<sup class="footnote-ref" id="fnref:7"><a rel="footnote" href="#fn:7">7</a></sup>はほかの方法が学習率の自動調整を行うのに対し，momentum termの$\mu$も調整しようという試みです． momentum tunerのtunerとtuna(マグロ)をかけてYellowfin(キハダマグロ)と名づけられているようです．</p>
+<p>YellowFin<sup class="footnote-ref" id="fnref:7"><a rel="footnote" href="#fn:7">7</a></sup>はほかの方法が学習率の自動調整を行うのに対し，momentum termの$\mu$も調整しようという試みです． momentum tunerのtunerとtuna(マグロ)をかけてYellowfin(キハダマグロ)と名づけられているようです．</p>
 
 <p>YellowFinでは学習率$\alpha$とmomentum項の係数$\mu$を与えます．ハイパーパラメータは共通の$\beta$を用います．</p>
 
