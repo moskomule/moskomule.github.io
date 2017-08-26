@@ -1,178 +1,153 @@
-#social {
-  margin-top: 20px;
-  text-align: center;
+body {
+    background-color: rgba(232, 234, 246, 0.3);
+    font-family: Roboto, sans-serif;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
 }
 
-article h1 {
-  font-size: 20px;
-  border-left: 2px solid #bcc;
-  border-bottom: 2px dotted #bcc;
-  margin: 50px 0 25px 0;
-  padding-left: 10px;
+main {
+    padding-top: 40px;
+    margin: auto;
+    max-width: 840px;
 }
-article h2 {
-  font-size: 18px;
-  border-bottom: 2px solid #bcc;
-  margin: 50px 0 25px 0;
-}
-article h3 {
-  font-size: 16px;
-  margin: 40px 10px 25px 0;
-  border-left: 2px solid #bcc;
-  padding-left: 5px;
-}
-article h4,
-article h5,
-article h6 {
-  font-size: 16px;
-  margin: 40px 0 25px 0;
-}
+
 article {
-  margin: 25px 0;
-  font-size: 10pt;
-  line-height: 1.6em;
+    max-width: 800px;
 }
-.item header h3 {
-  font-size: 14pt;
+
+h1 {
+    border-left: 5px solid #3f51b5;
+    padding-left: 10px;
+    font-weight: lighter;
+    font-size: 20pt;
+}
+
+article h2 {
+    font-weight: lighter;
+}
+
+article h2::before{
+    content: "◆";
+    color: #3f51b5;
+}
+
+article h3::before{
+    content: "◇";
+    color: #3f51b5;
 }
 
 article code {
-  font-family: consolas, "Courier New", monospace;
-  font-style: bold;
-  color: #f66;
-  background-color: #fee;
-  border-radius: 3px;
-  margin: 3px 3px;
+    font-family: 'Source Sans Pro', monospace;
+    padding: 0px 5px 0px 5px;
+    color: rgba(255, 40, 81, 1);
+    background-color: rgba(255, 40, 81, 0.1);
+    border-radius: 0.2em;
 }
+
 article pre code {
-  margin: 20px;
-  padding-left: 20px;
-  font-family: consolas, "Courier New", monospace;
-}
-article blockquote {
-  margin: 10px 0;
-  padding-left: 20px;
-  border-left: 4px solid #ccc;
-  font-style: italic;
-}
-article img {
-  display: block;
-  margin: 0 auto;
-  text-align: center;
+    font-family: 'Source Sans Pro', monospace;
+    border-radius: 0.2em;
 }
 
-.article-header {
-  border-left: 4px solid #29abe2;
-  margin: 10px 0 25px -4px;
-  padding: 5px 0 5px 10px;
+article p {
+    padding-left: 15px;
 }
 
-article hr {
-  border: 1px dashed #ddd;
-  margin: 20px;
+footer {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    width: 100%;
+    margin-left: 120px;
 }
 
-nav ul.pagination {
-  font-size: 0;
-  text-align: center;
-  margin: 0;
+
+/* header */
+
+.mdc-toolbar__row:first-child::after {
+    background-image: url("../img/banner.jpg");
+    background-size: cover;
+    background-position: center;
 }
-nav ul.pagination li {
-  display: inline-block;
-  font-size: 14px;
-  border: 1px solid #ccc;
-  background-color: #eee;
-  padding: 3px 10px;
-  margin: 0 3px;
+
+/* sidebar */
+
+header #introduction a {
+    font-size: 20px;
+    color: #ffffff;
 }
-nav ul.pagination li.active {
-  border: 2px solid #29abe2;
-  font-size: 14px;
+
+.container {
+    margin-top: 20px;
+    margin-bottom: 10px;
 }
-nav ul.pagination li:hover {
-  border-color: #29abe2;
+
+figure{
+    padding-left: 20px;
+    padding-top: 40px;
+    margin-bottom: 40px;
+    margin-left: 10px;
 }
-nav.pagination-single {
-  padding: 20px 0 20px 0;
-  overflow: hidden;
-  font-size: 14px;
+
+figcaption h4 {
+    padding-left: 10px;
+    font-weight: lighter;
+    max-width: 640px;
+    border-left: 2px solid gray;
+    border-bottom: 1px solid gray;
 }
+
+figcaption h4::before {
+    content: "fig. ";
+}
+
+@media screen and (min-width: 720px) {
+    article img {
+        max-height: 640px;
+        max-width: 640px;
+    }
+}
+
+@media screen and (max-width: 719px) {
+    article img {
+        max-height: 100%;
+        max-width: 100%;
+    }
+}
+
+.article-header h1 {
+    font-weight: lighter;
+}
+
+.index-content {
+    margin-left: 20px;
+}
+
+
+/* pagenation */
+
+.pagination-single .container {
+    padding-top: 20px;
+    border-top: 1px solid gray;
+    max-width: 720px;
+}
+
 nav.pagination-single span.previous {
-  float: left;
-  padding: 10px 0 10px 0;
-  max-width: 300px;
-  font-size: 14px;
+    float: left;
+    max-width: 300px;
+    font-size: 14px;
 }
+
 nav.pagination-single span.next {
-  float: right;
-  padding: 10px 0 10px 0;
-  max-width: 300px;
-  font-size: 14px;
-}
-nav.pagination-single a {
-  color: #29abe2;
-  font-size: 14px;
-}
-.summary {
-  padding-bottom: 20px;
-  margin-bottom: 20px;
-  border-bottom: 1px solid #ddd;
-}
-.meta {
-  color: #999;
-  font-size: 12px;
+    float: right;
+    max-width: 300px;
+    font-size: 14px;
 }
 
-.light-gray {
-  color: #999;
+.social {
+    font-size: 20pt;
 }
 
-main#list{
-  margin: 10px 15px 10px 15px;
-}
-
-main#list h2{
-  font-size: 14pt;
-}
-
-.row {
-  margin: 10px;
-}
-
-figcaption{
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-figcaption h4{
-  font-size: 10pt;
-}
-
-figcaption h4:before{
-  content: "fig. ";
-}
-
-iframe{
-  margin: 30px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-figure img{
-  margin-bottom: -20px;
-  max-width: 80%;
-  max-height: 480px;
-}
-
-.footnotes{
-  counter-reset: annotation;
-}
-.footnotes li:before {
-  counter-increment: annotation;
-  content: "▷" counters(annotation, ".") ". ";
-}
-article li:before{
-  content: "・";
-  padding-left: 10px;
+i.fa {
+    color: rgba(0, 0, 0, 0.5);
+    padding-right: 30px;
 }

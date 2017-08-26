@@ -1,71 +1,92 @@
 <!DOCTYPE HTML>
 
 <html>
-  <head>
+<head>
     <title>
-      「日本古典籍字形データセット」で遊ぶ | moskomule log
+        「日本古典籍字形データセット」で遊ぶ | moskomule log
     </title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="/css/main.css" />
-    <link rel="stylesheet" href="/css/sanitize.css">
-    <link rel="stylesheet" href="/css/responsive.css">
-    <link rel="stylesheet" href="/css/highlight_monokai.css">
-    <link rel="stylesheet" href="/css/custom.css">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/css/highlight_monokai.css" />
+    <link rel="stylesheet" href="/css/material-components-web.css" />
+    <link rel="stylesheet" href="/css/custom.css" />
 
     
     <link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha256-tkzDFSl16wERzhCWg0ge2tON2+D6Qe9iEaJqM4ZGd4E=" crossorigin="anonymous" type="text/css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha256-gNVpJCw01Tg4rruvtWJp9vS0rRchXP2YF+U+b2lp8Po=" crossorigin="anonymous" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha256-ExtbCSBuYA7kq1Pz362ibde9nnsHYPt6JxuxYeZbU+c=" crossorigin="anonymous" type="text/javascript"></script>
+</head>
 
-  </head>
-  <body>
-
-
-    
-    <div id="header">
-
-      <div class="top">
-
+<body>
+    <div class="top">
         
-        <div id="logo">
-          <a href="https://mosko.tokyo/"><span class="image avatar48"><img src="/img/avatar.jpg" alt="avator" /></span></a>
-          <h1 id="title">moskomule</h1>
-          <p>in Tokyo, Bachelor (Engineering), currently interested in ML, DL.</p>
+        <div class="mdc-toolbar mdc-toolbar--fixed mdc-toolbar--waterfall mdc-toolbar--flexible mdc-toolbar--flexible-default-behavior mdc-toolbar--flexible-space-maximized">
+            <div class="mdc-toolbar__row">
+                <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
+                    <button class="header-menu material-icons mdc-toolbar__icon--menu">menu</button>
+                    <span class="mdc-toolbar__title">「日本古典籍字形データセット」で遊ぶ | moskomule log</span>
+                </section>
+                <section class="mdc-toolbar__section mdc-toolbar__section--align-end" role="toolbar">
+                    
+                </section>
+            </div>
         </div>
 
         
-        <nav id="nav">
-
-          <ul>
-              <li><a href="https://mosko.tokyo/#top" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-home">Introduction</span></a></li>
-              <li><a href="https://mosko.tokyo/#about" id="about-link" class="skel-layers-ignoreHref"><span class="icon fa-user">About Me</span></a></li>
-              <li><a href="https://mosko.tokyo/#articles" id="articles-link" class="skel-layers-ignoreHref"><span class="icon fa-th">Articles</span></a></li>
-              <li><a href="https://mosko.tokyo/#contact" id="contact-link" class="skel-layers-ignoreHref"><span class="icon fa-envelope">Contact</span></a></li>
-          </ul>
-        </nav>
-
-      </div>
-
-      <div class="bottom">
-
-        
-        <ul class="icons">
-          
-          <li><a href="https://twitter.com/mosko_mule" class="icon fa-twitter"><span class="label">twitter</span></a></li>
-          
-          <li><a href="https://github.com/moskomule" class="icon fa-github"><span class="label">github</span></a></li>
-          
-        </ul>
-
-      </div>
-
+        <aside class="mdc-temporary-drawer">
+            <nav class="mdc-temporary-drawer__drawer">
+                <header class="mdc-temporary-drawer__header">
+                    <div class="mdc-temporary-drawer__header-content mdc-theme--primary-bg mdc-theme--text-primary-on-primary">
+                        <div id="introduction">
+                            <a href="https://mosko.tokyo/" class="mdc-list">
+                                moskomule log
+                            </a>
+                        </div>
+                    </div>
+                </header>
+                <nav class="mdc-temporary-drawer__content mdc-list-group">
+                    <div id="icon-with-text" class="mdc-list">
+                        <a class="mdc-list-item" href="https://mosko.tokyo/#about">
+                            <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">star</i>About
+                        </a>
+                        <a class="mdc-list-item" href="https://mosko.tokyo/#articles">
+                            <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">book</i>Articles
+                        </a>
+                    </div>
+                    <hr class="mdc-list-divider">
+                    <div class="mdc-list">
+                        <a class="mdc-list-item" href="https://mosko.tokyo/#contact">
+                            <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">send</i>Contact
+                        </a>
+                    </div>
+                    <hr class="mdc-list-divider" />
+                    
+                    <div class="mdc-list social">
+                        <a class="mdc-list-item" href="https://twitter.com/mosko_mule">
+                            <i class="fa fa-2x fa-twitter" aria-hidden="true"></i> twitter
+                        </a>
+                    </div>
+                    
+                    <div class="mdc-list social">
+                        <a class="mdc-list-item" href="https://github.com/moskomule">
+                            <i class="fa fa-2x fa-github" aria-hidden="true"></i> github
+                        </a>
+                    </div>
+                    
+                </nav>
+            </nav>
+        </aside>
     </div>
+    <main>
+        <div class="mdc-toolbar-fixed-adjust"></div>
 
 
   
   <div id="main">
-    <main id="single" role="main">
       <div class="container">
         <div class="article-header">
           <h1>「日本古典籍字形データセット」で遊ぶ</h1>
@@ -148,64 +169,109 @@ model.compile(loss='categorical_crossentropy',
           
         </article>
       </div>
-    </main>
 
     <nav class="pagination-single">
       <div class="container">
       
-        <span class="previous"><a href="https://mosko.tokyo/post/dotfiles/" rel="prev">dotfilesを公開</a></span>
+        <span class="previous">&larr; <a href="https://mosko.tokyo/post/dotfiles/" rel="prev">dotfilesを公開</a></span>
       
       
-        <span class="next"><a href="https://mosko.tokyo/post/getting_started_pytorch/" rel="next">PyTorchはじめ</a></span>
+        <span class="next"><a href="https://mosko.tokyo/post/getting_started_pytorch/" rel="next">PyTorchはじめ</a> &rarr;</span>
       
       </div>
     </nav>
   </div>
 
 
-  <div id="footer">
+<footer class="copyright">
 
     
-      <ul class="copyright">
-        <li><a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="クリエイティブ・コモンズ・ライセンス" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/80x15.png" /></a>&nbspWritten by Ryuichiro Hataya</li><li>Powered by <a href="https://gohugo.io/">Hugo</a></li>
-      </ul>
+    <span class="copyright">
+                <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="クリエイティブ・コモンズ・ライセンス" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/80x15.png" /></a>&nbspWritten by Ryuichiro Hataya, Powered by <a href="https://gohugo.io/">Hugo</a>
+    </span>
 
-  </div>
-
-
-
-  <script src="/js/highlight.pack.js"></script>
-  <script>hljs.initHighlightingOnLoad();</script>
-
-  <script src="/js/jquery.min.js"></script>
-  <script src="/js/jquery.scrolly.min.js"></script>
-  <script src="/js/jquery.scrollzer.min.js"></script>
-  <script src="/js/skel.min.js"></script>
-  <script src="/js/util.js"></script>
-  <script src="/js/main.js"></script>
+</footer>
+</main>
 
 
-      <script>
-      renderMathInElement(
-      document.body,
-      {
-        delimiters: [
-          {left: "$$", right: "$$", display: false},
-          {left: "\\[", right: "\\]", display: true},
-          {left: "$", right: "$", display: false}
-        ],
-        ignoredTags: [
-          "script",
-          "noscript",
-          "style",
-          "textarea",
-          "pre",
-          "code"
-        ]
-      }
-      );
-      </script>
 
+
+<script type="text/javascript" src="/js/highlight.pack.js"></script>
+<script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+</script>
+
+
+<script type="text/javascript" src="/js/material-components-web.js"></script>
+<script type="text/javascript">
+    var drawerEl = document.querySelector('.mdc-temporary-drawer');
+    var MDCTemporaryDrawer = mdc.drawer.MDCTemporaryDrawer;
+    var drawer = new MDCTemporaryDrawer(drawerEl);
+    document.querySelector('.header-menu').addEventListener('click', function() {
+        drawer.open = true;
+    });
+    drawerEl.addEventListener('MDCTemporaryDrawer:open', function() {
+        console.log('Received MDCTemporaryDrawer:open');
+    });
+    drawerEl.addEventListener('MDCTemporaryDrawer:close', function() {
+        console.log('Received MDCTemporaryDrawer:close');
+    });
+</script>
+
+<script type="text/javascript">
+    (function() {
+        var pollId = 0;
+        pollId = setInterval(function() {
+            var pos = getComputedStyle(document.querySelector('.mdc-toolbar')).position;
+            if (pos === 'fixed' || pos === 'relative') {
+                init();
+                clearInterval(pollId);
+            }
+        }, 250);
+
+        function init() {
+            var toolbar = mdc.toolbar.MDCToolbar.attachTo(document.querySelector('.mdc-toolbar'));
+            toolbar.listen('MDCToolbar:change', function(evt) {
+                var flexibleExpansionRatio = evt.detail.flexibleExpansionRatio;
+                ratioSpan.innerHTML = flexibleExpansionRatio.toFixed(2);
+            });
+            toolbar.fixedAdjustElement = document.querySelector('.mdc-toolbar-fixed-adjust');
+        }
+    })();
+</script>
+
+
+<script>
+    renderMathInElement(
+        document.body, {
+            delimiters: [{
+                    left: "$$",
+                    right: "$$",
+                    display: false
+                },
+                {
+                    left: "\\[",
+                    right: "\\]",
+                    display: true
+                },
+                {
+                    left: "$",
+                    right: "$",
+                    display: false
+                }
+            ],
+            ignoredTags: [
+                "script",
+                "noscript",
+                "style",
+                "textarea",
+                "pre",
+                "code"
+            ]
+        }
+    );
+</script>
 </body>
+
 </html>
 
