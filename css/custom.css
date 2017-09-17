@@ -7,12 +7,15 @@ body {
 
 main {
     padding-top: 40px;
-    margin: auto;
     max-width: 840px;
+    margin: auto;
 }
 
 article {
     max-width: 800px;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #3f51b5;
 }
 
 h1 {
@@ -22,31 +25,36 @@ h1 {
     font-size: 20pt;
 }
 
-article h2 {
-    font-weight: lighter;
+article h1 {
+    font-size: 18pt;
 }
 
-article h2::before{
+article h2 {
+    font-weight: lighter;
+    font-size: 16pt;
+}
+
+article h2::before {
     content: "◆";
     color: #3f51b5;
 }
 
-article h3::before{
+article h3::before {
     content: "◇";
     color: #3f51b5;
 }
 
 article code {
     font-family: 'Source Sans Pro', monospace;
-    padding: 0px 5px 0px 5px;
     color: rgba(255, 40, 81, 1);
     background-color: rgba(255, 40, 81, 0.1);
-    border-radius: 0.2em;
+    border-radius: .2em;
+    padding: 0 5px;
 }
 
 article pre code {
     font-family: 'Source Sans Pro', monospace;
-    border-radius: 0.2em;
+    border-radius: .2em;
 }
 
 article p {
@@ -60,20 +68,15 @@ footer {
     margin-left: 120px;
 }
 
-
-/* header */
-
 .mdc-toolbar__row:first-child::after {
-    background-image: url("../img/banner.jpg");
+    background-image: url(../img/banner.jpg);
     background-size: cover;
     background-position: center;
 }
 
-/* sidebar */
-
 header #introduction a {
     font-size: 20px;
-    color: #ffffff;
+    color: #fff;
 }
 
 .container {
@@ -81,7 +84,7 @@ header #introduction a {
     margin-bottom: 10px;
 }
 
-figure{
+figure {
     padding-left: 20px;
     padding-top: 40px;
     margin-bottom: 40px;
@@ -100,30 +103,15 @@ figcaption h4::before {
     content: "fig. ";
 }
 
-@media screen and (min-width: 720px) {
-    article img {
-        max-height: 640px;
-        max-width: 640px;
-    }
-}
-
-@media screen and (max-width: 719px) {
-    article img {
-        max-height: 100%;
-        max-width: 100%;
-    }
-}
-
 .article-header h1 {
     font-weight: lighter;
+    border-left: none;
+    border-bottom: 1px solid #3f51b5;
 }
 
 .index-content {
     margin-left: 20px;
 }
-
-
-/* pagenation */
 
 .pagination-single .container {
     padding-top: 20px;
@@ -150,4 +138,34 @@ nav.pagination-single span.next {
 i.fa {
     color: rgba(0, 0, 0, 0.5);
     padding-right: 30px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.article-tag a, a:visited {
+    color: #3f51b5;
+}
+
+.meta-data {
+    padding-left: 20px;
+}
+
+.footnotes {
+    font-size: 10pt;
+}
+
+@media screen and min-width 720px {
+    article img {
+        max-height: 640px;
+        max-width: 640px;
+    }
+}
+
+@media screen and max-width 719px {
+    article img {
+        max-height: 100%;
+        max-width: 100%;
+    }
 }

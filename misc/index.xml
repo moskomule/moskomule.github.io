@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Miscs on moskomule log</title>
+    <link>https://mosko.tokyo/misc/</link>
+    <description>Recent content in Miscs on moskomule log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <copyright>Written by Ryuichiro Hataya</copyright>
+    <lastBuildDate>Fri, 08 Sep 2017 19:11:25 +0900</lastBuildDate>
+    
+	<atom:link href="https://mosko.tokyo/misc/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>東京大学大学院情報理工学系研究科創造情報学専攻に進学します</title>
+      <link>https://mosko.tokyo/misc/grad-school-exam/</link>
+      <pubDate>Fri, 08 Sep 2017 19:11:25 +0900</pubDate>
+      
+      <guid>https://mosko.tokyo/misc/grad-school-exam/</guid>
+      <description>東京大学大学院情報理工学系研究科創造情報学専攻に進学します．院試に際して幾つかのウェブページを参考とさせて頂きましたので私もそこに情報を加えることとしました．
+科目選択 プログラミングと数学の選択ではプログラミングを選択しました．英語の試験はTOEFL iBTを利用しました．
+勉強 「コンピュータサイエンスのすべての分野」から出題があり得るので，精通とまではいかなくともある程度知る必要があります．似而非情報系出身ですので知らないことばかりで難儀しました．
+ハードウェア N.Nisanの「コンピュータシステムの理論と実装 ―モダンなコンピュータの作り方」を読みました．高等言語の実装には到らず，CPUの実装くらいまでしかできていません．
+暗号 光成滋生さんの「クラウドを支えるこれからの暗号技術」を読みました．
+アルゴリズム 五十嵐健夫先生の「データ構造とアルゴリズム」を読んで紹介されたものを実装しました．
+計算理論 M.Sipserの「計算理論の基礎」を読んでオートマトンを動かしていました．
+また，久野誉人さんの数理計画法と計算の複雑さ を読みました．
+機械学習 C.BishopのPRMLを読みました．
+また，原田達夫先生の「画像認識」の特徴量の話も読みました．
+信号処理 鏡慎吾さんのやる夫で学ぶディジタル信号処理を読みました．
+拾遺 上記以外は応用技術者試験の参考書を読みました．
+物理とか むかしLandau&amp;amp;Lifschitz両先生の「力学・場の理論―ランダウ=リフシッツ物理学小教程」を愛読していました．
+プログラミング 「研究で必要な実装が難なくできるか」が問われているような気がします．日頃から適当なものを実装していればよいのではないでしょうか．
+本番のこと プログラミング 好きな言語で書け，とのことなのでPythonを使いました．念のためAnacondaの環境を複数用意しておきました．物理書籍は1冊，電子データなら無限に持ち込みが可能ですが，両脇の人がプロコンの本を持ち込んでいて威圧してきました．
+午後に「プレゼンテーションをする」ことになっているのですが別室にひとりずつ呼ばれて試験監督の脇で与えられた引数で実行していくスタイルでした．「指定すべき引数をハードコーディングしていた」くらいのミスなら臨機応変に修正させてくれます．
+コードにはdoctestとともにかなり丁寧に解説を書いておきました．時間も限られているので簡単な間違いを見つけるのには良いと思います．
+筆記試験 突然大学受験のような物理の問題が出てきて焦りました．
+面接 教卓に座って学生席にいる教授陣からの質問に答えるスタイルです．数分でしたが指示される前に挨拶をしてすわってしまったり，頓珍漢な応答をして「論文読む体力はありますか」と訊かれてしまい辛かったです．
+まとめ とてもよい環境で研究をしていくことができそうです．今後ともよろしくお願いします．</description>
+    </item>
+    
+    <item>
+      <title>カスタムドメインのGitHub Pagesをhttps化する</title>
+      <link>https://mosko.tokyo/misc/githubpages-and-https/</link>
+      <pubDate>Thu, 15 Jun 2017 22:14:39 +0900</pubDate>
+      
+      <guid>https://mosko.tokyo/misc/githubpages-and-https/</guid>
+      <description>はじめに このmosko.tokyoは何年か前に試しに買ってみたカスタムドメインである．現在，このページはGithub Pagesによってホスティングされていて，Hugoによって生成されている．
+今回，Cloudflareを使うことでhttps化した．
+GitHub Pages GitHub PagesはGitHub上に個人・組織，プロジェクトの静的なページを作れるサービスで，username.github.ioというドメインが割り当てられる．このドメインを使う限りはhttpsが有効にである．
+&amp;ldquo;Settings&amp;gt;custom domain&amp;rdquo;を編輯することで，カスタムドメインが使用できるが，その場合はhttpsが無効化される．
+Cloudflare 初めはLet&amp;rsquo;s Encryptの利用を考えていたが，このページを読み，より簡単そうなCloudflareを用いることとした．
+CloudflareはDNS/CDNで，機能が制限された個人の使用に限れば無料である．
+ 登録する カスタムドメインを入力する ネームサーバをCloudflareのものに移行する  ネームサーバの変更までに1日ほどかかった．その後，Dashboardにて
+ &amp;ldquo;Crypto&amp;gt;SSL&amp;rdquo;を&amp;rdquo;full&amp;rdquo;に変更 &amp;ldquo;Page Rules&amp;rdquo;の&amp;rdquo;create page rule&amp;rdquo;に  if http://hoge.hoge/* then &amp;ldquo;always use https&amp;rdquo; if https://hoge.hoge/* then &amp;ldquo;cache everything&amp;rdquo;   を設定する．前者でhttpでの接続をhttpsに切り替え，後者でドメイン以下のコンテンツをキャッシュさせている．</description>
+    </item>
+    
+  </channel>
+</rss>

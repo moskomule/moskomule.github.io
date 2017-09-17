@@ -14,10 +14,10 @@
     
     <item>
       <title>カスタムドメインのGitHub Pagesをhttps化する</title>
-      <link>https://mosko.tokyo/post/githubpages-and-https/</link>
+      <link>https://mosko.tokyo/misc/githubpages-and-https/</link>
       <pubDate>Thu, 15 Jun 2017 22:14:39 +0900</pubDate>
       
-      <guid>https://mosko.tokyo/post/githubpages-and-https/</guid>
+      <guid>https://mosko.tokyo/misc/githubpages-and-https/</guid>
       <description>はじめに このmosko.tokyoは何年か前に試しに買ってみたカスタムドメインである．現在，このページはGithub Pagesによってホスティングされていて，Hugoによって生成されている．
 今回，Cloudflareを使うことでhttps化した．
 GitHub Pages GitHub PagesはGitHub上に個人・組織，プロジェクトの静的なページを作れるサービスで，username.github.ioというドメインが割り当てられる．このドメインを使う限りはhttpsが有効にである．
