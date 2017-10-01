@@ -7,10 +7,27 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>Written by Ryuichiro Hataya</copyright>
-    <lastBuildDate>Tue, 24 Jan 2017 15:15:55 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 01 Oct 2017 19:40:24 +0900</lastBuildDate>
     
 	<atom:link href="https://mosko.tokyo/tags/deep-learning/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Double Backpropagationについて</title>
+      <link>https://mosko.tokyo/post/double-backprop/</link>
+      <pubDate>Sun, 01 Oct 2017 19:40:24 +0900</pubDate>
+      
+      <guid>https://mosko.tokyo/post/double-backprop/</guid>
+      <description>はじめに PyTorch v0.2では&amp;rdquo;Higher order gradients&amp;rdquo; (double backpropagation)がサポートされました．Chainerもv3においてこれがサポートされます．今回Chainer Meetupの資料を読んで雰囲気が分かったのでまとめました．
+ Comparison of deep learning frameworks from a viewpoint of double backpropagation  Chainer v3  筆者は長くdouble backpropagationという名称から
+\[\mathrm{loss}\longrightarrow \frac{\partial^2 \mathrm{loss}}{\partial x_i \partial x_j} \]
+と思い込んでいました．そう思っているのでdocumentを読んでもいまいちよく分からない．ところが上に挙げた資料では，そうではなくて
+\[\mathrm{loss}=g(f(x), \frac{\partial f(x)}{\partial x})\]
+のようなことなのだ，ということが説明されていて救われました．
+PyTorchの例 これで以上，でもよいのですが，PyTorchでの例を．
+$x=1, y=x^3, z=y^2+\frac{dy}{dx}$をとして，$\frac{dz}{dx}|_{x=1}$を求めます．
+&amp;gt;&amp;gt;&amp;gt; x = Variable(torch.Tensor([1]), requires_grad=True) &amp;gt;&amp;gt;&amp;gt; y = x ** 3 &amp;gt;&amp;gt;&amp;gt; grad_y, = autograd.grad(y, x, create_graph=True) &amp;gt;&amp;gt;&amp;gt; (grad_y + y ** 2).backward() &amp;gt;&amp;gt;&amp;gt; x.grad Variable containing: 12 [torch.</description>
+    </item>
     
     <item>
       <title>PyTorchはじめ</title>
