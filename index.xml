@@ -7,10 +7,94 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>Written by Ryuichiro Hataya</copyright>
-    <lastBuildDate>Sun, 01 Oct 2017 19:40:24 +0900</lastBuildDate>
+    <lastBuildDate>Thu, 19 Oct 2017 22:42:01 +0900</lastBuildDate>
     
 	<atom:link href="https://mosko.tokyo/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>研究のためのDocker入門</title>
+      <link>https://mosko.tokyo/post/docker_for_research/</link>
+      <pubDate>Thu, 19 Oct 2017 22:42:01 +0900</pubDate>
+      
+      <guid>https://mosko.tokyo/post/docker_for_research/</guid>
+      <description>はじめに 「TensorFlowのCustomOpsが古いGCCでしかコンパイルできず詰んだ」「先輩から引き継いだコードを動かす環境構築が面倒」といった経験はないでしょうか．この記事ではDockerを使うことで環境依存/環境汚染の問題を減らすことを考えていきます．
+1年ほど前からDockerの存在は知っていましたが，いざはじめようと「Docker入門」のような記事を読むとUbuntuのイメージをプルしてコンテナを作ってお疲れ様でした，という感じであまり御利益が分かりませんでした．
+先日絶対に挫折しない！オープンソースソフトウェア「Docker」入門編 #04という記事でDockerfileを作って環境を構築する話を読んで少し得心できました．どこでも同一のコマンドで同一の環境を，ホストの環境を汚さずに作れるので非常に便利です．
+インストール等 DockerCEをダウンロードしてインストールします．環境によってはDocker toolboxを利用する必要があります．
+Linuxの場合はインストール後に
+$ sudo groupadd docker $ sudo usermod -aG docker $USER $ logout # login later  を行います．インストールが成功していれば以下のようになるはずです．
+$ docker run --rm hello-world ... Hello from Docker! This message shows that your installation appears to be working correctly. To generate this message, Docker took the following steps: 1. The Docker client contacted the Docker daemon. 2. The Docker daemon pulled the &amp;quot;hello-world&amp;quot; image from the Docker Hub.</description>
+    </item>
+    
+    <item>
+      <title>情報論的学習理論2</title>
+      <link>https://mosko.tokyo/notes/info_ml2/</link>
+      <pubDate>Tue, 17 Oct 2017 21:13:08 +0900</pubDate>
+      
+      <guid>https://mosko.tokyo/notes/info_ml2/</guid>
+      <description>線型回帰モデル 線型回帰モデルは教師あり学習の枠組みで，
+\[ p(y|x;\theta)=\frac{1}{\sqrt{s\pi\sigma^2}}\exp(-\frac{(y-\theta^\top x)^2}{2\sigma^2}) \]
+つまり
+\[ y=\theta^\top x-\epsilon ~~\epsilon\sim\mathscr{N}(0, \sigma^2) \]
+ここで観測されるデータ列を$(x_1,y_1),\ldots,(x_n,y_n)$として，$X=[x_1,\ldots,x_n],Y=(y_1,\ldots,y_n)^\top$とすると線型モデルの負の対数尤度は
+\[ \frac{1}{\sigma^2}\sum_t(y_t-\theta^\top x_t)^2+n\ln\sqrt{2\pi\sigma^2} \]
+の第一項の和は
+\[ (Y-X\theta)^\top(Y-X\theta) \]
+と書ける．$\frac{\partial \mathcal{L}(\theta)}{\partial \theta}|_{\theta=\hat{\theta}_{\mathrm{NLE}}}=0$より
+\[X^\top Y-X^\top X\hat{\theta}=0\]
+これは$X^\top X$が正則の時に
+\[\hat{\theta}=(X^\top X)^{-1}X^\top Y\]
+と求まるが$x$が$n$次の時に$(X^\top X)^{-1}$は$O(d^3)$のオーダーなのであまり計算をしたくない．
+スパース正則 対数尤度に正則化項を加えた
+\[-\sum_t\ln p(y_t|x_t;\theta)+\lambda R(\theta)\]
+を考える．特に$R(\theta)=\sum|\theta|^p$を考える．上の式の最小化は，ある$B&amp;gt;0$が存在して
+\[\sum\ln(y_t|x_t;\theta)=\sum(y_t-\theta^\top x_t)\]
+を$R(\theta)\le B$と等価である．
+損失函数 損失函数はデータ$\mathscr{D}=(\mathscr{X}, \mathscr{Y})$，(確率)モデル空間$\mathscr{P}$に対して
+\[\mathcal{L}:\mathscr{D}\times\mathscr{P}\to\mathbb{R}\]
+で定義される．
+ 対数損失は$P_\theta=p(y|x;\theta)$として$\mathcal{L}(\mathscr{D};P_\theta)=-\ln p(y|x;\theta)$
+ 2乗損失は確率ではなく適当の函数$f_\theta$によって$\mathcal{L}(\mathcal{D};f_\theta)=(y-f_\theta(x))^2$
+ 0-1損失は$\mathcal{L}(\mathcal{D};f_\theta)=1-\mathbf{1}[y+f_\theta(x)]$
+ ロジステック損失は$y\in\{-1,1\}$で$\mathcal{L}(\mathcal{D};f_\theta)=-\ln\frac{1}{1+\exp{(-yf_\theta(x))}}$
+  結局，最尤推定とMAP推定は経験的損失$\sum_t\mathcal{L}(\mathscr{D}_t;P_\theta)$と正則化項$\lambda R(\theta)$を$\theta$について最小化することなのであった．
+$L_1$正則化 a.k.a LASSO LASSOはLeast Absolute Shrinkage and Selection Operatorの略らしく，スパースな解が得やすいことが知られている．</description>
+    </item>
+    
+    <item>
+      <title>情報論的学習理論1</title>
+      <link>https://mosko.tokyo/notes/info_ml1/</link>
+      <pubDate>Tue, 10 Oct 2017 20:56:15 +0900</pubDate>
+      
+      <guid>https://mosko.tokyo/notes/info_ml1/</guid>
+      <description> 情報論的学習理論では情報論の立場から学習理論を扱う．
+パラメータの推定 確率モデルを以下のように表す．
+\[\mathscr{P}:=\{p(X^n;\theta);\theta\in\Theta\}\]
+ただし$p(X^n;\theta)$は確率密度函数がパラメータ$\theta$が決定することによって（ひとつに）定められることを示す．条件付き確率は$p(X^n|w)$など$|$を用いる．また$X^n=(X_0,\ldots,X_n)$は確率変数列であり，観測されたデータ列$x^n=(x_0,\ldots,x_n)$とは区別される（つまり$x\mathop{\sim}\limits^{\text{i.i.d.}} p(X;\theta)$）．$\Theta$はパラメータ空間を指す．
+パラメータ推定手法は$x^n$が与えられたときに$\theta$を推測する．
+最尤推定法 最尤推定法では尤度関数$\mathcal{L}(\theta):=p(x^n;\theta)=\prod_i p(x_i; \theta)$を最大とするような$\theta$を求める．このような$\hat{\theta}$は$\hat{\theta}(x_n)=\mathop{\text{argmax}}\limits_{\theta}\ln p(x^n;\theta)$である．
+最尤推定は以下のふたつの点においてすぐれている．
+ 最尤推定量の一致性  ある正則条件の下で任意の$\epsilon&amp;gt;0$に対して
+\[\lim_{n\to\infty}\text{Prob}[||\hat{\theta}-\theta||_2&amp;gt;\epsilon]=0\]
+ 最尤推定量の漸近正規性，有効性  中心極限定理が成立するようなモデルのクラスに対して以下が成り立つ．
+\[\sqrt{n}(\hat{\theta}(x^n)-\theta)\rightsquigarrow\mathcal{N}(0,I^{=1}(\theta))\]
+ただし$\theta$は真の分布が$q(X)$のときに$q(X)=p(x;\theta)$となるように$p$を指定する$\theta$．$I(\theta)$はフィッシャー情報行列で$i,j$成分は以下で与えられる1．
+\[\lim_{n\to\infty}\frac{1}{n}\mathbb{E}_{\theta}[-\frac{\partial^2\ln p(x^n;\theta)}{\partial \theta_i\partial \theta_j}]\]
+また$y^n\rightsquigarrow y$は$\{y_0,\ldots,y_n\}$の確率分布が真の確率分布に法則収束することを指す（充分大きな$n$で分布が一致する意味）．
+さらに，特に$\hat{\theta}$が不偏で，つまり$\mathbb{E}_{\theta}[\hat{\theta}(x_n)]=\theta$の時，分散はCramel-Raoの下限に達する（$\Sigma-I^{-1}(\theta)\geq 0$）．
+MAP推定量 最尤推定量では$\theta$は一つの値であったが，これが確率分布から生成されていると考えたらどうだろうか．このように考えたとき$p(\theta)$を事前分布と呼ぶ．事後分布を
+\[p(\theta|x^n)=\frac{p(x^n;\theta)p(\theta)}{\int p(x^n;\theta)p(\theta) d\theta}\]
+と定める．そうしてMAP推定量を
+\[\hat{\theta}_{\text{MAP}}:=\mathop{\text{argmax}}\limits_{\theta}p(\theta|x^n)\]
+と定義する．
+\[\ln p(\theta|x^n)=\ln p(x^n;\theta)+\ln p(\theta)+C\]
+右辺第二項がなければ最尤推定量のときと変わらない．この$\ln p(\theta)$は従って正規化項として作用する．特に$p(\theta)\propto \exp(-\lambda f(\theta))$として
+ $f(\theta)=||\theta||_1$のとき$p(\theta)$をLaplace分布 $f(\theta)=||\theta||_2$のとき$p(\theta)$をGauss分布  Bayse推定量 ベイズ推定量を
+\[\hat{\theta}_{\text{Bayse}}:=\int\theta p(\theta|x^n)d\theta\]
+により定める．
+ 個人的には$I$は単位行列に予約されているので使いたくないが，他でも見られるので一般的の使い方なのかもしれない．単位行列には$\mathbf{I}$などを使うのがよいのだろうか． [return]   </description>
+    </item>
     
     <item>
       <title>Double Backpropagationについて</title>

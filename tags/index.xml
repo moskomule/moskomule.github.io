@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>Written by Ryuichiro Hataya</copyright>
-    <lastBuildDate>Sat, 22 Oct 2016 00:21:34 +0900</lastBuildDate>
+    <lastBuildDate>Thu, 19 Oct 2017 22:42:01 +0900</lastBuildDate>
     
 	<atom:link href="https://mosko.tokyo/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title></title>
+      <link>https://mosko.tokyo/tags/</link>
+      <pubDate>Thu, 19 Oct 2017 22:42:01 +0900</pubDate>
+      
+      <guid>https://mosko.tokyo/tags/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Db</title>
@@ -27,6 +36,15 @@
       <pubDate>Sun, 01 Oct 2017 19:40:24 +0900</pubDate>
       
       <guid>https://mosko.tokyo/tags/deep-learning/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Docker</title>
+      <link>https://mosko.tokyo/tags/docker/</link>
+      <pubDate>Thu, 19 Oct 2017 22:42:01 +0900</pubDate>
+      
+      <guid>https://mosko.tokyo/tags/docker/</guid>
       <description></description>
     </item>
     
@@ -85,6 +103,15 @@
     </item>
     
     <item>
+      <title>Machine Learning</title>
+      <link>https://mosko.tokyo/tags/machine-learning/</link>
+      <pubDate>Tue, 17 Oct 2017 21:13:08 +0900</pubDate>
+      
+      <guid>https://mosko.tokyo/tags/machine-learning/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Math</title>
       <link>https://mosko.tokyo/tags/math/</link>
       <pubDate>Wed, 12 Jul 2017 12:37:12 +0900</pubDate>
@@ -108,6 +135,15 @@
       <pubDate>Tue, 25 Jul 2017 15:37:12 +0900</pubDate>
       
       <guid>https://mosko.tokyo/tags/nnabla/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Note</title>
+      <link>https://mosko.tokyo/tags/note/</link>
+      <pubDate>Tue, 17 Oct 2017 21:13:08 +0900</pubDate>
+      
+      <guid>https://mosko.tokyo/tags/note/</guid>
       <description></description>
     </item>
     
