@@ -172,7 +172,7 @@ To generate this message, Docker took the following steps:
     to your terminal.
 </code></pre>
 
-<p>DockerではDockerfileに従って（ブートディスクのような）Dockerイメージを作ります．このイメージにはOSやアプリケーションなどが入っています．このImageを起動して実体となったものがコンテナです．コンテナは複数起動したり，ホスト・他のコンテナとやりとりしたりすることができます．起動のコストが大きくないので必要に応じて使い捨てることもできます．</p>
+<p>DockerではDockerfileに従って（Ubuntuのブートディスクのような）Dockerイメージを作ります．このイメージにはOSやアプリケーションなどが入っています．このイメージを起動して実体となったものがコンテナです．コンテナは複数起動したり，ホスト・他のコンテナとやりとりしたりすることができます．起動のコストが大きくないので必要に応じて使い捨てることもできます．</p>
 
 
 <figure >
@@ -195,7 +195,7 @@ To generate this message, Docker took the following steps:
 <pre><code>$ docker run --rm hello-world
 </code></pre>
 
-<p>ではローカルに<code>hello-world</code>イメージがないのでDockerHubからプルしてきています．Dockerのイメージは層状になっていて既存のものにファイルを加えたり環境変数を書き換えたりして自分の必要なものにしていきます．DockerHubには<code>nginx</code>や<code>mysql</code>，<code>ubuntu</code>などがあります．</p>
+<p>ではローカルに<code>hello-world</code>イメージがないのでDockerHubからプルしてきています．Dockerのイメージは層状になっていて既存のものにファイルを加えたり環境変数を書き換えたりして自分の必要なものにしていきます．</p>
 
 <p>それでは実際にDockerfileを書いてJupyterのイメージを作ってみましょう．空のディレクトリに<code>Dockerfile</code>と<code>requirements.txt</code>を作ります．</p>
 
@@ -220,7 +220,7 @@ jupyter
 <h2 id="dockerfileの解説">Dockerfileの解説</h2>
 
 <ul>
-<li><code>FROM ubuntu:latest</code>はubuntuの最新のものをベースとすることを示します．競合しなければ複数の<code>FROM</code>が可能です<sup class="footnote-ref" id="fnref:1"><a rel="footnote" href="#fn:1">1</a></sup>．</li>
+<li><code>FROM ubuntu:latest</code>はubuntuの最新のものをベースとすることを示します．</li>
 <li><code>RUN</code>によってコマンドを実行できます．
 
 <ul>
@@ -306,19 +306,10 @@ $ sudo apt-get install nvidia-modprobe
 <h1 id="その他">その他</h1>
 
 <ul>
-<li>不要なイメージは<code>docker rmi IMAGE_NAME</code>で削除します．</li>
-<li>使われていないコンテナは<code>docker rm $(docker ps -aq)</code>で削除します．</li>
+<li>不要なイメージは<code>docker rmi IMAGE_NAME</code>で削除します．不要なイメージを全て消す場合は<code>docker rmi $(docker images -f &quot;dangling=true&quot; -q)</code>とします．</li>
+<li>不要なコンテナは<code>docker rm CONTAINER_NAME</code>で削除します．使われていないコンテナを全て消す場合は<code>docker rm $(docker ps -aq)</code>で削除します．</li>
 <li>ホストがCentOSのときに不具合が多い経験があります．<a href="http://postd.cc/docker-in-production-an-update/">Dockerに依存しすぎるのは危険です</a>．</li>
 </ul>
-<div class="footnotes">
-
-<hr />
-
-<ol>
-<li id="fn:1"><code>FROM centos ubuntu</code>などをするとcentosは上書きされてしまいます．
- <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
-</ol>
-</div>
 
 
             
