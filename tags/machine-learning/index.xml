@@ -7,17 +7,50 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>Written by Ryuichiro Hataya</copyright>
-    <lastBuildDate>Tue, 17 Oct 2017 21:13:08 +0900</lastBuildDate>
+    <lastBuildDate>Tue, 24 Oct 2017 20:05:47 +0900</lastBuildDate>
     
 	<atom:link href="https://mosko.tokyo/tags/machine-learning/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>情報論的学習理論3</title>
+      <link>https://mosko.tokyo/notes/info_ml/3/</link>
+      <pubDate>Tue, 24 Oct 2017 20:05:47 +0900</pubDate>
+      
+      <guid>https://mosko.tokyo/notes/info_ml/3/</guid>
+      <description>勾配降下法 データ$D^n=D_1,\ldots,D_n$，損失函数$\mathcal{L}(D;\theta)$に対して
+\[\mathcal{L}(\theta):=\frac1n\sum_{t=1}^n\mathcal{L}(D_t;\theta)\]
+とする．特に$\mathcal{L}(\theta)$を$\theta$について最小化したいが，解析的に行えないときに効果を発揮するのが勾配降下法である．
+1次の勾配降下法  $\theta^{(0)}$を適当な初期値とする． $\theta^{(t)}$を逐次的に$\theta^{(t+1)}=\theta^{(t)}-\alpha\nabla\mathcal{L}(\theta)|_{\theta=\theta^{(t)}}$と更新する．ここで$\alpha$は学習率と呼ばれる値である．  2次の勾配降下法  $\theta^{(t+1)}=\theta^{(t)}-H^{-1}\nabla\mathcal{L}(\theta)|_{\theta=\theta^{(t)}}$によって更新を行う．  確率的勾配降下法 $\mathcal{L}(theta)=\frac1n\sum_{t=1}^n\mathcal{L}(D_t;\theta)$について$n$が充分に大きいとすると計算のコストがかかる．そこで$D^n$から一部を乱択した$\tilde{D}^{\tilde{n}}$を用いて
+\[\tilde{\mathcal{L}}(\theta):=\frac{1}{\tilde{n}}\sum_{t=1}^{\tilde{n}}\mathcal{L}(\tilde{D}_t;\theta)\]
+で近似する．
+モデル選択 いま簡単のためモデルの複雑さがモデルのパラメータ数のみで決定されるとして，$k$次元のパラメータ集合$\Theta_k$に対して$k$次元のパラメータモデルを
+\[\mathscr{P}_k:=\{p(x;\theta,k):\theta\in\Theta_k\}\]
+と定める．また
+\[\mathscr{P}:=\bigcup_k\mathscr{P}_k\]
+このとき$\mathscr{P}_1\subset\mathscr{P}_2\cdots\subset\cdots$という入れ子構造を持つ．モデル選択とはデータ$x^n=x_1,\ldots,x_n$が与えられたときに「最良の」$k$を決定する問題である．例えばクラスタリングであればクラスタの数がこの$k$に相当するし，多項式近似であれば多項式の最大次数が$k$である．
+この「最良」を決定する手法は幾つか存在するが，さらにその手法を選択する目的に応じたメタな規準が必要となる．
+情報量規準 情報量規準は函数$f(k|x^n)$で，$f$を最小とする$k$が最良となるようなもののことである．AIC,BIC,MDL,交差検証法などが有名である．
+AIC（赤池情報量規準） \[f(k|x^n)=-\ln p(x^n;\hat{\theta}(x^n),k)+k\]
+ただし$\hat{\theta}$は最尤推定量である．この第1項はデータに対する適合性，第2項はモデルの複雑さにそれぞれ対応し，互いにトレードオフの関係にある．つまり一般に複雑なモデルはよい適合性を持つ．
+AICは期待平均対数尤度の不偏推定量となる．ここで期待平均対数尤度は$n\mathbb{E}_{X^n}\mathbb{E}_Z[-\ln p(Z;\hat{\theta}(X^n))]$で$X^n,Z$は同一の分布から独立に生成され，それぞれ訓練データとテストデータである．
+補題1 中心極限定理を仮定する．つまり
+\[\sqrt{n}(\hat{\theta}(x^n)-\theta)\rightsquigarrow\mathcal{N}(0,I^{-1}(\theta))\]
+である．ただし，$\theta$は真の分布のパラメータで$\rightsquigarrow$は法則収束を指すのであった．このとき
+\[n\mathbb{E}_{X^n}\mathbb{E}_Z[-\ln p(Z;\hat{\theta}(X^n))]=n\mathbb{E}_Z[-\ln p(Z;\theta)]+\frac{k}{2}+o(1)\]
+が成立する．
+証明(補題1) $\hat{\theta}$の$\theta$周りでのTaylor展開を考える．
+\[\begin{aligned} n\mathbb{E}_{X^n}\mathbb{E}_Z[-\ln p(Z;\hat{\theta}(X^n))] &amp;amp;= n\mathbb{E}_Z[-\ln p(z;\hat{\theta})] - n\mathbb{E}_{X^n}\mathbb{E}_Z[\nabla\ln p(z;\theta)(\hat{\theta}-\theta)] \cr &amp;amp; + \mathbb{E}_{X^n}[\frac12\sqrt{n}(\hat{\theta}-\theta)^{\top}\mathbb{E}_Z[-\nabla^2\ln p(z;\theta)]\sqrt{n}(\hat{\theta}-\theta)]+R \end{aligned}\]
+ここで右辺第2項について
+\[\begin{aligned} \mathbb{E}_{Z}[-\nabla\ln p(x;\theta)] &amp;amp;= \sum_z p(z;\theta)\frac{1}{p(z;\theta)}\nabla p(x;\theta) \cr &amp;amp;= \sum \nabla p(z;\theta)=\nabla\sum p(z;\theta)=0 \end{aligned}\]</description>
+    </item>
+    
+    <item>
       <title>情報論的学習理論2</title>
-      <link>https://mosko.tokyo/notes/info_ml2/</link>
+      <link>https://mosko.tokyo/notes/info_ml/2/</link>
       <pubDate>Tue, 17 Oct 2017 21:13:08 +0900</pubDate>
       
-      <guid>https://mosko.tokyo/notes/info_ml2/</guid>
+      <guid>https://mosko.tokyo/notes/info_ml/2/</guid>
       <description>線型回帰モデル 線型回帰モデルは教師あり学習の枠組みで，
 \[ p(y|x;\theta)=\frac{1}{\sqrt{s\pi\sigma^2}}\exp(-\frac{(y-\theta^\top x)^2}{2\sigma^2}) \]
 つまり
@@ -49,10 +82,10 @@ $L_1$正則化 a.k.a LASSO LASSOはLeast Absolute Shrinkage and Selection Operat
     
     <item>
       <title>情報論的学習理論1</title>
-      <link>https://mosko.tokyo/notes/info_ml1/</link>
+      <link>https://mosko.tokyo/notes/info_ml/1/</link>
       <pubDate>Tue, 10 Oct 2017 20:56:15 +0900</pubDate>
       
-      <guid>https://mosko.tokyo/notes/info_ml1/</guid>
+      <guid>https://mosko.tokyo/notes/info_ml/1/</guid>
       <description> 情報論的学習理論では情報論の立場から学習理論を扱う．
 パラメータの推定 確率モデルを以下のように表す．
 \[\mathscr{P}:=\{p(X^n;\theta);\theta\in\Theta\}\]

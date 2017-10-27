@@ -1,0 +1,463 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+    <title>
+        情報論的学習理論3 | moskomule log
+    </title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/css/highlight_monokai.css" />
+    <link rel="stylesheet" href="/css/material-components-web.css" />
+    <link rel="stylesheet" href="/css/custom.css" />
+
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha256-tkzDFSl16wERzhCWg0ge2tON2+D6Qe9iEaJqM4ZGd4E=" crossorigin="anonymous" type="text/css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha256-gNVpJCw01Tg4rruvtWJp9vS0rRchXP2YF+U+b2lp8Po=" crossorigin="anonymous" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha256-ExtbCSBuYA7kq1Pz362ibde9nnsHYPt6JxuxYeZbU+c=" crossorigin="anonymous" type="text/javascript"></script>
+</head>
+
+<body>
+    <div class="top">
+        
+        <div class="mdc-toolbar mdc-toolbar--fixed mdc-toolbar--waterfall mdc-toolbar--flexible mdc-toolbar--flexible-default-behavior mdc-toolbar--flexible-space-maximized">
+            <div class="mdc-toolbar__row">
+                <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
+                    <button class="header-menu material-icons mdc-toolbar__icon--menu">menu</button>
+                    <span class="mdc-toolbar__title">情報論的学習理論3 | moskomule log</span>
+                </section>
+                <section class="mdc-toolbar__section mdc-toolbar__section--align-end" role="toolbar">
+                    
+                </section>
+            </div>
+        </div>
+
+        
+        <aside class="mdc-temporary-drawer">
+            <nav class="mdc-temporary-drawer__drawer">
+                <header class="mdc-temporary-drawer__header">
+                    <div class="mdc-temporary-drawer__header-content mdc-theme--primary-bg mdc-theme--text-primary-on-primary">
+                        <div id="introduction">
+                            <a href="https://mosko.tokyo/" class="mdc-list">
+                                moskomule log
+                            </a>
+                        </div>
+                    </div>
+                </header>
+                <nav class="mdc-temporary-drawer__content mdc-list-group">
+                    <div id="icon-with-text" class="mdc-list">
+                        <a class="mdc-list-item" href="/#about">
+                            <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">star</i>About
+                        </a>
+                        <a class="mdc-list-item" href="/#articles">
+                            <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">book</i>Articles
+                        </a>
+                    </div>
+                    <hr class="mdc-list-divider">
+                    <div class="mdc-list">
+                        <a class="mdc-list-item" href="/#contact">
+                            <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">send</i>Contact
+                        </a>
+                    </div>
+                    <hr class="mdc-list-divider" />
+                    
+                    <div class="mdc-list social">
+                        <a class="mdc-list-item" href="https://twitter.com/mosko_mule">
+                            <i class="fa fa-2x fa-twitter" aria-hidden="true"></i> twitter
+                        </a>
+                    </div>
+                    
+                    <div class="mdc-list social">
+                        <a class="mdc-list-item" href="https://github.com/moskomule">
+                            <i class="fa fa-2x fa-github" aria-hidden="true"></i> github
+                        </a>
+                    </div>
+                    
+
+                    
+                    
+                    
+                    <hr class="mdc-list-divider">
+                    
+                    
+                    <div class="languages">
+                        <a class="mdc-list-item selected_lang" href="https://mosko.tokyo/ja">
+                            <i class="material-icons mdc-list-item__start-detail">language</i> <span>日本語</span>
+                        </a>
+                    </div>
+                    
+                    
+                    <div class="languages">
+                        <a class="mdc-list-item " href="https://mosko.tokyo/en">
+                            <i class="material-icons mdc-list-item__start-detail">language</i> <span>English</span>
+                        </a>
+                    </div>
+                    
+                    
+
+                </nav>
+            </nav>
+        </aside>
+    </div>
+    <main>
+        <div class="mdc-toolbar-fixed-adjust"></div>
+
+
+
+<div id="main">
+    <div class="container">
+        <div class="article-header">
+            <h1>情報論的学習理論3</h1>
+            <div class="meta-data">
+                Oct 24, 2017 &nbsp;  <span class="article-tag"><a href="/tags/machine-learning">#machine learning</a></span>&nbsp;  <span class="article-tag"><a href="/tags/note">#note</a></span>&nbsp; 
+            </div>
+        </div>
+        <aside>
+            <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#勾配降下法">勾配降下法</a>
+<ul>
+<li><a href="#1次の勾配降下法">1次の勾配降下法</a></li>
+<li><a href="#2次の勾配降下法">2次の勾配降下法</a></li>
+<li><a href="#確率的勾配降下法">確率的勾配降下法</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#モデル選択">モデル選択</a>
+<ul>
+<li><a href="#情報量規準">情報量規準</a>
+<ul>
+<li><a href="#aic-赤池情報量規準">AIC（赤池情報量規準）</a>
+<ul>
+<li><a href="#補題1">補題1</a></li>
+<li><a href="#証明-補題1">証明(補題1)</a></li>
+<li><a href="#補題2">補題2</a></li>
+<li><a href="#証明-補題2">証明(補題2)</a></li>
+<li><a href="#定理-期待平均対数尤度の不偏推定量がaicとなる">定理(期待平均対数尤度の不偏推定量がAICとなる)</a></li>
+<li><a href="#証明">証明</a></li>
+</ul></li>
+<li><a href="#bic-ベイジアン情報規準">BIC (ベイジアン情報規準)</a></li>
+<li><a href="#mdl規準">MDL規準</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+        </aside>
+        <article>
+
+            
+
+<h2 id="勾配降下法">勾配降下法</h2>
+
+<p>データ$D^n=D_1,\ldots,D_n$，損失函数$\mathcal{L}(D;\theta)$に対して</p>
+
+<p>\[\mathcal{L}(\theta):=\frac1n\sum_{t=1}^n\mathcal{L}(D_t;\theta)\]</p>
+
+<p>とする．特に$\mathcal{L}(\theta)$を$\theta$について最小化したいが，解析的に行えないときに効果を発揮するのが勾配降下法である．</p>
+
+<h3 id="1次の勾配降下法">1次の勾配降下法</h3>
+
+<ul>
+<li>$\theta^{(0)}$を適当な初期値とする．</li>
+<li>$\theta^{(t)}$を逐次的に$\theta^{(t+1)}=\theta^{(t)}-\alpha\nabla\mathcal{L}(\theta)|_{\theta=\theta^{(t)}}$と更新する．ここで$\alpha$は学習率と呼ばれる値である．</li>
+</ul>
+
+<h3 id="2次の勾配降下法">2次の勾配降下法</h3>
+
+<!-- $\mathcal{L}(\theta)$の$\theta\_0$まわりでのTaylor展開を考える．
+
+\\[\mathcal{L}(\theta)\approx\mathcal{L}(\theta\_0)+(\theta-\theta\_0)^{\top}\nabla\mathcal{L}(\theta)|\_{\theta=\theta\_0}+\frac12(\theta-\theta\_0)^{\top}\nabla^2\mathcal{L}(\theta)|\_{\theta=\theta\_0}(\theta-\theta\_0)\\]
+
+ここで$\nabla\mathcal{L}(\theta)|\_{\theta=\theta^{\star}}$を満たす臨界点$\theta^{\star}$に収束させることを考える． -->
+
+<ul>
+<li>$\theta^{(t+1)}=\theta^{(t)}-H^{-1}\nabla\mathcal{L}(\theta)|_{\theta=\theta^{(t)}}$によって更新を行う．</li>
+</ul>
+
+<h3 id="確率的勾配降下法">確率的勾配降下法</h3>
+
+<p>$\mathcal{L}(theta)=\frac1n\sum_{t=1}^n\mathcal{L}(D_t;\theta)$について$n$が充分に大きいとすると計算のコストがかかる．そこで$D^n$から一部を乱択した$\tilde{D}^{\tilde{n}}$を用いて</p>
+
+<p>\[\tilde{\mathcal{L}}(\theta):=\frac{1}{\tilde{n}}\sum_{t=1}^{\tilde{n}}\mathcal{L}(\tilde{D}_t;\theta)\]</p>
+
+<p>で近似する．</p>
+
+<h1 id="モデル選択">モデル選択</h1>
+
+<p>いま簡単のためモデルの複雑さがモデルのパラメータ数のみで決定されるとして，$k$次元のパラメータ集合$\Theta_k$に対して$k$次元のパラメータモデルを</p>
+
+<p>\[\mathscr{P}_k:=\{p(x;\theta,k):\theta\in\Theta_k\}\]</p>
+
+<p>と定める．また</p>
+
+<p>\[\mathscr{P}:=\bigcup_k\mathscr{P}_k\]</p>
+
+<p>このとき$\mathscr{P}_1\subset\mathscr{P}_2\cdots\subset\cdots$という入れ子構造を持つ．モデル選択とはデータ$x^n=x_1,\ldots,x_n$が与えられたときに「最良の」$k$を決定する問題である．例えばクラスタリングであればクラスタの数がこの$k$に相当するし，多項式近似であれば多項式の最大次数が$k$である．</p>
+
+<p>この「最良」を決定する手法は幾つか存在するが，さらにその手法を選択する目的に応じたメタな規準が必要となる．</p>
+
+<h2 id="情報量規準">情報量規準</h2>
+
+<p>情報量規準は函数$f(k|x^n)$で，$f$を最小とする$k$が最良となるようなもののことである．AIC,BIC,MDL,交差検証法などが有名である．</p>
+
+<h3 id="aic-赤池情報量規準">AIC（赤池情報量規準）</h3>
+
+<p>\[f(k|x^n)=-\ln p(x^n;\hat{\theta}(x^n),k)+k\]</p>
+
+<p>ただし$\hat{\theta}$は最尤推定量である．この第1項はデータに対する適合性，第2項はモデルの複雑さにそれぞれ対応し，互いにトレードオフの関係にある．つまり一般に複雑なモデルはよい適合性を持つ．</p>
+
+<p>AICは期待平均対数尤度の不偏推定量となる．ここで期待平均対数尤度は$n\mathbb{E}_{X^n}\mathbb{E}_Z[-\ln p(Z;\hat{\theta}(X^n))]$で$X^n,Z$は同一の分布から独立に生成され，それぞれ訓練データとテストデータである．</p>
+
+<h4 id="補題1">補題1</h4>
+
+<p>中心極限定理を仮定する．つまり</p>
+
+<p>\[\sqrt{n}(\hat{\theta}(x^n)-\theta)\rightsquigarrow\mathcal{N}(0,I^{-1}(\theta))\]</p>
+
+<p>である．ただし，$\theta$は真の分布のパラメータで$\rightsquigarrow$は法則収束を指すのであった．このとき</p>
+
+<p>\[n\mathbb{E}_{X^n}\mathbb{E}_Z[-\ln p(Z;\hat{\theta}(X^n))]=n\mathbb{E}_Z[-\ln p(Z;\theta)]+\frac{k}{2}+o(1)\]</p>
+
+<p>が成立する．</p>
+
+<h4 id="証明-補題1">証明(補題1)</h4>
+
+<p>$\hat{\theta}$の$\theta$周りでのTaylor展開を考える．</p>
+
+<p>\[\begin{aligned}
+n\mathbb{E}_{X^n}\mathbb{E}_Z[-\ln p(Z;\hat{\theta}(X^n))] &amp;= n\mathbb{E}_Z[-\ln p(z;\hat{\theta})] - n\mathbb{E}_{X^n}\mathbb{E}_Z[\nabla\ln p(z;\theta)(\hat{\theta}-\theta)] \cr
+&amp; + \mathbb{E}_{X^n}[\frac12\sqrt{n}(\hat{\theta}-\theta)^{\top}\mathbb{E}_Z[-\nabla^2\ln p(z;\theta)]\sqrt{n}(\hat{\theta}-\theta)]+R
+\end{aligned}\]</p>
+
+<p>ここで右辺第2項について</p>
+
+<p>\[\begin{aligned}
+\mathbb{E}_{Z}[-\nabla\ln p(x;\theta)] &amp;= \sum_z p(z;\theta)\frac{1}{p(z;\theta)}\nabla p(x;\theta) \cr
+&amp;= \sum \nabla p(z;\theta)=\nabla\sum p(z;\theta)=0
+\end{aligned}\]</p>
+
+<p>第3項については$\mathbb{E}_Z[-\nabla^2\ln p(z;\theta)]$がフィッシャー情報量行列であることと，中心極限定理，χ2乗分布の期待値が$k$であることを用いて$\frac{k}{2}$で近似できる<sup class="footnote-ref" id="fnref:1"><a rel="footnote" href="#fn:1">1</a></sup>．あるいは$n(\hat{\theta}-\theta)(\hat{\theta}-\theta)^{\top}$が共分散行列であることを思えばこれは$I(\theta)^{-1}$に収束して，</p>
+
+<p>\[\frac12\mathrm{tr}(\mathbb{E}_{X^n}[I(\theta)n(\hat{\theta}-\theta)(\hat{\theta}-\theta)^{\top}])=\frac12\mathrm{tr}\mathbf{I}_k=\frac{k}{2}\]</p>
+
+<h4 id="補題2">補題2</h4>
+
+<p>\[E_{X^n}[-\ln p(X^n; \theta)] = E_{X^n}[-\ln p(X^n;\hat{\theta}(X^n))]+\frac{k}{2}+o(1)\]</p>
+
+<h4 id="証明-補題2">証明(補題2)</h4>
+
+<p>同様のTaylor展開を考える．</p>
+
+<p>\[\begin{aligned}-\ln p(X^n;\theta) &amp; =-\ln p(X^n;\hat{\theta}) +\nabla(-\ln p(X^n;\theta))|_{\theta=\hat{\theta}}(\theta-\hat{\theta})\cr
+&amp;+\frac12(\theta-\hat{\theta})^{\top}(-\nabla^2\ln p(X^n;\theta))(\theta-\hat{\theta})+o(1)\end{aligned}\]</p>
+
+<p>ここで右辺第2項は最尤推定量は対数尤度の極値であるので0，また第3項については</p>
+
+<p>\[\begin{aligned}
+n\cdot\frac1n\sum_t(-\nabla^2 \ln p(X_t;\theta))|_{\theta=\hat{\theta}} &amp;\approx n\mathbb{E}_{\theta}[\nabla^2 \ln p(X;\theta)]|_{\theta=\hat{\theta}} \cr
+&amp;= nI(\hat{\theta})
+\end{aligned}\]</p>
+
+<p>先ほどと同様の議論によって</p>
+
+<p>\[\mathbb{E}_{X^n}[\frac12(\theta-\hat{\theta})^{\top}(-\nabla^2\ln p(X^n;\theta))(\theta-\hat{\theta})]=\frac{k}{2}\]</p>
+
+<h4 id="定理-期待平均対数尤度の不偏推定量がaicとなる">定理(期待平均対数尤度の不偏推定量がAICとなる)</h4>
+
+<p>データが独立に同一の分布から生起してかつ中心極限定理が成立することを仮定する．</p>
+
+<p>\[\mathrm{AIC}_k(x^n):=-\ln p(x^n;\hat{\theta}(x^n))+k\]</p>
+
+<p>とすると</p>
+
+<p>\[E_{X^n}[\mathrm{AIC}_k(x^n)]=nE_{X^n}E_Z[-\ln p(Z;\hat{\theta}(X^n))]+o(1)\]</p>
+
+<h4 id="証明">証明</h4>
+
+<p>補題1により</p>
+
+<p>\[nE_{X^n}E_Z[-\ln p(Z;\hat{\theta}(X^n))]=n\mathbb{E}_Z[-\ln p(Z;\theta)+\frac{k}{2}+o(1)]\]</p>
+
+<p>これはi.i.d.の仮定によって</p>
+
+<p>\[E_X^n[-\ln p(X^n;\theta)]+\frac{k}{2}+o(1)\]</p>
+
+<p>補題2によって</p>
+
+<p>\[E_X^n[-\ln p(X^n;\hat{\theta}(X^n))]+\frac{k}{2}+\frac{k}{2}+o(1)=\mathbb{E}_{X^n}[\mathrm{AIC}_k(X^n)]+o(1)\]</p>
+
+<p>ここでは定理の仮定にi.i.d.中心極限定理があることに注意を要する．特に中心極限定理は隠れ変数が存在する場合には成立しない．</p>
+
+<h3 id="bic-ベイジアン情報規準">BIC (ベイジアン情報規準)</h3>
+
+<p>シュヴァルツ規準とも言われ，以下によって定められる．</p>
+
+<p>\[f(k|x^n):=-\ln p(x^n;\hat{\theta}(x^n))]+\frac{k}{2}\ln n\]</p>
+
+<p>$M=-\int\pi(\theta)p(x^n;\theta)d\theta$を$k$について最小化することを考える．</p>
+
+<p>\[\begin{aligned}\ln M &amp;= -\ln\int\pi(\theta)\exp(\ln p(x^n;\theta))d\theta \cr
+&amp; \approx -\ln\int\pi(\theta)\exp(\ln p(x^n;\hat{\theta})+
+\frac{n}{2}(\theta-\hat{\theta})^{\top}\hat{I}(\hat{\theta})(\theta-\hat{\theta}))d\theta \cr
+&amp;\approx -\ln p(x^n;\hat{\theta})+\ln\int\pi\exp(-\frac12(\theta-\hat{\theta})^{\top}n\hat{I}(\hat{\theta})(\theta-\hat{\theta}))d\theta
+\end{aligned}\]</p>
+
+<p>ここで$\exp$内でTaylor展開をし，$\hat{I}(\theta):=\nabla^2 p(X^n;\theta)$とした．ガウス積分$\int\exp(-\frac{x^{\top}\Sigma^{-1}x}{2})dx=(2\pi|\Sigma|)^{d/2}$を用いて第2項にラプラス近似を用いると</p>
+
+<p>\[\ln(\frac{2\pi}{n})^{k/2}|\hat{I}(\hat{\theta})|^{k/2}=\frac{k}{2}\ln n+o(1)\]</p>
+
+<h3 id="mdl規準">MDL規準</h3>
+
+<p>MDL (Minimum Description Length/最小記述長)を規準とするもの．いま最大尤度函数は確率分布ではないので正規化して</p>
+
+<p>\[p_{\mathrm{NML}}(x^n;k):=\frac{p(x^n;\hat{\theta}(x^n),k)}{\sum p(x^n;\hat{\theta}(x^n),k)}\]</p>
+
+<p>とする．このとき</p>
+
+<p>\[f(k|x^n)=\ln p_{\mathrm{NML}}(x^n;k)=-\ln p(x^n;\hat{\theta}(x^n))+\ln\sum p(x^n;\hat{\theta}(x^n))\]</p>
+
+<p>最右辺第1項は$x^n$の$\mathscr{P}_k$に対する確率的複雑さ，第2項は$\mathscr{P}_k$の情報論的複雑さをそれぞれ表す．</p>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:1">todo
+ <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
+</ol>
+</div>
+
+
+            
+            
+        </article>
+        <nav class="pagination-single">
+            
+            <span class="previous">&larr; <a href="https://mosko.tokyo/post/docker_for_research/" rel="prev">研究のためのDocker入門</a></span>  
+        </nav>
+
+        <div class="disqus-comments">
+            <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "moskomule-log" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </div>
+    </div>
+
+</div>
+
+
+<footer class="copyright">
+
+    
+    <span class="copyright">
+                <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="クリエイティブ・コモンズ・ライセンス" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/80x15.png" /></a>&nbspWritten by Ryuichiro Hataya, Powered by <a href="https://gohugo.io/">Hugo</a>
+    </span>
+
+</footer>
+</main>
+
+
+
+
+<script type="text/javascript" src="/js/highlight.pack.js"></script>
+<script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+</script>
+
+
+<script type="text/javascript" src="/js/material-components-web.js"></script>
+<script type="text/javascript">
+    var drawerEl = document.querySelector('.mdc-temporary-drawer');
+    var MDCTemporaryDrawer = mdc.drawer.MDCTemporaryDrawer;
+    var drawer = new MDCTemporaryDrawer(drawerEl);
+    document.querySelector('.header-menu').addEventListener('click', function() {
+        drawer.open = true;
+    });
+    drawerEl.addEventListener('MDCTemporaryDrawer:open', function() {
+        console.log('Received MDCTemporaryDrawer:open');
+    });
+    drawerEl.addEventListener('MDCTemporaryDrawer:close', function() {
+        console.log('Received MDCTemporaryDrawer:close');
+    });
+</script>
+
+<script type="text/javascript">
+    (function() {
+        var pollId = 0;
+        pollId = setInterval(function() {
+            var pos = getComputedStyle(document.querySelector('.mdc-toolbar')).position;
+            if (pos === 'fixed' || pos === 'relative') {
+                init();
+                clearInterval(pollId);
+            }
+        }, 250);
+
+        function init() {
+            var toolbar = mdc.toolbar.MDCToolbar.attachTo(document.querySelector('.mdc-toolbar'));
+            toolbar.listen('MDCToolbar:change', function(evt) {
+                var flexibleExpansionRatio = evt.detail.flexibleExpansionRatio;
+                ratioSpan.innerHTML = flexibleExpansionRatio.toFixed(2);
+            });
+            toolbar.fixedAdjustElement = document.querySelector('.mdc-toolbar-fixed-adjust');
+        }
+    })();
+</script>
+
+
+<script>
+    renderMathInElement(
+        document.body, {
+            delimiters: [{
+                    left: "$$",
+                    right: "$$",
+                    display: false
+                },
+                {
+                    left: "\\[",
+                    right: "\\]",
+                    display: true
+                },
+                {
+                    left: "$",
+                    right: "$",
+                    display: false
+                }
+            ],
+            ignoredTags: [
+                "script",
+                "noscript",
+                "style",
+                "textarea",
+                "pre",
+                "code"
+            ]
+        }
+    );
+</script>
+</body>
+
+</html>
+
