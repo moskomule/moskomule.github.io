@@ -39,10 +39,11 @@ h2::before {
     color: #3f51b5;
 }
 
-h3{
+h3 {
     font-weight: lighter;
     font-size: 14pt;
 }
+
 article h3::before {
     content: "◇";
     color: #3f51b5;
@@ -65,17 +66,11 @@ article p {
     padding-left: 15px;
 }
 
-footer {
-    padding-top: 50px;
-    padding-bottom: 20px;
-    width: 100%;
-    margin-left: 120px;
-}
-
 .mdc-toolbar__row:first-child::after {
     background-image: url(../img/banner.jpg);
     background-size: cover;
     background-position: center;
+    max-width: 100%;
 }
 
 header #introduction a {
@@ -86,13 +81,6 @@ header #introduction a {
 .container {
     margin-top: 20px;
     margin-bottom: 10px;
-}
-
-figure {
-    padding-left: 20px;
-    padding-top: 40px;
-    margin-bottom: 40px;
-    margin-left: 10px;
 }
 
 figcaption h4 {
@@ -147,7 +135,7 @@ nav.pagination-single span.next {
     list-style-type: lower-greek;
 }
 
-.selected_lang span{
+.selected_lang span {
     text-decoration: underline;
 }
 
@@ -176,19 +164,45 @@ a {
     font-size: 10pt;
 }
 
+figure {
+    padding-left: 20px;
+    padding-top: 40px;
+    margin: auto;
+    margin-bottom: 40px;
+}
+
 article img {
     max-height: 640px;
     max-width: 640px;
+    display: block;
+    margin: auto;
 }
 
-@media screen and min-width 720px {
-    article img {
-        max-height: 640px;
-        max-width: 640px;
+footer {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    text-align: center;
+}
+
+iframe {
+    max-width: 100%;
+    display: block;
+    margin: auto;
+}
+
+
+/* if mobile device */
+
+@media screen and (max-width: 768px) {
+    main {
+        width: 100%;
     }
-}
-
-@media screen and max-width 719px {
+    article {
+        max-width: 100%;
+    }
+    .pagination-single .container {
+        max-width: 100%;
+    }
     article img {
         max-height: 100%;
         max-width: 100%;
