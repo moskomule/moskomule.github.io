@@ -143,7 +143,6 @@
 <li><a href="#証明">証明</a></li>
 </ul></li>
 <li><a href="#bic-ベイジアン情報規準">BIC (ベイジアン情報規準)</a></li>
-<li><a href="#mdl規準">MDL規準</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -182,7 +181,7 @@
 
 <h3 id="確率的勾配降下法">確率的勾配降下法</h3>
 
-<p>$\mathcal{L}(theta)=\frac1n\sum_{t=1}^n\mathcal{L}(D_t;\theta)$について$n$が充分に大きいとすると計算のコストがかかる．そこで$D^n$から一部を乱択した$\tilde{D}^{\tilde{n}}$を用いて</p>
+<p>$\mathcal{L}(\theta)=\frac1n\sum_{t=1}^n\mathcal{L}(D_t;\theta)$について$n$が充分に大きいとすると計算のコストがかかる．そこで$D^n$から一部を乱択した$\tilde{D}^{\tilde{n}}$を用いて</p>
 
 <p>\[\tilde{\mathcal{L}}(\theta):=\frac{1}{\tilde{n}}\sum_{t=1}^{\tilde{n}}\mathcal{L}(\tilde{D}_t;\theta)\]</p>
 
@@ -312,17 +311,17 @@ n\cdot\frac1n\sum_t(-\nabla^2 \ln p(X_t;\theta))|_{\theta=\hat{\theta}} &amp;\ap
 
 <p>\[\ln(\frac{2\pi}{n})^{k/2}|\hat{I}(\hat{\theta})|^{k/2}=\frac{k}{2}\ln n+o(1)\]</p>
 
-<h3 id="mdl規準">MDL規準</h3>
+<!-- ### MDL規準
 
-<p>MDL (Minimum Description Length/最小記述長)を規準とするもの．いま最大尤度函数は確率分布ではないので正規化して</p>
+MDL (Minimum Description Length/最小記述長)を規準とするもの．いま最大尤度函数は確率分布ではないので正規化して
 
-<p>\[p_{\mathrm{NML}}(x^n;k):=\frac{p(x^n;\hat{\theta}(x^n),k)}{\sum p(x^n;\hat{\theta}(x^n),k)}\]</p>
+\\[p\_{\mathrm{NML}}(x^n;k):=\frac{p(x^n;\hat{\theta}(x^n),k)}{\sum p(x^n;\hat{\theta}(x^n),k)}\\]
 
-<p>とする．このとき</p>
+とする．このとき
 
-<p>\[f(k|x^n)=\ln p_{\mathrm{NML}}(x^n;k)=-\ln p(x^n;\hat{\theta}(x^n))+\ln\sum p(x^n;\hat{\theta}(x^n))\]</p>
+\\[f(k|x^n)=\ln p\_{\mathrm{NML}}(x^n;k)=-\ln p(x^n;\hat{\theta}(x^n))+\ln\sum p(x^n;\hat{\theta}(x^n))\\]
 
-<p>最右辺第1項は$x^n$の$\mathscr{P}_k$に対する確率的複雑さ，第2項は$\mathscr{P}_k$の情報論的複雑さをそれぞれ表す．</p>
+最右辺第1項は$x^n$の$\mathscr{P}\_k$に対する確率的複雑さ，第2項は$\mathscr{P}\_k$の情報論的複雑さをそれぞれ表す． -->
 <div class="footnotes">
 
 <hr />
@@ -338,6 +337,7 @@ n\cdot\frac1n\sum_t(-\nabla^2 \ln p(X_t;\theta))|_{\theta=\hat{\theta}} &amp;\ap
         <nav class="pagination-single">
             
             <span class="previous">&larr; <a href="https://mosko.tokyo/post/docker_for_research/" rel="prev">研究のためのDocker入門</a></span>  
+            <span class="next"><a href="https://mosko.tokyo/notes/info_ml/4/" rel="next">情報論的学習理論4</a> &rarr;</span> 
         </nav>
 
         <div class="disqus-comments">

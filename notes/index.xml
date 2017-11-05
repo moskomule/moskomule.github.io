@@ -7,10 +7,36 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>Written by Ryuichiro Hataya</copyright>
-    <lastBuildDate>Tue, 24 Oct 2017 20:05:47 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 05 Nov 2017 10:55:16 +0900</lastBuildDate>
     
 	<atom:link href="https://mosko.tokyo/notes/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>情報論的学習理論4</title>
+      <link>https://mosko.tokyo/notes/info_ml/4/</link>
+      <pubDate>Sun, 05 Nov 2017 10:55:16 +0900</pubDate>
+      
+      <guid>https://mosko.tokyo/notes/info_ml/4/</guid>
+      <description>情報・符号・確率 ここでは一見異なる概念である情報・符号・確率が（情報論的学習理論では）ほぼ同一視できることを見ていく．
+$\mathscr{X}$を有限集合，$\mathscr{X}^n$を長さ$n$のデータ列の集合とする．また$\{0,1\}^{\star}$を任意の長さの二元列の集合とする．このとき符号化とは
+\[\pi:\mathcal{X}^n\to \{0,1\}^{\star}\]
+のことを指す．また語頭符号化を以下のように定める．
+ $\mathcal{X}^n$に属する任意の元$x_1, x_2 ~(x_1\ne x_2)$について$\pi(x_1)$と$\pi(x_2)$の一方が他方の先頭部分の語頭に一致しないような$\pi$．これは符号後を連ねた際に，区切り記号を用いることなく原文を一意的に記述可能のことを意味する．たとえば$\mathcal{X}^2=\{0,1\}^2$として符号化$\pi$を  \[\begin{cases} \pi(00) = 000 \cr \pi(01) = 001 \cr \pi(10) = 01 \cr \pi(11) = 1 \end{cases}\]
+とすれば，$1$か$000$を区切りとみることで区切り記号を用いずに一意的な表記をすることができる（逆に$\pi(000)=010$などとしてしまうと区切り記号が必要となる）．つまりこの$\pi$は語頭符号化である．
+以下簡単のため符号長（函数）を$l(x^n)=|\pi(x^n)|$と定める．語頭符号化について以下が成り立つ．
+定理（語頭符号化の必要十分条件，Kraftの不等式） $\pi$が語頭符号化可能であることは$\sum_{x^n}2^{-l(x^n)}\le 1$と必要十分である（一般に$m$元符号化をすれば$2\to m$）
+定義（劣確率分布） $p(X^n)$が$\mathscr{X}^n$の劣確率分布であるとは
+ 任意の$X^n$について$p(X^n)\ge 0$ $\displaystyle \sum_{X^n\in\mathscr{X}^n}p(X^n)\le 1$（等号の時一般の確率分布）  いま$p(X^n)$が劣確率分布であるとすると$l(x)=\lceil-\log_2 P(X^n)\rceil$とすることで符号長函数$l(X^n)$の語頭符号化が存在する．ここでは構成が可能であることを示しているだけで，具体的な手法についてはarithmetic coding, haffmann codingなどを参照．
+逆に$l(x^n)$が語頭符号化の符号長函数であるならばKraftの不等式を満たすので$p(x^n)=2^{-l(x^n)}$として得られる劣確率分布が存在する．
+以上から劣確率分布$p(X^n)$と符号長函数$l(x^n)$とが表裏一体の関係にあることが分かる．ところがここで劣確率分布$p(X^n)$に$p(\bar{X})=1-\sum p(X^n)$を加えた$p(\tilde{X}^n)$は$p(\tilde{X}^n)\ge 0$と$\sum p(\tilde{X}^n)=1$をみたす確率分布である．
+つまり劣確率分布は即座に確率分布に変換することができるので，確率分布と符号化とが表裏一体である，ということができる．
+定理（平均符号長の下限，シャノンの符号化定理） いま真の分布$P$が既知であるとし，$L$を任意の語頭符号化符号長函数であるとする．このとき
+\[\mathbb{E}_P[L(X^n)]\ge H_n(P)\]
+で，この下限は$L(X^n)=-\ln P(X^n)$をとれば達成可能である．ただし$H_n(P)$は$P$のエントロピー函数で$-\sum P(X^n)\ln P(X^n)$．
+これは適当な確率分布$q$によって$L(X^n)=-\ln q(X^n)$として$\mathbb{E}_P[L(X^n)]=-\sum p(X^n)\ln q(X^n)$を考えれば導かれる．
+確率的複雑さとMDL規準 k次元のパラメーター集合$\Theta_k$に対してk次元のモデル集合を</description>
+    </item>
     
     <item>
       <title>情報論的学習理論3</title>
@@ -21,7 +47,7 @@
       <description>勾配降下法 データ$D^n=D_1,\ldots,D_n$，損失函数$\mathcal{L}(D;\theta)$に対して
 \[\mathcal{L}(\theta):=\frac1n\sum_{t=1}^n\mathcal{L}(D_t;\theta)\]
 とする．特に$\mathcal{L}(\theta)$を$\theta$について最小化したいが，解析的に行えないときに効果を発揮するのが勾配降下法である．
-1次の勾配降下法  $\theta^{(0)}$を適当な初期値とする． $\theta^{(t)}$を逐次的に$\theta^{(t+1)}=\theta^{(t)}-\alpha\nabla\mathcal{L}(\theta)|_{\theta=\theta^{(t)}}$と更新する．ここで$\alpha$は学習率と呼ばれる値である．  2次の勾配降下法  $\theta^{(t+1)}=\theta^{(t)}-H^{-1}\nabla\mathcal{L}(\theta)|_{\theta=\theta^{(t)}}$によって更新を行う．  確率的勾配降下法 $\mathcal{L}(theta)=\frac1n\sum_{t=1}^n\mathcal{L}(D_t;\theta)$について$n$が充分に大きいとすると計算のコストがかかる．そこで$D^n$から一部を乱択した$\tilde{D}^{\tilde{n}}$を用いて
+1次の勾配降下法  $\theta^{(0)}$を適当な初期値とする． $\theta^{(t)}$を逐次的に$\theta^{(t+1)}=\theta^{(t)}-\alpha\nabla\mathcal{L}(\theta)|_{\theta=\theta^{(t)}}$と更新する．ここで$\alpha$は学習率と呼ばれる値である．  2次の勾配降下法  $\theta^{(t+1)}=\theta^{(t)}-H^{-1}\nabla\mathcal{L}(\theta)|_{\theta=\theta^{(t)}}$によって更新を行う．  確率的勾配降下法 $\mathcal{L}(\theta)=\frac1n\sum_{t=1}^n\mathcal{L}(D_t;\theta)$について$n$が充分に大きいとすると計算のコストがかかる．そこで$D^n$から一部を乱択した$\tilde{D}^{\tilde{n}}$を用いて
 \[\tilde{\mathcal{L}}(\theta):=\frac{1}{\tilde{n}}\sum_{t=1}^{\tilde{n}}\mathcal{L}(\tilde{D}_t;\theta)\]
 で近似する．
 モデル選択 いま簡単のためモデルの複雑さがモデルのパラメータ数のみで決定されるとして，$k$次元のパラメータ集合$\Theta_k$に対して$k$次元のパラメータモデルを
