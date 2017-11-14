@@ -33,13 +33,10 @@ Hinton先生の業績は並べても感嘆するばかりで仕方ないので�
 Capsules 各capsuleには階層によって異なりますが「目」や「顔」などが対応します2．capsuleはベクトルで，長さがそのcapsuleに対応するものが存在する確率であり，各要素が位置や姿勢を表します．
 $l+1$層目のcapsule $j$は$l$層目のcapsulesの出力に，以下で説明するroutingを施した入力$s_j$を受けます．これはそのままでは上記の条件を満たさないので以下のsquashing（押し潰し）によって，$[0,1)$に閉じ込めます．
 \[v_j=\frac{|s_j|^2}{1+|s_j|^2}\frac{s_j}{|s_j}\]
-routing 「目」のcapsuleと「顔」のcapsuleとは結びつくべきですが，「花」のcapsuleとは結びつくことはありません．これを学習するのがroutingであり，ここでは特に本論文で提案されているdynamic routingを扱います．このほかにEMアルゴリズムを用いた手法も何者かによって提案されています．
+ $l,l&amp;#43;1$層での記号の関係．   routing 「目」のcapsuleと「顔」のcapsuleとは結びつくべきですが，「花」のcapsuleとは結びつくことはありません．これを学習するのがroutingであり，ここでは特に本論文で提案されているdynamic routingを扱います．このほかにEMアルゴリズムを用いた手法も何者かによって提案されています．
 $l+1$層目のcapsule $j$が$l$層目のcapsules $i$の出力を受けます．先ほどのroutingされた$j$への入力$s_j$は以下によって計算されます．capsule $i$の出力を$u_i(=v_i)$とします．
 \[s_j=\sum_i c_{ij}\hat{u}_{j|i}~~(\hat{u}_{j|i}=W_{ij}u_i)\]
-ただし$c_{ij}$は$b_{ij}\leftarrow b_{ij}+\hat{u}_{j|i}\cdot v_j$と逐次的に更新される$b_{ij}$によって
-\[c_{ij}=\mathrm{softmax}(b_{ij})=\frac{\exp(b_{ij})}{\sum_k\exp(b_{ik})}\]
-と表される係数です．$\hat{u}_{j|i}\cdot v_j$はagreement（一致）と呼ばれる量で$i,j$の接続の強さを表します．
-ここで入力として顔写真，$i$として「目」「鼻」，$j$として「顔」「花」を考えてみましょう．入力画像の中に顔があるとき，目があれば顔があり，また鼻があれば顔がありますが，花はありません．そのため適当な重みによって，鼻があるもとでの顔$\hat{u}_{\text{顔}|\text{鼻}}$や，目があるもとでの顔$\hat{u}_{\text{顔}|\text{目}}$と$v_{\text{顔}}$は近くなり，一方で$v_{\text{花}}$とは遠くなるようにすることができるでしょう．またその時$|v_{\text{顔}}|$は1に近く，$|v_{\text{花}}|$は0に近いことが求められます．従って，この時，$c_{\text{鼻顔}}$や$c_{\text{目顔}}$は大きく$c_{\text{鼻花}}$や$$c_{\text{目花}}$$は小さくなることが期待できます．</description>
+ただし$c_{ij}$は$b_{ij}\leftarrow b_{ij}+\hat{u}_{j|i}\cdot v_j$と逐次的に更新される$b_{ij}$によって</description>
     </item>
     
     <item>
