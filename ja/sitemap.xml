@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://mosko.tokyo/post/on-capusels/</loc>
+    <lastmod>2017-11-13T18:57:37+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://mosko.tokyo/notes/info_ml/4/</loc>
     <lastmod>2017-11-05T10:55:16+09:00</lastmod>
   </url>
@@ -239,6 +244,12 @@
   </url>
   
   <url>
+    <loc>https://mosko.tokyo/tags/capsules/</loc>
+    <lastmod>2017-11-13T18:57:37+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://mosko.tokyo/categories/</loc>
     <priority>0</priority>
     <xhtml:link
@@ -261,7 +272,7 @@
   
   <url>
     <loc>https://mosko.tokyo/tags/deep-learning/</loc>
-    <lastmod>2017-10-01T19:40:24+09:00</lastmod>
+    <lastmod>2017-11-13T18:57:37+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -351,7 +362,7 @@
   
   <url>
     <loc>https://mosko.tokyo/post/</loc>
-    <lastmod>2017-10-19T22:42:01+09:00</lastmod>
+    <lastmod>2017-11-13T18:57:37+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -415,7 +426,7 @@
   
   <url>
     <loc>https://mosko.tokyo/</loc>
-    <lastmod>2017-11-05T10:55:16+09:00</lastmod>
+    <lastmod>2017-11-13T18:57:37+09:00</lastmod>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"

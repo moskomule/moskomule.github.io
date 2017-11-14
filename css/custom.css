@@ -83,18 +83,6 @@ header #introduction a {
     margin-bottom: 10px;
 }
 
-figcaption h4 {
-    padding-left: 10px;
-    font-weight: lighter;
-    max-width: 640px;
-    border-left: 2px solid gray;
-    border-bottom: 1px solid gray;
-}
-
-figcaption h4::before {
-    content: "fig. ";
-}
-
 .article-header h1 {
     font-weight: lighter;
     border-left: none;
@@ -171,6 +159,19 @@ figure {
     margin-bottom: 40px;
 }
 
+
+figcaption h4 {
+    padding-left: 10px;
+    font-weight: lighter;
+    max-width: 640px;
+    border-bottom: 1px solid gray;
+    margin: auto;
+}
+
+figcaption h4::before {
+    content: "fig. ";
+}
+
 article img {
     max-height: 640px;
     max-width: 640px;
@@ -187,9 +188,9 @@ footer {
 iframe {
     max-width: 100%;
     display: block;
+    padding-bottom: 20px;
     margin: auto;
 }
-
 
 /* if mobile device */
 
