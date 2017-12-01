@@ -7,10 +7,56 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>Written by Ryuichiro Hataya</copyright>
-    <lastBuildDate>Mon, 13 Nov 2017 18:57:37 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 01 Dec 2017 15:10:30 +0900</lastBuildDate>
     
 	<atom:link href="https://mosko.tokyo/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>PyTorchでDQNを実装した</title>
+      <link>https://mosko.tokyo/post/pytorch-dqn/</link>
+      <pubDate>Fri, 01 Dec 2017 15:10:30 +0900</pubDate>
+      
+      <guid>https://mosko.tokyo/post/pytorch-dqn/</guid>
+      <description>これはPyTorch Advent Calendar1日目の記事です．
+もしもサンタさんがこの記事を見ていたら，と考えてwish listを用意しました．サンタ各位におかれましては，よろしくお願いします．
+はじめに DQN(Deep Q Network)は Minh et al. 20151（以下論文）で登場した深層強化学習の先駆けです．Atariのゲームで非常に高い得点を修めるというパフォーマンスで有名になりました．
+  9月頃に強化学習の勉強をした際に実装してみたのですが，一向に学習が進まず放置していたのですが，最近Implementing the Deep Q-Network 2を読み再開してみたところ，動いてしまったので，この記事を書くことになりました．
+今回の実装はこちらにあります．
+強化学習とは David Silver先生に聞きましょう．ただしこの講義では深層強化学習は扱われていません．
+  Deep Q-Networkとは 論文を読みましょう．Q-Learningの応用で，複雑ではありませんが，学習を安定させるための工夫が各所にあるので見逃すと動かないようです．
+ DQNの学習アルゴリズム．論文より．   実装について 画像の処理 DQNではAtariのゲームの画像をグレースケールにしてスタックするなどの処理がありますが，このあたりは各アルゴリズムをTensorFlowで実装し，公開しているOpen AI baselinesを一部変更して用いています．
+ OpenCV2をPillowに変更した 画像のスタックの仕方をPyTorchに合わせて変更した．  また今回の改良ではtensorboard-pytorchを導入して，入力画像が正しいかを確認できるようにしました．
+ ネットワーク Deepとは言えない気がしますが論文通りの構成です．何か工夫すると多少変わるのかもしれません．
+class DQN(nn.Module): def __init__(self, output_size: int): super(DQN, self).__init__() self.feature = nn.Sequential( nn.Conv2d(4, 32, kernel_size=8, stride=4), nn.ReLU(inplace=True), nn.Conv2d(32, 64, kernel_size=4, stride=2), nn.ReLU(inplace=True), nn.Conv2d(64, 64, kernel_size=3, stride=1), nn.</description>
+    </item>
+    
+    <item>
+      <title>情報論的学習理論5</title>
+      <link>https://mosko.tokyo/notes/info_ml/5/</link>
+      <pubDate>Mon, 20 Nov 2017 22:39:13 +0900</pubDate>
+      
+      <guid>https://mosko.tokyo/notes/info_ml/5/</guid>
+      <description> MDL規準は
+\[\begin{aligned} \mathrm{MDL}_k(x^n) &amp;amp;=-\ln p_{\mathrm{NML}}(x^n)\cr &amp;amp;=-\ln p(x^n;\theta)+\ln\sum_{x^n} p(x^n;\theta) \end{aligned}\]
+であり，最右辺の第1項が情報量，第2項がparametric complexityという情報量と同じ尺度の量でこれを用いるのがMDLの肝要であった．ただしこの第2項の計算は困難であって漸近近似を使う方法と厳密計算を行う方法が知られている．
+後者は，つまり厳密計算できる問題のクラスは限定されておりg函数を使った手法と漸化式を用いた方法がある．
+g函数 確率密度函数を
+\[p(x^n;\theta)=p(x^n|\hat{\theta}(x^n))g(\hat{\theta}(x^n);\theta)\]
+と分解する．ただし$\displaystyle p(x^n|\hat{\theta})=\frac{p(x^n;\theta)}{g(\hat{\theta};\theta)}$で
+\[g(\bar{\theta};\theta)=\sum_{x^n;\hat{\theta}(x^n)=\bar{\theta}}p(x^n;\theta)=\sum_{x^n} p(x^n;\theta)\delta(\hat{\theta}(x^n)-\theta)\]
+である．この$\bar{\theta}$に関する確率密度函数をg函数と呼ぶ．実際，
+\[\int g(\bar{\theta};\theta)d\theta=\int d\theta (\sum_{x^n;\hat{\theta}(x^n)=\bar{\theta}}p(x^n;\theta))=\sum_{x^n}p(x^n;\theta) = 1 \]
+であるから確率密度函数である．
+MDK規準の性質 情報の真の分布が既知であればシャノンの符号化定理を用いることができるのであった．未知の時には以下が成り立つ．
+定理（Rissarrenの不等式） 中心極限定理を仮定する．任意の語頭符号長函数$\mathcal{L}$に対して$n\to\infty$でルベーグ測度が0に近づく$\theta\in\Theta$の集合を除いて次が成立する（つまりほとんどいたるところで以下が成立する）．
+任意の$\epsilon &amp;gt;0$に対して
+\[\mathbb{E}[\mathcal{L}(x^n)]_{\theta}\geq H_n(P)+\frac{k-\epsilon}{2}\ln n\]
+ただし左辺は真の分布に対する平均，右辺第1項はエントロピーである．これは真の分布が未知の場合の符号長の下限を与えている．
+ $\theta$が$\mathcal{L}(x^n)=-\ln p(x^n;\theta)$であるように（理想的に）とることができると$\mathcal{L}(x^n)$は下限を下回るが，このような$\theta$は確率0でしか存在しない．
+ $\mathrm{MDL}_k(x^n)$はRissarrenの不等式を漸近的に成立する．
+  </description>
+    </item>
     
     <item>
       <title>Dynamic Routing Between Capsules</title>

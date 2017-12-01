@@ -1,0 +1,478 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+    <title>
+        PyTorchでDQNを実装した | moskomule log
+    </title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/css/highlight_monokai.css" />
+    <link rel="stylesheet" href="/css/material-components-web.css" />
+
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha256-tkzDFSl16wERzhCWg0ge2tON2+D6Qe9iEaJqM4ZGd4E=" crossorigin="anonymous" type="text/css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha256-gNVpJCw01Tg4rruvtWJp9vS0rRchXP2YF+U+b2lp8Po=" crossorigin="anonymous" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha256-ExtbCSBuYA7kq1Pz362ibde9nnsHYPt6JxuxYeZbU+c=" crossorigin="anonymous" type="text/javascript"></script>
+    <link rel="stylesheet" href="/css/custom.css" />
+</head>
+
+<body>
+    <div class="top">
+        
+        <div class="mdc-toolbar mdc-toolbar--fixed mdc-toolbar--waterfall mdc-toolbar--flexible mdc-toolbar--flexible-default-behavior mdc-toolbar--flexible-space-maximized">
+            <div class="mdc-toolbar__row">
+                <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
+                    <button class="header-menu material-icons mdc-toolbar__icon--menu">menu</button>
+                    <span class="mdc-toolbar__title">PyTorchでDQNを実装した | moskomule log</span>
+                </section>
+                <section class="mdc-toolbar__section mdc-toolbar__section--align-end" role="toolbar">
+                    
+                </section>
+            </div>
+        </div>
+
+        
+        <aside class="mdc-temporary-drawer">
+            <nav class="mdc-temporary-drawer__drawer">
+                <header class="mdc-temporary-drawer__header">
+                    <div class="mdc-temporary-drawer__header-content mdc-theme--primary-bg mdc-theme--text-primary-on-primary">
+                        <div id="introduction">
+                            <a href="https://mosko.tokyo/" class="mdc-list">
+                                moskomule log
+                            </a>
+                        </div>
+                    </div>
+                </header>
+                <nav class="mdc-temporary-drawer__content mdc-list-group">
+                    <div id="icon-with-text" class="mdc-list">
+                        <a class="mdc-list-item" href="/#about">
+                            <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">star</i>About
+                        </a>
+                        <a class="mdc-list-item" href="/#articles">
+                            <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">book</i>Articles
+                        </a>
+                    </div>
+                    <hr class="mdc-list-divider">
+                    <div class="mdc-list">
+                        <a class="mdc-list-item" href="/#contact">
+                            <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">send</i>Contact
+                        </a>
+                    </div>
+                    <hr class="mdc-list-divider" />
+                    
+                    <div class="mdc-list social">
+                        <a class="mdc-list-item" href="https://twitter.com/mosko_mule">
+                            <i class="fa fa-2x fa-twitter" aria-hidden="true"></i> twitter
+                        </a>
+                    </div>
+                    
+                    <div class="mdc-list social">
+                        <a class="mdc-list-item" href="https://github.com/moskomule">
+                            <i class="fa fa-2x fa-github" aria-hidden="true"></i> github
+                        </a>
+                    </div>
+                    
+
+                    
+                    
+                    
+                    <hr class="mdc-list-divider">
+                    
+                    
+                    <div class="languages">
+                        <a class="mdc-list-item selected_lang" href="https://mosko.tokyo/ja">
+                            <i class="material-icons mdc-list-item__start-detail">language</i> <span>日本語</span>
+                        </a>
+                    </div>
+                    
+                    
+                    <div class="languages">
+                        <a class="mdc-list-item " href="https://mosko.tokyo/en">
+                            <i class="material-icons mdc-list-item__start-detail">language</i> <span>English</span>
+                        </a>
+                    </div>
+                    
+                    
+
+                </nav>
+            </nav>
+        </aside>
+    </div>
+    <main>
+        <div class="mdc-toolbar-fixed-adjust"></div>
+
+
+
+<div id="main">
+    <div class="container">
+        <div class="article-header">
+            <h1>PyTorchでDQNを実装した</h1>
+            <div class="meta-data">
+                Dec 1, 2017 &nbsp;  <span class="article-tag"><a href="/tags/pytorch">#PyTorch</a></span>&nbsp;  <span class="article-tag"><a href="/tags/python">#Python</a></span>&nbsp; 
+            </div>
+        </div>
+        <aside>
+            <nav id="TableOfContents">
+<ul>
+<li><a href="#はじめに">はじめに</a></li>
+<li><a href="#強化学習とは">強化学習とは</a></li>
+<li><a href="#deep-q-networkとは">Deep Q-Networkとは</a></li>
+<li><a href="#実装について">実装について</a>
+<ul>
+<li><a href="#画像の処理">画像の処理</a></li>
+<li><a href="#ネットワーク">ネットワーク</a></li>
+<li><a href="#その他">その他</a>
+<ul>
+<li><a href="#noop-max">noop max</a></li>
+<li><a href="#update-frequency">update frequency</a></li>
+<li><a href="#learning-rate">learning rate</a></li>
+<li><a href="#final-exploration-alternative">final exploration alternative</a></li>
+<li><a href="#validation用の環境の用意">validation用の環境の用意</a></li>
+<li><a href="#損失">損失</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#実験">実験</a></li>
+<li><a href="#結果">結果</a></li>
+<li><a href="#今後">今後</a></li>
+</ul>
+</nav>
+        </aside>
+        <article>
+
+            
+
+<p>これはPyTorch Advent Calendar1日目の記事です．</p>
+
+<p>もしもサンタさんがこの記事を見ていたら，と考えて<a href="https://www.amazon.co.jp/hz/wishlist/ls/2RIXM47GMWBZA">wish list</a>を用意しました．サンタ各位におかれましては，よろしくお願いします．</p>
+
+<h1 id="はじめに">はじめに</h1>
+
+<p>DQN(Deep Q Network)は Minh et al. 2015<sup class="footnote-ref" id="fnref:1"><a rel="footnote" href="#fn:1">1</a></sup>（以下論文）で登場した深層強化学習の先駆けです．Atariのゲームで非常に高い得点を修めるというパフォーマンスで有名になりました．</p>
+
+
+<div style="position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden;">
+  <iframe src="//www.youtube.com/embed/TmPfTpjtdgg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" allowfullscreen frameborder="0" title="YouTube Video"></iframe>
+ </div>
+
+
+<p>9月頃に強化学習の勉強をした際に実装してみたのですが，一向に学習が進まず放置していたのですが，最近<a href="http://arxiv.org/abs/1711.07478">Implementing the Deep Q-Network</a> <sup class="footnote-ref" id="fnref:2"><a rel="footnote" href="#fn:2">2</a></sup>を読み再開してみたところ，動いてしまったので，この記事を書くことになりました．</p>
+
+<p>今回の実装は<a href="https://github.com/moskomule/pytorch.rl.learning/tree/master/dl/dqn">こちら</a>にあります．</p>
+
+<h1 id="強化学習とは">強化学習とは</h1>
+
+<p>David Silver先生に聞きましょう．ただしこの講義では深層強化学習は扱われていません．</p>
+
+
+<div style="position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden;">
+  <iframe src="//www.youtube.com/embed/2pWv7GOvuf0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" allowfullscreen frameborder="0" title="YouTube Video"></iframe>
+ </div>
+
+
+<h1 id="deep-q-networkとは">Deep Q-Networkとは</h1>
+
+<p><a href="https://storage.googleapis.com/deepmind-media/dqn/DQNNaturePaper.pdf">論文</a>を読みましょう．Q-Learningの応用で，複雑ではありませんが，学習を安定させるための工夫が各所にあるので見逃すと動かないようです．</p>
+
+
+<figure >
+    
+        <img src="/img/post/pytorch/dqn_alg.png" />
+    
+    
+    <figcaption>
+        <h4>DQNの学習アルゴリズム．論文より．</h4>
+        
+    </figcaption>
+    
+</figure>
+
+
+<h1 id="実装について">実装について</h1>
+
+<h2 id="画像の処理">画像の処理</h2>
+
+<p>DQNではAtariのゲームの画像をグレースケールにしてスタックするなどの処理がありますが，このあたりは各アルゴリズムをTensorFlowで実装し，公開している<a href="https://github.com/openai/baselines">Open AI baselines</a>を一部変更して用いています．</p>
+
+<ul>
+<li>OpenCV2をPillowに変更した</li>
+<li>画像のスタックの仕方をPyTorchに合わせて変更した．</li>
+</ul>
+
+<p>また今回の改良では<a href="https://github.com/lanpa/tensorboard-pytorch">tensorboard-pytorch</a>を導入して，入力画像が正しいかを確認できるようにしました．</p>
+
+
+<figure >
+    
+        <img src="/img/post/pytorch/dqn_input.png" />
+    
+    
+</figure>
+
+
+<h2 id="ネットワーク">ネットワーク</h2>
+
+<p>Deepとは言えない気がしますが論文通りの構成です．何か工夫すると多少変わるのかもしれません．</p>
+
+<pre><code class="language-python">class DQN(nn.Module):
+    def __init__(self, output_size: int):
+        super(DQN, self).__init__()
+        self.feature = nn.Sequential(
+                nn.Conv2d(4, 32, kernel_size=8, stride=4),
+                nn.ReLU(inplace=True),
+                nn.Conv2d(32, 64, kernel_size=4, stride=2),
+                nn.ReLU(inplace=True),
+                nn.Conv2d(64, 64, kernel_size=3, stride=1),
+                nn.ReLU(inplace=True))
+        self.fc = nn.Linear(64 * 7 * 7, 512)
+        self.output = nn.Linear(512, output_size)
+
+    def forward(self, x):
+        x = self.feature(x)
+        x = x.view(x.size()[0], -1)
+        x = F.relu(self.fc(x))
+        x = self.output(x)
+        return x
+</code></pre>
+
+<p>目標の行動価値函数$\hat{Q}$のネットワークを行動価値函数$Q$のネットワークの値で更新する際に</p>
+
+<pre><code class="language-python">self.target_net.load_state_dict(self.net.state_dict())
+for p in self.target_net.parameters():
+    p.requires_grad = False
+</code></pre>
+
+<p>によって$\hat{Q}$の勾配を計算しないようにしています．</p>
+
+<h2 id="その他">その他</h2>
+
+<p>以前の実装では見落としていていたものを挙げます．</p>
+
+<h3 id="noop-max">noop max</h3>
+
+<p>&ldquo;maximum number of &lsquo;do nothing&rsquo; actions to be performed by the agent at the start of an episode&rdquo;．エピソードの開始時に最大で<code>noop</code>回何もしないことで，状態を多様化します．</p>
+
+<h3 id="update-frequency">update frequency</h3>
+
+<p>&ldquo;the number of actions selected by the agent between successive SGD updates&rdquo; とあって更新しないの？と思って無視していたのですが，4回毎にしか重みの更新をしないことでロバストになるのかもしれません．</p>
+
+<h3 id="learning-rate">learning rate</h3>
+
+<p><sup class="footnote-ref" id="fnref:2"><a rel="footnote" href="#fn:2">2</a></sup>によれば，論文の実装で使われているRMSpropにはmomentumがあるのですが，PyTorchなどのRMSprop実装にはmomentumがないので<code>lr=5e-5</code>と小さめに設定します．</p>
+
+<h3 id="final-exploration-alternative">final exploration alternative</h3>
+
+<p><sup class="footnote-ref" id="fnref:2"><a rel="footnote" href="#fn:2">2</a></sup>に従ってε-greedy探索の探索率$\epsilon$を1から0.05（<sup class="footnote-ref" id="fnref:1"><a rel="footnote" href="#fn:1">1</a></sup>では0.1）まで下げます．</p>
+
+<h3 id="validation用の環境の用意">validation用の環境の用意</h3>
+
+<p><sup class="footnote-ref" id="fnref:2"><a rel="footnote" href="#fn:2">2</a></sup>に250,000ステップ毎にvalidationをした，とあったのでvalidation環境を用意しました．この際には<code>noop max</code>は不要です．</p>
+
+<h3 id="損失">損失</h3>
+
+<p><sup class="footnote-ref" id="fnref:1"><a rel="footnote" href="#fn:1">1</a></sup>では2乗損失を用いていますが，<sup class="footnote-ref" id="fnref:3"><a rel="footnote" href="#fn:3">3</a></sup>に従ってHuber損失（smoothed L1）を用います．</p>
+
+<p>\[L(a)=\begin{cases}
+&amp; \frac12a^2 ~~~~\text{ if } |a|\leq 1 \cr
+&amp; |a| - \frac12 ~~~~\text{ otherwise}
+\end{cases}\]</p>
+
+<h1 id="実験">実験</h1>
+
+<pre><code>git clone https://github.com/moskomule/pytorch.rl.learning.git
+cd pytorch.rl.learning.git
+export PYTHONPATH=$(pwd)
+cd dl/dqn
+python exec.py
+</code></pre>
+
+<p>で卓球ゲームであるPongを学習します．<code>--env</code>で他のゲームを試すことも出来ます．</p>
+
+<h1 id="結果">結果</h1>
+
+<p>今のところ卓球ゲームであるPongを試しています．1エピソードで20回の対戦があり勝つと+1，負けると-1の報酬を受け取ります．validation環境での報酬のグラフを見るとはじめはほぼ全敗で-20点(-21点のこともある)ですが，学習が進むにつれて安定して全勝して20点を獲得できるようになります．</p>
+
+<p>
+<figure >
+    
+        <img src="/img/post/pytorch/pong_reward.png" />
+    
+    
+    <figcaption>
+        <h4>Pongにおけるvalidation環境での報酬の変化．</h4>
+        
+    </figcaption>
+    
+</figure>
+
+
+<figure >
+    
+        <img src="/img/post/pytorch/pong_loss.png" />
+    
+    
+    <figcaption>
+        <h4>Pongにおける損失の変化．</h4>
+        
+    </figcaption>
+    
+</figure>
+</p>
+
+<p><code>tensorboard-pytorch</code>のお陰で実験の結果が簡単に可視化できるので便利です．</p>
+
+<h1 id="今後">今後</h1>
+
+<p>DQNだと深層強化学習楽しい，という感じですが最近は画像処理や自然言語処理などと組み合わせた研究も多く，不可欠の技術になりつつあるのかもしれません．</p>
+
+<p>一方でHenderson et al. 2017<sup class="footnote-ref" id="fnref:4"><a rel="footnote" href="#fn:4">4</a></sup>で言われるように，提案されたstate of the artの手法の再現がなかなか出来ないという問題もあります．</p>
+
+<p>今後はとりあえずbaselinesにあるような代表的な深層強化学習のアルゴリズムを再実装を通して，深層強化学習に親しんでいこうと考えています．</p>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:1">Mnih, V., Kavukcuoglu, K., Silver, D., Rusu, A. A., Veness, J., Bellemare, M. G., Hassabis, D. (2015). <em>Human-level control through deep reinforcement learning.</em>
+ <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
+<li id="fn:2">Roderick, M., MacGlashan, J., &amp; Tellex, S. (2017). <em>Implementing the Deep Q-Network.</em>
+ <a class="footnote-return" href="#fnref:2"><sup>[return]</sup></a></li>
+<li id="fn:3">Szymon Sidor &amp; John Schulman. (2017) <em>OpenAI Baselines: DQN</em>
+ <a class="footnote-return" href="#fnref:3"><sup>[return]</sup></a></li>
+<li id="fn:4"><a href="https://arxiv.org/abs/1709.06560">https://arxiv.org/abs/1709.06560</a>
+ <a class="footnote-return" href="#fnref:4"><sup>[return]</sup></a></li>
+</ol>
+</div>
+
+
+        </article>
+        <nav class="pagination-single">
+            
+            <span class="previous">&larr; <a href="https://mosko.tokyo/notes/info_ml/5/" rel="prev">情報論的学習理論5</a></span>  
+        </nav>
+
+        <div class="disqus-comments">
+            <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "moskomule-log" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </div>
+    </div>
+
+</div>
+
+
+<footer class="copyright">
+
+    
+    <span class="copyright">
+                <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="クリエイティブ・コモンズ・ライセンス" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/80x15.png" /></a>&nbspWritten by Ryuichiro Hataya, Powered by <a href="https://gohugo.io/">Hugo</a>
+    </span>
+
+</footer>
+</div>
+</main>
+
+
+
+
+<script type="text/javascript" src="/js/highlight.pack.js"></script>
+<script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+</script>
+
+
+<script type="text/javascript" src="/js/material-components-web.js"></script>
+<script type="text/javascript">
+    var drawerEl = document.querySelector('.mdc-temporary-drawer');
+    var MDCTemporaryDrawer = mdc.drawer.MDCTemporaryDrawer;
+    var drawer = new MDCTemporaryDrawer(drawerEl);
+    document.querySelector('.header-menu').addEventListener('click', function() {
+        drawer.open = true;
+    });
+    drawerEl.addEventListener('MDCTemporaryDrawer:open', function() {
+        console.log('Received MDCTemporaryDrawer:open');
+    });
+    drawerEl.addEventListener('MDCTemporaryDrawer:close', function() {
+        console.log('Received MDCTemporaryDrawer:close');
+    });
+</script>
+
+<script type="text/javascript">
+    (function() {
+        var pollId = 0;
+        pollId = setInterval(function() {
+            var pos = getComputedStyle(document.querySelector('.mdc-toolbar')).position;
+            if (pos === 'fixed' || pos === 'relative') {
+                init();
+                clearInterval(pollId);
+            }
+        }, 250);
+
+        function init() {
+            var toolbar = mdc.toolbar.MDCToolbar.attachTo(document.querySelector('.mdc-toolbar'));
+            toolbar.listen('MDCToolbar:change', function(evt) {
+                var flexibleExpansionRatio = evt.detail.flexibleExpansionRatio;
+                ratioSpan.innerHTML = flexibleExpansionRatio.toFixed(2);
+            });
+            toolbar.fixedAdjustElement = document.querySelector('.mdc-toolbar-fixed-adjust');
+        }
+    })();
+</script>
+
+
+<script>
+    renderMathInElement(
+        document.body, {
+            delimiters: [{
+                    left: "$$",
+                    right: "$$",
+                    display: false
+                },
+                {
+                    left: "\\[",
+                    right: "\\]",
+                    display: true
+                },
+                {
+                    left: "$",
+                    right: "$",
+                    display: false
+                }
+            ],
+            ignoredTags: [
+                "script",
+                "noscript",
+                "style",
+                "textarea",
+                "pre",
+                "code"
+            ]
+        }
+    );
+</script>
+</body>
+
+</html>
+
