@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>Written by Ryuichiro Hataya</copyright>
-    <lastBuildDate>Fri, 01 Dec 2017 15:10:30 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 25 Dec 2017 15:43:55 +0900</lastBuildDate>
     
 	<atom:link href="https://mosko.tokyo/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>NIPS2017まとめのまとめ</title>
+      <link>https://mosko.tokyo/post/nips2017/</link>
+      <pubDate>Mon, 25 Dec 2017 15:43:55 +0900</pubDate>
+      
+      <guid>https://mosko.tokyo/post/nips2017/</guid>
+      <description>After being extremely popular in the early 1990s, neural networks have fallen out of favor in research in the last 5 years. In 2000, it was even pointed out by the organizers of the Neural Information Processing System (NIPS) conference that the term “neural networks” in the submission title was negatively correlated with acceptance. In contrast, positive correlations were made with support vector machines (SVMs), Bayesian networks, and variational methods.</description>
+    </item>
     
     <item>
       <title>PyTorchでDQNを実装した</title>
@@ -18,9 +27,7 @@
       <pubDate>Fri, 01 Dec 2017 15:10:30 +0900</pubDate>
       
       <guid>https://mosko.tokyo/post/pytorch-dqn/</guid>
-      <description>これはPyTorch Advent Calendar1日目の記事です．
-もしもサンタさんがこの記事を見ていたら，と考えてwish listを用意しました．サンタ各位におかれましては，よろしくお願いします．
-はじめに DQN(Deep Q Network)は Minh et al. 20151（以下論文）で登場した深層強化学習の先駆けです．Atariのゲームで非常に高い得点を修めるというパフォーマンスで有名になりました．
+      <description>はじめに DQN(Deep Q Network)は Minh et al. 20151（以下論文）で登場した深層強化学習の先駆けです．Atariのゲームで非常に高い得点を修めるというパフォーマンスで有名になりました．
   9月頃に強化学習の勉強をした際に実装してみたのですが，一向に学習が進まず放置していたのですが，最近Implementing the Deep Q-Network 2を読み再開してみたところ，動いてしまったので，この記事を書くことになりました．
 今回の実装はこちらにあります．
 強化学習とは David Silver先生に聞きましょう．ただしこの講義では深層強化学習は扱われていません．
@@ -28,7 +35,7 @@
  DQNの学習アルゴリズム．論文より．   実装について 画像の処理 DQNではAtariのゲームの画像をグレースケールにしてスタックするなどの処理がありますが，このあたりは各アルゴリズムをTensorFlowで実装し，公開しているOpen AI baselinesを一部変更して用いています．
  OpenCV2をPillowに変更した 画像のスタックの仕方をPyTorchに合わせて変更した．  また今回の改良ではtensorboard-pytorchを導入して，入力画像が正しいかを確認できるようにしました．
  ネットワーク Deepとは言えない気がしますが論文通りの構成です．何か工夫すると多少変わるのかもしれません．
-class DQN(nn.Module): def __init__(self, output_size: int): super(DQN, self).__init__() self.feature = nn.Sequential( nn.Conv2d(4, 32, kernel_size=8, stride=4), nn.ReLU(inplace=True), nn.Conv2d(32, 64, kernel_size=4, stride=2), nn.ReLU(inplace=True), nn.Conv2d(64, 64, kernel_size=3, stride=1), nn.</description>
+class DQN(nn.Module): def __init__(self, output_size: int): super(DQN, self).__init__() self.feature = nn.Sequential( nn.Conv2d(4, 32, kernel_size=8, stride=4), nn.ReLU(inplace=True), nn.Conv2d(32, 64, kernel_size=4, stride=2), nn.ReLU(inplace=True), nn.Conv2d(64, 64, kernel_size=3, stride=1), nn.ReLU(inplace=True)) self.fc = nn.</description>
     </item>
     
     <item>
@@ -331,41 +338,6 @@ $a_k$は学習率，ステップ幅などと呼ばれ一回の更新で進む量
 \[x_{k+1}=x_{k}-\alpha_k\nabla f(x_{k})\]
 によって更新していきます．最急方向に適当な学習率$\alpha_k$を乗じて進んでいくので「直感的には合理的」2ですが，収束が遅く，適切な学習率の調整が難しいなど，実際の性能はあまりよくありません．
   $\alpha_k=0.1$で100回の更新を行った際の$x_k$の軌跡    $\alpha_k=0.01$で100回の更新を行った際の$x_k$の軌跡    $\alpha_k=0.001$で100回の更新を行った際の$x_k$の軌跡    最急降下法に対してWolfe基準を用いて学習率を調整した際の$x_k$の軌跡   ニュートン法 ニュートン法，またはニュートン・ラフソン法(Newton-Raphson method)は$H_k$に$(\nabla^2 f(x))^{-1}$，つまりHessianの逆行列を用いた手法です．これはニュートンの近似法3によって$f(x)$の極値を求めていると見ることができます．ニュートンの近似法は函数$g(t)=0$の根を</description>
-    </item>
-    
-    <item>
-      <title>PyTorchでRNN入門</title>
-      <link>https://mosko.tokyo/post/pytorch_rnn/</link>
-      <pubDate>Sat, 24 Jun 2017 15:37:12 +0900</pubDate>
-      
-      <guid>https://mosko.tokyo/post/pytorch_rnn/</guid>
-      <description>RNNの概説 RNNは再帰型ニューラルネットワーク(recurrent neural network)の略です．各層は以前の自分自身の出力も入力とする再帰的な構造をもつため，この名がつけられています．時間依存のある文や信号といった入力を処理することができます．
- RNN（左）とCNNなどのネットワーク（右）．RNNは自分自身の出力も入力として取り込むことで，時間に依存した情報を扱うことができると考えられた．   RNN自体は90年代初頭にJ.Elmanらによって提案され1，文生成や分散表現の獲得などの研究が行われています．現在でもよく使われる，より長い系列にも対応できるLSTMも90年代末に提案されており，伝統のあるネットワークであるといえるでしょう．
-画像におけるCNNの華々しい活躍と比較すると劣りますが，それでもGoogle翻訳の昨今の「自然な」翻訳の背景にはRNNがあります．
-単純なRNN 入力とする系列$x_0,x_1,\cdots,x_T$を$x_0$から順次与えていきます．ここでは下付き文字$\star_t$は時刻を表します．また上付き文字$\star^l$を$l$層目の状態として，時刻$t$における$l$層目の隠れ状態を$h_t^l$，出力を$y_t$と表します．
-再帰型ではないニューラルネットワークでは，ある層$l$の隠れ状態$h^l$は，その前の層への状態に重み$W^l$をかけ，活性化函数$f$に与えたもので，
-\[h^l = f(W^lh^{l-1})\]
-でした（ただし簡便のためにバイアスは省きました．今後も同様です．）．
-一方で，RNNには時刻の概念があり，さらに一つ前の状態を考慮するため，ある時刻$t$における，層$l$の状態$h^l_t$は
-\[h^l_t = f(W^lh_{t}^{l-1}+U^lh_{t-1}^l)\]
-です．つまり，前の層の出力$W^lh_t^{l-1}$に，前時刻の自分の出力$U^lh_{t-1}^l$が加わったものを活性化函数に与えることとなります．活性化函数$f$としては$\tanh,\mathrm{relu},\mathrm{sigmoid}$などが用いられます．
-それでは実際に系列を入力してみましょう．まず，$x_0$を入力します．
- 時刻 $\sim 0$   このとき$t=0$では，上の式から
-\[h^1_0=f(W^1x_0+U^1h_{-1}^1),h^2_0=f(W^2h^1_0+U^2h_{-1}^2)\]
-となります．この$h_{-1}^1,h_{-1}^2$は最初は隠れ状態がないために与える必要がある「仮の隠れ状態」で，$0$など適当に初期化されたベクトルを用います．同様にして，recurrent層が$L$層あれば時刻0において$x_0$と$h_{-1}^1,h_{-1}^2,\cdots,h_{-1}^L$を用意する必要があります．また，最終層は
-\[y_t=f_y(W^{L}h_t^{L})\]
-で与えられます．
-その後は隠れ状態があるので，順次
-\[h^1_1=f(W^1x_1+U^lh_{0}^1)\]
-などとなります．
-  時刻 $0\sim 1$    時刻 $1\sim 2$    時刻 $2\sim $   重みの更新は一つの系列が終了してから行います．このとき用いる損失は，目標を$d_0,d_1,\cdots,d_T$として，すべての時刻に対して出力が必要な場合，例えば文章生成の場合，
-\[\sum_t\mathrm{loss}(y_t,d_t)\]
-とします．または，二値分類などでは$y_T$には$y_0,\cdots,y_{T-1}$の情報が蓄積されていると考えて
-\[\mathrm{loss}(y_T, d_T)\]
-を用います．
-いずれにしても，このとき$t=T$での損失から$t=0$での隠れ状態も考慮することとなります．上の図では$t=2$までしかありませんが，$h_0^1$から$y_2$までの経路は，例えば$h_0^1\to h_1^1\to h_1^2\to h_2^2\to y_2$などのように，一般のネットワークでは隠れ層4のネットワークに相当します．
-そのため，理論的には長い系列を処理することができますが，実際にはこのような単純なRNNでは容易に勾配消失がおこり，長い系列は学習できなくなることが知られています．
-PyTorchではこの単純なRNNはnn.RNNに用意されています（後述）．</description>
     </item>
     
     <item>

@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://mosko.tokyo/post/nips2017/</loc>
+    <lastmod>2017-12-25T15:43:55+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://mosko.tokyo/post/pytorch-dqn/</loc>
     <lastmod>2017-12-01T15:10:30+09:00</lastmod>
   </url>
@@ -65,11 +70,6 @@
   <url>
     <loc>https://mosko.tokyo/post/optimization/</loc>
     <lastmod>2017-07-09T12:37:12+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mosko.tokyo/post/pytorch_rnn/</loc>
-    <lastmod>2017-06-24T15:37:12+09:00</lastmod>
   </url>
   
   <url>
@@ -282,7 +282,7 @@
   
   <url>
     <loc>https://mosko.tokyo/tags/deep-learning/</loc>
-    <lastmod>2017-11-13T18:57:37+09:00</lastmod>
+    <lastmod>2017-12-25T15:43:55+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -372,18 +372,24 @@
   
   <url>
     <loc>https://mosko.tokyo/post/</loc>
-    <lastmod>2017-12-01T15:10:30+09:00</lastmod>
+    <lastmod>2017-12-25T15:43:55+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://mosko.tokyo/tags/python/</loc>
-    <lastmod>2017-12-01T15:10:30+09:00</lastmod>
+    <lastmod>2017-07-25T15:37:12+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://mosko.tokyo/tags/pytorch/</loc>
+    <lastmod>2017-12-01T15:10:30+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://mosko.tokyo/tags/reinforcement-learning/</loc>
     <lastmod>2017-12-01T15:10:30+09:00</lastmod>
     <priority>0</priority>
   </url>
@@ -436,7 +442,7 @@
   
   <url>
     <loc>https://mosko.tokyo/</loc>
-    <lastmod>2017-12-01T15:10:30+09:00</lastmod>
+    <lastmod>2017-12-25T15:43:55+09:00</lastmod>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
