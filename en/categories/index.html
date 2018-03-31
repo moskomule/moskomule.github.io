@@ -4,7 +4,7 @@
 
 <head>
     <title>
-        PyTorchはじめ | moskomule log
+        Categories | moskomule log
     </title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -29,7 +29,7 @@
             <div class="mdc-toolbar__row">
                 <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
                     <button class="header-menu material-icons mdc-toolbar__icon--menu">menu</button>
-                    <span class="mdc-toolbar__title">PyTorchはじめ | moskomule log</span>
+                    <span class="mdc-toolbar__title">Categories | moskomule log</span>
                 </section>
                 <section class="mdc-toolbar__section mdc-toolbar__section--align-end" role="toolbar">
                     
@@ -51,16 +51,16 @@
                 </header>
                 <nav class="mdc-temporary-drawer__content mdc-list-group">
                     <div id="icon-with-text" class="mdc-list">
-                        <a class="mdc-list-item" href="/#about">
+                        <a class="mdc-list-item" href="/en#about">
                             <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">star</i>About
                         </a>
-                        <a class="mdc-list-item" href="/#articles">
+                        <a class="mdc-list-item" href="/en#articles">
                             <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">book</i>Articles
                         </a>
                     </div>
                     <hr class="mdc-list-divider">
                     <div class="mdc-list">
-                        <a class="mdc-list-item" href="/#contact">
+                        <a class="mdc-list-item" href="/en#contact">
                             <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">send</i>Contact
                         </a>
                     </div>
@@ -86,14 +86,14 @@
                     
                     
                     <div class="languages">
-                        <a class="mdc-list-item selected_lang" href="https://mosko.tokyo/ja">
+                        <a class="mdc-list-item " href="https://mosko.tokyo/ja">
                             <i class="material-icons mdc-list-item__start-detail">language</i> <span>日本語</span>
                         </a>
                     </div>
                     
                     
                     <div class="languages">
-                        <a class="mdc-list-item " href="https://mosko.tokyo/en">
+                        <a class="mdc-list-item selected_lang" href="https://mosko.tokyo/en">
                             <i class="material-icons mdc-list-item__start-detail">language</i> <span>English</span>
                         </a>
                     </div>
@@ -108,113 +108,12 @@
         <div class="mdc-toolbar-fixed-adjust"></div>
 
 
-
-<div id="main">
+<section class="contents-list">
     <div class="container">
-        <div class="article-header">
-            <h1>PyTorchはじめ</h1>
-            <div class="meta-data">
-                Jan 24, 2017 &nbsp;  <span class="article-tag"><a href="/tags/pytorch">#PyTorch</a></span>&nbsp;  <span class="article-tag"><a href="/tags/deep-learning">#Deep Learning</a></span>&nbsp; 
-            </div>
-        </div>
-        <aside>
-            
-        </aside>
-        <article>
-
-            <p>先日Facebookが <a href="http://pytorch.org/">PyTorch</a> を公開していたので，早速試してみた．<code>PyTorch</code>は</p>
-
-<blockquote>
-<p>Tensors and Dynamic neural networks in Python with strong GPU acceleration.</p>
-</blockquote>
-
-<p>とのことで，<code>TensorFlow</code>や<code>Theano</code>より，<code>Chainer</code>に似ている気がする．後発ということもあってか，ウェブページにある導入の説明が丁寧で，Linux，Python 3.5，conda，Cuda8.0なら</p>
-
-<pre><code>conda install pytorch torchvision cuda80 -c soumith
-</code></pre>
-
-<p>を叩くだけでよい．その下にはMNISTなどの例やJupyterのチュートリアルへのリンクがあるのも丁寧．ただ，ニューラルネットワークの知識に乏しくともレイヤーを重ねて<code>scikit-learn</code>風によしなにすればよい<code>keras</code>よりは難しいが，その分柔軟に書けそう．メモリを大量消費する<code>TensorFlow</code>に較べて，GPUに対する負荷はかなり小さそう．</p>
-
-<hr />
-
-<p>基本的には<code>nn.Module</code>を継承してネットワークを定義する． 以下のコードは<a href="https://github.com/moskomule/pytorch_learn/blob/master/simple/mnist.py">Github</a>に挙げた．</p>
-
-<pre><code>class Net(nn.Module):
-  def __init__(self):
-    super(Net, self).__init__()
-    self.conv1 = nn.Conv2d(in_channels=1, out_channels=10,
-                           kernel_size=5,
-                           stride=1)
-    self.conv2 = nn.Conv2d(10, 20, kernel_size=5)
-    self.conv2_bn = nn.BatchNorm2d(20)
-    self.dense1 = nn.Linear(in_features=320, out_features=50)
-    self.dense1_bn = nn.BatchNorm1d(50)
-    self.dense2 = nn.Linear(50, 10)
-
-  def forward(self, x):
-    x = F.relu(F.max_pool2d(self.conv1(x), 2))
-    x = F.relu(F.max_pool2d(self.conv2_bn(self.conv2(x)), 2))
-    x = x.view(-1, 320) #reshape
-    x = F.relu(self.dense1_bn(self.dense1(x)))
-    x = F.relu(self.dense2(x))
-    return F.log_softmax(x)
-</code></pre>
-
-<p><code>__init__</code>で層を用意して<code>forward</code>でレイヤーを繋げる感じ．各レイヤーでは入力数と出力数を明示する必要があって，<code>keras</code>慣れしていたので畳み込み数の入出力数が分からず最初は戸惑ってしまった．</p>
-
-<pre><code>model = Net()
-
-optimizer = optim.Adam(model.parameters(),lr=5e-4)
-
-model.train()
-for batch_idx, (data, target) in enumerate(train_loader):
-  data, target = Variable(data), Variable(target)
-  optimizer.zero_grad() # optimizerの勾配を0にする
-  output = model(data)
-  loss = F.nll_loss(output, target) # negative log likelihood loss
-  loss.backward() # 逆伝播させる
-  optimizer.step() # 進める
-</code></pre>
-
-<p><code>train_loader</code>から出てきた<code>data</code>,<code>target</code>は<code>Tensor</code>型だが，そのままではネットワークに渡せないので<code>Variable</code>で包む．<code>Chainer</code>もこのような感じで，<code>Tensorflow</code>では<code>placeholder</code>と呼ばれているもの．<code>keras</code>では何も考えずに<code>Numpy</code>配列のまま与えられたので気をつけないと．</p>
-
-<hr />
-
-<p><code>Keras</code>でRNNを書こうとしたら，難しそうだったのでこうして<code>PyTorch</code>を触っているのだけれども，<code>Chainer</code>とどちらの方がいいのだろうか．</p>
-
-
-        </article>
-        <nav class="pagination-single">
-            
-            <span class="previous">&larr; <a href="https://mosko.tokyo/post/mnist_kuzushiji/" rel="prev">「日本古典籍字形データセット」で遊ぶ</a></span>  
-            <span class="next"><a href="https://mosko.tokyo/travel/iran0/" rel="next">イラン旅行記0日目</a> &rarr;</span> 
-        </nav>
-
-        <div class="disqus-comments">
-            <div id="disqus_thread"></div>
-<script>
-    var disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "moskomule-log" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-        </div>
+        <h1>Categories</h1> 
     </div>
-
-</div>
+    </div>
+</section>
 
 
 <footer class="copyright">

@@ -149,7 +149,7 @@
 
 <h1 id="はじめに">はじめに</h1>
 
-<p>DQN(Deep Q Network)は Minh et al. 2015<sup class="footnote-ref" id="fnref:1"><a rel="footnote" href="#fn:1">1</a></sup>（以下論文）で登場した深層強化学習の先駆けです．Atariのゲームで非常に高い得点を修めるというパフォーマンスで有名になりました．</p>
+<p>DQN(Deep Q Network)は Minh et al. 2015<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup>（以下論文）で登場した深層強化学習の先駆けです．Atariのゲームで非常に高い得点を修めるというパフォーマンスで有名になりました．</p>
 
 
 <div style="position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden;">
@@ -157,7 +157,7 @@
  </div>
 
 
-<p>9月頃に強化学習の勉強をした際に実装してみたのですが，一向に学習が進まず放置していたのですが，最近<a href="http://arxiv.org/abs/1711.07478">Implementing the Deep Q-Network</a> <sup class="footnote-ref" id="fnref:2"><a rel="footnote" href="#fn:2">2</a></sup>を読み再開してみたところ，動いてしまったので，この記事を書くことになりました．</p>
+<p>9月頃に強化学習の勉強をした際に実装してみたのですが，一向に学習が進まず放置していたのですが，最近<a href="http://arxiv.org/abs/1711.07478">Implementing the Deep Q-Network</a> <sup class="footnote-ref" id="fnref:2"><a href="#fn:2">2</a></sup>を読み再開してみたところ，動いてしまったので，この記事を書くことになりました．</p>
 
 <p>今回の実装は<a href="https://github.com/moskomule/pytorch.rl.learning/tree/master/dl/dqn">こちら</a>にあります．</p>
 
@@ -176,7 +176,7 @@
 <p><a href="https://storage.googleapis.com/deepmind-media/dqn/DQNNaturePaper.pdf">論文</a>を読みましょう．Q-Learningの応用で，複雑ではありませんが，学習を安定させるための工夫が各所にあるので見逃すと動かないようです．</p>
 
 
-<figure >
+<figure>
     
         <img src="/img/post/pytorch/dqn_alg.png" />
     
@@ -203,7 +203,7 @@
 <p>また今回の改良では<a href="https://github.com/lanpa/tensorboard-pytorch">tensorboard-pytorch</a>を導入して，入力画像が正しいかを確認できるようにしました．</p>
 
 
-<figure >
+<figure>
     
         <img src="/img/post/pytorch/dqn_input.png" />
     
@@ -259,19 +259,19 @@ for p in self.target_net.parameters():
 
 <h3 id="learning-rate">learning rate</h3>
 
-<p><sup class="footnote-ref" id="fnref:2"><a rel="footnote" href="#fn:2">2</a></sup>によれば，論文の実装で使われているRMSpropにはmomentumがあるのですが，PyTorchなどのRMSprop実装にはmomentumがないので<code>lr=5e-5</code>と小さめに設定します．</p>
+<p><sup class="footnote-ref" id="fnref:2"><a href="#fn:2">2</a></sup>によれば，論文の実装で使われているRMSpropにはmomentumがあるのですが，PyTorchなどのRMSprop実装にはmomentumがないので<code>lr=5e-5</code>と小さめに設定します．</p>
 
 <h3 id="final-exploration-alternative">final exploration alternative</h3>
 
-<p><sup class="footnote-ref" id="fnref:2"><a rel="footnote" href="#fn:2">2</a></sup>に従ってε-greedy探索の探索率$\epsilon$を1から0.05（<sup class="footnote-ref" id="fnref:1"><a rel="footnote" href="#fn:1">1</a></sup>では0.1）まで下げます．</p>
+<p><sup class="footnote-ref" id="fnref:2"><a href="#fn:2">2</a></sup>に従ってε-greedy探索の探索率$\epsilon$を1から0.05（<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup>では0.1）まで下げます．</p>
 
 <h3 id="validation用の環境の用意">validation用の環境の用意</h3>
 
-<p><sup class="footnote-ref" id="fnref:2"><a rel="footnote" href="#fn:2">2</a></sup>に250,000ステップ毎にvalidationをした，とあったのでvalidation環境を用意しました．この際には<code>noop max</code>は不要です．</p>
+<p><sup class="footnote-ref" id="fnref:2"><a href="#fn:2">2</a></sup>に250,000ステップ毎にvalidationをした，とあったのでvalidation環境を用意しました．この際には<code>noop max</code>は不要です．</p>
 
 <h3 id="損失">損失</h3>
 
-<p><sup class="footnote-ref" id="fnref:1"><a rel="footnote" href="#fn:1">1</a></sup>では2乗損失を用いていますが，<sup class="footnote-ref" id="fnref:3"><a rel="footnote" href="#fn:3">3</a></sup>に従ってHuber損失（smoothed L1）を用います．</p>
+<p><sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup>では2乗損失を用いていますが，<sup class="footnote-ref" id="fnref:3"><a href="#fn:3">3</a></sup>に従ってHuber損失（smoothed L1）を用います．</p>
 
 <p>\[L(a)=\begin{cases}
 &amp; \frac12a^2 ~~~~\text{ if } |a|\leq 1 \cr
@@ -294,7 +294,7 @@ python exec.py
 <p>今のところ卓球ゲームであるPongを試しています．1エピソードで20回の対戦があり勝つと+1，負けると-1の報酬を受け取ります．validation環境での報酬のグラフを見るとはじめはほぼ全敗で-20点(-21点のこともある)ですが，学習が進むにつれて安定して全勝して20点を獲得できるようになります．</p>
 
 <p>
-<figure >
+<figure>
     
         <img src="/img/post/pytorch/pong_reward.png" />
     
@@ -307,7 +307,7 @@ python exec.py
 </figure>
 
 
-<figure >
+<figure>
     
         <img src="/img/post/pytorch/pong_loss.png" />
     
@@ -326,7 +326,7 @@ python exec.py
 
 <p>DQNだと深層強化学習楽しい，という感じですが最近は画像処理や自然言語処理などと組み合わせた研究も多く，不可欠の技術になりつつあるのかもしれません．</p>
 
-<p>一方でHenderson et al. 2017<sup class="footnote-ref" id="fnref:4"><a rel="footnote" href="#fn:4">4</a></sup>で言われるように，提案されたstate of the artの手法の再現がなかなか出来ないという問題もあります．</p>
+<p>一方でHenderson et al. 2017<sup class="footnote-ref" id="fnref:4"><a href="#fn:4">4</a></sup>で言われるように，提案されたstate of the artの手法の再現がなかなか出来ないという問題もあります．</p>
 
 <p>今後はとりあえずbaselinesにあるような代表的な深層強化学習のアルゴリズムを再実装を通して，深層強化学習に親しんでいこうと考えています．</p>
 <div class="footnotes">

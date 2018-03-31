@@ -148,7 +148,7 @@
 
 <h1 id="はじめに">はじめに</h1>
 
-<p>ディープラーニングの帝王<sup class="footnote-ref" id="fnref:1"><a rel="footnote" href="#fn:1">1</a></sup>Geoffrey Hinton先生が20年来温め続けてきたというCapsules Network(CapsNet)を実装し成果を出して論文を出しました(<a href="https://arxiv.org/abs/1710.09829">Dynamic Routing Between Capsules</a>)．この記事ではこのCapsNetについて簡単にまとめます．</p>
+<p>ディープラーニングの帝王<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup>Geoffrey Hinton先生が20年来温め続けてきたというCapsules Network(CapsNet)を実装し成果を出して論文を出しました（<a href="https://arxiv.org/abs/1710.09829">Dynamic Routing Between Capsules</a>）．この記事ではこのCapsNetについて簡単にまとめます．</p>
 
 <p>Hinton先生の業績は並べても感嘆するばかりで仕方ないのですが，帝王でおはしますと同時に認知心理学者でもあります．このCapsules Networkも脳のコラム構造を真似ることでCNNよりも人間の認知機能に近い認識器をつくることが目標です．</p>
 
@@ -156,15 +156,15 @@
 
 <ul>
 <li>今まで重みと入力の内積というスカラーの塊であった層を，Capsulesという「ベクトルの塊」とすることで「姿勢」などの情報を扱えるようにした．</li>
-<li>層間のCapsulesの結合(routing)を学習できるようにした．</li>
-<li>実際にCapsulesを用いた3層のネットワーク(CapsNet)を構築した．</li>
+<li>層間のCapsulesの結合（routing）を学習できるようにした．</li>
+<li>実際にCapsulesを用いた3層のネットワーク（CapsNet）を構築した．</li>
 <li>CapsNetはデータ拡張なしにMNISTのテストエラー0.25%を達成した．</li>
 <li>文字が重なったMNISTに対してもAttentionを用いた複雑なネットワークと同等以上の性能を発揮した．</li>
 </ul>
 
 <h1 id="cnnの問題点">CNNの問題点</h1>
 
-<p>さて，Hinton先生は度々（AlexNet登場以前から！）畳み込みニューラルネットワーク(CNN)の問題点を指摘しており，Capsulesはその解決策のひとつでもあります．</p>
+<p>さて，Hinton先生は度々（AlexNet登場以前から！）畳み込みニューラルネットワーク（CNN）の問題点を指摘しており，Capsulesはその解決策のひとつでもあります．</p>
 
 <p>各所で&rdquo;What is wrong with Convolutional Neural Nets&rdquo;という題の講演を行っているようです．（<a href="https://github.com/WalnutiQ/walnut/issues/157">受講者のノート</a>，<a href="http://moreisdifferent.com/2017/09/hinton-whats-wrong-with-CNNs">まとめ</a>）．</p>
 
@@ -176,14 +176,14 @@
 
 <hr />
 
-<p>LeNetにはじまるCNNでは，ゆがみや並行移動に対する不変性を得るためにpooling(sub-sampling)が行われます．これは却って，位置に関する重要な情報を取り去って特徴を学習していることに他なりません．</p>
+<p>LeNetにはじまるCNNでは，ゆがみや並行移動に対する不変性を得るためにpooling（sub-sampling）が行われます．これは却って，位置に関する重要な情報を取り去って特徴を学習していることに他なりません．</p>
 
 <p>従ってCNNでは，以下の図のように位置関係を無視して「目」や「口」といった個々の特徴のみで画像を認識することとなり，左図のようなそれぞれの要素がばらばらのものも右図のような顔であるものも同じように認識してしまいます．</p>
 
 <p>一方で人間などの認知では目鼻と顔の階層関係から顔であることを認識しているので，両者を区別することができます．言及はされていませんがイラストや顔文字，さらに一部が隠れた顔をも顔と認識できるのもこのお陰でしょう．</p>
 
 
-<figure >
+<figure>
     
         <img src="/img/post/caps/face1.png" />
     
@@ -203,7 +203,7 @@
 <p>一方で人間などの認知ではたとえ「傾いた人の顔」を見たことがなくても，例えば鼻の傾きから座標を割り出して画像が「人の顔」であり更に「傾いている」ことが分かります．</p>
 
 
-<figure >
+<figure>
     
         <img src="/img/post/caps/face2.png" />
     
@@ -222,14 +222,14 @@
 
 <h2 id="capsules">Capsules</h2>
 
-<p>各capsuleには階層によって異なりますが「目」や「顔」などが対応します<sup class="footnote-ref" id="fnref:2"><a rel="footnote" href="#fn:2">2</a></sup>．capsuleはベクトルで，長さがそのcapsuleに対応するものが存在する確率であり，各要素が位置や姿勢を表します．</p>
+<p>各capsuleには階層によって異なりますが「目」や「顔」などが対応します<sup class="footnote-ref" id="fnref:2"><a href="#fn:2">2</a></sup>．capsuleはベクトルで，長さがそのcapsuleに対応するものが存在する確率であり，各要素が位置や姿勢を表します．</p>
 
 <p>$l+1$層目のcapsule $j$は$l$層目のcapsulesの出力に，以下で説明するroutingを施した入力$s_j$を受けます．これはそのままでは上記の条件を満たさないので以下のsquashing（押し潰し）によって，$[0,1)$に閉じ込めます．</p>
 
 <p>\[v_j=\frac{|s_j|^2}{1+|s_j|^2}\frac{s_j}{|s_j}\]</p>
 
 
-<figure >
+<figure>
     
         <img src="/img/post/caps/caps.png" />
     
@@ -265,7 +265,7 @@
 <p>以下にroutingのアルゴリズムを載せました．</p>
 
 
-<figure >
+<figure>
     
         <img src="/img/post/caps/algorithm.png" />
     
@@ -287,7 +287,7 @@
 <p>3層目は全結合のcapsule層で先の8次元capsule $u_i~(i=1,\ldots,32\times6\times6)$から，MNISTの場合10個16次元capsule $v_j~(j=1,\ldots,10)$に接続します．どのクラスに分類されるかは$|v_j|$を比較します．</p>
 
 
-<figure >
+<figure>
     
         <img src="/img/post/caps/capsnet.png" />
     
@@ -329,7 +329,7 @@
 <p>MNISTではデータ拡張やアンサンブルを用いずにエラー率0.25%を達成しました．また重なりのあるmulti-MNISTでも高い性能を発揮しています．またMNISTにAffine変換を施したものに対しても認識を行うことができます．</p>
 
 <p>
-<figure >
+<figure>
     
         <img src="/img/post/caps/mnist.png" />
     
@@ -342,7 +342,7 @@
 </figure>
 
 
-<figure >
+<figure>
     
         <img src="/img/post/caps/multimnist.png" />
     

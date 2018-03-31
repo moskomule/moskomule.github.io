@@ -6,7 +6,6 @@
     <description>Recent content in Reinforcement Learning on moskomule log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <copyright>Written by Ryuichiro Hataya</copyright>
     <lastBuildDate>Fri, 01 Dec 2017 15:10:30 +0900</lastBuildDate>
     
 	<atom:link href="https://mosko.tokyo/tags/reinforcement-learning/index.xml" rel="self" type="application/rss+xml" />
@@ -23,10 +22,10 @@
 今回の実装はこちらにあります．
 強化学習とは David Silver先生に聞きましょう．ただしこの講義では深層強化学習は扱われていません．
   Deep Q-Networkとは 論文を読みましょう．Q-Learningの応用で，複雑ではありませんが，学習を安定させるための工夫が各所にあるので見逃すと動かないようです．
- DQNの学習アルゴリズム．論文より．   実装について 画像の処理 DQNではAtariのゲームの画像をグレースケールにしてスタックするなどの処理がありますが，このあたりは各アルゴリズムをTensorFlowで実装し，公開しているOpen AI baselinesを一部変更して用いています．
+  DQNの学習アルゴリズム．論文より．   実装について 画像の処理 DQNではAtariのゲームの画像をグレースケールにしてスタックするなどの処理がありますが，このあたりは各アルゴリズムをTensorFlowで実装し，公開しているOpen AI baselinesを一部変更して用いています．
  OpenCV2をPillowに変更した 画像のスタックの仕方をPyTorchに合わせて変更した．  また今回の改良ではtensorboard-pytorchを導入して，入力画像が正しいかを確認できるようにしました．
- ネットワーク Deepとは言えない気がしますが論文通りの構成です．何か工夫すると多少変わるのかもしれません．
-class DQN(nn.Module): def __init__(self, output_size: int): super(DQN, self).__init__() self.feature = nn.Sequential( nn.Conv2d(4, 32, kernel_size=8, stride=4), nn.ReLU(inplace=True), nn.Conv2d(32, 64, kernel_size=4, stride=2), nn.ReLU(inplace=True), nn.Conv2d(64, 64, kernel_size=3, stride=1), nn.ReLU(inplace=True)) self.fc = nn.</description>
+  ネットワーク Deepとは言えない気がしますが論文通りの構成です．何か工夫すると多少変わるのかもしれません．
+class DQN(nn.Module): def __init__(self, output_size: int): super(DQN, self).__init__() self.feature = nn.Sequential( nn.Conv2d(4, 32, kernel_size=8, stride=4), nn.ReLU(inplace=True), nn.Conv2d(32, 64, kernel_size=4, stride=2), nn.ReLU(inplace=True), nn.Conv2d(64, 64, kernel_size=3, stride=1), nn.ReLU(inplace=True)) self.</description>
     </item>
     
   </channel>

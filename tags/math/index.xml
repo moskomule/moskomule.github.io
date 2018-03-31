@@ -6,7 +6,6 @@
     <description>Recent content in Math on moskomule log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <copyright>Written by Ryuichiro Hataya</copyright>
     <lastBuildDate>Wed, 12 Jul 2017 12:37:12 +0900</lastBuildDate>
     
 	<atom:link href="https://mosko.tokyo/tags/math/index.xml" rel="self" type="application/rss+xml" />
@@ -29,10 +28,10 @@
 SGD(Stochastic Gradient Descent) 基本的に勾配降下法と同一で，以下により更新を行います．
 \[x_{k+1}=x_{k}-\alpha_k\nabla f(x_{k})\]
 $\alpha$の調整には段階的に$\alpha$を小さくするstep decay，$\alpha_k=\alpha_0 e^{-rk}$とするexponential decay，$\alpha_k=\frac{\alpha_0}{1+rk}$とする1/k decayなどの手法がありますが，職人の勘による調整法も多いようです．
- 初期位置(-0.7, -0.7),(0, 2.5),(-1, 2)からのSGDによる1000ステップの移動の軌跡．黄色の点が大域解(1,1)．   Momentum SGDは$\nabla f(x)$が0に近い時に更新ができなくなるという問題がありました．Momentum法では
+  初期位置(-0.7, -0.7),(0, 2.5),(-1, 2)からのSGDによる1000ステップの移動の軌跡．黄色の点が大域解(1,1)．   Momentum SGDは$\nabla f(x)$が0に近い時に更新ができなくなるという問題がありました．Momentum法では
 \[\begin{aligned} v_{k+1} &amp;amp;= \mu v_k-\alpha\nabla f(x_k)~,v_0=0 \cr\cr x_{k+1} &amp;amp;= x_k+v_{k+1} \end{aligned}\]
 によって更新を行うことでこの問題を解決しています．またSGDは各点の勾配変化に敏感でしたが，以前の状態を引き継ぐ慣性力のようなmomentum term$v$を用いることで些細な変化に対しての感度を低下させているとみることもできます．
- 初期位置(-0.7, -0.7),(0, 2.5),(-1, 2)からのmomentumつきのSGDによる1000ステップの移動の軌跡．黄色の点が大域解(1,1)．   Nestrov Accelerated Gradient Momentum法を改良し，$v_{k+1}$の更新に$x_k$よりも$x_{k+1}$に近いと期待される$x_k+\mu v_k$を用いたのがNestrov Accelerated Gradientです．</description>
+  初期位置(-0.7, -0.7),(0, 2.5),(-1, 2)からのmomentumつきのSGDによる1000ステップの移動の軌跡．黄色の点が大域解(1,1)．   Nestrov Accelerated Gradient Momentum法を改良し，$v_{k+1}$の更新に$x_k$よりも$x_{k+1}$に近いと期待される$x_k+\mu v_k$を用いたのがNestrov Accelerated Gradientです．</description>
     </item>
     
     <item>
@@ -55,7 +54,7 @@ $a_k$は学習率，ステップ幅などと呼ばれ一回の更新で進む量
 勾配降下法 勾配降下法(gradient descent method)，または最急降下法(steepest descent method)は$H_k=I$とする手法です．すなわち
 \[x_{k+1}=x_{k}-\alpha_k\nabla f(x_{k})\]
 によって更新していきます．最急方向に適当な学習率$\alpha_k$を乗じて進んでいくので「直感的には合理的」2ですが，収束が遅く，適切な学習率の調整が難しいなど，実際の性能はあまりよくありません．
-  $\alpha_k=0.1$で100回の更新を行った際の$x_k$の軌跡    $\alpha_k=0.01$で100回の更新を行った際の$x_k$の軌跡    $\alpha_k=0.001$で100回の更新を行った際の$x_k$の軌跡    最急降下法に対してWolfe基準を用いて学習率を調整した際の$x_k$の軌跡   ニュートン法 ニュートン法，またはニュートン・ラフソン法(Newton-Raphson method)は$H_k$に$(\nabla^2 f(x))^{-1}$，つまりHessianの逆行列を用いた手法です．これはニュートンの近似法3によって$f(x)$の極値を求めていると見ることができます．ニュートンの近似法は函数$g(t)=0$の根を</description>
+   $\alpha_k=0.1$で100回の更新を行った際の$x_k$の軌跡     $\alpha_k=0.01$で100回の更新を行った際の$x_k$の軌跡     $\alpha_k=0.</description>
     </item>
     
   </channel>

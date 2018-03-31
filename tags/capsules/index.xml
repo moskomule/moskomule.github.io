@@ -6,7 +6,6 @@
     <description>Recent content in Capsules on moskomule log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <copyright>Written by Ryuichiro Hataya</copyright>
     <lastBuildDate>Mon, 13 Nov 2017 18:57:37 +0900</lastBuildDate>
     
 	<atom:link href="https://mosko.tokyo/tags/capsules/index.xml" rel="self" type="application/rss+xml" />
@@ -18,25 +17,24 @@
       <pubDate>Mon, 13 Nov 2017 18:57:37 +0900</pubDate>
       
       <guid>https://mosko.tokyo/post/on-capusels/</guid>
-      <description>はじめに ディープラーニングの帝王1Geoffrey Hinton先生が20年来温め続けてきたというCapsules Network(CapsNet)を実装し成果を出して論文を出しました(Dynamic Routing Between Capsules)．この記事ではこのCapsNetについて簡単にまとめます．
+      <description>はじめに ディープラーニングの帝王1Geoffrey Hinton先生が20年来温め続けてきたというCapsules Network(CapsNet)を実装し成果を出して論文を出しました（Dynamic Routing Between Capsules）．この記事ではこのCapsNetについて簡単にまとめます．
 Hinton先生の業績は並べても感嘆するばかりで仕方ないのですが，帝王でおはしますと同時に認知心理学者でもあります．このCapsules Networkも脳のコラム構造を真似ることでCNNよりも人間の認知機能に近い認識器をつくることが目標です．
 本論文の要点は以下の通りです．
- 今まで重みと入力の内積というスカラーの塊であった層を，Capsulesという「ベクトルの塊」とすることで「姿勢」などの情報を扱えるようにした． 層間のCapsulesの結合(routing)を学習できるようにした． 実際にCapsulesを用いた3層のネットワーク(CapsNet)を構築した． CapsNetはデータ拡張なしにMNISTのテストエラー0.25%を達成した． 文字が重なったMNISTに対してもAttentionを用いた複雑なネットワークと同等以上の性能を発揮した．  CNNの問題点 さて，Hinton先生は度々（AlexNet登場以前から！）畳み込みニューラルネットワーク(CNN)の問題点を指摘しており，Capsulesはその解決策のひとつでもあります．
+ 今まで重みと入力の内積というスカラーの塊であった層を，Capsulesという「ベクトルの塊」とすることで「姿勢」などの情報を扱えるようにした． 層間のCapsulesの結合（routing）を学習できるようにした． 実際にCapsulesを用いた3層のネットワーク（CapsNet）を構築した． CapsNetはデータ拡張なしにMNISTのテストエラー0.25%を達成した． 文字が重なったMNISTに対してもAttentionを用いた複雑なネットワークと同等以上の性能を発揮した．  CNNの問題点 さて，Hinton先生は度々（AlexNet登場以前から！）畳み込みニューラルネットワーク（CNN）の問題点を指摘しており，Capsulesはその解決策のひとつでもあります．
 各所で&amp;rdquo;What is wrong with Convolutional Neural Nets&amp;rdquo;という題の講演を行っているようです．（受講者のノート，まとめ）．
-  LeNetにはじまるCNNでは，ゆがみや並行移動に対する不変性を得るためにpooling(sub-sampling)が行われます．これは却って，位置に関する重要な情報を取り去って特徴を学習していることに他なりません．
+  LeNetにはじまるCNNでは，ゆがみや並行移動に対する不変性を得るためにpooling（sub-sampling）が行われます．これは却って，位置に関する重要な情報を取り去って特徴を学習していることに他なりません．
 従ってCNNでは，以下の図のように位置関係を無視して「目」や「口」といった個々の特徴のみで画像を認識することとなり，左図のようなそれぞれの要素がばらばらのものも右図のような顔であるものも同じように認識してしまいます．
 一方で人間などの認知では目鼻と顔の階層関係から顔であることを認識しているので，両者を区別することができます．言及はされていませんがイラストや顔文字，さらに一部が隠れた顔をも顔と認識できるのもこのお陰でしょう．
- CNNは位置を無視してしまうので左の画像も右の画像も同じ特徴を持った「人」であると認識してしまう．   またCNNでは同じものに対しても，僅かな差異を学習するために大量のデータとデータ拡張を必要とします．
+  CNNは位置を無視してしまうので左の画像も右の画像も同じ特徴を持った「人」であると認識してしまう．   またCNNでは同じものに対しても，僅かな差異を学習するために大量のデータとデータ拡張を必要とします．
 以下に「傾いた人の顔」を示しましたが，CNNでこれを「人」と認識するためには，そのような多くのデータによる学習が不可欠です．更に，これによって認識できるようになって右の画像が「人」であることは分かっても，「傾いた人の顔」であるかどうかは分かりません．
 一方で人間などの認知ではたとえ「傾いた人の顔」を見たことがなくても，例えば鼻の傾きから座標を割り出して画像が「人の顔」であり更に「傾いている」ことが分かります．
- CNNでは右の画像が「人」であることを学習するのに多くのデータとデータ拡張を要するが，それでも「傾いた人の顔」であることは分からない．   “But my CAPSULES can do” 一方のCapsNetでは位置や姿勢などの情報をcapsuleというベクトルの形で保持し，capsule同士が階層的な「構文木」をなすように結合の仕方（routing）を学習します．Capsulesは脳にあるコラム構造に影響を受けているようです．
+  CNNでは右の画像が「人」であることを学習するのに多くのデータとデータ拡張を要するが，それでも「傾いた人の顔」であることは分からない．   “But my CAPSULES can do” 一方のCapsNetでは位置や姿勢などの情報をcapsuleというベクトルの形で保持し，capsule同士が階層的な「構文木」をなすように結合の仕方（routing）を学習します．Capsulesは脳にあるコラム構造に影響を受けているようです．
 Capsules 各capsuleには階層によって異なりますが「目」や「顔」などが対応します2．capsuleはベクトルで，長さがそのcapsuleに対応するものが存在する確率であり，各要素が位置や姿勢を表します．
 $l+1$層目のcapsule $j$は$l$層目のcapsulesの出力に，以下で説明するroutingを施した入力$s_j$を受けます．これはそのままでは上記の条件を満たさないので以下のsquashing（押し潰し）によって，$[0,1)$に閉じ込めます．
 \[v_j=\frac{|s_j|^2}{1+|s_j|^2}\frac{s_j}{|s_j}\]
- $l,l&amp;#43;1$層での記号の関係．   routing 「目」のcapsuleと「顔」のcapsuleとは結びつくべきですが，「花」のcapsuleとは結びつくことはありません．これを学習するのがroutingであり，ここでは特に本論文で提案されているdynamic routingを扱います．このほかにEMアルゴリズムを用いた手法も何者かによって提案されています．
+  $l,l&amp;#43;1$層での記号の関係．   routing 「目」のcapsuleと「顔」のcapsuleとは結びつくべきですが，「花」のcapsuleとは結びつくことはありません．これを学習するのがroutingであり，ここでは特に本論文で提案されているdynamic routingを扱います．このほかにEMアルゴリズムを用いた手法も何者かによって提案されています．
 $l+1$層目のcapsule $j$が$l$層目のcapsules $i$の出力を受けます．先ほどのroutingされた$j$への入力$s_j$は以下によって計算されます．capsule $i$の出力を$u_i(=v_i)$とします．
-\[s_j=\sum_i c_{ij}\hat{u}_{j|i}~~(\hat{u}_{j|i}=W_{ij}u_i)\]
-ただし$c_{ij}$は$b_{ij}\leftarrow b_{ij}+\hat{u}_{j|i}\cdot v_j$と逐次的に更新される$b_{ij}$によって</description>
+\[s_j=\sum_i c_{ij}\hat{u}_{j|i}~~(\hat{u}_{j|i}=W_{ij}u_i)\]</description>
     </item>
     
   </channel>

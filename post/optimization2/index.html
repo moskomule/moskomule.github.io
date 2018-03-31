@@ -157,7 +157,7 @@
 
 <p>確率的な(stochastic)では$n\in\{1,\ldots,N\}$を乱択して，または逐次的な(online)勾配降下法では$n=1,2,\ldots,$によって$x\gets x-\alpha\nabla E_n(x)$により更新を行います．</p>
 
-<p>また，ディープラーニングの文脈では$B\subset\{1,\ldots,N\}$によって$x\gets x-\frac{\alpha}{|B|}\sum_{i\in B}\nabla E_i(x)$を更新するミニバッチ更新がしばしば用いられます．ミニバッチの大きさ$|B|$は32,64,128などがよく用いられるように思われます．この大きさが大きいほど計算は速くなりますが，あまり大きくない方が汎化性能が上がるという話もあります<sup class="footnote-ref" id="fnref:1"><a rel="footnote" href="#fn:1">1</a></sup>．</p>
+<p>また，ディープラーニングの文脈では$B\subset\{1,\ldots,N\}$によって$x\gets x-\frac{\alpha}{|B|}\sum_{i\in B}\nabla E_i(x)$を更新するミニバッチ更新がしばしば用いられます．ミニバッチの大きさ$|B|$は32,64,128などがよく用いられるように思われます．この大きさが大きいほど計算は速くなりますが，あまり大きくない方が汎化性能が上がるという話もあります<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup>．</p>
 
 <p>今回紹介する手法は主にディープラーニングの文脈で用いられるため，ミニバッチ更新を行うことでよりよい性能が出せる可能性がありますが，記事中では可視化の都合もあり$x\gets x-\alpha d$によって更新を行います．</p>
 
@@ -172,7 +172,7 @@
 <p>$\alpha$の調整には段階的に$\alpha$を小さくするstep decay，$\alpha_k=\alpha_0 e^{-rk}$とするexponential decay，$\alpha_k=\frac{\alpha_0}{1+rk}$とする1/k decayなどの手法がありますが，職人の勘による調整法も多いようです．</p>
 
 
-<figure >
+<figure>
     
         <img src="/img/post/optim/gd1000.png" />
     
@@ -199,7 +199,7 @@ x_{k+1} &amp;= x_k+v_{k+1}
 <!-- $f(x)$をポテンシャルとみると$-\nabla f(x)$は$x$における力ですので，$\mu v$は摩擦力（と比例するベクトル）と考えることもできます． -->
 
 
-<figure >
+<figure>
     
         <img src="/img/post/optim/mgd1000.png" />
     
@@ -224,7 +224,7 @@ x_{k+1} &amp;= x_k+v_{k+1}
 <p><a href="http://climin.readthedocs.io/en/latest/gd.html">clminのdoc</a>では$x_k+\mu v_k$を$x_{k+\frac12}$と表記しており，$x_k$と$x_{k+1}$の間の点であることが分かりやすいです．</p>
 
 
-<figure >
+<figure>
     
         <img src="/img/post/optim/nmgd1000.png" />
     
@@ -247,7 +247,7 @@ x_{k+1} &amp;= x_k+v_{k+1}
 
 <h2 id="adagrad">Adagrad</h2>
 
-<p>Adagrad<sup class="footnote-ref" id="fnref:2"><a rel="footnote" href="#fn:2">2</a></sup>は過去の勾配の自乗$(\nabla f(x))^2$を累積し，これを用いて学習率を適応させていきます．</p>
+<p>Adagrad<sup class="footnote-ref" id="fnref:2"><a href="#fn:2">2</a></sup>は過去の勾配の自乗$(\nabla f(x))^2$を累積し，これを用いて学習率を適応させていきます．</p>
 
 <p>\[\begin{aligned}
   g_{k+1} &amp;= g_k + (\nabla f(x_k))^2,~g_0=0 \cr\cr
@@ -259,7 +259,7 @@ x_{k+1} &amp;= x_k+v_{k+1}
 <p>$(g_{k+1}+\epsilon)^{-\frac12}$は$f$の$x_{k}$でのHessianの逆行列 $(\nabla^2 f(x_k))^{-1}$を近似していて，理想的にはNewton法に近くなることが期待されます．</p>
 
 
-<figure >
+<figure>
     
         <img src="/img/post/optim/ag1000.png" />
     
@@ -274,7 +274,7 @@ x_{k+1} &amp;= x_k+v_{k+1}
 
 <h2 id="rmsprop">RMSProp</h2>
 
-<p>Adagradの弱点として，$g_k$が$k$とともに単調に増加していく，つまり学習率$\alpha (g_{k}+\epsilon)^{-\frac12}$は単調減少で，一度小さくなった学習率は大きくならないという問題点がありました．RMSProp<sup class="footnote-ref" id="fnref:3"><a rel="footnote" href="#fn:3">3</a></sup>では過去の勾配を適当な割合で「忘れる」ことでこの問題に対応しています．つまり$\gamma$(0.9程度)を用いて</p>
+<p>Adagradの弱点として，$g_k$が$k$とともに単調に増加していく，つまり学習率$\alpha (g_{k}+\epsilon)^{-\frac12}$は単調減少で，一度小さくなった学習率は大きくならないという問題点がありました．RMSProp<sup class="footnote-ref" id="fnref:3"><a href="#fn:3">3</a></sup>では過去の勾配を適当な割合で「忘れる」ことでこの問題に対応しています．つまり$\gamma$(0.9程度)を用いて</p>
 
 <p>\[\begin{aligned}
   g_{k+1} &amp;= \gamma g_k + (1-\gamma)(\nabla f(x_k))^2,~g_0=0 \cr\cr
@@ -284,7 +284,7 @@ x_{k+1} &amp;= x_k+v_{k+1}
 <p>としています．</p>
 
 
-<figure >
+<figure>
     
         <img src="/img/post/optim/rms1000.png" />
     
@@ -299,7 +299,7 @@ x_{k+1} &amp;= x_k+v_{k+1}
 
 <h2 id="adadelta">Adadelta</h2>
 
-<p>Adadelta<sup class="footnote-ref" id="fnref:4"><a rel="footnote" href="#fn:4">4</a></sup>もRMSProp同様，Adagradの学習率の単調減少に対応しています．RMSPropと異なり，過去の勾配だけでなく， 過去の学習ステップも使います．</p>
+<p>Adadelta<sup class="footnote-ref" id="fnref:4"><a href="#fn:4">4</a></sup>もRMSProp同様，Adagradの学習率の単調減少に対応しています．RMSPropと異なり，過去の勾配だけでなく， 過去の学習ステップも使います．</p>
 
 <p>\[\begin{aligned}
   g_{k+1} &amp;= \gamma g_k + (1-\gamma)(\nabla f(x_k))^2,~g_0=0 \cr\cr
@@ -310,7 +310,7 @@ x_{k+1} &amp;= x_k+v_{k+1}
 <p>ただし例によって$(s_k+\epsilon)^{\frac12}$は第$i$成分が$\sqrt{s_k^{(i)}+\varepsilon}$であるようなベクトル， $(x_{k+1}-x_k)^2=(x_{k+1}-x_k)\odot (x_{k+1}-x_k)$とします．$s_0=0$とするためか，$\varepsilon$を小さくしすぎない方がよいようで，<a href="http://climin.readthedocs.io/en/latest/adadelta.html">climin</a>では$10^{-4}$となっています．</p>
 
 
-<figure >
+<figure>
     
         <img src="/img/post/optim/ad1000.png" />
     
@@ -325,7 +325,7 @@ x_{k+1} &amp;= x_k+v_{k+1}
 
 <h2 id="adam">Adam</h2>
 
-<p>Adam(adaptive moment estimation)<sup class="footnote-ref" id="fnref:5"><a rel="footnote" href="#fn:5">5</a></sup>では勾配と勾配の2乗の指数移動平均(exponential moving average, EMA)をもちいることで，勾配の1次モーメント（$m$ 平均）と0周りの2次モーメント（$v$ 0周りの分散）を推定しています．指数移動平均は時系列データの文脈で使われる言葉で，Googleで調べるとFX系のページが出てきました．</p>
+<p>Adam(adaptive moment estimation)<sup class="footnote-ref" id="fnref:5"><a href="#fn:5">5</a></sup>では勾配と勾配の2乗の指数移動平均(exponential moving average, EMA)をもちいることで，勾配の1次モーメント（$m$ 平均）と0周りの2次モーメント（$v$ 0周りの分散）を推定しています．指数移動平均は時系列データの文脈で使われる言葉で，Googleで調べるとFX系のページが出てきました．</p>
 
 <p>\[\begin{aligned}
 m_{k+1} &amp;= \beta_1 m_{k}+(1-\beta_1)\nabla f(x_k),~m_0=0 \cr\cr
@@ -346,7 +346,7 @@ v_{k+1} &amp;= \beta_2 v_{k}+(1-\beta_2)(\nabla f(x_k))^2,~v_0=0
 <p>論文中では$\beta_1=0.9,\beta_2=0.999$が用いられています．SGDなどと比較して早く収束するため，ディープラーニングのoptimizerとしては多く用いられているように思われます．</p>
 
 
-<figure >
+<figure>
     
         <img src="/img/post/optim/adam1000.png" />
     
@@ -365,11 +365,11 @@ v_{k+1} &amp;= \beta_2 v_{k}+(1-\beta_2)(\nabla f(x_k))^2,~v_0=0
 
 <p>\[v_{k+1} = (\beta_2^p v_{k}+(1-\beta_2^p)|\nabla f(x_k)|^p)^{\frac{1}{p}}\]</p>
 
-<p>とします．この$p\to\infty$の，Maxノルムを用いるのがAdamaxで<sup class="footnote-ref" id="fnref:5"><a rel="footnote" href="#fn:5">5</a></sup>のExtensionsに挙げられています．</p>
+<p>とします．この$p\to\infty$の，Maxノルムを用いるのがAdamaxで<sup class="footnote-ref" id="fnref:5"><a href="#fn:5">5</a></sup>のExtensionsに挙げられています．</p>
 
 <h2 id="eve">Eve</h2>
 
-<p>Eve<sup class="footnote-ref" id="fnref:6"><a rel="footnote" href="#fn:6">6</a></sup>はAdamに目的函数の増減に伴うフィードバックを加えています．</p>
+<p>Eve<sup class="footnote-ref" id="fnref:6"><a href="#fn:6">6</a></sup>はAdamに目的函数の増減に伴うフィードバックを加えています．</p>
 
 <p>\[\begin{aligned}
 r_k &amp;= \begin{cases}
@@ -383,7 +383,7 @@ d_{k+1} &amp;= \beta_3 d_k+(1-\beta_3)r_k \cr\cr
 
 <h1 id="yellowfin">YellowFin</h1>
 
-<p>YellowFin<sup class="footnote-ref" id="fnref:7"><a rel="footnote" href="#fn:7">7</a></sup>はほかの方法が学習率の自動調整を行うのに対し，momentum termの$\mu$も調整しようという試みです． momentum tunerのtunerとtuna(マグロ)をかけてYellowfin(キハダマグロ)と名づけられているようです．</p>
+<p>YellowFin<sup class="footnote-ref" id="fnref:7"><a href="#fn:7">7</a></sup>はほかの方法が学習率の自動調整を行うのに対し，momentum termの$\mu$も調整しようという試みです． momentum tunerのtunerとtuna(マグロ)をかけてYellowfin(キハダマグロ)と名づけられているようです．</p>
 
 <p>YellowFinでは学習率$\alpha$とmomentum項の係数$\mu$を与えます．ハイパーパラメータは共通の$\beta$を用います．</p>
 
@@ -411,7 +411,7 @@ d_{k+1} &amp;= \beta_3 d_k+(1-\beta_3)r_k \cr\cr
 <p>SGDおよびmomentumつきSGDの学習率は$10^{-3}$，momentumつきSGDのmomentumは$0.9$を用いてい，それ以外はPyTorchの初期値であるAdadelta(lr=1.0),Adagrad(lr=0.01),Adam(lr=0.001)を使いました．</p>
 
 <p>
-<figure >
+<figure>
     
         <img src="/img/post/optim/trainloss.png" />
     
@@ -424,7 +424,7 @@ d_{k+1} &amp;= \beta_3 d_k+(1-\beta_3)r_k \cr\cr
 </figure>
 
 
-<figure >
+<figure>
     
         <img src="/img/post/optim/testloss.png" />
     
@@ -437,7 +437,7 @@ d_{k+1} &amp;= \beta_3 d_k+(1-\beta_3)r_k \cr\cr
 </figure>
 
 
-<figure >
+<figure>
     
         <img src="/img/post/optim/testacc.png" />
     
@@ -450,7 +450,7 @@ d_{k+1} &amp;= \beta_3 d_k+(1-\beta_3)r_k \cr\cr
 </figure>
 
 
-<figure >
+<figure>
     
         <img src="/img/post/optim/testacc_withoutSGD.png" />
     
@@ -469,9 +469,9 @@ d_{k+1} &amp;= \beta_3 d_k+(1-\beta_3)r_k \cr\cr
 
 <h1 id="まとめ">まとめ</h1>
 
-<p>このようにSGDからさまざまな更新手法が発展してきましたが，最近ではAdamをはじめとする勾配に適応する手法では十分な汎化性能が得られない，SGDに立ち返るべきという研究<sup class="footnote-ref" id="fnref:8"><a rel="footnote" href="#fn:8">8</a></sup>もあります．一方で問題によって適当なoptimizerが異なることも知られており(<a href="https://github.com/soumith/ganhacks">例</a>)，とりあえずAdam，ではいけなくて，optimizerの選択の重要性が分かってきたと言うことかもしれません．銀の弾丸は存在しないのでしょうが，今後も引き続き注目していきたいです．</p>
+<p>このようにSGDからさまざまな更新手法が発展してきましたが，最近ではAdamをはじめとする勾配に適応する手法では十分な汎化性能が得られない，SGDに立ち返るべきという研究<sup class="footnote-ref" id="fnref:8"><a href="#fn:8">8</a></sup>もあります．一方で問題によって適当なoptimizerが異なることも知られており(<a href="https://github.com/soumith/ganhacks">例</a>)，とりあえずAdam，ではいけなくて，optimizerの選択の重要性が分かってきたと言うことかもしれません．銀の弾丸は存在しないのでしょうが，今後も引き続き注目していきたいです．</p>
 
-<p>今回の記事を執筆するに当たってはほかに<sup class="footnote-ref" id="fnref:9"><a rel="footnote" href="#fn:9">9</a></sup>,<sup class="footnote-ref" id="fnref:10"><a rel="footnote" href="#fn:10">10</a></sup>を参考にしました．</p>
+<p>今回の記事を執筆するに当たってはほかに<sup class="footnote-ref" id="fnref:9"><a href="#fn:9">9</a></sup>,<sup class="footnote-ref" id="fnref:10"><a href="#fn:10">10</a></sup>を参考にしました．</p>
 <div class="footnotes">
 
 <hr />

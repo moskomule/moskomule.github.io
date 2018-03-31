@@ -162,10 +162,10 @@
 
 <p>\[I=ar+bs+tc+du+ev+fw+gz+hy+iz\]</p>
 
-<p>を畳み込みと呼びます．本来画像認識の分野では$ax+by+cz+\cdots$を畳み込みと呼び，上記の演算は相関と呼ばれるようですが，CNNの文脈ではこれを畳み込みと呼ぶよう<sup class="footnote-ref" id="fnref:1"><a rel="footnote" href="#fn:1">1</a></sup>なので慣例に倣います．</p>
+<p>を畳み込みと呼びます．本来画像認識の分野では$ax+by+cz+\cdots$を畳み込みと呼び，上記の演算は相関と呼ばれるようですが，CNNの文脈ではこれを畳み込みと呼ぶよう<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup>なので慣例に倣います．</p>
 
 
-<figure >
+<figure>
     
         <img src="/img/post/pytorch/conv_2.png" />
     
@@ -181,7 +181,7 @@
 <p>入力に対して，この操作を同じフィルタをずらしながら適用していきます．下の図では上部の入力とフィルタの畳み込み結果を下の出力行列の各要素にする様子を書きました．こうして畳み込みによる出力が得られます．</p>
 
 
-<figure >
+<figure>
     
         <img src="/img/post/pytorch/conv_1.png" />
     
@@ -194,7 +194,7 @@
 </figure>
 
 
-<p>畳み込みは画像の対応部分とフィルタとの内積を取ることですから，それらの関連ぐらいを見ていることになります（それ故に相関と呼ばれるのですが）．従って，出力は入力画像のフィルタとの関連度を凝縮したものになるわけです．以上の畳み込み（あるいは相関）自体はCNN以前から画像認識の分野で用いられてきましたが，CNNではフィルタ自体を誤差逆伝播法で学習していく点が従来とは異なります<sup class="footnote-ref" id="fnref:2"><a rel="footnote" href="#fn:2">2</a></sup>．</p>
+<p>畳み込みは画像の対応部分とフィルタとの内積を取ることですから，それらの関連ぐらいを見ていることになります（それ故に相関と呼ばれるのですが）．従って，出力は入力画像のフィルタとの関連度を凝縮したものになるわけです．以上の畳み込み（あるいは相関）自体はCNN以前から画像認識の分野で用いられてきましたが，CNNではフィルタ自体を誤差逆伝播法で学習していく点が従来とは異なります<sup class="footnote-ref" id="fnref:2"><a href="#fn:2">2</a></sup>．</p>
 
 <p>上では入力，フィルタとも1枚ずつである場合を考えましたが，一般にそれらは複数枚あり，テンソルとして扱われます．この「枚数方向」の次元はチャネルと呼ばれます．特にRGB画像は3チャネルです．</p>
 
@@ -205,7 +205,7 @@
 <p>CNNではその他にプーリングという操作を行う場合もあります．その中でもよく用いられる最大プーリング(max pooling)は下に示したように，領域内の最大値を取り出して出力とする操作です．画像認識では位置がずれた同じ物体も同じものとして認識したいので，この操作を加えて位置に対する不変性を向上させます．</p>
 
 
-<figure >
+<figure>
     
         <img src="/img/post/pytorch/conv_3.png" />
     
@@ -233,7 +233,7 @@
 <p>カーネルの動く際のステップです．プーリングの場合は領域幅と同じ幅で動かし，重複する範囲がないようにすることが多い気がします．</p>
 
 
-<figure >
+<figure>
     
         <img src="https://github.com/vdumoulin/conv_arithmetic/raw/master/gif/no_padding_no_strides.gif" />
     
@@ -251,7 +251,7 @@
 <p>畳み込み，プーリングを上記のように行った場合，出力は入力よりも小さくなります．入力の周りに「枠」を付けることで出力サイズを調整するのがpaddingです．「枠」を0で埋めるゼロパディングがしばしば用いられます．</p>
 
 
-<figure >
+<figure>
     
         <img src="https://github.com/vdumoulin/conv_arithmetic/raw/master/gif/same_padding_no_strides.gif" />
     
@@ -269,7 +269,7 @@
 <p>カーネルにあける隙間の大きさです．プーリングの代わりにdilationを用いることもあるようです．</p>
 
 
-<figure >
+<figure>
     
         <img src="https://github.com/vdumoulin/conv_arithmetic/raw/master/gif/dilation.gif" />
     
@@ -295,7 +295,7 @@
 <p>が用いられていましたが，ネットワークが深くなると勾配が消失する問題を抱えていました．</p>
 
 
-<figure >
+<figure>
     
         <img src="/img/post/pytorch/relu.png" />
     
