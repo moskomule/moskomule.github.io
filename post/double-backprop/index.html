@@ -165,7 +165,7 @@ Variable containing:
 [torch.FloatTensor of size 1]
 </code></pre>
 
-<p>実際，$z=x^6+3x^2$ですので$\frac{dz}{dx}|_{x=1}=(6x+6x^5)|_{x=1}=12$となります．</p>
+<p>実際，$z=x^6+3x^2$ですので$\frac{dz}{dx}|<em>{x=1}=(6x+6x^5)|</em>{x=1}=12$となります．</p>
 
 <p>$\frac{dy}{dx}$つまり<code>grad_y</code>は<a href="http://pytorch.org/docs/master/autograd.html#torch.autograd.grad"><code>autograd.grad</code></a>を用いて<code>autograd.grad(y, x, create_graph=True)</code>によってつくっています．<code>create_graph</code>によって計算グラフ中にこの微分のためのグラフをつくっています．<code>autograd.grad(outputs, inputs, *)</code>の<code>inputs, outputs</code>はシークエンスで与えられて，返り値もタプルなので上記のように<code>grad_y,</code>とする必要があります．</p>
 
@@ -202,8 +202,10 @@ Variable containing:
         </article>
         <nav class="pagination-single">
             
-            <span class="previous">&larr; <a href="https://mosko.tokyo/misc/grad-school-exam/" rel="prev">東京大学大学院情報理工学系研究科創造情報学専攻に進学します</a></span>  
-            <span class="next"><a href="https://mosko.tokyo/post/on-capusels/" rel="next">Dynamic Routing Between Capsules</a> &rarr;</span> 
+            <span class="previous">&larr; <a href="https://mosko.tokyo/misc/grad-school-exam/" rel="prev">東京大学大学院情報理工学系研究科創造情報学専攻に進学します</a></span>
+             
+            <span class="next"><a href="https://mosko.tokyo/post/on-capusels/" rel="next">東京大学大学院情報理工学系研究科創造情報学専攻に進学します</a> &rarr;</span>
+            
         </nav>
 
         <div class="disqus-comments">
@@ -325,4 +327,3 @@ Variable containing:
 </body>
 
 </html>
-
