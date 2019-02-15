@@ -60,6 +60,7 @@ article code {
 article pre code {
     font-family: 'Source Sans Pro', monospace;
     border-radius: .2em;
+    background-color: rgba(0, 0, 0, 0)
 }
 
 article p {
@@ -140,7 +141,8 @@ a {
     text-decoration: none;
 }
 
-.article-tag a, a:visited {
+.article-tag a,
+a:visited {
     color: #3f51b5;
 }
 
@@ -198,12 +200,15 @@ iframe {
     main {
         width: 100%;
     }
+
     article {
         max-width: 100%;
     }
+
     .pagination-single .container {
         max-width: 100%;
     }
+
     article img {
         max-height: 100%;
         max-width: 100%;

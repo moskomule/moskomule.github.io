@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="/css/highlight_monokai.css" />
+    
     <link rel="stylesheet" href="/css/material-components-web.css" />
 
     
@@ -144,8 +144,7 @@
 <h1 id="インストール">インストール</h1>
 
 <p>LinuxとWindowsでは<code>pip install -U nnabla</code>で導入できるのですが，macOSではソースからのビルドの必要があります(2017/07/26現在)．</p>
-
-<pre><code>brew install protoc
+<div class="highlight"><pre style="color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4">brew install protoc
 git clone https://github.com/sony/nnabla
 cd nnabla
 sudo pip install -U -r python/setup_requirements.txt
@@ -157,9 +156,7 @@ cmake ../
 make -j 16
 cp lib/libnnabla.dylib /usr/local/lib/
 cd dist
-sudo pip install -U &lt;build-wheel-file&gt;.whl
-</code></pre>
-
+sudo pip install -U &lt;build-wheel-file&gt;.whl</pre></div>
 <h1 id="モデル">モデル</h1>
 
 <p>LeNetの活性化函数をreluに変えたものを使います．とりあえずPyTorch風に書いています．<code>nnabla.get_parameters()</code>は<code>parameter_scope</code>内を参照するようですので適宜設定します．</p>
@@ -249,6 +246,7 @@ sudo pip install -U &lt;build-wheel-file&gt;.whl
             
             <span class="previous">&larr; <a href="https://mosko.tokyo/post/optimization2/" rel="prev">最適化手法について—SGDからYellowFinまで—</a></span>  
             <span class="next"><a href="https://mosko.tokyo/misc/grad-school-exam/" rel="next">東京大学大学院情報理工学系研究科創造情報学専攻に進学します</a> &rarr;</span> 
+
         </nav>
 
         <div class="disqus-comments">
@@ -292,10 +290,7 @@ sudo pip install -U &lt;build-wheel-file&gt;.whl
 
 
 
-<script type="text/javascript" src="/js/highlight.pack.js"></script>
-<script type="text/javascript">
-    hljs.initHighlightingOnLoad();
-</script>
+
 
 
 <script type="text/javascript" src="/js/material-components-web.js"></script>
@@ -370,4 +365,3 @@ sudo pip install -U &lt;build-wheel-file&gt;.whl
 </body>
 
 </html>
-

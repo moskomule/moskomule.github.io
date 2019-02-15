@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="/css/highlight_monokai.css" />
+    
     <link rel="stylesheet" href="/css/material-components-web.css" />
 
     
@@ -129,43 +129,37 @@
 <p><img src="http://codh.rois.ac.jp/char-shape/unicode/U+30A6/200021712.jpg" alt="例" /></p>
 
 <p>今回はMNIST的に使うので，つまり文脈を考慮しないので変体仮名の「志」（し）と漢字としての「志」とを区別する，というようなタスクも含まれてしまうが，特に考慮しない．<code>keras</code>の<code>ImageDataGenerator</code>で前処理を一括して行う．本当はもう少し丁寧にした方がいいのかもしれないけれど，とりあえず．</p>
-
-<pre><code>
-# data generator
+<div class="highlight"><pre style="color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4"># data generator
 train_datagen = ImageDataGenerator(
     shear_range=0.05,
     width_shift_range=0.05,
     height_shift_range=0.05,
     rotation_range=10,
-    fill_mode=&quot;constant&quot;,
+    fill_mode=&#34;constant&#34;,
     cval=200,
     zoom_range=0.2)
 train_generator = train_datagen.flow_from_directory(
-    'train',
-    color_mode=&quot;grayscale&quot;,
+    &#39;train&#39;,
+    color_mode=&#34;grayscale&#34;,
     target_size=target_size,
     batch_size=batch_size,
-    class_mode='categorical'
+    class_mode=&#39;categorical&#39;
 )
 
 val_datagen = ImageDataGenerator()
 val_generator = val_datagen.flow_from_directory(
-    'val',
-    color_mode=&quot;grayscale&quot;,
+    &#39;val&#39;,
+    color_mode=&#34;grayscale&#34;,
     target_size=target_size,
     batch_size=batch_size,
-    class_mode='categorical'
-)
-
-</code></pre>
-
+    class_mode=&#39;categorical&#39;
+)</pre></div>
 <p>training dataには変形を施した．resnetは<a href="https://transcranial.github.io/keras-js/#/resnet50">keras.js</a>を参考にして実装(下記の<code>res_a</code>,<code>res_b</code>)．</p>
-
-<pre><code># model
+<div class="highlight"><pre style="color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4"># model
 input_layer = Input(shape=input_shape)
 x = Convolution2D(nb_filters, 4, 4, subsample=(2,2))(input_layer)
 x = BatchNormalization()(x)
-x = Activation('relu')(x)
+x = Activation(&#39;relu&#39;)(x)
 x = MaxPooling2D(pool_size, strides=stride_size)(x)
 x = res_a([32,32,128])(x)
 x = res_b([32,32,128])(x)
@@ -178,20 +172,19 @@ x = res_b([128,128,512])(x)
 x = res_b([256,256,512])(x)
 x = AveragePooling2D((4,4))(x)
 x = Flatten()(x)
-output_layer = Dense(nb_classes, activation='softmax')(x)
+output_layer = Dense(nb_classes, activation=&#39;softmax&#39;)(x)
 
 model = Model(input=input_layer, output=output_layer)
-model.compile(loss='categorical_crossentropy',
-              optimizer='adam',
-              metrics=['accuracy'])
-</code></pre>
-
+model.compile(loss=&#39;categorical_crossentropy&#39;,
+              optimizer=&#39;adam&#39;,
+              metrics=[&#39;accuracy&#39;])</pre></div>
 
         </article>
         <nav class="pagination-single">
             
             <span class="previous">&larr; <a href="https://mosko.tokyo/post/python-and-mysql/" rel="prev">PythonでMySQLを使う</a></span>  
             <span class="next"><a href="https://mosko.tokyo/travel/iran0/" rel="next">イラン旅行記0日目</a> &rarr;</span> 
+
         </nav>
 
         <div class="disqus-comments">
@@ -235,10 +228,7 @@ model.compile(loss='categorical_crossentropy',
 
 
 
-<script type="text/javascript" src="/js/highlight.pack.js"></script>
-<script type="text/javascript">
-    hljs.initHighlightingOnLoad();
-</script>
+
 
 
 <script type="text/javascript" src="/js/material-components-web.js"></script>
@@ -313,4 +303,3 @@ model.compile(loss='categorical_crossentropy',
 </body>
 
 </html>
-
