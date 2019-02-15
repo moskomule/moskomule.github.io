@@ -54,7 +54,7 @@ $a_k$は学習率，ステップ幅などと呼ばれ一回の更新で進む量
 勾配降下法 勾配降下法(gradient descent method)，または最急降下法(steepest descent method)は$H_k=I$とする手法です．すなわち
 \[x_{k+1}=x_{k}-\alpha_k\nabla f(x_{k})\]
 によって更新していきます．最急方向に適当な学習率$\alpha_k$を乗じて進んでいくので「直感的には合理的」2ですが，収束が遅く，適切な学習率の調整が難しいなど，実際の性能はあまりよくありません．
-   $\alpha_k=0.1$で100回の更新を行った際の$x_k$の軌跡     $\alpha_k=0.01$で100回の更新を行った際の$x_k$の軌跡     $\alpha_k=0.</description>
+  $\alpha_k=0.1$で100回の更新を行った際の$x_k$の軌跡     $\alpha_k=0.01$で100回の更新を行った際の$x_k$の軌跡     $\alpha_k=0.</description>
     </item>
     
   </channel>

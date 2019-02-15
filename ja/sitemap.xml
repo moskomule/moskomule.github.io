@@ -13,38 +13,8 @@
   </url>
   
   <url>
-    <loc>https://mosko.tokyo/notes/info_ml/5/</loc>
-    <lastmod>2017-11-20T22:39:13+09:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://mosko.tokyo/post/on-capusels/</loc>
     <lastmod>2017-11-13T18:57:37+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mosko.tokyo/notes/info_ml/4/</loc>
-    <lastmod>2017-11-05T10:55:16+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mosko.tokyo/notes/info_ml/3/</loc>
-    <lastmod>2017-10-24T20:05:47+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mosko.tokyo/post/docker_for_research/</loc>
-    <lastmod>2017-10-19T22:42:01+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mosko.tokyo/notes/info_ml/2/</loc>
-    <lastmod>2017-10-17T21:13:08+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mosko.tokyo/notes/info_ml/1/</loc>
-    <lastmod>2017-10-10T20:56:15+09:00</lastmod>
   </url>
   
   <url>
@@ -73,11 +43,6 @@
   </url>
   
   <url>
-    <loc>https://mosko.tokyo/post/pytorch-rnn/</loc>
-    <lastmod>2017-06-24T07:31:45+09:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://mosko.tokyo/misc/githubpages-and-https/</loc>
     <lastmod>2017-06-15T22:14:39+09:00</lastmod>
   </url>
@@ -88,18 +53,8 @@
   </url>
   
   <url>
-    <loc>https://mosko.tokyo/post/pytorch_cnn/</loc>
-    <lastmod>2017-06-10T15:37:12+09:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://mosko.tokyo/travel/iran13/</loc>
     <lastmod>2017-06-10T13:21:59+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mosko.tokyo/post/pytorch_tutorial/</loc>
-    <lastmod>2017-06-08T16:33:50+09:00</lastmod>
   </url>
   
   <url>
@@ -173,16 +128,6 @@
   </url>
   
   <url>
-    <loc>https://mosko.tokyo/post/dotfiles/</loc>
-    <lastmod>2016-11-12T01:11:08+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mosko.tokyo/post/julia-boxmuller/</loc>
-    <lastmod>2016-10-23T22:36:34+09:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://mosko.tokyo/post/python-and-mysql/</loc>
     <lastmod>2016-10-22T00:21:34+09:00</lastmod>
   </url>
@@ -193,11 +138,6 @@
   </url>
   
   <url>
-    <loc>https://mosko.tokyo/post/use-mecab-java-with-intellij/</loc>
-    <lastmod>2016-10-08T19:57:29+09:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://mosko.tokyo/travel/italy8/</loc>
     <lastmod>2016-10-07T00:46:48+09:00</lastmod>
   </url>
@@ -205,11 +145,6 @@
   <url>
     <loc>https://mosko.tokyo/travel/italy7/</loc>
     <lastmod>2016-10-05T21:21:06+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mosko.tokyo/post/juman-install/</loc>
-    <lastmod>2016-10-05T14:40:43+09:00</lastmod>
   </url>
   
   <url>
@@ -240,17 +175,6 @@
   <url>
     <loc>https://mosko.tokyo/travel/italy1/</loc>
     <lastmod>2016-09-29T21:44:20+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mosko.tokyo/post/using-jupyter-on-an-external-server/</loc>
-    <lastmod>2016-08-31T18:30:08+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mosko.tokyo/tags/</loc>
-    <lastmod>2017-10-19T22:42:01+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -287,18 +211,6 @@
   </url>
   
   <url>
-    <loc>https://mosko.tokyo/tags/docker/</loc>
-    <lastmod>2017-10-19T22:42:01+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://mosko.tokyo/tags/intellij/</loc>
-    <lastmod>2016-10-08T19:57:29+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://mosko.tokyo/tags/iran/</loc>
     <lastmod>2017-06-14T23:14:37+09:00</lastmod>
     <priority>0</priority>
@@ -307,30 +219,6 @@
   <url>
     <loc>https://mosko.tokyo/tags/italy/</loc>
     <lastmod>2016-10-09T23:51:10+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://mosko.tokyo/tags/java/</loc>
-    <lastmod>2016-10-08T19:57:29+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://mosko.tokyo/tags/julia/</loc>
-    <lastmod>2016-10-23T22:36:34+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://mosko.tokyo/tags/jupyter/</loc>
-    <lastmod>2016-10-23T22:36:34+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://mosko.tokyo/tags/machine-learning/</loc>
-    <lastmod>2017-11-20T22:39:13+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -347,26 +235,8 @@
   </url>
   
   <url>
-    <loc>https://mosko.tokyo/tags/nlp/</loc>
-    <lastmod>2016-10-08T19:57:29+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://mosko.tokyo/tags/nnabla/</loc>
     <lastmod>2017-07-25T15:37:12+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://mosko.tokyo/tags/note/</loc>
-    <lastmod>2017-11-20T22:39:13+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://mosko.tokyo/notes/</loc>
-    <lastmod>2017-11-20T22:39:13+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -396,7 +266,7 @@
   
   <url>
     <loc>https://mosko.tokyo/tags/</loc>
-    <lastmod>2017-10-19T22:42:01+09:00</lastmod>
+    <lastmod>2017-11-13T18:57:37+09:00</lastmod>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
@@ -419,18 +289,6 @@
   <url>
     <loc>https://mosko.tokyo/tags/trip/</loc>
     <lastmod>2017-06-14T23:14:37+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://mosko.tokyo/tags/util/</loc>
-    <lastmod>2016-11-12T01:11:08+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://mosko.tokyo/tags/vim/</loc>
-    <lastmod>2016-11-12T01:11:08+09:00</lastmod>
     <priority>0</priority>
   </url>
   

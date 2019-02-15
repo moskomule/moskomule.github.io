@@ -174,56 +174,28 @@ f(x_k+\alpha_k d_k) &amp;\le f(x_k)+c_1\alpha_k\nabla f(x_k)^{\top}d_k \cr\cr
 
 <p>によって更新していきます．最急方向に適当な学習率$\alpha_k$を乗じて進んでいくので「直感的には合理的」<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">2</a></sup>ですが，収束が遅く，適切な学習率の調整が難しいなど，実際の性能はあまりよくありません．</p>
 
-<p>
-<figure>
-    
-        <img src="/img/post/optim/st1.png" />
-    
-    
-    <figcaption>
-        <h4>$\alpha_k=0.1$で100回の更新を行った際の$x_k$の軌跡</h4>
-        
-    </figcaption>
-    
+<p><figure>
+    <img src="/img/post/optim/st1.png"/> <figcaption>
+            <h4>$\alpha_k=0.1$で100回の更新を行った際の$x_k$の軌跡</h4>
+        </figcaption>
 </figure>
 
-
 <figure>
-    
-        <img src="/img/post/optim/st2.png" />
-    
-    
-    <figcaption>
-        <h4>$\alpha_k=0.01$で100回の更新を行った際の$x_k$の軌跡</h4>
-        
-    </figcaption>
-    
+    <img src="/img/post/optim/st2.png"/> <figcaption>
+            <h4>$\alpha_k=0.01$で100回の更新を行った際の$x_k$の軌跡</h4>
+        </figcaption>
 </figure>
 
-
 <figure>
-    
-        <img src="/img/post/optim/st3.png" />
-    
-    
-    <figcaption>
-        <h4>$\alpha_k=0.001$で100回の更新を行った際の$x_k$の軌跡</h4>
-        
-    </figcaption>
-    
+    <img src="/img/post/optim/st3.png"/> <figcaption>
+            <h4>$\alpha_k=0.001$で100回の更新を行った際の$x_k$の軌跡</h4>
+        </figcaption>
 </figure>
 
-
 <figure>
-    
-        <img src="/img/post/optim/st_w.png" />
-    
-    
-    <figcaption>
-        <h4>最急降下法に対してWolfe基準を用いて学習率を調整した際の$x_k$の軌跡</h4>
-        
-    </figcaption>
-    
+    <img src="/img/post/optim/st_w.png"/> <figcaption>
+            <h4>最急降下法に対してWolfe基準を用いて学習率を調整した際の$x_k$の軌跡</h4>
+        </figcaption>
 </figure>
 </p>
 
@@ -237,17 +209,10 @@ f(x_k+\alpha_k d_k) &amp;\le f(x_k)+c_1\alpha_k\nabla f(x_k)^{\top}d_k \cr\cr
 
 <p>この手法は非常に高速に収束（二次収束）しますが，極値が$0$となる点を求めているだけですので，容易に鞍点に収束します．</p>
 
-
 <figure>
-    
-        <img src="/img/post/optim/nw1.png" />
-    
-    
-    <figcaption>
-        <h4>ニュートン法によって更新を行った際の$x_k$の軌跡，鞍点に収束しているものもある．</h4>
-        
-    </figcaption>
-    
+    <img src="/img/post/optim/nw1.png"/> <figcaption>
+            <h4>ニュートン法によって更新を行った際の$x_k$の軌跡，鞍点に収束しているものもある．</h4>
+        </figcaption>
 </figure>
 
 
@@ -267,17 +232,10 @@ f(x_k+\alpha_k d_k) &amp;\le f(x_k)+c_1\alpha_k\nabla f(x_k)^{\top}d_k \cr\cr
 
 <p>によって効率的に求めることができます．これらはHessianを必要としないものの，依然として$H$という巨大となり得る行列を必要とします．L-BFGS(limited memory BFGS)では$H_{k}$の更新に$((x_i,\nabla f(x_i)))_{i=1,\cdots,k}$を用いることでこの問題を解決しています．</p>
 
-
 <figure>
-    
-        <img src="/img/post/optim/bfgs.png" />
-    
-    
-    <figcaption>
-        <h4>Wolfe基準を用いて学習率の調整を行い，BFGS公式によって更新を行った際の$x_k$の軌跡</h4>
-        
-    </figcaption>
-    
+    <img src="/img/post/optim/bfgs.png"/> <figcaption>
+            <h4>Wolfe基準を用いて学習率の調整を行い，BFGS公式によって更新を行った際の$x_k$の軌跡</h4>
+        </figcaption>
 </figure>
 
 
@@ -294,17 +252,10 @@ f(x_k+\alpha_k d_k) &amp;\le f(x_k)+c_1\alpha_k\nabla f(x_k)^{\top}d_k \cr\cr
 
 <p>という規則を適用し更新していきます(trust region methodの例)．$\lambda$はdampingと呼ばれます．評判も<a href="http://www.sakurai.comp.ae.keio.ac.jp/classes/infosem-class/2016/05MLP.pdf">よい</a>ですが，$(\nabla^2f(x)+\lambda_k I)^{-1}$のコストは大きそうです．</p>
 
-
 <figure>
-    
-        <img src="/img/post/optim/lm.png" />
-    
-    
-    <figcaption>
-        <h4>Levenberg-Marquardt法によって更新を行った際の$x_k$の軌跡</h4>
-        
-    </figcaption>
-    
+    <img src="/img/post/optim/lm.png"/> <figcaption>
+            <h4>Levenberg-Marquardt法によって更新を行った際の$x_k$の軌跡</h4>
+        </figcaption>
 </figure>
 
 
@@ -331,13 +282,13 @@ f(x_k+\alpha_k d_k) &amp;\le f(x_k)+c_1\alpha_k\nabla f(x_k)^{\top}d_k \cr\cr
         </article>
         <nav class="pagination-single">
             
-            <span class="previous">&larr; <a href="https://mosko.tokyo/post/pytorch-rnn/" rel="prev">PyTorchでRNN入門</a></span>  
+            <span class="previous">&larr; <a href="https://mosko.tokyo/misc/githubpages-and-https/" rel="prev">カスタムドメインのGitHub Pagesをhttps化する</a></span>  
             <span class="next"><a href="https://mosko.tokyo/post/optimization2/" rel="next">最適化手法について—SGDからYellowFinまで—</a> &rarr;</span> 
         </nav>
 
         <div class="disqus-comments">
             <div id="disqus_thread"></div>
-<script>
+<script type="application/javascript">
     var disqus_config = function () {
     
     

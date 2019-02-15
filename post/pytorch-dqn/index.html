@@ -152,9 +152,9 @@
 <p>DQN(Deep Q Network)は Minh et al. 2015<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup>（以下論文）で登場した深層強化学習の先駆けです．Atariのゲームで非常に高い得点を修めるというパフォーマンスで有名になりました．</p>
 
 
-<div style="position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden;">
-  <iframe src="//www.youtube.com/embed/TmPfTpjtdgg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" allowfullscreen frameborder="0" title="YouTube Video"></iframe>
- </div>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="//www.youtube.com/embed/TmPfTpjtdgg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
 
 
 <p>9月頃に強化学習の勉強をした際に実装してみたのですが，一向に学習が進まず放置していたのですが，最近<a href="http://arxiv.org/abs/1711.07478">Implementing the Deep Q-Network</a> <sup class="footnote-ref" id="fnref:2"><a href="#fn:2">2</a></sup>を読み再開してみたところ，動いてしまったので，この記事を書くことになりました．</p>
@@ -166,26 +166,19 @@
 <p>David Silver先生に聞きましょう．ただしこの講義では深層強化学習は扱われていません．</p>
 
 
-<div style="position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden;">
-  <iframe src="//www.youtube.com/embed/2pWv7GOvuf0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" allowfullscreen frameborder="0" title="YouTube Video"></iframe>
- </div>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="//www.youtube.com/embed/2pWv7GOvuf0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
 
 
 <h1 id="deep-q-networkとは">Deep Q-Networkとは</h1>
 
 <p><a href="https://storage.googleapis.com/deepmind-media/dqn/DQNNaturePaper.pdf">論文</a>を読みましょう．Q-Learningの応用で，複雑ではありませんが，学習を安定させるための工夫が各所にあるので見逃すと動かないようです．</p>
 
-
 <figure>
-    
-        <img src="/img/post/pytorch/dqn_alg.png" />
-    
-    
-    <figcaption>
-        <h4>DQNの学習アルゴリズム．論文より．</h4>
-        
-    </figcaption>
-    
+    <img src="/img/post/pytorch/dqn_alg.png"/> <figcaption>
+            <h4>DQNの学習アルゴリズム．論文より．</h4>
+        </figcaption>
 </figure>
 
 
@@ -202,12 +195,8 @@
 
 <p>また今回の改良では<a href="https://github.com/lanpa/tensorboard-pytorch">tensorboard-pytorch</a>を導入して，入力画像が正しいかを確認できるようにしました．</p>
 
-
 <figure>
-    
-        <img src="/img/post/pytorch/dqn_input.png" />
-    
-    
+    <img src="/img/post/pytorch/dqn_input.png"/> 
 </figure>
 
 
@@ -293,30 +282,16 @@ python exec.py
 
 <p>今のところ卓球ゲームであるPongを試しています．1エピソードで20回の対戦があり勝つと+1，負けると-1の報酬を受け取ります．validation環境での報酬のグラフを見るとはじめはほぼ全敗で-20点(-21点のこともある)ですが，学習が進むにつれて安定して全勝して20点を獲得できるようになります．</p>
 
-<p>
-<figure>
-    
-        <img src="/img/post/pytorch/pong_reward.png" />
-    
-    
-    <figcaption>
-        <h4>Pongにおけるvalidation環境での報酬の変化．</h4>
-        
-    </figcaption>
-    
+<p><figure>
+    <img src="/img/post/pytorch/pong_reward.png"/> <figcaption>
+            <h4>Pongにおけるvalidation環境での報酬の変化．</h4>
+        </figcaption>
 </figure>
 
-
 <figure>
-    
-        <img src="/img/post/pytorch/pong_loss.png" />
-    
-    
-    <figcaption>
-        <h4>Pongにおける損失の変化．</h4>
-        
-    </figcaption>
-    
+    <img src="/img/post/pytorch/pong_loss.png"/> <figcaption>
+            <h4>Pongにおける損失の変化．</h4>
+        </figcaption>
 </figure>
 </p>
 
@@ -349,13 +324,13 @@ python exec.py
         </article>
         <nav class="pagination-single">
             
-            <span class="previous">&larr; <a href="https://mosko.tokyo/notes/info_ml/5/" rel="prev">情報論的学習理論5</a></span>  
+            <span class="previous">&larr; <a href="https://mosko.tokyo/post/on-capusels/" rel="prev">Dynamic Routing Between Capsules</a></span>  
             <span class="next"><a href="https://mosko.tokyo/post/nips2017/" rel="next">NIPS2017まとめのまとめ</a> &rarr;</span> 
         </nav>
 
         <div class="disqus-comments">
             <div id="disqus_thread"></div>
-<script>
+<script type="application/javascript">
     var disqus_config = function () {
     
     

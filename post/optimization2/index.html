@@ -171,17 +171,10 @@
 
 <p>$\alpha$の調整には段階的に$\alpha$を小さくするstep decay，$\alpha_k=\alpha_0 e^{-rk}$とするexponential decay，$\alpha_k=\frac{\alpha_0}{1+rk}$とする1/k decayなどの手法がありますが，職人の勘による調整法も多いようです．</p>
 
-
 <figure>
-    
-        <img src="/img/post/optim/gd1000.png" />
-    
-    
-    <figcaption>
-        <h4>初期位置(-0.7, -0.7),(0, 2.5),(-1, 2)からのSGDによる1000ステップの移動の軌跡．黄色の点が大域解(1,1)．</h4>
-        
-    </figcaption>
-    
+    <img src="/img/post/optim/gd1000.png"/> <figcaption>
+            <h4>初期位置(-0.7, -0.7),(0, 2.5),(-1, 2)からのSGDによる1000ステップの移動の軌跡．黄色の点が大域解(1,1)．</h4>
+        </figcaption>
 </figure>
 
 
@@ -198,17 +191,10 @@ x_{k+1} &amp;= x_k+v_{k+1}
 
 <!-- $f(x)$をポテンシャルとみると$-\nabla f(x)$は$x$における力ですので，$\mu v$は摩擦力（と比例するベクトル）と考えることもできます． -->
 
-
 <figure>
-    
-        <img src="/img/post/optim/mgd1000.png" />
-    
-    
-    <figcaption>
-        <h4>初期位置(-0.7, -0.7),(0, 2.5),(-1, 2)からのmomentumつきのSGDによる1000ステップの移動の軌跡．黄色の点が大域解(1,1)．</h4>
-        
-    </figcaption>
-    
+    <img src="/img/post/optim/mgd1000.png"/> <figcaption>
+            <h4>初期位置(-0.7, -0.7),(0, 2.5),(-1, 2)からのmomentumつきのSGDによる1000ステップの移動の軌跡．黄色の点が大域解(1,1)．</h4>
+        </figcaption>
 </figure>
 
 
@@ -223,17 +209,10 @@ x_{k+1} &amp;= x_k+v_{k+1}
 
 <p><a href="http://climin.readthedocs.io/en/latest/gd.html">clminのdoc</a>では$x_k+\mu v_k$を$x_{k+\frac12}$と表記しており，$x_k$と$x_{k+1}$の間の点であることが分かりやすいです．</p>
 
-
 <figure>
-    
-        <img src="/img/post/optim/nmgd1000.png" />
-    
-    
-    <figcaption>
-        <h4>初期位置(-0.7, -0.7),(0, 2.5),(-1, 2)からのNestrovのmomentumつきのSGDによる1000ステップの移動の軌跡．黄色の点が大域解(1,1)．</h4>
-        
-    </figcaption>
-    
+    <img src="/img/post/optim/nmgd1000.png"/> <figcaption>
+            <h4>初期位置(-0.7, -0.7),(0, 2.5),(-1, 2)からのNestrovのmomentumつきのSGDによる1000ステップの移動の軌跡．黄色の点が大域解(1,1)．</h4>
+        </figcaption>
 </figure>
 
 
@@ -258,17 +237,10 @@ x_{k+1} &amp;= x_k+v_{k+1}
 
 <p>$(g_{k+1}+\epsilon)^{-\frac12}$は$f$の$x_{k}$でのHessianの逆行列 $(\nabla^2 f(x_k))^{-1}$を近似していて，理想的にはNewton法に近くなることが期待されます．</p>
 
-
 <figure>
-    
-        <img src="/img/post/optim/ag1000.png" />
-    
-    
-    <figcaption>
-        <h4>初期位置(-0.7, -0.7),(0, 2.5),(-1, 2)からのAdagradによる1000ステップの移動の軌跡．黄色の点が大域解(1,1)．</h4>
-        
-    </figcaption>
-    
+    <img src="/img/post/optim/ag1000.png"/> <figcaption>
+            <h4>初期位置(-0.7, -0.7),(0, 2.5),(-1, 2)からのAdagradによる1000ステップの移動の軌跡．黄色の点が大域解(1,1)．</h4>
+        </figcaption>
 </figure>
 
 
@@ -283,17 +255,10 @@ x_{k+1} &amp;= x_k+v_{k+1}
 
 <p>としています．</p>
 
-
 <figure>
-    
-        <img src="/img/post/optim/rms1000.png" />
-    
-    
-    <figcaption>
-        <h4>初期位置(-0.7, -0.7),(0, 2.5),(-1, 2)からのRMSPropによる1000ステップの移動の軌跡．黄色の点が大域解(1,1)．</h4>
-        
-    </figcaption>
-    
+    <img src="/img/post/optim/rms1000.png"/> <figcaption>
+            <h4>初期位置(-0.7, -0.7),(0, 2.5),(-1, 2)からのRMSPropによる1000ステップの移動の軌跡．黄色の点が大域解(1,1)．</h4>
+        </figcaption>
 </figure>
 
 
@@ -309,17 +274,10 @@ x_{k+1} &amp;= x_k+v_{k+1}
 
 <p>ただし例によって$(s_k+\epsilon)^{\frac12}$は第$i$成分が$\sqrt{s_k^{(i)}+\varepsilon}$であるようなベクトル， $(x_{k+1}-x_k)^2=(x_{k+1}-x_k)\odot (x_{k+1}-x_k)$とします．$s_0=0$とするためか，$\varepsilon$を小さくしすぎない方がよいようで，<a href="http://climin.readthedocs.io/en/latest/adadelta.html">climin</a>では$10^{-4}$となっています．</p>
 
-
 <figure>
-    
-        <img src="/img/post/optim/ad1000.png" />
-    
-    
-    <figcaption>
-        <h4>初期位置(-0.7, -0.7),(0, 2.5),(-1, 2)からAdadeltaによる1000ステップの移動の軌跡．黄色の点が大域解(1,1)．</h4>
-        
-    </figcaption>
-    
+    <img src="/img/post/optim/ad1000.png"/> <figcaption>
+            <h4>初期位置(-0.7, -0.7),(0, 2.5),(-1, 2)からAdadeltaによる1000ステップの移動の軌跡．黄色の点が大域解(1,1)．</h4>
+        </figcaption>
 </figure>
 
 
@@ -345,17 +303,10 @@ v_{k+1} &amp;= \beta_2 v_{k}+(1-\beta_2)(\nabla f(x_k))^2,~v_0=0
 
 <p>論文中では$\beta_1=0.9,\beta_2=0.999$が用いられています．SGDなどと比較して早く収束するため，ディープラーニングのoptimizerとしては多く用いられているように思われます．</p>
 
-
 <figure>
-    
-        <img src="/img/post/optim/adam1000.png" />
-    
-    
-    <figcaption>
-        <h4>初期位置(-0.7, -0.7),(0, 2.5),(-1, 2)からAdamによる1000ステップの移動の軌跡．黄色の点が大域解(1,1)．</h4>
-        
-    </figcaption>
-    
+    <img src="/img/post/optim/adam1000.png"/> <figcaption>
+            <h4>初期位置(-0.7, -0.7),(0, 2.5),(-1, 2)からAdamによる1000ステップの移動の軌跡．黄色の点が大域解(1,1)．</h4>
+        </figcaption>
 </figure>
 
 
@@ -410,56 +361,28 @@ d_{k+1} &amp;= \beta_3 d_k+(1-\beta_3)r_k \cr\cr
 
 <p>SGDおよびmomentumつきSGDの学習率は$10^{-3}$，momentumつきSGDのmomentumは$0.9$を用いてい，それ以外はPyTorchの初期値であるAdadelta(lr=1.0),Adagrad(lr=0.01),Adam(lr=0.001)を使いました．</p>
 
-<p>
-<figure>
-    
-        <img src="/img/post/optim/trainloss.png" />
-    
-    
-    <figcaption>
-        <h4>学習データでの損失の変動</h4>
-        
-    </figcaption>
-    
+<p><figure>
+    <img src="/img/post/optim/trainloss.png"/> <figcaption>
+            <h4>学習データでの損失の変動</h4>
+        </figcaption>
 </figure>
 
-
 <figure>
-    
-        <img src="/img/post/optim/testloss.png" />
-    
-    
-    <figcaption>
-        <h4>検証データでの損失の変動</h4>
-        
-    </figcaption>
-    
+    <img src="/img/post/optim/testloss.png"/> <figcaption>
+            <h4>検証データでの損失の変動</h4>
+        </figcaption>
 </figure>
 
-
 <figure>
-    
-        <img src="/img/post/optim/testacc.png" />
-    
-    
-    <figcaption>
-        <h4>検証データでの正答率の変動</h4>
-        
-    </figcaption>
-    
+    <img src="/img/post/optim/testacc.png"/> <figcaption>
+            <h4>検証データでの正答率の変動</h4>
+        </figcaption>
 </figure>
 
-
 <figure>
-    
-        <img src="/img/post/optim/testacc_withoutSGD.png" />
-    
-    
-    <figcaption>
-        <h4>検証データでのSGD以外の正答率の変動</h4>
-        
-    </figcaption>
-    
+    <img src="/img/post/optim/testacc_withoutSGD.png"/> <figcaption>
+            <h4>検証データでのSGD以外の正答率の変動</h4>
+        </figcaption>
 </figure>
 </p>
 
@@ -510,7 +433,7 @@ d_{k+1} &amp;= \beta_3 d_k+(1-\beta_3)r_k \cr\cr
 
         <div class="disqus-comments">
             <div id="disqus_thread"></div>
-<script>
+<script type="application/javascript">
     var disqus_config = function () {
     
     
