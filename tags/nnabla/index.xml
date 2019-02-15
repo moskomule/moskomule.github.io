@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Nnabla on moskomule log</title>
+    <link>https://mosko.tokyo/tags/nnabla/</link>
+    <description>Recent content in Nnabla on moskomule log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <lastBuildDate>Tue, 25 Jul 2017 15:37:12 +0900</lastBuildDate>
+    
+	<atom:link href="https://mosko.tokyo/tags/nnabla/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>NNablaの静的・動的計算グラフの比較</title>
+      <link>https://mosko.tokyo/post/nnabla/</link>
+      <pubDate>Tue, 25 Jul 2017 15:37:12 +0900</pubDate>
+      
+      <guid>https://mosko.tokyo/post/nnabla/</guid>
+      <description>はじめに NNablaはSonyによるニューラルネットワークライブラリです．特徴としては公式ページにあるように動的計算グラフと静的計算グラフの双方をサポートすること，PythonとC++のAPIが用意されていること，Xperia Earなどの小型端末をはじめ，さまざまな機器の上で動き実際に利用されていることなどがあります．
+加えてレイヤーがParametric Functionsという名前で表されていること，バイナリレイヤーが用意されていること，学習のモニタ機能が充実していること(Monitors)なども特徴と言えるのではないでしょうか．逆にRNNレイヤーなどは用意されていません．
+最近Python3に対応し使えるようになったこともあり，Sonyに愛着があったので試してみました．MNISTをやるだけです．
+インストール LinuxとWindowsではpip install -U nnablaで導入できるのですが，macOSではソースからのビルドの必要があります(2017/07/26現在)．
+brew install protoc git clone https://github.com/sony/nnabla cd nnabla sudo pip install -U -r python/setup_requirements.txt sudo pip install -U -r python/requirements.txt mkdir build cd build export MACOSX_DEPLOYMENT_TARGET=10.9 cmake ../ make -j 16 cp lib/libnnabla.dylib /usr/local/lib/ cd dist sudo pip install -U &amp;lt;build-wheel-file&amp;gt;.whl  モデル LeNetの活性化函数をreluに変えたものを使います．とりあえずPyTorch風に書いています．nnabla.get_parameters()はparameter_scope内を参照するようですので適宜設定します．
+import nnabla from nnabla import Variable import nnabla.functions as F import nnabla.parametric_functions as PF from nnabla import solvers class Lenet(object): def __init__(self): self.</description>
+    </item>
+    
+  </channel>
+</rss>

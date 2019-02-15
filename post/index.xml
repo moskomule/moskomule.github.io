@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on moskomule log</title>
+    <link>https://mosko.tokyo/post/</link>
+    <description>Recent content in Posts on moskomule log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <lastBuildDate>Fri, 01 Dec 2017 15:10:30 +0900</lastBuildDate>
+    
+	<atom:link href="https://mosko.tokyo/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>PyTorchでDQNを実装した</title>
+      <link>https://mosko.tokyo/post/pytorch-dqn/</link>
+      <pubDate>Fri, 01 Dec 2017 15:10:30 +0900</pubDate>
+      
+      <guid>https://mosko.tokyo/post/pytorch-dqn/</guid>
+      <description>はじめに DQN(Deep Q Network)は Minh et al. 20151（以下論文）で登場した深層強化学習の先駆けです．Atariのゲームで非常に高い得点を修めるというパフォーマンスで有名になりました．
+  9月頃に強化学習の勉強をした際に実装してみたのですが，一向に学習が進まず放置していたのですが，最近Implementing the Deep Q-Network 2を読み再開してみたところ，動いてしまったので，この記事を書くことになりました．
+今回の実装はこちらにあります．
+強化学習とは David Silver先生に聞きましょう．ただしこの講義では深層強化学習は扱われていません．
+  Deep Q-Networkとは 論文を読みましょう．Q-Learningの応用で，複雑ではありませんが，学習を安定させるための工夫が各所にあるので見逃すと動かないようです．
+  DQNの学習アルゴリズム．論文より．   実装について 画像の処理 DQNではAtariのゲームの画像をグレースケールにしてスタックするなどの処理がありますが，このあたりは各アルゴリズムをTensorFlowで実装し，公開しているOpen AI baselinesを一部変更して用いています．
+ OpenCV2をPillowに変更した 画像のスタックの仕方をPyTorchに合わせて変更した．  また今回の改良ではtensorboard-pytorchを導入して，入力画像が正しいかを確認できるようにしました．
+  ネットワーク Deepとは言えない気がしますが論文通りの構成です．何か工夫すると多少変わるのかもしれません．
+class DQN(nn.Module): def __init__(self, output_size: int): super(DQN, self).__init__() self.feature = nn.Sequential( nn.Conv2d(4, 32, kernel_size=8, stride=4), nn.ReLU(inplace=True), nn.Conv2d(32, 64, kernel_size=4, stride=2), nn.ReLU(inplace=True), nn.Conv2d(64, 64, kernel_size=3, stride=1), nn.ReLU(inplace=True)) self.</description>
+    </item>
+    
+    <item>
+      <title>Dynamic Routing Between Capsules</title>
+      <link>https://mosko.tokyo/post/on-capusels/</link>
+      <pubDate>Mon, 13 Nov 2017 18:57:37 +0900</pubDate>
+      
+      <guid>https://mosko.tokyo/post/on-capusels/</guid>
+      <description>はじめに ディープラーニングの帝王1Geoffrey Hinton先生が20年来温め続けてきたというCapsules Network(CapsNet)を実装し成果を出して論文を出しました（Dynamic Routing Between Capsules）．この記事ではこのCapsNetについて簡単にまとめます．
+Hinton先生の業績は並べても感嘆するばかりで仕方ないのですが，帝王でおはしますと同時に認知心理学者でもあります．このCapsules Networkも脳のコラム構造を真似ることでCNNよりも人間の認知機能に近い認識器をつくることが目標です．
+本論文の要点は以下の通りです．
+ 今まで重みと入力の内積というスカラーの塊であった層を，Capsulesという「ベクトルの塊」とすることで「姿勢」などの情報を扱えるようにした． 層間のCapsulesの結合（routing）を学習できるようにした． 実際にCapsulesを用いた3層のネットワーク（CapsNet）を構築した． CapsNetはデータ拡張なしにMNISTのテストエラー0.25%を達成した． 文字が重なったMNISTに対してもAttentionを用いた複雑なネットワークと同等以上の性能を発揮した．  CNNの問題点 さて，Hinton先生は度々（AlexNet登場以前から！）畳み込みニューラルネットワーク（CNN）の問題点を指摘しており，Capsulesはその解決策のひとつでもあります．
+各所で&amp;rdquo;What is wrong with Convolutional Neural Nets&amp;rdquo;という題の講演を行っているようです．（受講者のノート，まとめ）．
+  LeNetにはじまるCNNでは，ゆがみや並行移動に対する不変性を得るためにpooling（sub-sampling）が行われます．これは却って，位置に関する重要な情報を取り去って特徴を学習していることに他なりません．
+従ってCNNでは，以下の図のように位置関係を無視して「目」や「口」といった個々の特徴のみで画像を認識することとなり，左図のようなそれぞれの要素がばらばらのものも右図のような顔であるものも同じように認識してしまいます．
+一方で人間などの認知では目鼻と顔の階層関係から顔であることを認識しているので，両者を区別することができます．言及はされていませんがイラストや顔文字，さらに一部が隠れた顔をも顔と認識できるのもこのお陰でしょう．
+  CNNは位置を無視してしまうので左の画像も右の画像も同じ特徴を持った「人」であると認識してしまう．   またCNNでは同じものに対しても，僅かな差異を学習するために大量のデータとデータ拡張を必要とします．
+以下に「傾いた人の顔」を示しましたが，CNNでこれを「人」と認識するためには，そのような多くのデータによる学習が不可欠です．更に，これによって認識できるようになって右の画像が「人」であることは分かっても，「傾いた人の顔」であるかどうかは分かりません．
+一方で人間などの認知ではたとえ「傾いた人の顔」を見たことがなくても，例えば鼻の傾きから座標を割り出して画像が「人の顔」であり更に「傾いている」ことが分かります．
+  CNNでは右の画像が「人」であることを学習するのに多くのデータとデータ拡張を要するが，それでも「傾いた人の顔」であることは分からない．   “But my CAPSULES can do” 一方のCapsNetでは位置や姿勢などの情報をcapsuleというベクトルの形で保持し，capsule同士が階層的な「構文木」をなすように結合の仕方（routing）を学習します．Capsulesは脳にあるコラム構造に影響を受けているようです．
+Capsules 各capsuleには階層によって異なりますが「目」や「顔」などが対応します2．capsuleはベクトルで，長さがそのcapsuleに対応するものが存在する確率であり，各要素が位置や姿勢を表します．
+$l+1$層目のcapsule $j$は$l$層目のcapsulesの出力に，以下で説明するroutingを施した入力$s_j$を受けます．これはそのままでは上記の条件を満たさないので以下のsquashing（押し潰し）によって，$[0,1)$に閉じ込めます．
+\[v_j=\frac{|s_j|^2}{1+|s_j|^2}\frac{s_j}{|s_j}\]
+  $l,l&amp;#43;1$層での記号の関係．   routing 「目」のcapsuleと「顔」のcapsuleとは結びつくべきですが，「花」のcapsuleとは結びつくことはありません．これを学習するのがroutingであり，ここでは特に本論文で提案されているdynamic routingを扱います．このほかにEMアルゴリズムを用いた手法も何者かによって提案されています．
+$l+1$層目のcapsule $j$が$l$層目のcapsules $i$の出力を受けます．先ほどのroutingされた$j$への入力$s_j$は以下によって計算されます．capsule $i$の出力を$u_i(=v_i)$とします．
+\[s_j=\sum_i c_{ij}\hat{u}_{j|i}~~(\hat{u}_{j|i}=W_{ij}u_i)\]</description>
+    </item>
+    
+    <item>
+      <title>Double Backpropagationについて</title>
+      <link>https://mosko.tokyo/post/double-backprop/</link>
+      <pubDate>Sun, 01 Oct 2017 19:40:24 +0900</pubDate>
+      
+      <guid>https://mosko.tokyo/post/double-backprop/</guid>
+      <description>はじめに PyTorch v0.2では&amp;rdquo;Higher order gradients&amp;rdquo; (double backpropagation)がサポートされました．Chainerもv3においてこれがサポートされます．今回Chainer Meetupの資料を読んで雰囲気が分かったのでまとめました．
+ Comparison of deep learning frameworks from a viewpoint of double backpropagation  Chainer v3  筆者は長くdouble backpropagationという名称から
+\[\mathrm{loss}\longrightarrow \frac{\partial^2 \mathrm{loss}}{\partial x_i \partial x_j} \]
+と思い込んでいました．そう思っているのでdocumentを読んでもいまいちよく分からない．ところが上に挙げた資料では，そうではなくて
+\[\mathrm{loss}=g(f(x), \frac{\partial f(x)}{\partial x})\]
+のような場合にも計算が出来る，ということなのだということが説明されていて救われました．
+PyTorchの例 これで以上，でもよいのですが，PyTorchでの例を．
+$x=1, y=x^3, z=y^2+\frac{dy}{dx}$をとして，$\frac{dz}{dx}|_{x=1}$を求めます．
+&amp;gt;&amp;gt;&amp;gt; x = Variable(torch.Tensor([1]), requires_grad=True) &amp;gt;&amp;gt;&amp;gt; y = x ** 3 &amp;gt;&amp;gt;&amp;gt; grad_y, = autograd.grad(y, x, create_graph=True) &amp;gt;&amp;gt;&amp;gt; (grad_y + y ** 2).backward() &amp;gt;&amp;gt;&amp;gt; x.grad Variable containing: 12 [torch.</description>
+    </item>
+    
+    <item>
+      <title>NNablaの静的・動的計算グラフの比較</title>
+      <link>https://mosko.tokyo/post/nnabla/</link>
+      <pubDate>Tue, 25 Jul 2017 15:37:12 +0900</pubDate>
+      
+      <guid>https://mosko.tokyo/post/nnabla/</guid>
+      <description>はじめに NNablaはSonyによるニューラルネットワークライブラリです．特徴としては公式ページにあるように動的計算グラフと静的計算グラフの双方をサポートすること，PythonとC++のAPIが用意されていること，Xperia Earなどの小型端末をはじめ，さまざまな機器の上で動き実際に利用されていることなどがあります．
+加えてレイヤーがParametric Functionsという名前で表されていること，バイナリレイヤーが用意されていること，学習のモニタ機能が充実していること(Monitors)なども特徴と言えるのではないでしょうか．逆にRNNレイヤーなどは用意されていません．
+最近Python3に対応し使えるようになったこともあり，Sonyに愛着があったので試してみました．MNISTをやるだけです．
+インストール LinuxとWindowsではpip install -U nnablaで導入できるのですが，macOSではソースからのビルドの必要があります(2017/07/26現在)．
+brew install protoc git clone https://github.com/sony/nnabla cd nnabla sudo pip install -U -r python/setup_requirements.txt sudo pip install -U -r python/requirements.txt mkdir build cd build export MACOSX_DEPLOYMENT_TARGET=10.9 cmake ../ make -j 16 cp lib/libnnabla.dylib /usr/local/lib/ cd dist sudo pip install -U &amp;lt;build-wheel-file&amp;gt;.whl  モデル LeNetの活性化函数をreluに変えたものを使います．とりあえずPyTorch風に書いています．nnabla.get_parameters()はparameter_scope内を参照するようですので適宜設定します．
+import nnabla from nnabla import Variable import nnabla.functions as F import nnabla.parametric_functions as PF from nnabla import solvers class Lenet(object): def __init__(self): self.</description>
+    </item>
+    
+    <item>
+      <title>最適化手法について—SGDからYellowFinまで—</title>
+      <link>https://mosko.tokyo/post/optimization2/</link>
+      <pubDate>Wed, 12 Jul 2017 12:37:12 +0900</pubDate>
+      
+      <guid>https://mosko.tokyo/post/optimization2/</guid>
+      <description>はじめに 前回の記事に，「ベンチマーク函数があるよ」というフィードバックを頂きました．test functions for optimizationというWikipediaの記事にまとまっていたので，今回はこちらにあるRosenbrock function($f_{R}=100(y-x^2)^2+(x-1)^2$,大域解$f_{R}(1,1)=0$)を使います．Rosenbrock函数には大域解を含む広い濠があって大域解が見つけにくいのが特徴です．
+一般に勾配法の更新方法はバッチ更新と呼ばれます．つまり勾配降下法であれば学習事例$n=1,2,\ldots,N$に対して個々の誤差函数$E_n$の和
+\[E(x)=\sum_n E_n(x)\]
+について$x\gets x-\alpha\nabla E$と更新していました．
+確率的な(stochastic)では$n\in\{1,\ldots,N\}$を乱択して，または逐次的な(online)勾配降下法では$n=1,2,\ldots,$によって$x\gets x-\alpha\nabla E_n(x)$により更新を行います．
+また，ディープラーニングの文脈では$B\subset\{1,\ldots,N\}$によって$x\gets x-\frac{\alpha}{|B|}\sum_{i\in B}\nabla E_i(x)$を更新するミニバッチ更新がしばしば用いられます．ミニバッチの大きさ$|B|$は32,64,128などがよく用いられるように思われます．この大きさが大きいほど計算は速くなりますが，あまり大きくない方が汎化性能が上がるという話もあります1．
+今回紹介する手法は主にディープラーニングの文脈で用いられるため，ミニバッチ更新を行うことでよりよい性能が出せる可能性がありますが，記事中では可視化の都合もあり$x\gets x-\alpha d$によって更新を行います．
+なお，表記にはこの記事特有のものも含まれていますので，その点にはお気をつけ下さい．
+SGD(Stochastic Gradient Descent) 基本的に勾配降下法と同一で，以下により更新を行います．
+\[x_{k+1}=x_{k}-\alpha_k\nabla f(x_{k})\]
+$\alpha$の調整には段階的に$\alpha$を小さくするstep decay，$\alpha_k=\alpha_0 e^{-rk}$とするexponential decay，$\alpha_k=\frac{\alpha_0}{1+rk}$とする1/k decayなどの手法がありますが，職人の勘による調整法も多いようです．
+  初期位置(-0.7, -0.7),(0, 2.5),(-1, 2)からのSGDによる1000ステップの移動の軌跡．黄色の点が大域解(1,1)．   Momentum SGDは$\nabla f(x)$が0に近い時に更新ができなくなるという問題がありました．Momentum法では
+\[\begin{aligned} v_{k+1} &amp;amp;= \mu v_k-\alpha\nabla f(x_k)~,v_0=0 \cr\cr x_{k+1} &amp;amp;= x_k+v_{k+1} \end{aligned}\]
+によって更新を行うことでこの問題を解決しています．またSGDは各点の勾配変化に敏感でしたが，以前の状態を引き継ぐ慣性力のようなmomentum term$v$を用いることで些細な変化に対しての感度を低下させているとみることもできます．
+  初期位置(-0.7, -0.7),(0, 2.5),(-1, 2)からのmomentumつきのSGDによる1000ステップの移動の軌跡．黄色の点が大域解(1,1)．   Nestrov Accelerated Gradient Momentum法を改良し，$v_{k+1}$の更新に$x_k$よりも$x_{k+1}$に近いと期待される$x_k+\mu v_k$を用いたのがNestrov Accelerated Gradientです．</description>
+    </item>
+    
+    <item>
+      <title>最適化手法についてー勾配法，ニュートン法，準ニュートン法などー</title>
+      <link>https://mosko.tokyo/post/optimization/</link>
+      <pubDate>Sun, 09 Jul 2017 12:37:12 +0900</pubDate>
+      
+      <guid>https://mosko.tokyo/post/optimization/</guid>
+      <description>以前Eve optimizerの実装を行ったのですが，肝心の非線型函数の最適化手法について知らなかったので調べました．
+はじめに 最適化に関して，微分を用いない手法としてはランダム法やシンプレックス法がありますが，今回は微分を用いて反復的に解に近づく方法である反復法について述べます．
+なお今回可視化に際して利用した函数は$(x+1)x(x-1)(x-3)+y^2+xy$で，2つの局所解と1つの鞍点を持ちます．
+反復法 反復法は函数$f(x)$について，
+\[\begin{aligned} d_k &amp;amp;= -H_k\nabla f(x_k) \cr\cr x_{k+1} &amp;amp;= x_{k}+\alpha_{k}d_{k} \end{aligned}\]
+によって位置を更新しながら列$(x_k)_{k\in\mathscr{N}}$を局所解または大局解$x^{\star}$に近づけていく手法です．
+実際は$k$は有限なので，適当な回数で打ち切ったり，$|x_{k+1}-x_{k}|&amp;lt;\epsilon$で中止したりします．
+$x$から$x+\delta x$へと移動した際の$f$の変化$\delta f(x)$とします．$\delta f(x)=\delta x\nabla f(x)$は$\delta x$と$\nabla f(x)$とが並行の時に最大となりますので，$\nabla f(x)$は$x$において$f(x)$の値が最も変化する方向です．そのため局所的には$-\nabla f(x)$に進むのが望ましいですが，それが全体として望ましいとは必ずしもいえません．反復法ではこの方向に適当な$H_k$をかけて調整した上で，順次移動していきます．
+$a_k$は学習率，ステップ幅などと呼ばれ一回の更新で進む量を表します．$\alpha_k$にはヒューリスティックな更新方法もありますが($\alpha_k \sim \frac{1}{\sqrt{k}}$など)，Armijoの基準やWolfeの基準といったより客観的な指標もあります．
+\[\begin{aligned} f(x_k+\alpha_k d_k) &amp;amp;\le f(x_k)+c_1\alpha_k\nabla f(x_k)^{\top}d_k \cr\cr \nabla f(x_k+\alpha_k d_k)^{\top}d_k &amp;amp;\ge c_2\nabla f(x_k)d_k \end{aligned}\]
+上の式がArmijoの基準で，2つ合わせるとWolfeの基準となります．$\alpha_k$がこの範囲に収まるように変化させていきます(line search method1)．
+勾配降下法 勾配降下法(gradient descent method)，または最急降下法(steepest descent method)は$H_k=I$とする手法です．すなわち
+\[x_{k+1}=x_{k}-\alpha_k\nabla f(x_{k})\]
+によって更新していきます．最急方向に適当な学習率$\alpha_k$を乗じて進んでいくので「直感的には合理的」2ですが，収束が遅く，適切な学習率の調整が難しいなど，実際の性能はあまりよくありません．
+  $\alpha_k=0.1$で100回の更新を行った際の$x_k$の軌跡     $\alpha_k=0.01$で100回の更新を行った際の$x_k$の軌跡     $\alpha_k=0.</description>
+    </item>
+    
+    <item>
+      <title>「日本古典籍字形データセット」で遊ぶ</title>
+      <link>https://mosko.tokyo/post/mnist_kuzushiji/</link>
+      <pubDate>Fri, 13 Jan 2017 13:18:40 +0900</pubDate>
+      
+      <guid>https://mosko.tokyo/post/mnist_kuzushiji/</guid>
+      <description>日本語版MNIST,というわけではないけれど日本古典籍字形データセットの識別をkerasで実装したresnetによって行った．現在validation accuracyは93.3%．少なくとも自分よりはきちんと分類できるようだ．
+このデータセットには2017年1月現在，「8点の画像データから切り取ったくずし字1,521文字種の字形データ86,176文字」が収録されているので，そのまま1521に分類している．
+今回はMNIST的に使うので，つまり文脈を考慮しないので変体仮名の「志」（し）と漢字としての「志」とを区別する，というようなタスクも含まれてしまうが，特に考慮しない．kerasのImageDataGeneratorで前処理を一括して行う．本当はもう少し丁寧にした方がいいのかもしれないけれど，とりあえず．
+ # data generator train_datagen = ImageDataGenerator( shear_range=0.05, width_shift_range=0.05, height_shift_range=0.05, rotation_range=10, fill_mode=&amp;quot;constant&amp;quot;, cval=200, zoom_range=0.2) train_generator = train_datagen.flow_from_directory( &#39;train&#39;, color_mode=&amp;quot;grayscale&amp;quot;, target_size=target_size, batch_size=batch_size, class_mode=&#39;categorical&#39; ) val_datagen = ImageDataGenerator() val_generator = val_datagen.flow_from_directory( &#39;val&#39;, color_mode=&amp;quot;grayscale&amp;quot;, target_size=target_size, batch_size=batch_size, class_mode=&#39;categorical&#39; )  training dataには変形を施した．resnetはkeras.jsを参考にして実装(下記のres_a,res_b)．
+# model input_layer = Input(shape=input_shape) x = Convolution2D(nb_filters, 4, 4, subsample=(2,2))(input_layer) x = BatchNormalization()(x) x = Activation(&#39;relu&#39;)(x) x = MaxPooling2D(pool_size, strides=stride_size)(x) x = res_a([32,32,128])(x) x = res_b([32,32,128])(x) x = res_b([32,32,128])(x) x = res_a([64,64,256])(x) x = res_b([64,64,256])(x) x = res_b([128,128,256])(x) x = res_a([128,128,512])(x) x = res_b([128,128,512])(x) x = res_b([256,256,512])(x) x = AveragePooling2D((4,4))(x) x = Flatten()(x) output_layer = Dense(nb_classes, activation=&#39;softmax&#39;)(x) model = Model(input=input_layer, output=output_layer) model.</description>
+    </item>
+    
+    <item>
+      <title>PythonでMySQLを使う</title>
+      <link>https://mosko.tokyo/post/python-and-mysql/</link>
+      <pubDate>Sat, 22 Oct 2016 00:21:34 +0900</pubDate>
+      
+      <guid>https://mosko.tokyo/post/python-and-mysql/</guid>
+      <description>現在開発しているものはScalaで前処理を行っているので，本番の処理も本当は全部Scalaで書ければよかったのだけれども，そうは問屋が卸さず，種々の原因によりPythonが必要になってしまった． これなら最初から全部Pythonでよかったのでは，とも思うけれど，PythonはJupyterで小さなものを色々弄るのには使うものの，大きいものをPythonで書いた経験が無いので心配．型が違う，という注意が沢山出そうだ．
+ともかく，そのためにPythonからMySQLを扱う必要が出てきた．Pythonists3は新しいもの好きなのか，いまやNoSQLを使うのがトレンドなのか，MySQL周りの情報が少ないのだが，pymysqlを使うことに落ち着いた．
+connection = pymysql.connect(host=&amp;#34;HOSTNAME&amp;#34;, user=&amp;#34;USERNAME&amp;#34;, password=&amp;#34;PASSWORD&amp;#34;, db=&amp;#34;DB_NAME&amp;#34;, charset=&amp;#39;utf8&amp;#39;, cursorclass=pymysql.cursors.DictCursor) #1 with connection.cursor() as cursor: sql = &amp;#34;SELECT name FROM table WHERE id=%s&amp;#34; cursor.execute(sql, (900)) results = cursor.fetchall() for r in results: b = r[&amp;#39;name&amp;#39;] print(bytes.decode(b)) #2 #1を指定することで，返ってくる結果がdict形式になって分かりやすい．
+最後，#2でnameに相当する列がvarbinaryであったので，文字列に変換するのにbytes.decode()が必要だった．とりあえずこれで一件落着．</description>
+    </item>
+    
+  </channel>
+</rss>
