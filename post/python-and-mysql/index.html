@@ -125,27 +125,22 @@
             <p>現在開発しているものはScalaで前処理を行っているので，本番の処理も本当は全部Scalaで書ければよかったのだけれども，そうは問屋が卸さず，種々の原因によりPythonが必要になってしまった． これなら最初から全部Pythonでよかったのでは，とも思うけれど，PythonはJupyterで小さなものを色々弄るのには使うものの，大きいものをPythonで書いた経験が無いので心配．型が違う，という注意が沢山出そうだ．</p>
 
 <p>ともかく，そのためにPythonからMySQLを扱う必要が出てきた．Pythonists3は新しいもの好きなのか，いまやNoSQLを使うのがトレンドなのか，MySQL周りの情報が少ないのだが，<code>pymysql</code>を使うことに落ち着いた．</p>
+<div class="highlight"><pre style="color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#268bd2">connection</span> = <span style="color:#268bd2">pymysql</span>.<span style="color:#268bd2">connect</span>(<span style="color:#268bd2">host</span>=<span style="color:#2aa198">&#34;HOSTNAME&#34;</span>,
+                            <span style="color:#268bd2">user</span>=<span style="color:#2aa198">&#34;USERNAME&#34;</span>,
+                            <span style="color:#268bd2">password</span>=<span style="color:#2aa198">&#34;PASSWORD&#34;</span>,
+                            <span style="color:#268bd2">db</span>=<span style="color:#2aa198">&#34;DB_NAME&#34;</span>,
+                            <span style="color:#268bd2">charset</span>=<span style="color:#2aa198">&#39;utf8&#39;</span>,
+                            <span style="color:#268bd2">cursorclass</span>=<span style="color:#268bd2">pymysql</span>.<span style="color:#268bd2">cursors</span>.<span style="color:#268bd2">DictCursor</span>) <span style="color:#93a1a1;font-style:italic">#1</span>
 
-<pre><code class="language-python">
-connection = pymysql.connect(host=&quot;HOSTNAME&quot;,
-                            user=&quot;USERNAME&quot;,
-                            password=&quot;PASSWORD&quot;,
-                            db=&quot;DB_NAME&quot;,
-                            charset='utf8',
-                            cursorclass=pymysql.cursors.DictCursor) #1
+<span style="color:#859900">with</span> <span style="color:#268bd2">connection</span>.<span style="color:#268bd2">cursor</span>() <span style="color:#859900">as</span> <span style="color:#268bd2">cursor</span>:
 
-with connection.cursor() as cursor:
+    <span style="color:#268bd2">sql</span> = <span style="color:#2aa198">&#34;SELECT name FROM table WHERE id=</span><span style="color:#2aa198">%s</span><span style="color:#2aa198">&#34;</span>
+    <span style="color:#268bd2">cursor</span>.<span style="color:#268bd2">execute</span>(<span style="color:#268bd2">sql</span>, (<span style="color:#2aa198;font-weight:bold">900</span>))
 
-    sql = &quot;SELECT name FROM table WHERE id=%s&quot;
-    cursor.execute(sql, (900))
-
-    results = cursor.fetchall()
-    for r in results:
-        b = r['name']
-        print(bytes.decode(b)) #2
-
-</code></pre>
-
+    <span style="color:#268bd2">results</span> = <span style="color:#268bd2">cursor</span>.<span style="color:#268bd2">fetchall</span>()
+    <span style="color:#859900">for</span> <span style="color:#268bd2">r</span> <span style="color:#859900">in</span> <span style="color:#268bd2">results</span>:
+        <span style="color:#268bd2">b</span> = <span style="color:#268bd2">r</span>[<span style="color:#2aa198">&#39;name&#39;</span>]
+        <span style="color:#859900">print</span>(<span style="color:#cb4b16">bytes</span>.<span style="color:#268bd2">decode</span>(<span style="color:#268bd2">b</span>)) <span style="color:#93a1a1;font-style:italic">#2</span></code></pre></div>
 <p>#1を指定することで，返ってくる結果がdict形式になって分かりやすい．</p>
 
 <p>最後，#2で<code>name</code>に相当する列が<code>varbinary</code>であったので，文字列に変換するのに<code>bytes.decode()</code>が必要だった．とりあえずこれで一件落着．</p>

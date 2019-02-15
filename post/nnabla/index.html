@@ -163,91 +163,82 @@ sudo pip install -U &lt;build-wheel-file&gt;.whl
 <h1 id="モデル">モデル</h1>
 
 <p>LeNetの活性化函数をreluに変えたものを使います．とりあえずPyTorch風に書いています．<code>nnabla.get_parameters()</code>は<code>parameter_scope</code>内を参照するようですので適宜設定します．</p>
+<div class="highlight"><pre style="color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#dc322f;font-weight:bold">import</span> <span style="color:#268bd2">nnabla</span>
+<span style="color:#dc322f;font-weight:bold">from</span> <span style="color:#268bd2">nnabla</span> <span style="color:#dc322f;font-weight:bold">import</span> <span style="color:#268bd2">Variable</span>
+<span style="color:#dc322f;font-weight:bold">import</span> <span style="color:#268bd2">nnabla.functions</span> <span style="color:#dc322f;font-weight:bold">as</span> <span style="color:#268bd2">F</span>
+<span style="color:#dc322f;font-weight:bold">import</span> <span style="color:#268bd2">nnabla.parametric_functions</span> <span style="color:#dc322f;font-weight:bold">as</span> <span style="color:#268bd2">PF</span>
+<span style="color:#dc322f;font-weight:bold">from</span> <span style="color:#268bd2">nnabla</span> <span style="color:#dc322f;font-weight:bold">import</span> <span style="color:#268bd2">solvers</span>
 
-<pre><code class="language-python">import nnabla
-from nnabla import Variable
-import nnabla.functions as F
-import nnabla.parametric_functions as PF
-from nnabla import solvers
+<span style="color:#859900">class</span> <span style="color:#cb4b16">Lenet</span>(<span style="color:#cb4b16">object</span>):
+    <span style="color:#859900">def</span> <span style="color:#268bd2">__init__</span>(<span style="color:#268bd2">self</span>):
+        <span style="color:#268bd2">self</span>.<span style="color:#268bd2">param_dict</span> = <span style="color:#268bd2">None</span>
+        <span style="color:#268bd2">self</span>.<span style="color:#268bd2">conv1</span> = <span style="color:#859900">lambda</span> <span style="color:#268bd2">x</span>: <span style="color:#268bd2">PF</span>.<span style="color:#268bd2">convolution</span>(<span style="color:#268bd2">x</span>, <span style="color:#2aa198;font-weight:bold">16</span>, (<span style="color:#2aa198;font-weight:bold">5</span>, <span style="color:#2aa198;font-weight:bold">5</span>), <span style="color:#268bd2">name</span>=<span style="color:#2aa198">&#34;conv1&#34;</span>)
+        <span style="color:#268bd2">self</span>.<span style="color:#268bd2">conv2</span> = <span style="color:#859900">lambda</span> <span style="color:#268bd2">x</span>: <span style="color:#268bd2">PF</span>.<span style="color:#268bd2">convolution</span>(<span style="color:#268bd2">x</span>, <span style="color:#2aa198;font-weight:bold">16</span>, (<span style="color:#2aa198;font-weight:bold">5</span>, <span style="color:#2aa198;font-weight:bold">5</span>), <span style="color:#268bd2">name</span>=<span style="color:#2aa198">&#34;conv2&#34;</span>)
+        <span style="color:#268bd2">self</span>.<span style="color:#268bd2">fc3</span> = <span style="color:#859900">lambda</span> <span style="color:#268bd2">x</span>: <span style="color:#268bd2">PF</span>.<span style="color:#268bd2">affine</span>(<span style="color:#268bd2">x</span>, <span style="color:#2aa198;font-weight:bold">50</span>, <span style="color:#268bd2">name</span>=<span style="color:#2aa198">&#39;fc3&#39;</span>)
+        <span style="color:#268bd2">self</span>.<span style="color:#268bd2">fc4</span> = <span style="color:#859900">lambda</span> <span style="color:#268bd2">x</span>: <span style="color:#268bd2">PF</span>.<span style="color:#268bd2">affine</span>(<span style="color:#268bd2">x</span>, <span style="color:#2aa198;font-weight:bold">10</span>, <span style="color:#268bd2">name</span>=<span style="color:#2aa198">&#39;fc4&#39;</span>)
 
-class Lenet(object):
-    def __init__(self):
-        self.param_dict = None
-        self.conv1 = lambda x: PF.convolution(x, 16, (5, 5), name=&quot;conv1&quot;)
-        self.conv2 = lambda x: PF.convolution(x, 16, (5, 5), name=&quot;conv2&quot;)
-        self.fc3 = lambda x: PF.affine(x, 50, name='fc3')
-        self.fc4 = lambda x: PF.affine(x, 10, name='fc4')
-
-    def __call__(self, x):
-        with nnabla.parameter_scope(&quot;lenet&quot;):
-            x = self.conv1(x)
-            x = F.relu(F.max_pooling(x, (2, 2)), inplace=True)
-            x = self.conv2(x)
-            x = F.relu(F.max_pooling(x, (2, 2)), inplace=True)
-            x = F.relu(self.fc3(x), inplace=True)
-            x = self.fc4(x)
-            self.param_dict = nnabla.get_parameters()
-        return x
-</code></pre>
-
+    <span style="color:#859900">def</span> <span style="color:#268bd2">__call__</span>(<span style="color:#268bd2">self</span>, <span style="color:#268bd2">x</span>):
+        <span style="color:#859900">with</span> <span style="color:#268bd2">nnabla</span>.<span style="color:#268bd2">parameter_scope</span>(<span style="color:#2aa198">&#34;lenet&#34;</span>):
+            <span style="color:#268bd2">x</span> = <span style="color:#268bd2">self</span>.<span style="color:#268bd2">conv1</span>(<span style="color:#268bd2">x</span>)
+            <span style="color:#268bd2">x</span> = <span style="color:#268bd2">F</span>.<span style="color:#268bd2">relu</span>(<span style="color:#268bd2">F</span>.<span style="color:#268bd2">max_pooling</span>(<span style="color:#268bd2">x</span>, (<span style="color:#2aa198;font-weight:bold">2</span>, <span style="color:#2aa198;font-weight:bold">2</span>)), <span style="color:#268bd2">inplace</span>=<span style="color:#268bd2">True</span>)
+            <span style="color:#268bd2">x</span> = <span style="color:#268bd2">self</span>.<span style="color:#268bd2">conv2</span>(<span style="color:#268bd2">x</span>)
+            <span style="color:#268bd2">x</span> = <span style="color:#268bd2">F</span>.<span style="color:#268bd2">relu</span>(<span style="color:#268bd2">F</span>.<span style="color:#268bd2">max_pooling</span>(<span style="color:#268bd2">x</span>, (<span style="color:#2aa198;font-weight:bold">2</span>, <span style="color:#2aa198;font-weight:bold">2</span>)), <span style="color:#268bd2">inplace</span>=<span style="color:#268bd2">True</span>)
+            <span style="color:#268bd2">x</span> = <span style="color:#268bd2">F</span>.<span style="color:#268bd2">relu</span>(<span style="color:#268bd2">self</span>.<span style="color:#268bd2">fc3</span>(<span style="color:#268bd2">x</span>), <span style="color:#268bd2">inplace</span>=<span style="color:#268bd2">True</span>)
+            <span style="color:#268bd2">x</span> = <span style="color:#268bd2">self</span>.<span style="color:#268bd2">fc4</span>(<span style="color:#268bd2">x</span>)
+            <span style="color:#268bd2">self</span>.<span style="color:#268bd2">param_dict</span> = <span style="color:#268bd2">nnabla</span>.<span style="color:#268bd2">get_parameters</span>()
+        <span style="color:#859900">return</span> <span style="color:#268bd2">x</span></code></pre></div>
 <h1 id="静的計算グラフ">静的計算グラフ</h1>
 
 <p>define-and-runです．</p>
+<div class="highlight"><pre style="color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#859900">def</span> <span style="color:#268bd2">static</span>():
+    <span style="color:#93a1a1;font-style:italic">##  計算グラフの構築</span>
+    <span style="color:#cb4b16">input</span> = <span style="color:#268bd2">Variable</span>((<span style="color:#268bd2">batch_size</span>, *<span style="color:#268bd2">image_size</span>))
+    <span style="color:#268bd2">target</span> = <span style="color:#268bd2">Variable</span>((<span style="color:#268bd2">batch_size</span>, <span style="color:#2aa198;font-weight:bold">1</span>))
+    <span style="color:#268bd2">model</span> = <span style="color:#268bd2">Lenet</span>()
+    <span style="color:#268bd2">loss</span> = <span style="color:#268bd2">F</span>.<span style="color:#268bd2">mean</span>(<span style="color:#268bd2">F</span>.<span style="color:#268bd2">softmax_cross_entropy</span>(<span style="color:#268bd2">output</span>, <span style="color:#268bd2">target</span>))
 
-<pre><code class="language-python">def static():
-    ##  計算グラフの構築
-    input = Variable((batch_size, *image_size))
-    target = Variable((batch_size, 1))
-    model = Lenet()
-    loss = F.mean(F.softmax_cross_entropy(output, target))
+    <span style="color:#268bd2">optimizer</span> = <span style="color:#268bd2">solvers</span>.<span style="color:#268bd2">Adam</span>()
+    <span style="color:#268bd2">optimizer</span>.<span style="color:#268bd2">set_parameters</span>(<span style="color:#268bd2">model</span>.<span style="color:#268bd2">param_dict</span>)
 
-    optimizer = solvers.Adam()
-    optimizer.set_parameters(model.param_dict)
+    <span style="color:#859900">for</span> <span style="color:#268bd2">step</span>, <span style="color:#268bd2">data</span> <span style="color:#859900">in</span> <span style="color:#cb4b16">enumerate</span>(<span style="color:#268bd2">train_data_iter</span>):
+        <span style="color:#cb4b16">input</span>.<span style="color:#268bd2">d</span>, <span style="color:#268bd2">target</span>.<span style="color:#268bd2">d</span> = <span style="color:#268bd2">data</span>
+        <span style="color:#93a1a1;font-style:italic">## 順伝播</span>
+        <span style="color:#268bd2">loss</span>.<span style="color:#268bd2">forward</span>()
+        <span style="color:#93a1a1;font-style:italic">## 勾配を初期化</span>
+        <span style="color:#268bd2">optimizer</span>.<span style="color:#268bd2">zero_grad</span>()
+        <span style="color:#93a1a1;font-style:italic">## 逆伝播，勾配を更新</span>
+        <span style="color:#268bd2">loss</span>.<span style="color:#268bd2">backward</span>()
+        <span style="color:#93a1a1;font-style:italic">## パラメーターを更新</span>
+        <span style="color:#268bd2">optimizer</span>.<span style="color:#268bd2">update</span>()
 
-    for step, data in enumerate(train_data_iter):
-        input.d, target.d = data
-        ## 順伝播
-        loss.forward()
-        ## 勾配を初期化
-        optimizer.zero_grad()
-        ## 逆伝播，勾配を更新
-        loss.backward()
-        ## パラメーターを更新
-        optimizer.update()
-
-        if step % 100 == 0:
-           logger.info(&quot;step: {}  loss: {:.2f}.&quot;.format(step, float(loss)))
-</code></pre>
-
+        <span style="color:#859900">if</span> <span style="color:#268bd2">step</span> % <span style="color:#2aa198;font-weight:bold">100</span> == <span style="color:#2aa198;font-weight:bold">0</span>:
+           <span style="color:#268bd2">logger</span>.<span style="color:#268bd2">info</span>(<span style="color:#2aa198">&#34;step: {}  loss: {:.2f}.&#34;</span>.<span style="color:#268bd2">format</span>(<span style="color:#268bd2">step</span>, <span style="color:#cb4b16">float</span>(<span style="color:#268bd2">loss</span>)))</code></pre></div>
 <h1 id="動的計算グラフ">動的計算グラフ</h1>
 
 <p>define-by-runです．動的計算グラフを使う場合にはグラフ構築箇所で<code>nnabla.auto_forward</code>を使います．</p>
+<div class="highlight"><pre style="color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#859900">def</span> <span style="color:#268bd2">dynamic</span>():
 
-<pre><code class="language-python">def dynamic():
+    <span style="color:#268bd2">model</span> = <span style="color:#268bd2">Lenet</span>()
+    <span style="color:#268bd2">optimizer</span> = <span style="color:#268bd2">solvers</span>.<span style="color:#268bd2">Adam</span>()
 
-    model = Lenet()
-    optimizer = solvers.Adam()
+    <span style="color:#859900">for</span> <span style="color:#268bd2">step</span>, (<span style="color:#cb4b16">input</span>, <span style="color:#268bd2">target</span>) <span style="color:#859900">in</span> <span style="color:#cb4b16">enumerate</span>(<span style="color:#268bd2">train_data_iter</span>):
+        <span style="color:#cb4b16">input</span> = <span style="color:#268bd2">Variable</span>.<span style="color:#268bd2">from_numpy_array</span>(<span style="color:#cb4b16">input</span>)
+        <span style="color:#268bd2">target</span> = <span style="color:#268bd2">Variable</span>.<span style="color:#268bd2">from_numpy_array</span>(<span style="color:#268bd2">target</span>)
+        <span style="color:#93a1a1;font-style:italic">##  計算グラフを構築</span>
+        <span style="color:#859900">with</span> <span style="color:#268bd2">nnabla</span>.<span style="color:#268bd2">auto_forward</span>():
+            <span style="color:#268bd2">output</span> = <span style="color:#268bd2">model</span>(<span style="color:#cb4b16">input</span>)
+            <span style="color:#268bd2">loss</span> = <span style="color:#268bd2">F</span>.<span style="color:#268bd2">mean</span>(<span style="color:#268bd2">F</span>.<span style="color:#268bd2">softmax_cross_entropy</span>(<span style="color:#268bd2">output</span>, <span style="color:#268bd2">target</span>))
+        <span style="color:#268bd2">optimizer</span>.<span style="color:#268bd2">set_parameters</span>(<span style="color:#268bd2">self</span>.<span style="color:#268bd2">model</span>.<span style="color:#268bd2">param_dict</span>, <span style="color:#268bd2">reset</span>=<span style="color:#268bd2">False</span>,
+                                 <span style="color:#268bd2">retain_state</span>=<span style="color:#268bd2">True</span>)
+        <span style="color:#93a1a1;font-style:italic">## 勾配を初期化</span>
+        <span style="color:#268bd2">optimizer</span>.<span style="color:#268bd2">zero_grad</span>()
+        <span style="color:#93a1a1;font-style:italic">## 逆伝播，勾配を更新</span>
+        <span style="color:#268bd2">loss</span>.<span style="color:#268bd2">backward</span>()
+        <span style="color:#93a1a1;font-style:italic">## パラメーターを更新</span>
+        <span style="color:#268bd2">optimizer</span>.<span style="color:#268bd2">update</span>()
 
-    for step, (input, target) in enumerate(train_data_iter):
-        input = Variable.from_numpy_array(input)
-        target = Variable.from_numpy_array(target)
-        ##  計算グラフを構築
-        with nnabla.auto_forward():
-            output = model(input)
-            loss = F.mean(F.softmax_cross_entropy(output, target))
-        optimizer.set_parameters(self.model.param_dict, reset=False,
-                                 retain_state=True)
-        ## 勾配を初期化
-        optimizer.zero_grad()
-        ## 逆伝播，勾配を更新
-        loss.backward()
-        ## パラメーターを更新
-        optimizer.update()
-
-        if step % 100 == 0:
-           logger.info(&quot;step: {}  loss: {:.2f}.&quot;.format(step, float(loss)))
-</code></pre>
-
+        <span style="color:#859900">if</span> <span style="color:#268bd2">step</span> % <span style="color:#2aa198;font-weight:bold">100</span> == <span style="color:#2aa198;font-weight:bold">0</span>:
+           <span style="color:#268bd2">logger</span>.<span style="color:#268bd2">info</span>(<span style="color:#2aa198">&#34;step: {}  loss: {:.2f}.&#34;</span>.<span style="color:#268bd2">format</span>(<span style="color:#268bd2">step</span>, <span style="color:#cb4b16">float</span>(<span style="color:#268bd2">loss</span>)))</code></pre></div>
 <h1 id="まとめ">まとめ</h1>
 
 <p>簡単にNNablaでMNISTを動かしてみました．静的計算グラフではTensorFlowよりも簡潔に書ける気がします．</p>

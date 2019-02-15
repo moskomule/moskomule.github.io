@@ -203,35 +203,29 @@
 <h2 id="ネットワーク">ネットワーク</h2>
 
 <p>Deepとは言えない気がしますが論文通りの構成です．何か工夫すると多少変わるのかもしれません．</p>
+<div class="highlight"><pre style="color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#859900">class</span> <span style="color:#cb4b16">DQN</span>(<span style="color:#268bd2">nn</span>.<span style="color:#268bd2">Module</span>):
+    <span style="color:#859900">def</span> <span style="color:#268bd2">__init__</span>(<span style="color:#268bd2">self</span>, <span style="color:#268bd2">output_size</span>: <span style="color:#cb4b16">int</span>):
+        <span style="color:#cb4b16">super</span>(<span style="color:#268bd2">DQN</span>, <span style="color:#268bd2">self</span>).<span style="color:#268bd2">__init__</span>()
+        <span style="color:#268bd2">self</span>.<span style="color:#268bd2">feature</span> = <span style="color:#268bd2">nn</span>.<span style="color:#268bd2">Sequential</span>(
+                <span style="color:#268bd2">nn</span>.<span style="color:#268bd2">Conv2d</span>(<span style="color:#2aa198;font-weight:bold">4</span>, <span style="color:#2aa198;font-weight:bold">32</span>, <span style="color:#268bd2">kernel_size</span>=<span style="color:#2aa198;font-weight:bold">8</span>, <span style="color:#268bd2">stride</span>=<span style="color:#2aa198;font-weight:bold">4</span>),
+                <span style="color:#268bd2">nn</span>.<span style="color:#268bd2">ReLU</span>(<span style="color:#268bd2">inplace</span>=<span style="color:#268bd2">True</span>),
+                <span style="color:#268bd2">nn</span>.<span style="color:#268bd2">Conv2d</span>(<span style="color:#2aa198;font-weight:bold">32</span>, <span style="color:#2aa198;font-weight:bold">64</span>, <span style="color:#268bd2">kernel_size</span>=<span style="color:#2aa198;font-weight:bold">4</span>, <span style="color:#268bd2">stride</span>=<span style="color:#2aa198;font-weight:bold">2</span>),
+                <span style="color:#268bd2">nn</span>.<span style="color:#268bd2">ReLU</span>(<span style="color:#268bd2">inplace</span>=<span style="color:#268bd2">True</span>),
+                <span style="color:#268bd2">nn</span>.<span style="color:#268bd2">Conv2d</span>(<span style="color:#2aa198;font-weight:bold">64</span>, <span style="color:#2aa198;font-weight:bold">64</span>, <span style="color:#268bd2">kernel_size</span>=<span style="color:#2aa198;font-weight:bold">3</span>, <span style="color:#268bd2">stride</span>=<span style="color:#2aa198;font-weight:bold">1</span>),
+                <span style="color:#268bd2">nn</span>.<span style="color:#268bd2">ReLU</span>(<span style="color:#268bd2">inplace</span>=<span style="color:#268bd2">True</span>))
+        <span style="color:#268bd2">self</span>.<span style="color:#268bd2">fc</span> = <span style="color:#268bd2">nn</span>.<span style="color:#268bd2">Linear</span>(<span style="color:#2aa198;font-weight:bold">64</span> * <span style="color:#2aa198;font-weight:bold">7</span> * <span style="color:#2aa198;font-weight:bold">7</span>, <span style="color:#2aa198;font-weight:bold">512</span>)
+        <span style="color:#268bd2">self</span>.<span style="color:#268bd2">output</span> = <span style="color:#268bd2">nn</span>.<span style="color:#268bd2">Linear</span>(<span style="color:#2aa198;font-weight:bold">512</span>, <span style="color:#268bd2">output_size</span>)
 
-<pre><code class="language-python">class DQN(nn.Module):
-    def __init__(self, output_size: int):
-        super(DQN, self).__init__()
-        self.feature = nn.Sequential(
-                nn.Conv2d(4, 32, kernel_size=8, stride=4),
-                nn.ReLU(inplace=True),
-                nn.Conv2d(32, 64, kernel_size=4, stride=2),
-                nn.ReLU(inplace=True),
-                nn.Conv2d(64, 64, kernel_size=3, stride=1),
-                nn.ReLU(inplace=True))
-        self.fc = nn.Linear(64 * 7 * 7, 512)
-        self.output = nn.Linear(512, output_size)
-
-    def forward(self, x):
-        x = self.feature(x)
-        x = x.view(x.size()[0], -1)
-        x = F.relu(self.fc(x))
-        x = self.output(x)
-        return x
-</code></pre>
-
+    <span style="color:#859900">def</span> <span style="color:#268bd2">forward</span>(<span style="color:#268bd2">self</span>, <span style="color:#268bd2">x</span>):
+        <span style="color:#268bd2">x</span> = <span style="color:#268bd2">self</span>.<span style="color:#268bd2">feature</span>(<span style="color:#268bd2">x</span>)
+        <span style="color:#268bd2">x</span> = <span style="color:#268bd2">x</span>.<span style="color:#268bd2">view</span>(<span style="color:#268bd2">x</span>.<span style="color:#268bd2">size</span>()[<span style="color:#2aa198;font-weight:bold">0</span>], -<span style="color:#2aa198;font-weight:bold">1</span>)
+        <span style="color:#268bd2">x</span> = <span style="color:#268bd2">F</span>.<span style="color:#268bd2">relu</span>(<span style="color:#268bd2">self</span>.<span style="color:#268bd2">fc</span>(<span style="color:#268bd2">x</span>))
+        <span style="color:#268bd2">x</span> = <span style="color:#268bd2">self</span>.<span style="color:#268bd2">output</span>(<span style="color:#268bd2">x</span>)
+        <span style="color:#859900">return</span> <span style="color:#268bd2">x</span></code></pre></div>
 <p>目標の行動価値函数$\hat{Q}$のネットワークを行動価値函数$Q$のネットワークの値で更新する際に</p>
-
-<pre><code class="language-python">self.target_net.load_state_dict(self.net.state_dict())
-for p in self.target_net.parameters():
-    p.requires_grad = False
-</code></pre>
-
+<div class="highlight"><pre style="color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#268bd2">self</span>.<span style="color:#268bd2">target_net</span>.<span style="color:#268bd2">load_state_dict</span>(<span style="color:#268bd2">self</span>.<span style="color:#268bd2">net</span>.<span style="color:#268bd2">state_dict</span>())
+<span style="color:#859900">for</span> <span style="color:#268bd2">p</span> <span style="color:#859900">in</span> <span style="color:#268bd2">self</span>.<span style="color:#268bd2">target_net</span>.<span style="color:#268bd2">parameters</span>():
+    <span style="color:#268bd2">p</span>.<span style="color:#268bd2">requires_grad</span> = <span style="color:#268bd2">False</span></code></pre></div>
 <p>によって$\hat{Q}$の勾配を計算しないようにしています．</p>
 
 <h2 id="その他">その他</h2>

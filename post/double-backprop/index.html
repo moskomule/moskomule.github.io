@@ -154,17 +154,14 @@
 <p>これで以上，でもよいのですが，PyTorchでの例を．</p>
 
 <p>$x=1, y=x^3, z=y^2+\frac{dy}{dx}$をとして，$\frac{dz}{dx}|_{x=1}$を求めます．</p>
-
-<pre><code class="language-python">&gt;&gt;&gt; x = Variable(torch.Tensor([1]), requires_grad=True)
-&gt;&gt;&gt; y = x ** 3
-&gt;&gt;&gt; grad_y, = autograd.grad(y, x, create_graph=True)
-&gt;&gt;&gt; (grad_y + y ** 2).backward()
-&gt;&gt;&gt; x.grad
-Variable containing:
- 12
-[torch.FloatTensor of size 1]
-</code></pre>
-
+<div class="highlight"><pre style="color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">&gt;&gt;&gt; <span style="color:#268bd2">x</span> = <span style="color:#268bd2">Variable</span>(<span style="color:#268bd2">torch</span>.<span style="color:#268bd2">Tensor</span>([<span style="color:#2aa198;font-weight:bold">1</span>]), <span style="color:#268bd2">requires_grad</span>=<span style="color:#268bd2">True</span>)
+&gt;&gt;&gt; <span style="color:#268bd2">y</span> = <span style="color:#268bd2">x</span> ** <span style="color:#2aa198;font-weight:bold">3</span>
+&gt;&gt;&gt; <span style="color:#268bd2">grad_y</span>, = <span style="color:#268bd2">autograd</span>.<span style="color:#268bd2">grad</span>(<span style="color:#268bd2">y</span>, <span style="color:#268bd2">x</span>, <span style="color:#268bd2">create_graph</span>=<span style="color:#268bd2">True</span>)
+&gt;&gt;&gt; (<span style="color:#268bd2">grad_y</span> + <span style="color:#268bd2">y</span> ** <span style="color:#2aa198;font-weight:bold">2</span>).<span style="color:#268bd2">backward</span>()
+&gt;&gt;&gt; <span style="color:#268bd2">x</span>.<span style="color:#268bd2">grad</span>
+<span style="color:#268bd2">Variable</span> <span style="color:#268bd2">containing</span>:
+ <span style="color:#2aa198;font-weight:bold">12</span>
+[<span style="color:#268bd2">torch</span>.<span style="color:#268bd2">FloatTensor</span> <span style="color:#268bd2">of</span> <span style="color:#268bd2">size</span> <span style="color:#2aa198;font-weight:bold">1</span>]</code></pre></div>
 <p>実際，$z=x^6+3x^2$ですので$\frac{dz}{dx}|<em>{x=1}=(6x+6x^5)|</em>{x=1}=12$となります．</p>
 
 <p>$\frac{dy}{dx}$つまり<code>grad_y</code>は<a href="http://pytorch.org/docs/master/autograd.html#torch.autograd.grad"><code>autograd.grad</code></a>を用いて<code>autograd.grad(y, x, create_graph=True)</code>によってつくっています．<code>create_graph</code>によって計算グラフ中にこの微分のためのグラフをつくっています．<code>autograd.grad(outputs, inputs, *)</code>の<code>inputs, outputs</code>はシークエンスで与えられて，返り値もタプルなので上記のように<code>grad_y,</code>とする必要があります．</p>
@@ -184,20 +181,17 @@ Variable containing:
 <p>\[ \frac{\partial^2 f}{\partial x_i\partial x_j}v=\frac{\partial}{\partial x}(\frac{\partial f}{\partial x} v) \]</p>
 
 <p>を用います．例えば$f(x)=3x_0^2+4x_0x_1+x_1^2$とすればHessianは$\begin{bmatrix}6 &amp; 4 \cr 4 &amp; 2\end{bmatrix}$ですから$v=\begin{bmatrix}1 \cr 1\end{bmatrix}$とすればHessian-Vector productは$\begin{bmatrix}10 \cr 6\end{bmatrix}$となるはずです．実際，</p>
-
-<pre><code class="language-python">&gt;&gt;&gt; v = Variable(torch.Tensor([1, 1]))
-&gt;&gt;&gt; x = Variable(torch.Tensor([0.1, 0.1]), requires_grad=True)
-&gt;&gt;&gt; f = 3 * x[0] ** 2 + 4 * x[0] * x[1] + x[1] **2
-&gt;&gt;&gt; grad_f, = autograd.grad(f, x, create_graph=True)
-&gt;&gt;&gt; z = grad_f @ v
-&gt;&gt;&gt; z.backward()
-&gt;&gt;&gt; x.grad
-Variable containing:
- 10
-  6
-[torch.FloatTensor of size 2]
-</code></pre>
-
+<div class="highlight"><pre style="color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">&gt;&gt;&gt; <span style="color:#268bd2">v</span> = <span style="color:#268bd2">Variable</span>(<span style="color:#268bd2">torch</span>.<span style="color:#268bd2">Tensor</span>([<span style="color:#2aa198;font-weight:bold">1</span>, <span style="color:#2aa198;font-weight:bold">1</span>]))
+&gt;&gt;&gt; <span style="color:#268bd2">x</span> = <span style="color:#268bd2">Variable</span>(<span style="color:#268bd2">torch</span>.<span style="color:#268bd2">Tensor</span>([<span style="color:#2aa198;font-weight:bold">0.1</span>, <span style="color:#2aa198;font-weight:bold">0.1</span>]), <span style="color:#268bd2">requires_grad</span>=<span style="color:#268bd2">True</span>)
+&gt;&gt;&gt; <span style="color:#268bd2">f</span> = <span style="color:#2aa198;font-weight:bold">3</span> * <span style="color:#268bd2">x</span>[<span style="color:#2aa198;font-weight:bold">0</span>] ** <span style="color:#2aa198;font-weight:bold">2</span> + <span style="color:#2aa198;font-weight:bold">4</span> * <span style="color:#268bd2">x</span>[<span style="color:#2aa198;font-weight:bold">0</span>] * <span style="color:#268bd2">x</span>[<span style="color:#2aa198;font-weight:bold">1</span>] + <span style="color:#268bd2">x</span>[<span style="color:#2aa198;font-weight:bold">1</span>] **<span style="color:#2aa198;font-weight:bold">2</span>
+&gt;&gt;&gt; <span style="color:#268bd2">grad_f</span>, = <span style="color:#268bd2">autograd</span>.<span style="color:#268bd2">grad</span>(<span style="color:#268bd2">f</span>, <span style="color:#268bd2">x</span>, <span style="color:#268bd2">create_graph</span>=<span style="color:#268bd2">True</span>)
+&gt;&gt;&gt; <span style="color:#268bd2">z</span> = <span style="color:#268bd2">grad_f</span> @ <span style="color:#268bd2">v</span>
+&gt;&gt;&gt; <span style="color:#268bd2">z</span>.<span style="color:#268bd2">backward</span>()
+&gt;&gt;&gt; <span style="color:#268bd2">x</span>.<span style="color:#268bd2">grad</span>
+<span style="color:#268bd2">Variable</span> <span style="color:#268bd2">containing</span>:
+ <span style="color:#2aa198;font-weight:bold">10</span>
+  <span style="color:#2aa198;font-weight:bold">6</span>
+[<span style="color:#268bd2">torch</span>.<span style="color:#268bd2">FloatTensor</span> <span style="color:#268bd2">of</span> <span style="color:#268bd2">size</span> <span style="color:#2aa198;font-weight:bold">2</span>]</code></pre></div>
 
         </article>
         <nav class="pagination-single">
