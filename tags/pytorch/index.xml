@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Pytorch on moskomule log</title>
+    <title>PyTorch on moskomule log</title>
     <link>https://mosko.tokyo/tags/pytorch/</link>
-    <description>Recent content in Pytorch on moskomule log</description>
+    <description>Recent content in PyTorch on moskomule log</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>ja</language>
+    <language>en</language>
     <lastBuildDate>Fri, 01 Dec 2017 15:10:30 +0900</lastBuildDate>
     
 	<atom:link href="https://mosko.tokyo/tags/pytorch/index.xml" rel="self" type="application/rss+xml" />
@@ -25,7 +25,7 @@
   DQNの学習アルゴリズム．論文より．   実装について 画像の処理 DQNではAtariのゲームの画像をグレースケールにしてスタックするなどの処理がありますが，このあたりは各アルゴリズムをTensorFlowで実装し，公開しているOpen AI baselinesを一部変更して用いています．
  OpenCV2をPillowに変更した 画像のスタックの仕方をPyTorchに合わせて変更した．  また今回の改良ではtensorboard-pytorchを導入して，入力画像が正しいかを確認できるようにしました．
   ネットワーク Deepとは言えない気がしますが論文通りの構成です．何か工夫すると多少変わるのかもしれません．
-class DQN(nn.Module): def __init__(self, output_size: int): super(DQN, self).__init__() self.feature = nn.Sequential( nn.Conv2d(4, 32, kernel_size=8, stride=4), nn.ReLU(inplace=True), nn.Conv2d(32, 64, kernel_size=4, stride=2), nn.ReLU(inplace=True), nn.Conv2d(64, 64, kernel_size=3, stride=1), nn.ReLU(inplace=True)) self.</description>
+class DQN(nn.Module): def __init__(self, output_size: int): super(DQN, self).__init__() self.feature = nn.Sequential( nn.Conv2d(4, 32, kernel_size=8, stride=4), nn.ReLU(inplace=True), nn.Conv2d(32, 64, kernel_size=4, stride=2), nn.ReLU(inplace=True), nn.Conv2d(64, 64, kernel_size=3, stride=1), nn.ReLU(inplace=True)) self.fc = nn.</description>
     </item>
     
     <item>
@@ -34,7 +34,7 @@ class DQN(nn.Module): def __init__(self, output_size: int): super(DQN, self).__i
       <pubDate>Sun, 01 Oct 2017 19:40:24 +0900</pubDate>
       
       <guid>https://mosko.tokyo/post/double-backprop/</guid>
-      <description>はじめに PyTorch v0.2では&amp;rdquo;Higher order gradients&amp;rdquo; (double backpropagation)がサポートされました．Chainerもv3においてこれがサポートされます．今回Chainer Meetupの資料を読んで雰囲気が分かったのでまとめました．
+      <description>はじめに PyTorch v0.2では&amp;quot;Higher order gradients&amp;rdquo; (double backpropagation)がサポートされました．Chainerもv3においてこれがサポートされます．今回Chainer Meetupの資料を読んで雰囲気が分かったのでまとめました．
  Comparison of deep learning frameworks from a viewpoint of double backpropagation  Chainer v3  筆者は長くdouble backpropagationという名称から
 \[\mathrm{loss}\longrightarrow \frac{\partial^2 \mathrm{loss}}{\partial x_i \partial x_j} \]
 と思い込んでいました．そう思っているのでdocumentを読んでもいまいちよく分からない．ところが上に挙げた資料では，そうではなくて

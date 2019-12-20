@@ -86,15 +86,15 @@
                     
                     
                     <div class="languages">
-                        <a class="mdc-list-item selected_lang" href="https://mosko.tokyo/ja">
-                            <i class="material-icons mdc-list-item__start-detail">language</i> <span>日本語</span>
+                        <a class="mdc-list-item selected_lang" href="https://mosko.tokyo/en">
+                            <i class="material-icons mdc-list-item__start-detail">language</i> <span>English</span>
                         </a>
                     </div>
                     
                     
                     <div class="languages">
-                        <a class="mdc-list-item " href="https://mosko.tokyo/en">
-                            <i class="material-icons mdc-list-item__start-detail">language</i> <span>English</span>
+                        <a class="mdc-list-item " href="https://mosko.tokyo/ja">
+                            <i class="material-icons mdc-list-item__start-detail">language</i> <span>日本語</span>
                         </a>
                     </div>
                     
@@ -118,54 +118,33 @@
             </div>
         </div>
         <aside>
-            <nav id="TableOfContents">
-<ul>
-<li><a href="#はじめに">はじめに</a></li>
-<li><a href="#github-pages">GitHub Pages</a></li>
-<li><a href="#cloudflare">Cloudflare</a></li>
-</ul>
-</nav>
+            <nav id="TableOfContents"></nav>
         </aside>
         <article>
 
-            
-
-<h1 id="はじめに">はじめに</h1>
-
+            <h1 id="heading">はじめに</h1>
 <p>このmosko.tokyoは何年か前に試しに買ってみたカスタムドメインである．現在，このページは<a href="https://pages.github.com/">Github Pages</a>によってホスティングされていて，<a href="https://gohugo.io/">Hugo</a>によって生成されている．</p>
-
 <p>今回，<a href="https://www.cloudflare.com/">Cloudflare</a>を使うことでhttps化した．</p>
-
 <h1 id="github-pages">GitHub Pages</h1>
-
 <p>GitHub PagesはGitHub上に個人・組織，プロジェクトの静的なページを作れるサービスで，<code>username.github.io</code>というドメインが割り当てられる．このドメインを使う限りはhttpsが有効にである．</p>
-
-<p>&ldquo;Settings&gt;custom domain&rdquo;を編輯することで，カスタムドメインが使用できるが，その場合はhttpsが無効化される．</p>
-
+<p>&ldquo;Settings&gt;custom domain&quot;を編輯することで，カスタムドメインが使用できるが，その場合はhttpsが無効化される．</p>
 <h1 id="cloudflare">Cloudflare</h1>
-
-<p>初めは<a href="https://letsencrypt.org/">Let&rsquo;s Encrypt</a>の利用を考えていたが，<a href="https://www.jonathan-petitcolas.com/2017/01/13/using-https-with-custom-domain-name-on-github-pages.html">このページ</a>を読み，より簡単そうなCloudflareを用いることとした．</p>
-
+<p>初めは<a href="https://letsencrypt.org/">Let's Encrypt</a>の利用を考えていたが，<a href="https://www.jonathan-petitcolas.com/2017/01/13/using-https-with-custom-domain-name-on-github-pages.html">このページ</a>を読み，より簡単そうなCloudflareを用いることとした．</p>
 <p>CloudflareはDNS/CDNで，機能が制限された個人の使用に限れば無料である．</p>
-
 <ol>
 <li>登録する</li>
 <li>カスタムドメインを入力する</li>
 <li>ネームサーバをCloudflareのものに移行する</li>
 </ol>
-
 <p>ネームサーバの変更までに1日ほどかかった．その後，Dashboardにて</p>
-
 <ol>
-<li>&ldquo;Crypto&gt;SSL&rdquo;を&rdquo;full&rdquo;に変更</li>
-<li>&ldquo;Page Rules&rdquo;の&rdquo;create page rule&rdquo;に
-
+<li>&ldquo;Crypto&gt;SSL&quot;を&quot;full&quot;に変更</li>
+<li>&ldquo;Page Rules&quot;の&quot;create page rule&quot;に</li>
+</ol>
 <ul>
 <li>if <code>http://hoge.hoge/*</code> then &ldquo;always use https&rdquo;</li>
 <li>if <code>https://hoge.hoge/*</code> then &ldquo;cache everything&rdquo;</li>
-</ul></li>
-</ol>
-
+</ul>
 <p>を設定する．前者でhttpでの接続をhttpsに切り替え，後者でドメイン以下のコンテンツをキャッシュさせている．</p>
 
 
@@ -191,7 +170,7 @@
             return;
         }
         var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "moskomule-log" + '.disqus.com/embed.js';
+        s.src = '//' + "Ryuichiro Hataya" + '.disqus.com/embed.js';
         s.setAttribute('data-timestamp', +new Date());
         (d.head || d.body).appendChild(s);
     })();

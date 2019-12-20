@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Web on moskomule log</title>
+    <title>web on moskomule log</title>
     <link>https://mosko.tokyo/tags/web/</link>
-    <description>Recent content in Web on moskomule log</description>
+    <description>Recent content in web on moskomule log</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>ja</language>
+    <language>en</language>
     <lastBuildDate>Thu, 15 Jun 2017 22:14:39 +0900</lastBuildDate>
     
 	<atom:link href="https://mosko.tokyo/tags/web/index.xml" rel="self" type="application/rss+xml" />
@@ -20,11 +20,11 @@
       <description>はじめに このmosko.tokyoは何年か前に試しに買ってみたカスタムドメインである．現在，このページはGithub Pagesによってホスティングされていて，Hugoによって生成されている．
 今回，Cloudflareを使うことでhttps化した．
 GitHub Pages GitHub PagesはGitHub上に個人・組織，プロジェクトの静的なページを作れるサービスで，username.github.ioというドメインが割り当てられる．このドメインを使う限りはhttpsが有効にである．
-&amp;ldquo;Settings&amp;gt;custom domain&amp;rdquo;を編輯することで，カスタムドメインが使用できるが，その場合はhttpsが無効化される．
-Cloudflare 初めはLet&amp;rsquo;s Encryptの利用を考えていたが，このページを読み，より簡単そうなCloudflareを用いることとした．
+&amp;ldquo;Settings&amp;gt;custom domain&amp;quot;を編輯することで，カスタムドメインが使用できるが，その場合はhttpsが無効化される．
+Cloudflare 初めはLet&#39;s Encryptの利用を考えていたが，このページを読み，より簡単そうなCloudflareを用いることとした．
 CloudflareはDNS/CDNで，機能が制限された個人の使用に限れば無料である．
  登録する カスタムドメインを入力する ネームサーバをCloudflareのものに移行する  ネームサーバの変更までに1日ほどかかった．その後，Dashboardにて
- &amp;ldquo;Crypto&amp;gt;SSL&amp;rdquo;を&amp;rdquo;full&amp;rdquo;に変更 &amp;ldquo;Page Rules&amp;rdquo;の&amp;rdquo;create page rule&amp;rdquo;に  if http://hoge.hoge/* then &amp;ldquo;always use https&amp;rdquo; if https://hoge.hoge/* then &amp;ldquo;cache everything&amp;rdquo;   を設定する．前者でhttpでの接続をhttpsに切り替え，後者でドメイン以下のコンテンツをキャッシュさせている．</description>
+ &amp;ldquo;Crypto&amp;gt;SSL&amp;quot;を&amp;quot;full&amp;quot;に変更 &amp;ldquo;Page Rules&amp;quot;の&amp;quot;create page rule&amp;quot;に   if http://hoge.hoge/* then &amp;ldquo;always use https&amp;rdquo; if https://hoge.hoge/* then &amp;ldquo;cache everything&amp;rdquo;  を設定する．前者でhttpでの接続をhttpsに切り替え，後者でドメイン以下のコンテンツをキャッシュさせている．</description>
     </item>
     
   </channel>

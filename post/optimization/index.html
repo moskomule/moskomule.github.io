@@ -86,15 +86,15 @@
                     
                     
                     <div class="languages">
-                        <a class="mdc-list-item selected_lang" href="https://mosko.tokyo/ja">
-                            <i class="material-icons mdc-list-item__start-detail">language</i> <span>日本語</span>
+                        <a class="mdc-list-item selected_lang" href="https://mosko.tokyo/en">
+                            <i class="material-icons mdc-list-item__start-detail">language</i> <span>English</span>
                         </a>
                     </div>
                     
                     
                     <div class="languages">
-                        <a class="mdc-list-item " href="https://mosko.tokyo/en">
-                            <i class="material-icons mdc-list-item__start-detail">language</i> <span>English</span>
+                        <a class="mdc-list-item " href="https://mosko.tokyo/ja">
+                            <i class="material-icons mdc-list-item__start-detail">language</i> <span>日本語</span>
                         </a>
                     </div>
                     
@@ -118,62 +118,33 @@
             </div>
         </div>
         <aside>
-            <nav id="TableOfContents">
-<ul>
-<li><a href="#はじめに">はじめに</a></li>
-<li><a href="#反復法">反復法</a></li>
-<li><a href="#勾配降下法">勾配降下法</a></li>
-<li><a href="#ニュートン法">ニュートン法</a></li>
-<li><a href="#準ニュートン法">準ニュートン法</a></li>
-<li><a href="#levenberg-marquardt法">Levenberg-Marquardt法</a></li>
-<li><a href="#まとめ">まとめ</a></li>
-</ul>
-</nav>
+            <nav id="TableOfContents"></nav>
         </aside>
         <article>
 
-            
-
-<p>以前<a href="https://arxiv.org/abs/1611.01505">Eve optimizer</a>の<a href="https://github.com/moskomule/eve.pytorch">実装</a>を行ったのですが，肝心の非線型函数の最適化手法について知らなかったので調べました．</p>
-
-<h1 id="はじめに">はじめに</h1>
-
+            <p>以前<a href="https://arxiv.org/abs/1611.01505">Eve optimizer</a>の<a href="https://github.com/moskomule/eve.pytorch">実装</a>を行ったのですが，肝心の非線型函数の最適化手法について知らなかったので調べました．</p>
+<h1 id="heading">はじめに</h1>
 <p>最適化に関して，微分を用いない手法としてはランダム法やシンプレックス法がありますが，今回は微分を用いて反復的に解に近づく方法である反復法について述べます．</p>
-
 <p>なお今回可視化に際して利用した函数は$(x+1)x(x-1)(x-3)+y^2+xy$で，2つの局所解と1つの鞍点を持ちます．</p>
-
-<h1 id="反復法">反復法</h1>
-
+<h1 id="heading-1">反復法</h1>
 <p>反復法は函数$f(x)$について，</p>
-
 <p>\[\begin{aligned}
 d_k &amp;= -H_k\nabla f(x_k) \cr\cr
 x_{k+1} &amp;= x_{k}+\alpha_{k}d_{k}
 \end{aligned}\]</p>
-
 <p>によって位置を更新しながら列$(x_k)_{k\in\mathscr{N}}$を局所解または大局解$x^{\star}$に近づけていく手法です．</p>
-
 <p>実際は$k$は有限なので，適当な回数で打ち切ったり，$|x_{k+1}-x_{k}|&lt;\epsilon$で中止したりします．</p>
-
 <p>$x$から$x+\delta x$へと移動した際の$f$の変化$\delta f(x)$とします．$\delta f(x)=\delta x\nabla f(x)$は$\delta x$と$\nabla f(x)$とが並行の時に最大となりますので，$\nabla f(x)$は$x$において$f(x)$の値が最も変化する方向です．そのため局所的には$-\nabla f(x)$に進むのが望ましいですが，それが全体として望ましいとは必ずしもいえません．反復法ではこの方向に適当な$H_k$をかけて調整した上で，順次移動していきます．</p>
-
 <p>$a_k$は学習率，ステップ幅などと呼ばれ一回の更新で進む量を表します．$\alpha_k$にはヒューリスティックな更新方法もありますが($\alpha_k \sim \frac{1}{\sqrt{k}}$など)，Armijoの基準やWolfeの基準といったより客観的な指標もあります．</p>
-
 <p>\[\begin{aligned}
 f(x_k+\alpha_k d_k) &amp;\le f(x_k)+c_1\alpha_k\nabla f(x_k)^{\top}d_k \cr\cr
 \nabla f(x_k+\alpha_k d_k)^{\top}d_k &amp;\ge c_2\nabla f(x_k)d_k
 \end{aligned}\]</p>
-
-<p>上の式がArmijoの基準で，2つ合わせるとWolfeの基準となります．$\alpha_k$がこの範囲に収まるように変化させていきます(line search method<sup class="footnote-ref" id="fnref:3"><a href="#fn:3">1</a></sup>)．</p>
-
-<h1 id="勾配降下法">勾配降下法</h1>
-
+<p>上の式がArmijoの基準で，2つ合わせるとWolfeの基準となります．$\alpha_k$がこの範囲に収まるように変化させていきます(line search method<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>)．</p>
+<h1 id="heading-2">勾配降下法</h1>
 <p>勾配降下法(gradient descent method)，または最急降下法(steepest descent method)は$H_k=I$とする手法です．すなわち</p>
-
 <p>\[x_{k+1}=x_{k}-\alpha_k\nabla f(x_{k})\]</p>
-
-<p>によって更新していきます．最急方向に適当な学習率$\alpha_k$を乗じて進んでいくので「直感的には合理的」<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">2</a></sup>ですが，収束が遅く，適切な学習率の調整が難しいなど，実際の性能はあまりよくありません．</p>
-
+<p>によって更新していきます．最急方向に適当な学習率$\alpha_k$を乗じて進んでいくので「直感的には合理的」<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>ですが，収束が遅く，適切な学習率の調整が難しいなど，実際の性能はあまりよくありません．</p>
 <p><figure>
     <img src="/img/post/optim/st1.png"/> <figcaption>
             <h4>$\alpha_k=0.1$で100回の更新を行った際の$x_k$の軌跡</h4>
@@ -198,85 +169,62 @@ f(x_k+\alpha_k d_k) &amp;\le f(x_k)+c_1\alpha_k\nabla f(x_k)^{\top}d_k \cr\cr
         </figcaption>
 </figure>
 </p>
-
-<h1 id="ニュートン法">ニュートン法</h1>
-
-<p>ニュートン法，またはニュートン・ラフソン法(Newton-Raphson method)は$H_k$に$(\nabla^2 f(x))^{-1}$，つまりHessianの逆行列を用いた手法です．これはニュートンの近似法<sup class="footnote-ref" id="fnref:2"><a href="#fn:2">3</a></sup>によって$f(x)$の極値を求めていると見ることができます．ニュートンの近似法は函数$g(t)=0$の根を</p>
-
+<h1 id="heading-3">ニュートン法</h1>
+<p>ニュートン法，またはニュートン・ラフソン法(Newton-Raphson method)は$H_k$に$(\nabla^2 f(x))^{-1}$，つまりHessianの逆行列を用いた手法です．これはニュートンの近似法<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>によって$f(x)$の極値を求めていると見ることができます．ニュートンの近似法は函数$g(t)=0$の根を</p>
 <p>\[t_{k+1}=t_{k}-(\nabla g(t_{k}))^{-1}g(t_{k})\]</p>
-
 <p>によって求めますが，ニュートン法では極値が$0$となる点を求めたいので，$g(t)=\nabla f(t)$，$\nabla g(t)=\nabla^2 f(t)$としているわけです．</p>
-
 <p>この手法は非常に高速に収束（二次収束）しますが，極値が$0$となる点を求めているだけですので，容易に鞍点に収束します．</p>
-
 <figure>
     <img src="/img/post/optim/nw1.png"/> <figcaption>
             <h4>ニュートン法によって更新を行った際の$x_k$の軌跡，鞍点に収束しているものもある．</h4>
         </figcaption>
 </figure>
 
-
-<h1 id="準ニュートン法">準ニュートン法</h1>
-
+<h1 id="heading-4">準ニュートン法</h1>
 <p>ニュートン法は強力ですが，Hessianの逆行列計算は$x$の次元が大きくなると困難になります．そこで$x,\nabla f(x)$によって$\nabla^2 f(x)$を近似するのが準ニュートン法(quasi Newton method)です．いま</p>
-
 <p>\[\nabla f(x_{k+1})-\nabla f(x_k)\sim \nabla^2 f(x_{k+1})(x_{k+1}-x_k)\]</p>
-
 <p>ですが，$y_k=\nabla f(x_{k+1})-\nabla f(x_k)$，$s_k=x_{k+1}-x_k$として$H_{k+1}y_k=s_k$(secant条件)を満たす$H_k$を考えます．この条件を満たす$H_k$は無数にありますが，特にDFP公式</p>
-
 <p>\[H_{k+1}=H_{k}-\frac{H_ky_ky_k^{\top}H_k}{y_k^{\top}H_ky_k}+\frac{s_ks_k^{\top}}{s_k^{\top}s_k}\]</p>
-
 <p>やBFGS公式</p>
-
 <p>\[H_{k+1}=(I-\frac{y_ks_k^{\top}}{s_k^{\top}y_k})^{\top}H_k(I-\frac{y_ks_k^{\top}}{s_k^{\top}y_k})-\frac{s_ks_k^{\top}}{s_k^{\top}y_k}\]</p>
-
 <p>によって効率的に求めることができます．これらはHessianを必要としないものの，依然として$H$という巨大となり得る行列を必要とします．L-BFGS(limited memory BFGS)では$H_{k}$の更新に$((x_i,\nabla f(x_i)))_{i=1,\cdots,k}$を用いることでこの問題を解決しています．</p>
-
 <figure>
     <img src="/img/post/optim/bfgs.png"/> <figcaption>
             <h4>Wolfe基準を用いて学習率の調整を行い，BFGS公式によって更新を行った際の$x_k$の軌跡</h4>
         </figcaption>
 </figure>
 
-
-<h1 id="levenberg-marquardt法">Levenberg-Marquardt法</h1>
-
+<h1 id="levenberg-marquardt">Levenberg-Marquardt法</h1>
 <p>Levenberg-Marquardt法は非線型函数$g(t)$に対して$(g(t)-\xi)^2$を最小化する，非線型最小二乗法に対する手法です．</p>
-
 <p>$H_k=(\nabla^2f(x)+\lambda_k I)^{-1}$として，$\delta x=x_{k}-H_k \nabla f(x_k)$について</p>
-
 <ol>
 <li>$f(x_{k}+\delta x)\le f(x_{k})$，つまり$\delta x$方向に移動すると更に減少するのであれば移動して$\lambda_{k+1}$を小さくする．</li>
 <li>逆に移動しても減少しないのであれば移動せずに$\lambda_k$を大きくする．</li>
 </ol>
-
 <p>という規則を適用し更新していきます(trust region methodの例)．$\lambda$はdampingと呼ばれます．評判も<a href="http://www.sakurai.comp.ae.keio.ac.jp/classes/infosem-class/2016/05MLP.pdf">よい</a>ですが，$(\nabla^2f(x)+\lambda_k I)^{-1}$のコストは大きそうです．</p>
-
 <figure>
     <img src="/img/post/optim/lm.png"/> <figcaption>
             <h4>Levenberg-Marquardt法によって更新を行った際の$x_k$の軌跡</h4>
         </figcaption>
 </figure>
 
-
-<h1 id="まとめ">まとめ</h1>
-
+<h1 id="heading-5">まとめ</h1>
 <p>最急降下法，ニュートン法，準ニュートン法およびLevenberg-Marquardt法による最適化を概説しました．性能の良さと計算コストは相反するところが大きいようで，問題に合わせて適当なものを調節しながら使うのが良さそうです．また，今回は扱わなかった確率的最急降下法など，確率的な手法を用いるとまた様子が変わってくるかもしれません．</p>
-
-<p>この記事を書くに当たっては脚注の参考文献のほかに<a href="https://ipvs.informatik.uni-stuttgart.de/mlr/marc/teaching/15-Optimization/">Stuttgart大学の最適化の授業のスライド</a>および<a href="www.orsj.or.jp/~archive/pdf/bul/Vol.40_01_055.pdf">OR学会の資料</a>を参考にしました．<sup class="footnote-ref" id="fnref:3"><a href="#fn:3">1</a></sup>は数理最適化の本ですが，非常に分かりやすく網羅的に書かれています．<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">2</a></sup>，<sup class="footnote-ref" id="fnref:2"><a href="#fn:2">3</a></sup>は落ち着いたらゆっくり読み返したいです．</p>
-<div class="footnotes">
-
-<hr />
-
+<p>この記事を書くに当たっては脚注の参考文献のほかに<a href="https://ipvs.informatik.uni-stuttgart.de/mlr/marc/teaching/15-Optimization/">Stuttgart大学の最適化の授業のスライド</a>および<a href="www.orsj.or.jp/~archive/pdf/bul/Vol.40_01_055.pdf">OR学会の資料</a>を参考にしました．<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>は数理最適化の本ですが，非常に分かりやすく網羅的に書かれています．<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>，<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>は落ち着いたらゆっくり読み返したいです．</p>
+<section class="footnotes" role="doc-endnotes">
+<hr>
 <ol>
-<li id="fn:3">Nocedal, J., &amp; Wright, S. J. (2006). Numerical optimization (2nd ed). Springer.
- <a class="footnote-return" href="#fnref:3"><sup>[return]</sup></a></li>
-<li id="fn:1">Bishop, C. M., 元田浩, 栗田多喜夫, 樋口知之, 松本裕治, &amp; 村田昇. (2012). パターン認識と機械学習 : ベイズ理論による統計的予測. 丸善出版.
- <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
-<li id="fn:2">高木貞治. (2010). 定本解析概論. 岩波書店.
- <a class="footnote-return" href="#fnref:2"><sup>[return]</sup></a></li>
+<li id="fn:1" role="doc-endnote">
+<p>Nocedal, J., &amp; Wright, S. J. (2006). Numerical optimization (2nd ed). Springer. <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2" role="doc-endnote">
+<p>Bishop, C. M., 元田浩, 栗田多喜夫, 樋口知之, 松本裕治, &amp; 村田昇. (2012). パターン認識と機械学習 : ベイズ理論による統計的予測. 丸善出版. <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3" role="doc-endnote">
+<p>高木貞治. (2010). 定本解析概論. 岩波書店. <a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
 </ol>
-</div>
+</section>
 
 
         </article>
@@ -301,7 +249,7 @@ f(x_k+\alpha_k d_k) &amp;\le f(x_k)+c_1\alpha_k\nabla f(x_k)^{\top}d_k \cr\cr
             return;
         }
         var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "moskomule-log" + '.disqus.com/embed.js';
+        s.src = '//' + "Ryuichiro Hataya" + '.disqus.com/embed.js';
         s.setAttribute('data-timestamp', +new Date());
         (d.head || d.body).appendChild(s);
     })();

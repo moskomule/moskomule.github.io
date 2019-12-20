@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Capsules on moskomule log</title>
     <link>https://mosko.tokyo/tags/capsules/</link>
     <description>Recent content in Capsules on moskomule log</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>ja</language>
+    <language>en</language>
     <lastBuildDate>Mon, 13 Nov 2017 18:57:37 +0900</lastBuildDate>
     
 	<atom:link href="https://mosko.tokyo/tags/capsules/index.xml" rel="self" type="application/rss+xml" />
@@ -21,8 +21,8 @@
 Hinton先生の業績は並べても感嘆するばかりで仕方ないのですが，帝王でおはしますと同時に認知心理学者でもあります．このCapsules Networkも脳のコラム構造を真似ることでCNNよりも人間の認知機能に近い認識器をつくることが目標です．
 本論文の要点は以下の通りです．
  今まで重みと入力の内積というスカラーの塊であった層を，Capsulesという「ベクトルの塊」とすることで「姿勢」などの情報を扱えるようにした． 層間のCapsulesの結合（routing）を学習できるようにした． 実際にCapsulesを用いた3層のネットワーク（CapsNet）を構築した． CapsNetはデータ拡張なしにMNISTのテストエラー0.25%を達成した． 文字が重なったMNISTに対してもAttentionを用いた複雑なネットワークと同等以上の性能を発揮した．  CNNの問題点 さて，Hinton先生は度々（AlexNet登場以前から！）畳み込みニューラルネットワーク（CNN）の問題点を指摘しており，Capsulesはその解決策のひとつでもあります．
-各所で&amp;rdquo;What is wrong with Convolutional Neural Nets&amp;rdquo;という題の講演を行っているようです．（受講者のノート，まとめ）．
-  LeNetにはじまるCNNでは，ゆがみや並行移動に対する不変性を得るためにpooling（sub-sampling）が行われます．これは却って，位置に関する重要な情報を取り去って特徴を学習していることに他なりません．
+各所で&amp;quot;What is wrong with Convolutional Neural Nets&amp;quot;という題の講演を行っているようです．（受講者のノート，まとめ）．
+   LeNetにはじまるCNNでは，ゆがみや並行移動に対する不変性を得るためにpooling（sub-sampling）が行われます．これは却って，位置に関する重要な情報を取り去って特徴を学習していることに他なりません．
 従ってCNNでは，以下の図のように位置関係を無視して「目」や「口」といった個々の特徴のみで画像を認識することとなり，左図のようなそれぞれの要素がばらばらのものも右図のような顔であるものも同じように認識してしまいます．
 一方で人間などの認知では目鼻と顔の階層関係から顔であることを認識しているので，両者を区別することができます．言及はされていませんがイラストや顔文字，さらに一部が隠れた顔をも顔と認識できるのもこのお陰でしょう．
   CNNは位置を無視してしまうので左の画像も右の画像も同じ特徴を持った「人」であると認識してしまう．   またCNNでは同じものに対しても，僅かな差異を学習するために大量のデータとデータ拡張を必要とします．

@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Nnabla on moskomule log</title>
+    <title>nnabla on moskomule log</title>
     <link>https://mosko.tokyo/tags/nnabla/</link>
-    <description>Recent content in Nnabla on moskomule log</description>
+    <description>Recent content in nnabla on moskomule log</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>ja</language>
+    <language>en</language>
     <lastBuildDate>Tue, 25 Jul 2017 15:37:12 +0900</lastBuildDate>
     
 	<atom:link href="https://mosko.tokyo/tags/nnabla/index.xml" rel="self" type="application/rss+xml" />
