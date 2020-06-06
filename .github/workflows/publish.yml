@@ -19,7 +19,14 @@ jobs:
                 hugo-version: "latest"
                 extended: true
 
-            - name: build pages
+            - uses: actions/setup-node@v1
+              with:
+                node-version: 'latest'
+              
+            - name: install dependencies
+              run: npm install -g postcss-cli autoprefixer
+
+            - name: build
               run: hugo
 
             - name: push
