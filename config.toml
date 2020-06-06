@@ -1,0 +1,91 @@
+baseURL                          = "mosko.tokyo"  # Your domain name. Must end with "/"
+theme                            = "introduction"
+DefaultContentLanguage           = "en"                    # Default language for multilingual sites
+
+[params]
+    themeStyle                   = "light"                 # Choose "light" or "dark"
+    favicon                      = "/img/fav.ico"          # Path to favicon file
+    showRSSButton                = false                   # Show rss button in navigation
+    fadeIn                       = true                    # Turn on/off the fade-in effect
+    fadeInIndex                  = false                   # Turn on/off the fade-in effect on the index page even if fade-in was otherwise turned off
+    dateFormat                   = "Jan 2, 2006"
+    #email                        = ""   # E-mail address for contact section
+    # customCSS                    = ["foo.css"]             # Include custom css files placed under assets/
+
+    # Configure the home page
+    [params.home]
+        introHeight              = "large"            # Input either "medium" or "large" or "fullheight"
+        showLatest               = true                    # Show latest blog post summary
+        showAllPosts             = false                   # Set true to list all posts on home page, or set false to link to separate blog list page
+        numberOfProjectsToShow   = 3                       # Maximum number of projects to show on home page. Unset or comment out to show all projects
+
+        localTime                = true                    # Show your current local time in contact section
+        timeZone                 = "Asia/Tokyo"   # Your timezone as in the TZ* column of this list: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+        timeFormat               = "h:mm A"                # https://momentjs.com/docs/#/displaying/format/
+    [params.projects]
+        useTwoColumns            = false                   # Use a layout with two columns instead of three
+
+    # Share buttons on blog post pages
+    [params.share]
+        twitter                  = true
+        facebook                 = true
+
+    # Social icons appear in introduction and contact section. Add as many more as you like.
+    # Icon pack "fab" includes social network icons, see: https://fontawesome.com/icons?d=gallery&s=brands&m=free
+    # Icon pack "fas" includes solid style icons, see: https://fontawesome.com/icons?d=gallery&s=solid&m=free
+    [[params.social]]
+        url   = "https://twitter.com/mosko_mule"
+        icon  = "twitter" # icon name without the 'fa-'
+        icon_pack = "fab"
+
+    [[params.social]]
+        url       = "https://github.com/moskomule"
+        icon      = "github"
+        icon_pack = "fab"
+
+    [[params.social]]
+        url       = "https://www.linkedin.com/in/ryuichiro-hataya-7940a1125"
+        icon      = "linkedin"
+        icon_pack = "fab"
+
+    [[params.social]]
+        url       = "https://scholar.google.com/citations?user=84l6KcEAAAAJ"
+        icon      = "graduation-cap"
+        icon_pack = "fas"
+
+
+# If you don't want to use the default menu, you can define one by yourself
+# [[menu.main]]
+#     name    = "Home"
+#     url     = "/"
+#     weight  = 0
+# [[menu.main]]
+#     name    = "Blog"
+#     url     = "/blog/"
+#     weight  = 1
+
+# We only use tag as a taxonomies
+# You can add more by yourself
+[taxonomies]
+  tag = "tags"
+
+[languages]
+    [languages.en]
+        languageName     = "English"
+        languageCode     = "en-us"
+        contentDir       = "content/en"
+        weight           = 0
+        title            = "Ryuichiro Hataya"
+        [languages.en.params]
+            description  = "Ryuichiro Hataya's webpage"   # Max 160 characters show in search results
+            footerText   = "-2020 Ryuichiro Hataya·Powered by [hugo](https://gohugo.io) with [Introduction](https://github.com/victoriadrake/hugo-theme-introduction)"                      # Text to override default footer text (markdown allowed)
+
+    [languages.ja]
+        languageName     = "日本語"
+        languageCode     = "ja"
+        contentDir       = "content/ja"
+        weight           = 1
+        title            = "幡谷龍一郎"
+        [languages.ja.params]
+            description  = "幡谷龍一郎のページ"
+            footerText   = "-2020 Ryuichiro Hataya·Powered by [hugo](https://gohugo.io) with [Introduction](https://github.com/victoriadrake/hugo-theme-introduction)"                      # Text to override default footer text (markdown allowed)
