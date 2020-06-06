@@ -17,6 +17,20 @@
   </url>
   
   <url>
+    <loc>https://mosko.tokyo/ja/blog/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://mosko.tokyo/blog/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="https://mosko.tokyo/ja/blog/"
+                />
+  </url>
+  
+  <url>
     <loc>https://mosko.tokyo/ja/home/</loc>
     <xhtml:link
                 rel="alternate"
