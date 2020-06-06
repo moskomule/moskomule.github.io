@@ -89,3 +89,8 @@ DefaultContentLanguage           = "en"                    # Default language fo
         [languages.ja.params]
             description  = "幡谷龍一郎のページ"
             footerText   = "-2020 Ryuichiro Hataya · Powered by [hugo](https://gohugo.io) with [Introduction](https://github.com/victoriadrake/hugo-theme-introduction)"                      # Text to override default footer text (markdown allowed)
+
+
+[markup]
+    [markup.highlight]
+        style = "github"
