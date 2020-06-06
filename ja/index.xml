@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>幡谷龍一郎</title>
-    <link>mosko.tokyo/ja/</link>
+    <link>https://mosko.tokyo/ja/</link>
     <description>Recent content on 幡谷龍一郎</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     
-	<atom:link href="mosko.tokyo/ja/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://mosko.tokyo/ja/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Hello World!</title>
-      <link>mosko.tokyo/ja/home/</link>
+      <link>https://mosko.tokyo/ja/home/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>mosko.tokyo/ja/home/</guid>
+      <guid>https://mosko.tokyo/ja/home/</guid>
       <description>幡谷龍一郎のページです</description>
     </item>
     

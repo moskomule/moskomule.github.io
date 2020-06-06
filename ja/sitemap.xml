@@ -3,58 +3,58 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>mosko.tokyo/ja/projects/</loc>
+    <loc>https://mosko.tokyo/ja/projects/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="mosko.tokyo/projects/"
+                href="https://mosko.tokyo/projects/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="ja"
-                href="mosko.tokyo/ja/projects/"
+                href="https://mosko.tokyo/ja/projects/"
                 />
   </url>
   
   <url>
-    <loc>mosko.tokyo/ja/home/</loc>
+    <loc>https://mosko.tokyo/ja/home/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="mosko.tokyo/home/"
+                href="https://mosko.tokyo/home/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="ja"
-                href="mosko.tokyo/ja/home/"
+                href="https://mosko.tokyo/ja/home/"
                 />
   </url>
   
   <url>
-    <loc>mosko.tokyo/ja/tags/</loc>
+    <loc>https://mosko.tokyo/ja/tags/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="mosko.tokyo/tags/"
+                href="https://mosko.tokyo/tags/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="ja"
-                href="mosko.tokyo/ja/tags/"
+                href="https://mosko.tokyo/ja/tags/"
                 />
   </url>
   
   <url>
-    <loc>mosko.tokyo/ja/</loc>
+    <loc>https://mosko.tokyo/ja/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="mosko.tokyo/"
+                href="https://mosko.tokyo/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="ja"
-                href="mosko.tokyo/ja/"
+                href="https://mosko.tokyo/ja/"
                 />
   </url>
   

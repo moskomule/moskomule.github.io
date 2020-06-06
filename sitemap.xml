@@ -2,12 +2,12 @@
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 	
 	<sitemap>
-	   	<loc>mosko.tokyo/ja/sitemap.xml</loc>
+	   	<loc>https://mosko.tokyo/ja/sitemap.xml</loc>
 		
 	</sitemap>
 	
 	<sitemap>
-	   	<loc>mosko.tokyo/en/sitemap.xml</loc>
+	   	<loc>https://mosko.tokyo/en/sitemap.xml</loc>
 		
 	</sitemap>
 	

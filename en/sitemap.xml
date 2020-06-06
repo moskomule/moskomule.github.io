@@ -3,58 +3,58 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>mosko.tokyo/projects/</loc>
+    <loc>https://mosko.tokyo/projects/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="ja"
-                href="mosko.tokyo/ja/projects/"
+                href="https://mosko.tokyo/ja/projects/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="mosko.tokyo/projects/"
+                href="https://mosko.tokyo/projects/"
                 />
   </url>
   
   <url>
-    <loc>mosko.tokyo/home/</loc>
+    <loc>https://mosko.tokyo/home/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="ja"
-                href="mosko.tokyo/ja/home/"
+                href="https://mosko.tokyo/ja/home/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="mosko.tokyo/home/"
+                href="https://mosko.tokyo/home/"
                 />
   </url>
   
   <url>
-    <loc>mosko.tokyo/</loc>
+    <loc>https://mosko.tokyo/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="ja"
-                href="mosko.tokyo/ja/"
+                href="https://mosko.tokyo/ja/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="mosko.tokyo/"
+                href="https://mosko.tokyo/"
                 />
   </url>
   
   <url>
-    <loc>mosko.tokyo/tags/</loc>
+    <loc>https://mosko.tokyo/tags/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="ja"
-                href="mosko.tokyo/ja/tags/"
+                href="https://mosko.tokyo/ja/tags/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="mosko.tokyo/tags/"
+                href="https://mosko.tokyo/tags/"
                 />
   </url>
   

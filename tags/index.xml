@@ -2,12 +2,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Ryuichiro Hataya</title>
-    <link>mosko.tokyo/tags/</link>
+    <link>https://mosko.tokyo/tags/</link>
     <description>Recent content in Tags on Ryuichiro Hataya</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
-	<atom:link href="mosko.tokyo/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://mosko.tokyo/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
   </channel>
