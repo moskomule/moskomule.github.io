@@ -94,3 +94,7 @@ DefaultContentLanguage           = "en"                    # Default language fo
 [markup]
     [markup.highlight]
         style = "github"
+         
+    [markup.tableOfContents]
+        startLevel = 2
+        endLevel = 3
