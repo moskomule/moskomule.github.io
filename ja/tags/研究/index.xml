@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>幡谷龍一郎</title>
-    <link>https://mosko.tokyo/ja/</link>
-    <description>Recent content on 幡谷龍一郎</description>
+    <title>研究 on 幡谷龍一郎</title>
+    <link>https://mosko.tokyo/ja/tags/%E7%A0%94%E7%A9%B6/</link>
+    <description>Recent content in 研究 on 幡谷龍一郎</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <lastBuildDate>Sun, 07 Jun 2020 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://mosko.tokyo/ja/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://mosko.tokyo/ja/tags/%E7%A0%94%E7%A9%B6/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -38,15 +38,6 @@ rsync -avz --delete --exclude-from $HOME/.rsync_exclude $PWD server: $HOME/.rsyn
 .idea notebooks outputs results .ideaはPyCharmの設定ファイルでサーバーに送りたくないので指定しています．outputsやresultsはログや重みの保存先で，rsyncに消されないように指定しています．
 プロジェクトごとに仮想環境を使い分けるためにcondaとdirenvを使っています．condaはPythonの環境構築に行い，direnvはディレクトリごとの環境変数を設定します．例えば以下ではenvnameという仮想環境を作り，project_dirではenvname環境を利用するようにしています．
 conda create -n envname python=3.8 conda install foo bar cd project_dir echo &amp;#34;layout conda envname&amp;#34; &amp;gt;&amp;gt; .envrc direnv allow リモートサーバー上ではターミナルを分割するtmuxを使って複数の実験を行えるようにしています．接続が切れても処理が終わらないのも便利です．画面右側はglancesとnvtopでプロセスの監視をしています．</description>
-    </item>
-    
-    <item>
-      <title>Hello World!</title>
-      <link>https://mosko.tokyo/ja/home/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://mosko.tokyo/ja/home/</guid>
-      <description>幡谷龍一郎のページです</description>
     </item>
     
   </channel>
