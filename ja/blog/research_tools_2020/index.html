@@ -50,6 +50,8 @@
 
 
 
+<link rel="stylesheet" href="/css/custom.css" integrity="" crossorigin="anonymous"
+  media="screen">
 
 
 <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
@@ -219,7 +221,7 @@
 
 <div class="container markdown top-pad">
     <p>情報系の博士学生をしていて使っているツールなどをまとめてみました．しばらく自宅待機で研究室に行けない研究室入りたての人，などの役に立てば幸いです．</p>
-<h1 id="筆者の環境">筆者の環境</h1>
+<h2 id="筆者の環境">筆者の環境</h2>
 <p>ラップトップとしてMacBook Pro，タブレット端末としてiPad Pro+Apple Pencilを使っています．また，実験の際にはUbuntuの外部サーバーにアクセスすることを前提としています．</p>
 <h2 id="論文を読む">論文を読む</h2>
 <p>論文を読む際には<a href="https://www.goodnotes.com/">GoodNotes</a>を使って，研究テーマやプロジェクトごとに論文をまとめた上で書き込んでいます．iPadとMacで同期して使うと端末の特徴に合わせた使い方ができます．例えば，論文に書き込みながら読むのにはiPadの方が向いていますし，複数の論文をテーマに応じてまとめるのはMacのほうが楽な気がします．</p>
@@ -230,7 +232,7 @@
 <p><img src="texpad.gif" alt=""></p>
 <p>共著者が増えてくるとオンラインでLaTeXを用いた執筆ができる<a href="http://overleaf.com/">Overleaf</a>も便利です．Overleaf上で多くの会議のテンプレートが配布されているのですが，日本語原稿の場合，Overleaf版を使うのが楽な気がします．ただし，大きな会議の締め切り直前にはOverleafがダウンすることもあるので，完全に頼るのは危険です．</p>
 <p>私はOverleafとDropboxを連携させた上で，Dropbox上のファイルをTeXPadから執筆しています．これでMac上で快適に執筆して，共著者に最新版を確認してもらうことができます．ただし，共著者もOverleafで編輯する段階に入ったら，上書きなどを防ぐためにもOverleafに移行した方が良いでしょう． なお，しばしばTeXの環境構築は面倒なのですが，TeXPadやOverleafを使えば基本的にその面倒はありません．</p>
-<p>図はmacOSに付属しているプレゼンツールであるkeynoteと，Illustrator代替ツールである<a href="https://affinity.serif.com/ja-jp/designer/">Affinity Designer</a>を使っています．大体はkeynoteで事足ります．</p>
+<p>図はmacOSに付属しているプレゼンツールであるkeynoteと，Illustrator代替ツールである<a href="https://affinity.serif.com/ja-jp/designer/">Affinity Designer</a>を使っています．大体はkeynoteで事足ります．論文の図がさまざまな色覚の人が見ても誤解が生じないように<a href="https://itunes.apple.com/jp/app/sim-daltonism/id693112260?mt=12">Sim-daltonism</a>を使って確認を行っています．</p>
 <h2 id="コードを書く">コードを書く</h2>
 <p>大学院に入って以来，ほとんどのコーディングはPythonです．統合開発環境としては主に<a href="https://www.jetbrains.com/ja-jp/pycharm/">PyCharm</a>を利用しています．非常に多くの機能がありますが，特に補間やリファクタリングが強力なこと，テストやデバックの支援があることが便利な点です．最近はJupyter Notebookも自然に使えます．</p>
 <p>Python以外の言語や，Pythonでも1，2ファイル程度の簡単なプログラムを書くときには<a href="https://azure.microsoft.com/ja-jp/products/visual-studio-code/">VSCode</a>も使っています．VSCodeはリモートサーバーのファイルを編輯する機能もあり，一時期使っていたのですが，結局後述するrsyncでの運用に戻りました．</p>
@@ -244,24 +246,24 @@
 <p>各所で推薦されていますが，<a href="https://amzn.to/3cJOxxU">リーダブルコード</a>にはメンテナンスしやすいコードを書く方法が書かれており一読の価値があります．研究のコードはたとえ公開しなくても，研究室内で共有したり，あるいは忘れた頃に自分が読んだりすることがあります．ある程度可読性のあるコードを書くことは不可欠です．</p>
 <h2 id="実験をする">実験をする</h2>
 <p>研究室では複数のサーバーが利用可能なので，Mac上で開発を行い，<code>rsync</code>を使って現在使えるサーバーと開発レポジトリを同期しています．この運用は<a href="http://dustintran.com/blog/a-research-to-engineering-workflow">D. Tran兄貴の記事</a>に倣っています．</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">rsync -avz --delete --exclude-from $HOME/.rsync_exclude $PWD server:
+<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">rsync -avz --delete --exclude-from $HOME/.rsync_exclude $PWD server:
 </code></pre></div><p><code>$HOME/.rsync_exclude</code> にはrsyncに処理されたくないディレクトリやファイルをまとめておきます．</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">.idea
+<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">.idea
 notebooks
 outputs
 results
 </code></pre></div><p><code>.idea</code>はPyCharmの設定ファイルでサーバーに送りたくないので指定しています．<code>outputs</code>や<code>results</code>はログや重みの保存先で，rsyncに消されないように指定しています．</p>
 <p>プロジェクトごとに仮想環境を使い分けるためにcondaと<a href="https://github.com/direnv/direnv">direnv</a>を使っています．condaはPythonの環境構築に行い，direnvはディレクトリごとの環境変数を設定します．例えば以下ではenvnameという仮想環境を作り，project_dirではenvname環境を利用するようにしています．</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">conda create -n envname <span style="color:#008080">python</span><span style="color:#000;font-weight:bold">=</span>3.8
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">conda create -n envname <span class="nv">python</span><span class="o">=</span>3.8
 conda install foo bar
 
-<span style="color:#0086b3">cd</span> project_dir
-<span style="color:#0086b3">echo</span> <span style="color:#d14">&#34;layout conda envname&#34;</span> &gt;&gt; .envrc
+<span class="nb">cd</span> project_dir
+<span class="nb">echo</span> <span class="s2">&#34;layout conda envname&#34;</span> &gt;&gt; .envrc
 direnv allow
 </code></pre></div><p>リモートサーバー上ではターミナルを分割するtmuxを使って複数の実験を行えるようにしています．接続が切れても処理が終わらないのも便利です．画面右側は<a href="https://github.com/nicolargo/glances">glances</a>と<a href="https://github.com/Syllo/nvtop">nvtop</a>でプロセスの監視をしています．</p>
 <p><img src="terminal.png" alt=""></p>
 <p>巨大なデータセットのダウンロードや重みなどのバックアップにはrcloneを利用して，研究室のGoogle Driveにコピーしています．rcloneはrsyncのようなコマンドでGoogle DriveやDropboxとのファイル共有が可能です．</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">rclone copy -v remote:datasets/imagenet.tar .
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">rclone copy -v remote:datasets/imagenet.tar .
 rclone copy -v project_dir remote:project_dir
 </code></pre></div><h2 id="情報の管理">情報の管理</h2>
 <p>情報の管理は難しく，今も試行錯誤中です．</p>
