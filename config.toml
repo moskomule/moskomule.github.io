@@ -10,7 +10,7 @@ DefaultContentLanguage           = "en"                    # Default language fo
     fadeInIndex                  = false                   # Turn on/off the fade-in effect on the index page even if fade-in was otherwise turned off
     dateFormat                   = "Jan 2, 2006"
     #email                        = ""   # E-mail address for contact section
-    # customCSS                    = ["foo.css"]             # Include custom css files placed under assets/
+    customCSS                    = ["css/custom.css"]             # Include custom css files placed under assets/
 
     # Configure the home page
     [params.home]
@@ -98,6 +98,7 @@ DefaultContentLanguage           = "en"                    # Default language fo
 [markup]
     [markup.highlight]
         style = "github"
+        noClasses = false
          
     [markup.tableOfContents]
         startLevel = 2

@@ -6,7 +6,7 @@ tags: ["研究"]
 
 情報系の博士学生をしていて使っているツールなどをまとめてみました．しばらく自宅待機で研究室に行けない研究室入りたての人，などの役に立てば幸いです．
 
-# 筆者の環境
+## 筆者の環境
 
 ラップトップとしてMacBook Pro，タブレット端末としてiPad Pro+Apple Pencilを使っています．また，実験の際にはUbuntuの外部サーバーにアクセスすることを前提としています．
 
@@ -28,7 +28,7 @@ tags: ["研究"]
 
 私はOverleafとDropboxを連携させた上で，Dropbox上のファイルをTeXPadから執筆しています．これでMac上で快適に執筆して，共著者に最新版を確認してもらうことができます．ただし，共著者もOverleafで編輯する段階に入ったら，上書きなどを防ぐためにもOverleafに移行した方が良いでしょう． なお，しばしばTeXの環境構築は面倒なのですが，TeXPadやOverleafを使えば基本的にその面倒はありません．
 
-図はmacOSに付属しているプレゼンツールであるkeynoteと，Illustrator代替ツールである[Affinity Designer](https://affinity.serif.com/ja-jp/designer/)を使っています．大体はkeynoteで事足ります．
+図はmacOSに付属しているプレゼンツールであるkeynoteと，Illustrator代替ツールである[Affinity Designer](https://affinity.serif.com/ja-jp/designer/)を使っています．大体はkeynoteで事足ります．論文の図がさまざまな色覚の人が見ても誤解が生じないように[Sim-daltonism](https://itunes.apple.com/jp/app/sim-daltonism/id693112260?mt=12)を使って確認を行っています．
 
 ## コードを書く
 
