@@ -44,7 +44,7 @@
 
 
 
-<link rel="stylesheet" href="/css/main.min.5c5478bdd5363758f3e73657d5339b1ac7c131a401ffc3338edd7eb5e1a0114e.css" integrity="sha256-XFR4vdU2N1jz5zZX1TObGsfBMaQB/8Mzjt1&#43;teGgEU4="
+<link rel="stylesheet" href="/css/main.min.bf91ec58b8b87093e0a0046b7fba51acecc22ba44c15120d37a02a2841fe96b3.css" integrity="sha256-v5HsWLi4cJPgoARrf7pRrOzCK6RMFRINN6AqKEH&#43;lrM="
   crossorigin="anonymous" media="screen">
 
 
@@ -63,6 +63,7 @@
         ['$', '$'],
         ['\\(', '\\)']
       ],
+      tags: 'ams'
     }
   };
 </script>
@@ -98,7 +99,7 @@
             
             
             
-            <a class="navbar-item" href="/ja/">main</a>
+            <a class="navbar-item" href="/ja/">メインページ</a>
             
 
             
@@ -143,7 +144,7 @@
                 
                   <a class="navbar-item" href="https://mosko.tokyo/ja/blog/">
                   
-                  Back to 記事
+                  記事に戻る
                   
                   </a>
                 
@@ -187,11 +188,11 @@
     </h2>
     <div class="post-data">
         Jun 7, 2020 |
-        1 minute read
+        約1分で読めます
     </div>
     
     <div class="blog-share">
-        Share this:
+        記事を共有する:
         
         <a class="twitter-share-button" href="https://twitter.com/intent/tweet?text=%e7%a0%94%e7%a9%b6%e3%81%ab%e4%be%bf%e5%88%a9%e3%81%aa%e3%83%84%e3%83%bc%e3%83%ab%e3%81%be%e3%81%a8%e3%82%81%20https%3a%2f%2fmosko.tokyo%2fja%2fblog%2fresearch_tools_2020%2f" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
             <i class="fab fa-twitter"></i>
@@ -245,7 +246,7 @@
 <p>テストにはpytestを利用しています．間違いがあると致命的そうな函数に対してはテストを書いておいたほうが良いですが，大体バグは問題ない，と思ったところにあります．</p>
 <p>各所で推薦されていますが，<a href="https://amzn.to/3cJOxxU">リーダブルコード</a>にはメンテナンスしやすいコードを書く方法が書かれており一読の価値があります．研究のコードはたとえ公開しなくても，研究室内で共有したり，あるいは忘れた頃に自分が読んだりすることがあります．ある程度可読性のあるコードを書くことは不可欠です．</p>
 <h2 id="実験をする">実験をする</h2>
-<p>研究室では複数のサーバーが利用可能なので，Mac上で開発を行い，<code>rsync</code>を使って現在使えるサーバーと開発レポジトリを同期しています．この運用は<a href="http://dustintran.com/blog/a-research-to-engineering-workflow">D. Tran兄貴の記事</a>に倣っています．</p>
+<p>研究室では複数のサーバーが利用可能なので，Mac上で開発を行い，<code>rsync</code>を使って現在空いているサーバーと開発レポジトリを同期しています．逆に各サーバー内ではほとんど編集を行いません．この運用は<a href="http://dustintran.com/blog/a-research-to-engineering-workflow">D. Tran兄貴の記事</a>に倣っています．</p>
 <div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">rsync -avz --delete --exclude-from $HOME/.rsync_exclude $PWD server:
 </code></pre></div><p><code>$HOME/.rsync_exclude</code> にはrsyncに処理されたくないディレクトリやファイルをまとめておきます．</p>
 <div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">.idea
