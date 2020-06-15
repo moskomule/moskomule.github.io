@@ -50,7 +50,7 @@ Python以外の言語や，Pythonでも1，2ファイル程度の簡単なプロ
 
 ## 実験をする
 
-研究室では複数のサーバーが利用可能なので，Mac上で開発を行い，`rsync`を使って現在使えるサーバーと開発レポジトリを同期しています．この運用は[D. Tran兄貴の記事](http://dustintran.com/blog/a-research-to-engineering-workflow)に倣っています．
+研究室では複数のサーバーが利用可能なので，Mac上で開発を行い，`rsync`を使って現在空いているサーバーと開発レポジトリを同期しています．逆に各サーバー内ではほとんど編集を行いません．この運用は[D. Tran兄貴の記事](http://dustintran.com/blog/a-research-to-engineering-workflow)に倣っています．
 
 ```text 
 rsync -avz --delete --exclude-from $HOME/.rsync_exclude $PWD server:
