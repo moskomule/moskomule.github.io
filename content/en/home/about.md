@@ -12,3 +12,6 @@ PhD student at UTokyo and RA at RIKEN AIP / focusing on DL and ML
 * Weakly-supervised Learning
 * Meta Learning
 
+### News
+
+Our paper "Faster AutoAugment: Learning Augmentation Strategies using Backpropagation" is accepted at ECCV 2020.
