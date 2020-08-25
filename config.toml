@@ -52,7 +52,18 @@ DefaultContentLanguage           = "en"                    # Default language fo
         url       = "https://scholar.google.com/citations?user=84l6KcEAAAAJ"
         icon      = "graduation-cap"
         icon_pack = "fas"
-
+    
+[markup]
+  [markup.highlight]
+    codeFences = true
+    guessSyntax = false
+    hl_Lines = ""
+    lineNoStart = 1
+    lineNos = false
+    lineNumbersInTable = true
+    noClasses = true
+    style = "monokailight"
+    tabWidth = 4
 
 # If you don't want to use the default menu, you can define one by yourself
 # [[menu.main]]
@@ -94,12 +105,3 @@ DefaultContentLanguage           = "en"                    # Default language fo
             description  = "幡谷龍一郎のページ"
             footerText   = "-2020 Ryuichiro Hataya · Powered by [hugo](https://gohugo.io) with [Introduction](https://github.com/victoriadrake/hugo-theme-introduction)"                      # Text to override default footer text (markdown allowed)
 
-
-[markup]
-    [markup.highlight]
-        style = "github"
-        noClasses = false
-         
-    [markup.tableOfContents]
-        startLevel = 2
-        endLevel = 3
