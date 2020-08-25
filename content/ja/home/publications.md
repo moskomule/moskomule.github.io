@@ -3,10 +3,10 @@ title: "論文など"
 weight: 30
 ---
 
-### Conference Papers
+### 査読あり会議論文
 
-* **R Hataya**, J Zdenek, K. Yoshizoe and H. Nakayama, "Faster AutoAugment: Learning Augmentation Strategies using Backpropagation", ECCV, 2020 [arXiv](https://arxiv.org/abs/1911.06987)
+* **Ryuichiro Hataya**, Jan Zdenek, Kazuki Yoshizoe and Hideki Nakayama, ["Faster AutoAugment: Learning Augmentation Strategies using Backpropagation"](http://www.ecva.net/papers/eccv_2020/papers_ECCV/html/4830_ECCV_2020_paper.php), ECCV, 2020
 
-### Preprints
+### プレプリント
 
-* **R Hataya**, J Zdenek, K. Yoshizoe and H. Nakayama, "Meta Approach to Data Augmentation Optimization", 2020, [arXiv](https://arxiv.org/abs/2006.07965)
+* **Ryuichiro Hataya**, Jan Zdenek, Kazuki Yoshizoe and Hideki Nakayama, "Meta Approach to Data Augmentation Optimization", 2020, [arXiv](https://arxiv.org/abs/2006.07965)
