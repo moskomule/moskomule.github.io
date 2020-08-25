@@ -31,6 +31,8 @@
 
 <meta property="og:image" content="https://mosko.tokyo/ja/blog/research_tools_2020/texpad.gif"/>
 
+<meta property="og:image" content="https://mosko.tokyo/ja/blog/research_tools_2020/wandb.png"/>
+
 
 
         
@@ -226,50 +228,81 @@
 <p>ラップトップとしてMacBook Pro，タブレット端末としてiPad Pro+Apple Pencilを使っています．また，実験の際にはUbuntuの外部サーバーにアクセスすることを前提としています．</p>
 <h2 id="論文を読む">論文を読む</h2>
 <p>論文を読む際には<a href="https://www.goodnotes.com/">GoodNotes</a>を使って，研究テーマやプロジェクトごとに論文をまとめた上で書き込んでいます．iPadとMacで同期して使うと端末の特徴に合わせた使い方ができます．例えば，論文に書き込みながら読むのにはiPadの方が向いていますし，複数の論文をテーマに応じてまとめるのはMacのほうが楽な気がします．</p>
-<p><img src="ipad.png" alt=""></p>
-<p>論文を管理する際にはMendeleyを使っています．Mendeley自体はサポートもあまり良くなく，使いにくいのですが，PDFファイルやbibファイルをドラッグ&amp;ドロップで取り込むだけでbibファイルにまとめられます．また，PDFファイルからの情報抽出の精度が高い気がします．ただ最近はMendeleyはほとんど使っておらず，文献管理はメモをDropbox Paperに残すくらいになっています．</p>
+<figure>
+    <img src="ipad.png" width="80%"/> 
+</figure>
+
+<p>文献の管理は紆余曲折ありましたが，GoodNotesにまとめるにとどまっています．bibファイル生成のためにMendeleyを使っていた時期もあったのですが，結局最後は人手でbibファイルの修正を行う必要があるので，感謝のbibファイル作成を行っています．</p>
 <h2 id="論文を書く">論文を書く</h2>
-<p>普段論文を書く際には<a href="https://www.texpad.com/">TeXPad</a>を使っています．TeXPadはテキスト入力と同時にタイプセットされるので，直感的にLaTeXを書くことができます．補完もそれなりに強く，執筆に集中できます．</p>
-<p><img src="texpad.gif" alt=""></p>
+<p>普段論文を書く際には<a href="https://www.texpad.com/">TeXPad</a>を使っています．</p>
+<p>TeXPadはテキスト入力と同時にタイプセットされるので，直感的にLaTeXを書くことができます．補完もそれなりに強く，執筆に集中できます．LaTeXに慣れていなければ，<a href="https://amzn.to/34ur833">LaTeX2e 美文書作成入門</a>を読むと基本から学ぶことが出来ます．</p>
+<figure>
+    <img src="texpad.gif" width="80%"/> 
+</figure>
+
 <p>共著者が増えてくるとオンラインでLaTeXを用いた執筆ができる<a href="http://overleaf.com/">Overleaf</a>も便利です．Overleaf上で多くの会議のテンプレートが配布されているのですが，日本語原稿の場合，Overleaf版を使うのが楽な気がします．ただし，大きな会議の締め切り直前にはOverleafがダウンすることもあるので，完全に頼るのは危険です．</p>
 <p>私はOverleafとDropboxを連携させた上で，Dropbox上のファイルをTeXPadから執筆しています．これでMac上で快適に執筆して，共著者に最新版を確認してもらうことができます．ただし，共著者もOverleafで編輯する段階に入ったら，上書きなどを防ぐためにもOverleafに移行した方が良いでしょう． なお，しばしばTeXの環境構築は面倒なのですが，TeXPadやOverleafを使えば基本的にその面倒はありません．</p>
-<p>図はmacOSに付属しているプレゼンツールであるkeynoteと，Illustrator代替ツールである<a href="https://affinity.serif.com/ja-jp/designer/">Affinity Designer</a>を使っています．大体はkeynoteで事足ります．論文の図がさまざまな色覚の人が見ても誤解が生じないように<a href="https://itunes.apple.com/jp/app/sim-daltonism/id693112260?mt=12">Sim-daltonism</a>を使って確認を行っています．</p>
+<h3 id="図の作成">図の作成</h3>
+<p>図はmacOSに付属しているプレゼンテーションツールであるkeynoteや，Photoshopの代替ツールである<a href="https://www.pixelmator.com/pro/">Pixelmator Pro</a>，Illustrator代替ツールである<a href="https://affinity.serif.com/ja-jp/designer/">Affinity Designer</a>を使っています．</p>
+<p>ほとんどの場合，keynoteで事足ります．色の組合せは<a href="https://jfly.uni-koeln.de/colorset/">カラーユニバーサルデザイン推奨配色セット</a>に統一し，図中の数式は<a href="https://tex2img.tech/">TeX2img</a>を使って作成しています．keynoteでも数式は出せるのですが，どうしても本文の数式と見た目が違ってしまうからです．論文の図がさまざまな色覚の人が見ても誤解が生じないように<a href="https://itunes.apple.com/jp/app/sim-daltonism/id693112260?mt=12">Sim-daltonism</a>を使って確認を行っています．</p>
 <h2 id="コードを書く">コードを書く</h2>
-<p>大学院に入って以来，ほとんどのコーディングはPythonです．統合開発環境としては主に<a href="https://www.jetbrains.com/ja-jp/pycharm/">PyCharm</a>を利用しています．非常に多くの機能がありますが，特に補間やリファクタリングが強力なこと，テストやデバックの支援があることが便利な点です．最近はJupyter Notebookも自然に使えます．</p>
-<p>Python以外の言語や，Pythonでも1，2ファイル程度の簡単なプログラムを書くときには<a href="https://azure.microsoft.com/ja-jp/products/visual-studio-code/">VSCode</a>も使っています．VSCodeはリモートサーバーのファイルを編輯する機能もあり，一時期使っていたのですが，結局後述するrsyncでの運用に戻りました．</p>
-<p>実験設定は<a href="https://hydra.cc/">hydra</a>を使ってyamlにまとめています．hydraを使うと，例えばデータセットごとの設定を切り分けることができるので，バグの温床となりやすい同じ設定を何度も書いてしまうことを防げます． 設定を作る際には<a href="https://qiita.com/guicho271828/items/3664aec81f6cc7e8f179">情報系研究者のためのtips 2019年度版</a>にもあるように</p>
-<blockquote>
-<p>「機能をオンにする」 フラグを書き、「機能をオフにする」フラグは書かない</p>
-</blockquote>
-<p>設定を書くのがわかりやすいです．名前の付け方を工夫することでデフォルトがオフの設定を書くことができます．例えば更新を行うことが初期値で設定によって更新を抑制したいなら<code>avoid_update=false</code>のようなフラグを書きます．</p>
-<p>しばしば実験ログの上書きなどという問題があるかと思いますが，hydraは実験時の出力をoutputs以下のよしななディレクトリにまとめてくれるので便利です．</p>
-<p>テストにはpytestを利用しています．間違いがあると致命的そうな函数に対してはテストを書いておいたほうが良いですが，大体バグは問題ない，と思ったところにあります．</p>
+<h3 id="ide">IDE</h3>
+<p>大学院に入って以来，ほとんどPythonを使っています．統合開発環境としては主に<a href="https://www.jetbrains.com/ja-jp/pycharm/">PyCharm</a>を利用しています．非常に多くの機能がありますが，特に補間やリファクタリングが強力なこと，テストやデバックの支援があることが便利な点です．最近はJupyter Notebookも自然に使えます．研究でほぼPythonだけを使うならば<a href="https://amzn.to/2YzCm2C">Effective Python</a>や<a href="https://amzn.to/2Yur1Rc">High Performance Python</a>を本棚に置いておくとよいと思います．</p>
+<p>JuliaなどのPython以外の言語や，Pythonでも1，2ファイル程度の簡単なプログラムを書くときには<a href="https://azure.microsoft.com/ja-jp/products/visual-studio-code/">VSCode</a>も使っています．VSCodeはリモートサーバーのファイルを編輯する機能もあり，一時期使っていたのですが，結局後述するrsyncでの運用に戻りました．</p>
+<h3 id="テスト">テスト</h3>
+<p>テストにはpytestを利用しています．<a href="https://amzn.to/3j9EohE">テスト駆動Python</a>がわかりやすかったです．また，ニューラルネットワークの開発時のチェックは<a href="http://karpathy.github.io/2019/04/25/recipe/">A. Karpathy兄貴の記事</a>が参考になります．</p>
 <p>各所で推薦されていますが，<a href="https://amzn.to/3cJOxxU">リーダブルコード</a>にはメンテナンスしやすいコードを書く方法が書かれており一読の価値があります．研究のコードはたとえ公開しなくても，研究室内で共有したり，あるいは忘れた頃に自分が読んだりすることがあります．ある程度可読性のあるコードを書くことは不可欠です．</p>
 <h2 id="実験をする">実験をする</h2>
 <p>研究室では複数のサーバーが利用可能なので，Mac上で開発を行い，<code>rsync</code>を使って現在空いているサーバーと開発レポジトリを同期しています．逆に各サーバー内ではほとんど編集を行いません．この運用は<a href="http://dustintran.com/blog/a-research-to-engineering-workflow">D. Tran兄貴の記事</a>に倣っています．</p>
-<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">rsync -avz --delete --exclude-from $HOME/.rsync_exclude $PWD server:
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">rsync -avz --delete --exclude-from $HOME/.rsync_exclude $PWD server:
 </code></pre></div><p><code>$HOME/.rsync_exclude</code> にはrsyncに処理されたくないディレクトリやファイルをまとめておきます．</p>
-<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">.idea
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">.idea
 notebooks
 outputs
 results
 </code></pre></div><p><code>.idea</code>はPyCharmの設定ファイルでサーバーに送りたくないので指定しています．<code>outputs</code>や<code>results</code>はログや重みの保存先で，rsyncに消されないように指定しています．</p>
 <p>プロジェクトごとに仮想環境を使い分けるためにcondaと<a href="https://github.com/direnv/direnv">direnv</a>を使っています．condaはPythonの環境構築に行い，direnvはディレクトリごとの環境変数を設定します．例えば以下ではenvnameという仮想環境を作り，project_dirではenvname環境を利用するようにしています．</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">conda create -n envname <span class="nv">python</span><span class="o">=</span>3.8
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">conda create -n envname <span style="color:#111">python</span><span style="color:#f92672">=</span>3.8
 conda install foo bar
 
-<span class="nb">cd</span> project_dir
-<span class="nb">echo</span> <span class="s2">&#34;layout conda envname&#34;</span> &gt;&gt; .envrc
+<span style="color:#111">cd</span> project_dir
+<span style="color:#111">echo</span> <span style="color:#d88200">&#34;layout conda envname&#34;</span> &gt;&gt; .envrc
 direnv allow
 </code></pre></div><p>リモートサーバー上ではターミナルを分割するtmuxを使って複数の実験を行えるようにしています．接続が切れても処理が終わらないのも便利です．画面右側は<a href="https://github.com/nicolargo/glances">glances</a>と<a href="https://github.com/Syllo/nvtop">nvtop</a>でプロセスの監視をしています．</p>
-<p><img src="terminal.png" alt=""></p>
+<figure>
+    <img src="terminal.png" width="80%"/> 
+</figure>
+
 <p>巨大なデータセットのダウンロードや重みなどのバックアップにはrcloneを利用して，研究室のGoogle Driveにコピーしています．rcloneはrsyncのようなコマンドでGoogle DriveやDropboxとのファイル共有が可能です．</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">rclone copy -v remote:datasets/imagenet.tar .
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">rclone copy -v remote:datasets/imagenet.tar .
 rclone copy -v project_dir remote:project_dir
-</code></pre></div><h2 id="情報の管理">情報の管理</h2>
+</code></pre></div><h3 id="実験の設定">実験の設定</h3>
+<p>実験設定は<a href="https://hydra.cc/">hydra</a>を使ってyamlにまとめています．hydraを使うと，例えばデータセットごとの設定を切り分けることができるので，バグの温床となりやすい同じ設定を何度も書いてしまうことを防げます． 設定を作る際には<a href="https://qiita.com/guicho271828/items/3664aec81f6cc7e8f179">情報系研究者のためのtips 2019年度版</a>にもあるように</p>
+<blockquote>
+<p>「機能をオンにする」 フラグを書き、「機能をオフにする」フラグは書かない</p>
+</blockquote>
+<p>設定を書くのがわかりやすいです．名前の付け方を工夫することでデフォルトがオフの設定を書くことができます．例えば更新を行うことが初期値で設定によって更新を抑制したいなら<code>avoid_update=false</code>のようなフラグを書きます． しばしば実験ログの上書きなどという問題があるかと思いますが，hydraは実験時の出力をoutputs以下のよしななディレクトリにまとめてくれるので便利です．</p>
+<h3 id="実験結果の管理">実験結果の管理</h3>
+<p>実験結果の管理は非常に大切ですが，実験数が増えると面倒なのも事実です．さらに実験サーバーが複数になると結果をどうにかまとめる必要が出てきて大変です．最近導入した<a href="https://www.wandb.com/"><code>wandb</code></a>は実験結果を勝手にまとめてくれるので助かります．</p>
+<figure>
+    <img src="wandb.png" width="80%"/> 
+</figure>
+
+<p>特にTensorboardを利用している場合，既存のコードに</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> <span style="color:#111">wandb</span>
+<span style="color:#111">wandb</span><span style="color:#f92672">.</span><span style="color:#111">init</span><span style="color:#111">(</span><span style="color:#111">config</span><span style="color:#f92672">=</span><span style="color:#111">cfg</span><span style="color:#111">,</span> <span style="color:#111">sync_tensorboard</span><span style="color:#f92672">=</span><span style="color:#111">True</span><span style="color:#111">)</span>
+</code></pre></div><p>を追加するだけでよしなに記録してくれます．結果の並び替え，抽出から様々な可視化も簡単な設定だけで行えるので助かります．ただし，外部サーバーに結果を送る仕組みなので，研究によっては使えないかもしれません．</p>
+<figure>
+    <img src="wandb2.jpg" width="80%"/> 
+</figure>
+
+<h2 id="情報の管理">情報の管理</h2>
 <p>情報の管理は難しく，今も試行錯誤中です．</p>
 <p>一番長続きしているのがDropbox Paperで，研究のアイディアや，Todo，指導教員とのミーティングなどの文書をまとめています．数式が表示できること，他の文書とリンクできること，Google Calendarとの連携，編集履歴が分かる点，などが便利なポイントです．また，複数人で同時に編集できるので，リモートで議論しながら編集すると作業が捗ります．</p>
-<p><img src="dropbox_paper.png" alt=""></p>
+<figure>
+    <img src="dropbox_paper.png" width="40%"/> 
+</figure>
+
 
 </div>
 
