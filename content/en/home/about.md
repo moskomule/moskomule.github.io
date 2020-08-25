@@ -14,4 +14,5 @@ PhD student at UTokyo and RA at RIKEN AIP / focusing on DL and ML
 
 ### News
 
-Our paper "Faster AutoAugment: Learning Augmentation Strategies using Backpropagation" is accepted at ECCV 2020.
+* Our research "MADAO: Meta Approach to Data Augmentation Optimization" won Best Student Paper Award at MIRU 2020.
+* Our paper ["Faster AutoAugment: Learning Augmentation Strategies using Backpropagation"](http://www.ecva.net/papers/eccv_2020/papers_ECCV/html/4830_ECCV_2020_paper.php) is accepted at ECCV 2020. I will present on UTC+1_8/26 0am, 5am (JST_8/26 8am, 2pm).

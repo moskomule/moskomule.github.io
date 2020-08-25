@@ -16,4 +16,5 @@ weight: 8
 
 ### News
 
-Our paper "Faster AutoAugment: Learning Augmentation Strategies using Backpropagation" is accepted at ECCV 2020.
+* 主著論文 "MADAO: データ拡張最適化のためのメタ的アプローチ"　によってMIRU 2020のMIRU学生優秀賞を受賞しました．
+* 主著論文 "Faster AutoAugment: Learning Augmentation Strategies using Backpropagation" がECCV 2020（採択率26%）に採択されました．日本時間の8月26日午前8時，午後2時に発表を行います．
