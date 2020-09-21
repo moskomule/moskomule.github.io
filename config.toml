@@ -6,15 +6,15 @@ DefaultContentLanguage           = "en"                    # Default language fo
     themeStyle                   = "light"                 # Choose "light" or "dark"
     favicon                      = "/img/fav.ico"          # Path to favicon file
     showRSSButton                = false                   # Show rss button in navigation
-    fadeIn                       = true                    # Turn on/off the fade-in effect
-    fadeInIndex                  = false                   # Turn on/off the fade-in effect on the index page even if fade-in was otherwise turned off
+    fadeIn                       = false                    # Turn on/off the fade-in effect
+    fadeInIndex                  = true                   # Turn on/off the fade-in effect on the index page even if fade-in was otherwise turned off
     dateFormat                   = "Jan 2, 2006"
     #email                        = ""   # E-mail address for contact section
     customCSS                    = ["css/custom.css"]             # Include custom css files placed under assets/
 
     # Configure the home page
     [params.home]
-        introHeight              = "large"            # Input either "medium" or "large" or "fullheight"
+        introHeight              = "medium"            # Input either "medium" or "large" or "fullheight"
         showLatest               = true                    # Show latest blog post summary
         showAllPosts             = false                   # Set true to list all posts on home page, or set false to link to separate blog list page
         numberOfProjectsToShow   = 3                       # Maximum number of projects to show on home page. Unset or comment out to show all projects
@@ -86,7 +86,7 @@ DefaultContentLanguage           = "en"                    # Default language fo
         languageCode     = "en-us"
         contentDir       = "content/en"
         weight           = 0
-        title            = "Ryuichiro Hataya"
+        title            = "Ryuichiro Hataya's webpage"
         [languages.en.params]
             description  = "Ryuichiro Hataya's webpage"   # Max 160 characters show in search results
             footerText   = "-2020 Ryuichiro Hataya · Powered by [hugo](https://gohugo.io) with [Introduction](https://github.com/victoriadrake/hugo-theme-introduction)"                      # Text to override default footer text (markdown allowed)
@@ -96,7 +96,7 @@ DefaultContentLanguage           = "en"                    # Default language fo
         languageCode     = "ja"
         contentDir       = "content/ja"
         weight           = 1
-        title            = "幡谷龍一郎"
+        title            = "幡谷龍一郎のページ"
 
         # hugo uses spaces to detect length
         summaryLength = 2
