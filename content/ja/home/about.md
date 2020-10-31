@@ -16,6 +16,8 @@ weight: 8
 
 ### News
 
+* 12/3の第5回 統計・機械学習若手シンポジウムにおいて「深層学習を支えるデータ拡張」を発表します．詳しくは[こちら](https://sites.google.com/view/statsmlsymposium20/)．
+* 共著論文 "Decomposing Normal and Abnormal Features of Medical Images for Content-based Image Retrieval"がML4Hに採択されました．
 * 9/23のザッピングセミナーにおいて「勾配降下法によるハイパーパラメータ最適化とデータ拡張戦略最適化への応用」を発表します．[こちら](https://zappingseminar.connpass.com/event/189061/)から登録をお願いします．
 * 主著論文 "MADAO: データ拡張最適化のためのメタ的アプローチ"　によってMIRU 2020のMIRU学生優秀賞を受賞しました．
 * 主著論文 "Faster AutoAugment: Learning Augmentation Strategies using Backpropagation" がECCV 2020（採択率26%）に採択されました．日本時間の8月26日午前8時，午後2時に発表を行います．
