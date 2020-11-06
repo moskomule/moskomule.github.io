@@ -11,7 +11,7 @@ PhD student at UTokyo and RA at RIKEN AIP / focusing on DL and ML
 * Weakly-supervised Learning
 * Meta Learning
 * Energy-based Models
-* Application of DL in Real-world Problems 
+* Application of DL to Real-world Problems (Medical imaging, Taxonomy)
 
 ### News
 
