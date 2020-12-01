@@ -10,12 +10,15 @@ weight: 8
 
 深層学習の研究を行っています．特に以下のトピックに興味があります．
 
-* データが少ない場合の学習
 * 弱ラベルからの学習
 * メタ学習
+* Energy-based Models
+* 深層学習の応用（医用画像・古生物学）
 
 ### News
 
+* 研究提案がマイクロソフトリサーチアジアと東京大学東京大学インクルーシブ工学連携研究機構に採択されました．
+* NeurIPSの公式ミートアップ https://neuripsmeetupjapan.github.io/ を主催します．
 * 12/3の第5回 統計・機械学習若手シンポジウムにおいて「深層学習を支えるデータ拡張」を発表します．詳しくは[こちら](https://sites.google.com/view/statsmlsymposium20/)．
 * 共著論文 "Decomposing Normal and Abnormal Features of Medical Images for Content-based Image Retrieval"がML4Hに採択されました．
 * 9/23のザッピングセミナーにおいて「勾配降下法によるハイパーパラメータ最適化とデータ拡張戦略最適化への応用」を発表します．[こちら](https://zappingseminar.connpass.com/event/189061/)から登録をお願いします．
