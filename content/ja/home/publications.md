@@ -1,5 +1,6 @@
 ---
 title: "論文など"
+image: "bird.png"
 weight: 30
 ---
 
