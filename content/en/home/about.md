@@ -15,6 +15,7 @@ I am Ryuichiro Hataya, PhD student at UTokyo, RA at RIKEN AIP, RA at RIISE at UT
 
 ### News
 
+* My research proposal has been accepted in JSPS's travel grant.
 * My research proposals have been accepted by Microsoft Research Asia, and RIISE at UTokyo.
 * We organized a NeurIPS meetup and Women in ML in Japan: https://neuripsmeetupjapan.github.io.
 * Our paper "Decomposing Normal and Abnormal Features of Medical Images for Content-based Image Retrieval" is accepted at ML4H 2020.
