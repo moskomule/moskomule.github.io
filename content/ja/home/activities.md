@@ -12,7 +12,6 @@ weight: 60
 
 ### 受賞
 
-* Microsoft Research Asia D-CORE, 2021.
 * Best Student Paper Award, The 23rd Meeting on Image Recognition and Understanding, 2020.
 
 ### そのほか
