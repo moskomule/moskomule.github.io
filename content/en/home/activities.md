@@ -16,4 +16,5 @@ weight: 60
 
 ### Others
 
+* Meetup Chair of NeurIPS, 2021.
 * Organizer of NeurIPS meetup Japan & Women in ML, 2020.

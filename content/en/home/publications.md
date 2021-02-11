@@ -6,12 +6,13 @@ weight: 30
 
 ### Conference Papers (Peer-reviewed)
 
-* **Ryuichiro Hataya**, Jan Zdenek, Kazuki Yoshizoe, and Hideki Nakayama, ["Faster AutoAugment: Learning Augmentation Strategies using Backpropagation"](http://www.ecva.net/papers/eccv_2020/papers_ECCV/html/4830_ECCV_2020_paper.php), European Conference on Computer Vision, 2020.
-* **Ryuichiro Hataya**, and Hideki Nakayama, "LOL: Learning To Optimize Loss Switching Under Label Noise", International Conference on Image Processing, 2019.
+* **Ryuichiro Hataya**, Jan Zdenek, Kazuki Yoshizoe, and Hideki Nakayama, ["Faster AutoAugment: Learning Augmentation Strategies using Backpropagation."](http://www.ecva.net/papers/eccv_2020/papers_ECCV/html/4830_ECCV_2020_paper.php) European Conference on Computer Vision, 2020.
+* **Ryuichiro Hataya**, and Hideki Nakayama, "LOL: Learning To Optimize Loss Switching Under Label Noise." International Conference on Image Processing, 2019.
 
 ### Preprints
 
-* **Ryuichiro Hataya**, Jan Zdenek, Kazuki Yoshizoe, and Hideki Nakayama, "Meta Approach to Data Augmentation Optimization", 2020. [arXiv](https://arxiv.org/abs/2006.07965)
+* **Ryuichiro Hataya**, Hideki Nakayama, and Kazuki Yoshizoe, "Graph Energy-based Model for Substructure Preserving Molecular Design." 2021. [arxiv](https://arxiv.org/abs/2102.04600)
+* **Ryuichiro Hataya**, Jan Zdenek, Kazuki Yoshizoe, and Hideki Nakayama, "Meta Approach to Data Augmentation Optimization." 2020. [arXiv](https://arxiv.org/abs/2006.07965)
 
 ### Others
 
