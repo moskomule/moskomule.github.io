@@ -17,6 +17,7 @@ weight: 8
 
 ### News
 
+* "Graph Energy-based Model for Molecular Graph Generation"がEBM Workshopにcontributed talkとして採択されました．
 * NeurIPS 2021のMeetup Chairとなりました。
 * 若手研究者海外挑戦プログラムに採択されました．
 * 研究提案がマイクロソフトリサーチアジアと東京大学東京大学インクルーシブ工学連携研究機構に採択されました．
