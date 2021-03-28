@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
   <url>
     <loc>https://mosko.tokyo/projects/</loc>
     <xhtml:link
@@ -14,9 +13,7 @@
                 hreflang="en"
                 href="https://mosko.tokyo/projects/"
                 />
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://mosko.tokyo/blog/</loc>
     <xhtml:link
                 rel="alternate"
@@ -28,9 +25,7 @@
                 hreflang="en"
                 href="https://mosko.tokyo/blog/"
                 />
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://mosko.tokyo/home/</loc>
     <xhtml:link
                 rel="alternate"
@@ -42,9 +37,7 @@
                 hreflang="en"
                 href="https://mosko.tokyo/home/"
                 />
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://mosko.tokyo/</loc>
     <xhtml:link
                 rel="alternate"
@@ -56,9 +49,7 @@
                 hreflang="en"
                 href="https://mosko.tokyo/"
                 />
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://mosko.tokyo/tags/</loc>
     <xhtml:link
                 rel="alternate"
@@ -71,5 +62,4 @@
                 href="https://mosko.tokyo/tags/"
                 />
   </url>
-  
 </urlset>
