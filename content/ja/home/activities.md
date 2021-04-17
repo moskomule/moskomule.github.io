@@ -1,5 +1,5 @@
 ---
-title: "Other Research Activities"
+title: "研究活動"
 image: "prague.png"
 weight: 60
 ---
