@@ -17,6 +17,7 @@ weight: 8
 
 ### News
 
+* 5月12日に理研AIPのセミナーでデータ拡張についての発表を行います．
 * "Graph Energy-based Model for Molecular Graph Generation"がEBM Workshopにcontributed talkとして採択されました．
 * NeurIPS 2021のMeetup Chairとなりました。
 * 若手研究者海外挑戦プログラムに採択されました．
