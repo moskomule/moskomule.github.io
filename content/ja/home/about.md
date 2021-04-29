@@ -17,6 +17,7 @@ weight: 8
 
 ### News
 
+* 6月10日にSSIIのオーガナイズ土セッション[「続・限られたデータからの深層学習」で「深層学習におけるデータ拡張の原理と最新動向」](https://confit.atlas.jp/guide/event/ssii2021/subject/OS2-03/category?cryptoId=)を発表します。
 * 5月12日に理研AIPのセミナーでデータ拡張についての発表を行います．
 * "Graph Energy-based Model for Molecular Graph Generation"がEBM Workshopにcontributed talkとして採択されました．
 * NeurIPS 2021のMeetup Chairとなりました。

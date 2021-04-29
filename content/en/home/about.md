@@ -15,6 +15,7 @@ I am Ryuichiro Hataya, PhD student at UTokyo, RA at RIKEN AIP, RIISE at UTokyo, 
 
 ### News
  
+* I will present about Faster AutoAugment and its applications in RIKEN AIP's seminar.
 * Our paper "Graph Energy-based Model for Molecular Graph Generation" is accepted at EBM workshop 2021 as a contributed talk.
 * I will serve as a meetup chair for NeurIPS 2021.
 * My research proposal has been accepted in JSPS's travel grant.
