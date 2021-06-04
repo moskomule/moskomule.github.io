@@ -48,7 +48,7 @@
 
 
 
-<link rel="stylesheet" href="/css/main.min.2842fe650980693d5507264a78748e6daa1c9870569e0d83af0bd74fdfd752fe.css" integrity="sha256-KEL&#43;ZQmAaT1VByZKeHSObaocmHBWng2DrwvXT9/XUv4="
+<link rel="stylesheet" href="/css/main.min.d641d59e34342b3649285b50211acc4f938eb8fee4405336d221567826e51740.css" integrity="sha256-1kHVnjQ0KzZJKFtQIRrMT5OOuP7kQFM20iFWeCblF0A="
   crossorigin="anonymous" media="screen">
 
 
@@ -255,8 +255,7 @@
 
 <h2 id="論文を読む" class="anchor-link"><a href="#%e8%ab%96%e6%96%87%e3%82%92%e8%aa%ad%e3%82%80">論文を読む</a></h2>
 <p>論文を読む際には<a href="https://www.goodnotes.com/">GoodNotes</a>を使って，研究テーマやプロジェクトごとに論文をまとめた上で書き込んでいます．iPadとMacで同期して使うと端末の特徴に合わせた使い方ができます．例えば，論文に書き込みながら読むのにはiPadの方が向いていますし，複数の論文をテーマに応じてまとめるのはMacのほうが楽な気がします．</p>
-<figure>
-    <img src="ipad.png" width="80%"/> 
+<figure><img src="ipad.png" width="80%"/>
 </figure>
 
 <p>文献の管理は紆余曲折ありましたが，GoodNotesにまとめるにとどまっています．bibファイル生成のためにMendeleyを使っていた時期もあったのですが，結局最後は人手でbibファイルの修正を行う必要があるので，感謝のbibファイル作成を行っています．</p>
@@ -264,8 +263,7 @@
 <h2 id="論文を書く" class="anchor-link"><a href="#%e8%ab%96%e6%96%87%e3%82%92%e6%9b%b8%e3%81%8f">論文を書く</a></h2>
 <p>普段論文を書く際には<a href="https://www.texpad.com/">TeXPad</a>を使っています．</p>
 <p>TeXPadはテキスト入力と同時にタイプセットされるので，直感的にLaTeXを書くことができます．補完もそれなりに強く，執筆に集中できます．LaTeXに慣れていなければ，<a href="https://amzn.to/34ur833">LaTeX2e 美文書作成入門</a>を読むと基本から学ぶことが出来ます．</p>
-<figure>
-    <img src="texpad.gif" width="80%"/> 
+<figure><img src="texpad.gif" width="80%"/>
 </figure>
 
 <p>共著者が増えてくるとオンラインでLaTeXを用いた執筆ができる<a href="http://overleaf.com/">Overleaf</a>も便利です．Overleaf上で多くの会議のテンプレートが配布されているのですが，日本語原稿の場合，Overleaf版を使うのが楽な気がします．ただし，大きな会議の締め切り直前にはOverleafがダウンすることもあるので，完全に頼るのは危険です．</p>
@@ -302,8 +300,7 @@ conda install foo bar
 <span style="color:#111">echo</span> <span style="color:#d88200">&#34;layout conda envname&#34;</span> &gt;&gt; .envrc
 direnv allow
 </code></pre></div><p>リモートサーバー上ではターミナルを分割するtmuxを使って複数の実験を行えるようにしています．接続が切れても処理が終わらないのも便利です．画面右側は<a href="https://github.com/nicolargo/glances">glances</a>と<a href="https://github.com/Syllo/nvtop">nvtop</a>でプロセスの監視をしています．</p>
-<figure>
-    <img src="terminal.png" width="80%"/> 
+<figure><img src="terminal.png" width="80%"/>
 </figure>
 
 <p>巨大なデータセットのダウンロードや重みなどのバックアップにはrcloneを利用して，研究室のGoogle Driveにコピーしています．rcloneはrsyncのようなコマンドでGoogle DriveやDropboxとのファイル共有が可能です．</p>
@@ -319,24 +316,21 @@ rclone copy -v project_dir remote:project_dir
 
 <h3 id="実験結果の管理" class="anchor-link"><a href="#%e5%ae%9f%e9%a8%93%e7%b5%90%e6%9e%9c%e3%81%ae%e7%ae%a1%e7%90%86">実験結果の管理</a></h3>
 <p>実験結果の管理は非常に大切ですが，実験数が増えると面倒なのも事実です．さらに実験サーバーが複数になると結果をどうにかまとめる必要が出てきて大変です．最近導入した<a href="https://www.wandb.com/"><code>wandb</code></a>は実験結果を勝手にまとめてくれるので助かります．</p>
-<figure>
-    <img src="wandb.png" width="80%"/> 
+<figure><img src="wandb.png" width="80%"/>
 </figure>
 
 <p>特にTensorboardを利用している場合，既存のコードに</p>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> <span style="color:#111">wandb</span>
 <span style="color:#111">wandb</span><span style="color:#f92672">.</span><span style="color:#111">init</span><span style="color:#111">(</span><span style="color:#111">config</span><span style="color:#f92672">=</span><span style="color:#111">cfg</span><span style="color:#111">,</span> <span style="color:#111">sync_tensorboard</span><span style="color:#f92672">=</span><span style="color:#111">True</span><span style="color:#111">)</span>
 </code></pre></div><p>を追加するだけでよしなに記録してくれます．結果の並び替え，抽出から様々な可視化も簡単な設定だけで行えるので助かります．ただし，外部サーバーに結果を送る仕組みなので，研究によっては使えないかもしれません．</p>
-<figure>
-    <img src="wandb2.jpg" width="80%"/> 
+<figure><img src="wandb2.jpg" width="80%"/>
 </figure>
 
 
 <h2 id="情報の管理" class="anchor-link"><a href="#%e6%83%85%e5%a0%b1%e3%81%ae%e7%ae%a1%e7%90%86">情報の管理</a></h2>
 <p>情報の管理は難しく，今も試行錯誤中です．</p>
 <p>一番長続きしているのがDropbox Paperで，研究のアイディアや，Todo，指導教員とのミーティングなどの文書をまとめています．数式が表示できること，他の文書とリンクできること，Google Calendarとの連携，編集履歴が分かる点，などが便利なポイントです．また，複数人で同時に編集できるので，リモートで議論しながら編集すると作業が捗ります．</p>
-<figure>
-    <img src="dropbox_paper.png" width="40%"/> 
+<figure><img src="dropbox_paper.png" width="40%"/>
 </figure>
 
 
