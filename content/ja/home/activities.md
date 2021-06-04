@@ -4,6 +4,11 @@ image: "prague.png"
 weight: 60
 ---
 
+## 招待講演
+
+* 「深層学習におけるデータ拡張の原理と最新動向」, Symposium on Sensing via Image Information, 2021.
+* 「深層学習を支えるデータ拡張」, [StatsML Symposium](https://sites.google.com/view/statsmlsymposium20/), 2020.
+
 ### 研究費
 
 * 微分可能データ拡張の研究, JSPS若手研究者海外挑戦プログラム, 140万円, 2021.
@@ -12,6 +17,7 @@ weight: 60
 
 ### 受賞
 
+* Microsoft Research Asia D-Core Award, 2020.
 * Best Student Paper Award, The 23rd Meeting on Image Recognition and Understanding, 2020.
 
 ### そのほか

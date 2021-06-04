@@ -17,6 +17,7 @@ weight: 8
 
 ### News
 
+* [NeurIPS meetups](https://neurips.cc/Conferences/2021/CallForMeetups)の募集を開始しました．
 * 東京大学RIISEの[取材記事](https://www.riise.u-tokyo.ac.jp/news-vxe-interview-hataya/)が公開されました
 * 6月10日にSSIIのオーガナイズ土セッション[「続・限られたデータからの深層学習」で「深層学習におけるデータ拡張の原理と最新動向」](https://confit.atlas.jp/guide/event/ssii2021/subject/OS2-03/category?cryptoId=)を発表します
 * 5月12日に理研AIPのセミナーにおいて[データ拡張についての発表](https://c5dc59ed978213830355fc8978.doorkeeper.jp/events/115877)を行います（発表は英語です）．

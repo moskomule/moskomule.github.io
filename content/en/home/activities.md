@@ -4,6 +4,11 @@ image: "prague.png"
 weight: 60
 ---
 
+### Invited Talks
+
+* "Data Augmentation for Deep Learning" (in Japanese), Symposium on Sensing via Image Information, 2021.
+* "Data Augmentation for Deep Learning" (in Japanese), StatsML Symposium, 2020.
+
 ### Research Grants
 
 * Research Project of Differentiable Data Augmentation for Image Recognition, Overseas Challenge Program for Young Researchers by JSPS, ¥1.4M, 2021.
@@ -12,6 +17,7 @@ weight: 60
 
 ### Awards
 
+* Microsoft Research Asia D-Core Award, 2020.
 * Best Student Paper Award, The 23rd Meeting on Image Recognition and Understanding, 2020.
 
 ### Others
