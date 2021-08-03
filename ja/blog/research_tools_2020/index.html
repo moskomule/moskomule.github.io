@@ -285,15 +285,15 @@
 
 <h2 id="実験をする" class="anchor-link"><a href="#%e5%ae%9f%e9%a8%93%e3%82%92%e3%81%99%e3%82%8b">実験をする</a></h2>
 <p>研究室では複数のサーバーが利用可能なので，Mac上で開発を行い，<code>rsync</code>を使って現在空いているサーバーと開発レポジトリを同期しています．逆に各サーバー内ではほとんど編集を行いません．この運用は<a href="http://dustintran.com/blog/a-research-to-engineering-workflow">D. Tran兄貴の記事</a>に倣っています．</p>
-<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">rsync -avz --delete --exclude-from $HOME/.rsync_exclude $PWD server:
+<div class="highlight"><pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">rsync -avz --delete --exclude-from $HOME/.rsync_exclude $PWD server:
 </code></pre></div><p><code>$HOME/.rsync_exclude</code> にはrsyncに処理されたくないディレクトリやファイルをまとめておきます．</p>
-<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">.idea
+<div class="highlight"><pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">.idea
 notebooks
 outputs
 results
 </code></pre></div><p><code>.idea</code>はPyCharmの設定ファイルでサーバーに送りたくないので指定しています．<code>outputs</code>や<code>results</code>はログや重みの保存先で，rsyncに消されないように指定しています．</p>
 <p>プロジェクトごとに仮想環境を使い分けるためにcondaと<a href="https://github.com/direnv/direnv">direnv</a>を使っています．condaはPythonの環境構築に行い，direnvはディレクトリごとの環境変数を設定します．例えば以下ではenvnameという仮想環境を作り，project_dirではenvname環境を利用するようにしています．</p>
-<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">conda create -n envname <span style="color:#111">python</span><span style="color:#f92672">=</span>3.8
+<div class="highlight"><pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">conda create -n envname <span style="color:#111">python</span><span style="color:#f92672">=</span>3.8
 conda install foo bar
 
 <span style="color:#111">cd</span> project_dir
@@ -304,7 +304,7 @@ direnv allow
 </figure>
 
 <p>巨大なデータセットのダウンロードや重みなどのバックアップにはrcloneを利用して，研究室のGoogle Driveにコピーしています．rcloneはrsyncのようなコマンドでGoogle DriveやDropboxとのファイル共有が可能です．</p>
-<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">rclone copy -v remote:datasets/imagenet.tar .
+<div class="highlight"><pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">rclone copy -v remote:datasets/imagenet.tar .
 rclone copy -v project_dir remote:project_dir
 </code></pre></div>
 <h3 id="実験の設定" class="anchor-link"><a href="#%e5%ae%9f%e9%a8%93%e3%81%ae%e8%a8%ad%e5%ae%9a">実験の設定</a></h3>
@@ -320,8 +320,8 @@ rclone copy -v project_dir remote:project_dir
 </figure>
 
 <p>特にTensorboardを利用している場合，既存のコードに</p>
-<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> <span style="color:#111">wandb</span>
-<span style="color:#111">wandb</span><span style="color:#f92672">.</span><span style="color:#111">init</span><span style="color:#111">(</span><span style="color:#111">config</span><span style="color:#f92672">=</span><span style="color:#111">cfg</span><span style="color:#111">,</span> <span style="color:#111">sync_tensorboard</span><span style="color:#f92672">=</span><span style="color:#111">True</span><span style="color:#111">)</span>
+<div class="highlight"><pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> <span style="color:#111">wandb</span>
+<span style="color:#111">wandb</span><span style="color:#f92672">.</span><span style="color:#111">init</span><span style="color:#111">(</span><span style="color:#111">config</span><span style="color:#f92672">=</span><span style="color:#111">cfg</span><span style="color:#111">,</span> <span style="color:#111">sync_tensorboard</span><span style="color:#f92672">=</span><span style="color:#00a8c8">True</span><span style="color:#111">)</span>
 </code></pre></div><p>を追加するだけでよしなに記録してくれます．結果の並び替え，抽出から様々な可視化も簡単な設定だけで行えるので助かります．ただし，外部サーバーに結果を送る仕組みなので，研究によっては使えないかもしれません．</p>
 <figure><img src="wandb2.jpg" width="80%"/>
 </figure>
