@@ -4,7 +4,7 @@ image: "profile.png"
 weight: 8
 ---
 
-東京大学大学院情報理工学系研究科の博士課程に在籍中です．理研AIP，東京大学RIISE，東京大学Beyond AIにも在籍しています．
+東京大学大学院情報理工学系研究科の博士課程に在籍中です．理研AIP，[東京大学RIISE](riise.u-tokyo.ac.jp/)，[東京大学Beyond AI](https://beyondai.jp/)にも在籍しています．
 
 ### 研究の興味
 
@@ -17,6 +17,7 @@ weight: 8
 
 ### News
 
+* 画像の認識・理解シンポジウム（MIRU）で「iMADAO: 画像事例に応じたデータ拡張戦略の設計手法」を発表しました．
 * [NeurIPS meetups](https://neurips.cc/Conferences/2021/CallForMeetups)の募集を開始しました．
 * 東京大学RIISEの[取材記事](https://www.riise.u-tokyo.ac.jp/news-vxe-interview-hataya/)が公開されました
 * 6月10日にSSIIのオーガナイズ土セッション[「続・限られたデータからの深層学習」で「深層学習におけるデータ拡張の原理と最新動向」](https://confit.atlas.jp/guide/event/ssii2021/subject/OS2-03/category?cryptoId=)を発表します
