@@ -6,7 +6,7 @@ weight: 30
 
 ### 原著論文
 
-* Kazuma Kobayashi, **Ryuichiro Hataya**, Yusuke Kurose, Mototaka Miyake, Masamichi Takahashi, Akiko Nakagawa, Tatsuya Harada, ,and Ryuji Hamamoto, ["Decomposing Normal and Abnormal Features of Medical Images for Content-Based Image Retrieval of Glioma Imaging."](https://www.sciencedirect.com/science/article/pii/S1361841521002723) *Medical Image Analysis*, 2021 (pre-proof).
+* Kazuma Kobayashi, **Ryuichiro Hataya**, Yusuke Kurose, Mototaka Miyake, Masamichi Takahashi, Akiko Nakagawa, Tatsuya Harada, and Ryuji Hamamoto, ["Decomposing Normal and Abnormal Features of Medical Images for Content-Based Image Retrieval of Glioma Imaging."](https://www.sciencedirect.com/science/article/pii/S1361841521002723) *Medical Image Analysis*, 2021 (pre-proof).
 
 ### 査読あり会議論文
 
