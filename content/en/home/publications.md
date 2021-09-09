@@ -4,6 +4,10 @@ image: "bird.png"
 weight: 30
 ---
 
+### Journal Papers (Peer-reviewed)
+
+* Kazuma Kobayashi, **Ryuichiro Hataya**, Yusuke Kurose, Mototaka Miyake, Masamichi Takahashi, Akiko Nakagawa, Tatsuya Harada, ,and Ryuji Hamamoto, ["Decomposing Normal and Abnormal Features of Medical Images for Content-Based Image Retrieval of Glioma Imaging."](https://www.sciencedirect.com/science/article/pii/S1361841521002723) *Medical Image Analysis*, 2021 (pre-proof).
+
 ### Conference Papers (Peer-reviewed)
 
 * Taiga Kashima, **Ryuichiro Hataya**, and Hideki Nakayama, "Visualizing Association in Exemplar-based Classification." *International Conference on Acoustics, Speech, and Signal Processing*, 2021.
