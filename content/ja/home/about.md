@@ -17,6 +17,7 @@ weight: 8
 
 ### News
 
+* 研究提案がJSTのACT-Xに採択されました．
 * JSPSの若手研究者海外挑戦プログラムにより10月からイタリアのIITにて訪問研究を行います．
 * 画像の認識・理解シンポジウム（MIRU）で「iMADAO: 画像事例に応じたデータ拡張戦略の設計手法」を発表しました．
 * [NeurIPS meetups](https://neurips.cc/Conferences/2021/CallForMeetups)の募集を開始しました．

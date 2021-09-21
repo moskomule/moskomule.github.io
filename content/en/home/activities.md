@@ -11,9 +11,10 @@ weight: 60
 
 ### Research Grants
 
+* Research Project of Interactive Data Generation, Japan Science and Technology Agency, ACT-X, ¥4.5M, 2021-2024.
 * Research Project of Differentiable Data Augmentation for Image Recognition, Overseas Challenge Program for Young Researchers by JSPS, ¥1.4M, 2021.
 * Research Project of Interactive Image Generation, Microsoft Research Asia Collaborative Research Program (D-CORE 2021) by MSRA, ¥1.0M, 2021.
-* Research Project of Inclusive Image Recognition, Sprouting Research RA’s in Value Exchange Engineering by RIISE@UTokyo, ¥2.0M, 2020~2022.
+* Research Project of Inclusive Image Recognition, Sprouting Research RA’s in Value Exchange Engineering by RIISE@UTokyo, ¥2.0M, 2020-2022.
 
 ### Awards
 
