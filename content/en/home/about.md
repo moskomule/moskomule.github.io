@@ -15,9 +15,9 @@ I am Ryuichiro Hataya, PhD student at UTokyo (Nakayama Lab), RA at RIKEN AIP (Ha
 
 ### News
 
+* I am visiting IIT (Genova, Italy) from October 1st.
 * Our paper "Meta Approach to Data Augmentation Optimization" is accepted to WACV 2022.
 * My research proposal has been accepted in JST's ACT-X.
-* I will start visiting research at IIT (Genova, Italy) from October 1st, supported by JSPS.
 * [Call for NeurIPS meetups](https://neurips.cc/Conferences/2021/CallForMeetups) is now out! 
 * I will present about Faster AutoAugment and its applications at [AIP Open seminar](https://c5dc59ed978213830355fc8978.doorkeeper.jp/events/115877).
 * Our paper ["Graph Energy-based Model for Molecular Graph Generation"](https://openreview.net/forum?id=I2AD-xWJ2-J) is accepted at EBM workshop 2021 as a contributed talk.

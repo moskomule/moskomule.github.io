@@ -17,6 +17,7 @@ weight: 8
 
 ### News
 
+* 10月1日からIIT（イタリア）を訪問しています.
 * "Meta Approach to Data Augmentation Optimization"がWACV2022に採択されました．
 * 研究提案がJSTのACT-Xに採択されました．
 * JSPSの若手研究者海外挑戦プログラムにより10月からイタリアのIITにて訪問研究を行います．
