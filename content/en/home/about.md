@@ -14,8 +14,9 @@ I am Ryuichiro Hataya, PhD student at UTokyo (Nakayama Lab), RA at RIKEN AIP (Ha
 * Application of DL (Medical imaging, Palaeontology, Chemistry)
 
 ### News
- 
- * My research proposal has been accepted in JST's ACT-X.
+
+* Our paper "Meta Approach to Data Augmentation Optimization" is accepted to WACV 2022.
+* My research proposal has been accepted in JST's ACT-X.
 * I will start visiting research at IIT (Genova, Italy) from October 1st, supported by JSPS.
 * [Call for NeurIPS meetups](https://neurips.cc/Conferences/2021/CallForMeetups) is now out! 
 * I will present about Faster AutoAugment and its applications at [AIP Open seminar](https://c5dc59ed978213830355fc8978.doorkeeper.jp/events/115877).

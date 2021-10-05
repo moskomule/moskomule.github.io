@@ -10,6 +10,7 @@ weight: 30
 
 ### Conference Papers (Peer-reviewed)
 
+* **Ryuichiro Hataya**, Jan Zdenek, Kazuki Yoshizoe, and Hideki Nakayama, "Meta Approach to Data Augmentation Optimization." *Winter Conference on Applications of Computer Vision*, 2022.
 * Taiga Kashima, **Ryuichiro Hataya**, and Hideki Nakayama, "Visualizing Association in Exemplar-based Classification." *International Conference on Acoustics, Speech, and Signal Processing*, 2021.
 * **Ryuichiro Hataya**, Jan Zdenek, Kazuki Yoshizoe, and Hideki Nakayama, ["Faster AutoAugment: Learning Augmentation Strategies using Backpropagation."](http://www.ecva.net/papers/eccv_2020/papers_ECCV/html/4830_ECCV_2020_paper.php) *European Conference on Computer Vision*, 2020.
 * **Ryuichiro Hataya**, and Hideki Nakayama, "LOL: Learning To Optimize Loss Switching Under Label Noise." *International Conference on Image Processing*, 2019.
