@@ -6,6 +6,7 @@ weight: 60
 
 ## 招待講演
 
+* 「深層学習とデータ拡張」，[愛媛大学DS研究セミナー](https://www.cdse.ehime-u.ac.jp/)，2021．
 * 「深層学習におけるデータ拡張の原理と最新動向」, Symposium on Sensing via Image Information, 2021.
 * 「深層学習を支えるデータ拡張」, [StatsML Symposium](https://sites.google.com/view/statsmlsymposium20/), 2020.
 

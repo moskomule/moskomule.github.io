@@ -17,6 +17,7 @@ weight: 8
 
 ### News
 
+* 12月2日に愛媛大学DS研究セミナーにおいて [深層学習とデータ拡張](https://www.cdse.ehime-u.ac.jp/) を発表します．
 * 10月1日からIIT（イタリア）を訪問しています.
 * "Meta Approach to Data Augmentation Optimization"がWACV2022に採択されました．
 * 研究提案がJSTのACT-Xに採択されました．

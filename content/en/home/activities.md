@@ -6,6 +6,7 @@ weight: 60
 
 ### Invited Talks
 
+* "Data Augmentation for Deep Learning" (in Japanese), Ehime University DS Research Seminar, 2021.
 * "Data Augmentation for Deep Learning" (in Japanese), Symposium on Sensing via Image Information, 2021.
 * "Data Augmentation for Deep Learning" (in Japanese), StatsML Symposium, 2020.
 
