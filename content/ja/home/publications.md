@@ -18,11 +18,10 @@ weight: 30
 ### プレプリント
 
 * **Ryuichiro Hataya**, Hideki Nakayama, and Kazuki Yoshizoe, "Graph Energy-based Model for Substructure Preserving Molecular Design." 2021. [arxiv](https://arxiv.org/abs/2102.04600)
-* **Ryuichiro Hataya**, Jan Zdenek, Kazuki Yoshizoe, and Hideki Nakayama, "Meta Approach to Data Augmentation Optimization." 2020. [arXiv](https://arxiv.org/abs/2006.07965)
 
 ### そのほか
 
-* **Ryuichiro Hataya**, Hideki Nakayama, and Kazuki Yoshizoe, ["Graph Energy-based Model for Molecular Graph Generation."](https://openreview.net/forum?id=I2AD-xWJ2-J) *EBM Workshop at ICLR 2021*, 2021. (Peer Reviwed, Contributed Talk)
+* **Ryuichiro Hataya**, Hideki Nakayama, and Kazuki Yoshizoe, ["Graph Energy-based Model for Molecular Graph Generation."](https://openreview.net/forum?id=I2AD-xWJ2-J) *EBM Workshop at ICLR 2021*, 2021. (Peer Reviewed, Contributed Talk)
 * Kazuma Kobayashi, Ryuichiro Hataya, Yusuke Kurose, Tatsuya Harada, and Ryuji Hamamoto, "Decomposing Normal and Abnormal Features of Medical Images for Content-based Image Retrieval." *Machine Learning for Health Workshop at NeurIPS 2020*. (Peer Reviewed, Extended Abstract)
 * **Ryuichiro Hataya**, Kumiko Matsui, and Tomoki Karasawa, "Learning to Identify Large Fossils using Deep Convolutional Neural Networks", *Geological Society of America Abstracts with Programs*. Vol 52, No. 6, 2020.
 * **Ryuichiro Hataya**, and Nideki Nakayama, "Unifying semi-supervised and robust leaning by mixup." *Workshop on Learning from Limited Labeled Data at ICLR 2019*, 2019. (Peer Reviewed, Spotlight)
