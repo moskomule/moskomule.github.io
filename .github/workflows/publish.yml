@@ -21,7 +21,7 @@ jobs:
 
             - uses: actions/setup-node@v3
               with:
-                node-version: 12.x
+                node-version: 16.x
               
             - name: install dependencies
               run: npm install -g postcss-cli@9.1.0 autoprefixer@10.4.2
