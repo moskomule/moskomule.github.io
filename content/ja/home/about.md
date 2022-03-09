@@ -6,7 +6,7 @@ weight: 8
 
 東京大学大学院情報理工学系研究科の博士課程に在籍中です．理研AIP，[東京大学RIISE](riise.u-tokyo.ac.jp/)，[東京大学Beyond AI](https://beyondai.jp/)にも在籍しています．
 
-### 研究の興味
+### 研究の興味
 
 深層学習の研究を行っています．特に以下のトピックに興味があります．
 
@@ -17,6 +17,7 @@ weight: 8
 
 ### News
 
+* 3月10日に[ザッピングセミナー](https://zappingseminar.connpass.com/event/239765/)において発表を行います．
 * 12月2日に愛媛大学DS研究セミナーにおいて [深層学習とデータ拡張](https://www.cdse.ehime-u.ac.jp/) を発表します．
 * 10月1日からIIT（イタリア）を訪問しています.
 * "Meta Approach to Data Augmentation Optimization"がWACV2022に採択されました．
