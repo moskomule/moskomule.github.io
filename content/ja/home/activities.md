@@ -6,9 +6,11 @@ weight: 60
 
 ## 招待講演
 
-* 「深層学習とデータ拡張」，[愛媛大学DS研究セミナー](https://www.cdse.ehime-u.ac.jp/)，2021．
+* 「ベイズモデル選択による弱教師あり深層学習アルゴリズムのハイパーパラメータ最適化」, [ザッピングセミナー](https://zappingseminar.connpass.com/event/239765/), 2022.
+* 「深層学習とデータ拡張」, [愛媛大学DS研究セミナー](https://www.cdse.ehime-u.ac.jp/)，2021.
 * 「深層学習におけるデータ拡張の原理と最新動向」, Symposium on Sensing via Image Information, 2021.
 * 「深層学習を支えるデータ拡張」, [StatsML Symposium](https://sites.google.com/view/statsmlsymposium20/), 2020.
+* 「勾配降下法によるハイパーパラメータ最適化とデータ拡張戦略最適化への応用」, [ザッピングセミナー ](https://zappingseminar.connpass.com/event/189061/), 2020.
 
 ### 研究費
 
@@ -27,4 +29,4 @@ weight: 60
 * Meetup Chair of NeurIPS, 2021.
 * Organizer of NeurIPS meetup Japan & Women in ML, 2020.
 * Volunteer for ICML, and ICLR, 2020.
-* Reviewer for NeurIPS, ICCV, ICLR, CVPR 2019~.
+* Reviewer for NeurIPS, ICCV, ICLR, CVPR, ICML 2019~.

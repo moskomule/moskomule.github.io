@@ -6,9 +6,11 @@ weight: 60
 
 ### Invited Talks
 
+* "Bayesian Model Selection for Deep Learning" (in Japanese), Zapping Seminar, 2022.
 * "Data Augmentation for Deep Learning" (in Japanese), Ehime University DS Research Seminar, 2021.
 * "Data Augmentation for Deep Learning" (in Japanese), Symposium on Sensing via Image Information, 2021.
 * "Data Augmentation for Deep Learning" (in Japanese), StatsML Symposium, 2020.
+* "Gradient-based Hyperparameter Optimization" (in Japanese), Zapping Seminar, 2020.
 
 ### Research Grants
 
@@ -27,4 +29,4 @@ weight: 60
 * Meetup Chair of NeurIPS, 2021.
 * Organizer of NeurIPS meetup Japan & Women in ML, 2020.
 * Volunteer for ICML, and ICLR, 2020.
-* Reviewer for NeurIPS, ICCV, ICLR, CVPR 2019~.
+* Reviewer for NeurIPS, ICCV, ICLR, CVPR, ICML 2019~.
