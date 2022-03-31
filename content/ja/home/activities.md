@@ -4,7 +4,7 @@ image: "prague.png"
 weight: 60
 ---
 
-## 招待講演
+### 招待講演
 
 * 「ベイズモデル選択による弱教師あり深層学習アルゴリズムのハイパーパラメータ最適化」, [ザッピングセミナー](https://zappingseminar.connpass.com/event/239765/), 2022.
 * 「深層学習とデータ拡張」, [愛媛大学DS研究セミナー](https://www.cdse.ehime-u.ac.jp/)，2021.
