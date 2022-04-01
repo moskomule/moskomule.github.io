@@ -4,7 +4,7 @@ image: "profile.png"
 weight: 8
 ---
 
-東京大学大学院情報理工学系研究科の博士課程に在籍中です．理研AIP，[東京大学RIISE](riise.u-tokyo.ac.jp/)，[東京大学Beyond AI](https://beyondai.jp/)にも在籍しています．
+東京大学大学院情報理工学系研究科の博士課程（中山研）に在籍中です．情報理工学系卓越RA，理研AIPのRA，[東京大学Beyond AI](https://beyondai.jp/)の研究学生です．
 
 ### 研究の興味
 

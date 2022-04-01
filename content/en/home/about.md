@@ -4,7 +4,11 @@ image: "profile.png"
 weight: 8
 ---
 
-I am Ryuichiro Hataya, PhD student at UTokyo (Nakayama Lab), RA at RIKEN AIP (Harada team), [RIISE at UTokyo](riise.u-tokyo.ac.jp/), and [Beyond AI](https://beyondai.jp/) at UTokyo.
+I am Ryuichiro Hataya, 
+* PhD student at UTokyo (Nakayama Lab, Department of Creative Informatics at the graduate school of Information Scientce and Technology)
+* Excellent RA at IST@UTokyo
+* RA at RIKEN AIP (Harada team)
+* RA at [Beyond AI](https://beyondai.jp/)
 
 ### Research Interests
 
