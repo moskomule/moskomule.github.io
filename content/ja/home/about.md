@@ -17,7 +17,13 @@ weight: 8
 
 ### News
 
+#### 2022
+* 主著論文 "DJMix: Unsupervised Task-agnostic Image Augmentation for Improving Robustness of Convolutional Neural Networks
+" がIJCNN 2022に採択されました．
 * 3月10日に[ザッピングセミナー](https://zappingseminar.connpass.com/event/239765/)において発表を行います．
+
+#### 2021
+
 * 12月2日に愛媛大学DS研究セミナーにおいて [深層学習とデータ拡張](https://www.cdse.ehime-u.ac.jp/) を発表します．
 * 10月1日からIIT（イタリア）を訪問しています.
 * "Meta Approach to Data Augmentation Optimization"がWACV2022に採択されました．
@@ -30,8 +36,3 @@ weight: 8
 * 5月12日に理研AIPのセミナーにおいて[データ拡張についての発表](https://c5dc59ed978213830355fc8978.doorkeeper.jp/events/115877)を行います（発表は英語です）．
 * ["Graph Energy-based Model for Molecular Graph Generation"](https://openreview.net/forum?id=I2AD-xWJ2-J)がEBM Workshopにcontributed talkとして採択されました
 * NeurIPS 2021のMeetup Chairとなりました
-* 若手研究者海外挑戦プログラムに採択されました
-* 研究提案がマイクロソフトリサーチアジアと東京大学東京大学インクルーシブ工学連携研究機構に採択されました
-* NeurIPSの公式ミートアップ https://neuripsmeetupjapan.github.io/ を主催しました
-* 12/3の第5回 統計・機械学習若手シンポジウムにおいて「深層学習を支えるデータ拡張」を発表します．詳しくは[こちら](https://sites.google.com/view/statsmlsymposium20/)
-* 共著論文 "Decomposing Normal and Abnormal Features of Medical Images for Content-based Image Retrieval"がML4Hに採択されました

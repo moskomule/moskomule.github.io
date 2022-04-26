@@ -10,6 +10,7 @@ weight: 30
 
 ### Conference Papers (Peer-reviewed)
 
+* **Ryuichiro Hataya**, and Hideki Nakayama, "DJMix: Unsupervised Task-agnostic Image Augmentation for Improving Robustness of Convolutional Neural Networks," *International Joint Conference on Neural Networks*, 2022.
 * **Ryuichiro Hataya**, Jan Zdenek, Kazuki Yoshizoe, and Hideki Nakayama, ["Meta Approach to Data Augmentation Optimization."](https://openaccess.thecvf.com/content/WACV2022/papers/Hataya_Meta_Approach_to_Data_Augmentation_Optimization_WACV_2022_paper.pdf) *Winter Conference on Applications of Computer Vision*, 2022.
 * Taiga Kashima, **Ryuichiro Hataya**, and Hideki Nakayama, "Visualizing Association in Exemplar-based Classification." *International Conference on Acoustics, Speech, and Signal Processing*, 2021.
 * **Ryuichiro Hataya**, Jan Zdenek, Kazuki Yoshizoe, and Hideki Nakayama, ["Faster AutoAugment: Learning Augmentation Strategies using Backpropagation."](http://www.ecva.net/papers/eccv_2020/papers_ECCV/html/4830_ECCV_2020_paper.php) *European Conference on Computer Vision*, 2020.

@@ -19,6 +19,7 @@ I am Ryuichiro Hataya,
 
 ### News
 
+* Our paper "DJMix: Unsupervised Task-agnostic Image Augmentation for Improving Robustness of Convolutional Neural Networks" is accepted to IJCNN 2022.
 * I am visiting IIT (Genova, Italy) from October 1st.
 * Our paper "Meta Approach to Data Augmentation Optimization" is accepted to WACV 2022.
 * My research proposal has been accepted in JST's ACT-X.
