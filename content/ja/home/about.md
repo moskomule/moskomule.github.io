@@ -18,6 +18,8 @@ weight: 8
 ### News
 
 #### 2022
+
+* 7月8日からIIT(イタリア)を訪問します．
 * 主著論文 "DJMix: Unsupervised Task-agnostic Image Augmentation for Improving Robustness of Convolutional Neural Networks
 " がIJCNN 2022に採択されました．
 * 3月10日に[ザッピングセミナー](https://zappingseminar.connpass.com/event/239765/)において発表を行います．
