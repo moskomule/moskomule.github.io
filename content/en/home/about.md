@@ -21,6 +21,7 @@ I am Ryuichiro Hataya,
 
 #### 2022
 
+* I defended my PhD thesis.
 * I will visit IIT (Genova, Italy) from July 8th.
 * Our paper "DJMix: Unsupervised Task-agnostic Image Augmentation for Improving Robustness of Convolutional Neural Networks" is accepted to IJCNN 2022.
 
