@@ -4,7 +4,7 @@ image: "profile.png"
 weight: 8
 ---
 
-東京大学大学院情報理工学系研究科の博士課程（中山研）に在籍中です．情報理工学系卓越RA，理研AIPのRA，[東京大学Beyond AI](https://beyondai.jp/)の研究学生です．
+博士（情報理工学）
 
 ### 研究の興味
 
@@ -19,6 +19,7 @@ weight: 8
 
 #### 2022
 
+* 東京大学大学院情報理工学系研究科を修了し、博士（情報理工学）を授与されました．
 * 7月8日からIIT(イタリア)を訪問します．
 * 主著論文 "DJMix: Unsupervised Task-agnostic Image Augmentation for Improving Robustness of Convolutional Neural Networks
 " がIJCNN 2022に採択されました．

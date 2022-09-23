@@ -4,11 +4,7 @@ image: "profile.png"
 weight: 8
 ---
 
-I am Ryuichiro Hataya, 
-* PhD student at UTokyo (Nakayama Lab, Department of Creative Informatics at the graduate school of Information Scientce and Technology)
-* Excellent RA at IST@UTokyo
-* RA at RIKEN AIP (Harada team)
-* RA at [Beyond AI](https://beyondai.jp/)
+I am Ryuichiro Hataya, PhD (Information Science and Technology)
 
 ### Research Interests
 
@@ -21,6 +17,7 @@ I am Ryuichiro Hataya,
 
 #### 2022
 
+* I recieved a doctal degree as a representative student of the graduate school of Information Science and Techonology, UTokyo.
 * I defended my PhD thesis.
 * I will visit IIT (Genova, Italy) from July 8th.
 * Our paper "DJMix: Unsupervised Task-agnostic Image Augmentation for Improving Robustness of Convolutional Neural Networks" is accepted to IJCNN 2022.
