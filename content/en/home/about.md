@@ -4,7 +4,10 @@ image: "profile.png"
 weight: 8
 ---
 
-I am Ryuichiro Hataya, PhD (Information Science and Technology), a postdoctoral researcher at RIKEN Advanced Data Science Project.
+I am Ryuichiro Hataya, PhD (Information Science and Technology).
+
+* Postdoctoral researcher @ RIKEN Advanced Data Science Project
+* Visiting research @ International Center for Elementary Particle Physics, UTokyo
 
 ### Research Interests
 
