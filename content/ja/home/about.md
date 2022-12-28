@@ -14,21 +14,24 @@ weight: 8
 
 深層学習の研究を行っています．特に以下のトピックに興味があります．
 
-* 弱ラベルからの学習
-* メタ学習
-* Energy-based Models
-* 深層学習の応用（医用画像・古生物学・化学）
+* 弱ラベルからの学習とデータ拡張
+* 勾配法による二重最適化
+* Energy-based models
+* 機械学習の応用（医用画像・古生物学・化学・物理学など）
 
 ### News
 
 #### 2022
 
+* 理化学研究所の特別研究員となりました．
 * 東京大学大学院情報理工学系研究科を修了し、博士（情報理工学）を授与されました．
 * 7月8日からIIT(イタリア)を訪問します．
 * 主著論文 "DJMix: Unsupervised Task-agnostic Image Augmentation for Improving Robustness of Convolutional Neural Networks
 " がIJCNN 2022に採択されました．
 * 3月10日に[ザッピングセミナー](https://zappingseminar.connpass.com/event/239765/)において発表を行います．
 
+<details>
+<summary>昔の話</summary>
 #### 2021
 
 * 12月2日に愛媛大学DS研究セミナーにおいて [深層学習とデータ拡張](https://www.cdse.ehime-u.ac.jp/) を発表します．
@@ -43,3 +46,4 @@ weight: 8
 * 5月12日に理研AIPのセミナーにおいて[データ拡張についての発表](https://c5dc59ed978213830355fc8978.doorkeeper.jp/events/115877)を行います（発表は英語です）．
 * 主著論文 ["Graph Energy-based Model for Molecular Graph Generation"](https://openreview.net/forum?id=I2AD-xWJ2-J)がEBM Workshopにcontributed talkとして採択されました
 * NeurIPS 2021のMeetup Chairとなりました
+</details>
