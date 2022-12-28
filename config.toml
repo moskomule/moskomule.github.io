@@ -64,6 +64,10 @@ DefaultContentLanguage           = "en"                    # Default language fo
     noClasses = true
     style = "monokailight"
     tabWidth = 4
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
 
 # If you don't want to use the default menu, you can define one by yourself
 # [[menu.main]]
