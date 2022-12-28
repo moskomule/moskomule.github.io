@@ -32,6 +32,7 @@ weight: 8
 
 <details>
 <summary>昔の話</summary>
+
 #### 2021
 
 * 12月2日に愛媛大学DS研究セミナーにおいて [深層学習とデータ拡張](https://www.cdse.ehime-u.ac.jp/) を発表します．
@@ -46,4 +47,5 @@ weight: 8
 * 5月12日に理研AIPのセミナーにおいて[データ拡張についての発表](https://c5dc59ed978213830355fc8978.doorkeeper.jp/events/115877)を行います（発表は英語です）．
 * 主著論文 ["Graph Energy-based Model for Molecular Graph Generation"](https://openreview.net/forum?id=I2AD-xWJ2-J)がEBM Workshopにcontributed talkとして採択されました
 * NeurIPS 2021のMeetup Chairとなりました
+
 </details>

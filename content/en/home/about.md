@@ -29,6 +29,7 @@ I am Ryuichiro Hataya, PhD (Information Science and Technology).
 
 <details>
 <summary>older news</summary>
+
 #### 2021
 
 * I visited IIT (Genova, Italy) from October 1st to December 17th.
@@ -42,4 +43,5 @@ I am Ryuichiro Hataya, PhD (Information Science and Technology).
 * My research proposals have been accepted by Microsoft Research Asia, and RIISE at UTokyo.
 * We organized a NeurIPS meetup and Women in ML in Japan: https://neuripsmeetupjapan.github.io.
 * Our paper "Decomposing Normal and Abnormal Features of Medical Images for Content-based Image Retrieval" is accepted at ML4H 2020.
+
 </details>
