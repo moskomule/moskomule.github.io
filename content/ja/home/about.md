@@ -14,12 +14,17 @@ weight: 8
 
 深層学習の研究を行っています．特に以下のトピックに興味があります．
 
-* 弱ラベルからの学習とデータ拡張
-* 勾配法による二重最適化
+* 勾配法によるハイパーパラメータ最適化
+* 作用素論的機械学習
 * Energy-based models
 * 機械学習の応用（医用画像・古生物学・化学・物理学など）
 
 ### News
+
+#### 2023
+
+* 3月にEPFL CIS・Fraunhofer IISを訪問します．
+* 主著論文 "Nyström Method for Accurate and Scalable Implicit Differentiation" がAISTATS 2023に採択されました．京大・山田先生との共著です．
 
 #### 2022
 

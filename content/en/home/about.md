@@ -12,12 +12,17 @@ I am Ryuichiro Hataya, PhD (Information Science and Technology).
 
 ### Research Interests
 
-* Weakly-supervised learning and data augmentation
-* Gradient-based bilevel optimization
+* Gradient-based hyperparameter optimization
+* Operator-theoretic machine learning
 * Energy-based models
 * Application of machine learning (medical imaging, palaeontology, chemistry, physics, etc.)
 
 ### News
+
+#### 2023
+
+* I will visit EPFL CIS and Fraunhofer IIS from 8th to 15th March 2023.
+* Our paper "Nyström Method for Accurate and Scalable Implicit Differentiation" has been accepted at AISTATS 2023.
 
 #### 2022
 
