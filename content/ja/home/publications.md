@@ -10,7 +10,7 @@ weight: 30
 
 ### 査読あり会議論文
 
-* **Ryuichiro Hataya**, and Makoto Yamada, "Nyström Method for Accurate and Scalable Implicit Differentiation," *International Conference on Artificial Intelligence and Statistics*, Spain, 2023.
+* **Ryuichiro Hataya**, and Makoto Yamada, "[Nyström Method for Accurate and Scalable Implicit Differentiation](https://arxiv.org/abs/2302.09726)," *International Conference on Artificial Intelligence and Statistics*, Spain, 2023.
 * **Ryuichiro Hataya**, and Hideki Nakayama, "DJMix: Unsupervised Task-agnostic Image Augmentation for Improving Robustness of Convolutional Neural Networks," *International Joint Conference on Neural Networks*, 2022.
 * **Ryuichiro Hataya**, Jan Zdenek, Kazuki Yoshizoe, and Hideki Nakayama, ["Meta Approach to Data Augmentation Optimization."](https://openaccess.thecvf.com/content/WACV2022/papers/Hataya_Meta_Approach_to_Data_Augmentation_Optimization_WACV_2022_paper.pdf) *Winter Conference on Applications of Computer Vision*, 2022.
 * Taiga Kashima, **Ryuichiro Hataya**, and Hideki Nakayama, "Visualizing Association in Exemplar-based Classification." *International Conference on Acoustics, Speech, and Signal Processing*, 2021.
