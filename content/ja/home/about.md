@@ -23,7 +23,9 @@ weight: 8
 
 #### 2023
 
+* 4月にVietnam Institute for Advanced Study in Mathematicsを訪問します．
 * 3月にEPFL CIS・Fraunhofer IISを訪問します．
+* 第4回理研AIP数学系合同セミナーに参加しました．
 * 主著論文 "Nyström Method for Accurate and Scalable Implicit Differentiation" がAISTATS 2023に採択されました．京大・山田先生との共著です．
 
 #### 2022

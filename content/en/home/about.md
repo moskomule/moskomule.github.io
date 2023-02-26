@@ -21,7 +21,8 @@ I am Ryuichiro Hataya, PhD (Information Science and Technology).
 
 #### 2023
 
-* I will visit EPFL CIS and Fraunhofer IIS from 8th to 15th March 2023.
+* I will visit Vietnam Institute for Advanced Study in Mathematics in April.
+* I will visit EPFL CIS (Switzerland) and Fraunhofer IIS (Germany) from 8th to 15th March 2023.
 * Our paper "Nyström Method for Accurate and Scalable Implicit Differentiation" has been accepted at AISTATS 2023.
 
 #### 2022
