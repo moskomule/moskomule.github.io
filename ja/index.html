@@ -2,7 +2,7 @@
 <html lang="ja">
 
     <head>
-	<meta name="generator" content="Hugo 0.110.0">
+	<meta name="generator" content="Hugo 0.111.1">
         <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="chrome=1">
 <meta name="HandheldFriendly" content="True">
@@ -65,6 +65,10 @@
         ['$', '$'],
         ['\\(', '\\)']
       ],
+      macros: {
+        argmax: "\\DeclareMathOperator*{\\argmax}{argmax}",
+        argmin: "\\DeclareMathOperator*{\\argmin}{argmin}"
+      },
       tags: 'ams'
     }
   };
@@ -367,12 +371,12 @@
         <h2 class="title is-2 has-text-centered">最新の記事</h2>
         
         <div class="summary">
-            Feb 4, 2022
-            <h3 class="title is-3 latest-post-title"><a href="https://mosko.tokyo/ja/blog/how_to_write_research_proposals/">研究提案書の書き方</a></h3>
+            Mar 1, 2023
+            <h3 class="title is-3 latest-post-title"><a href="https://mosko.tokyo/ja/blog/aistats2023_ja/">ヘッセ行列の低ランク近似を用いた勾配法によるハイパーパラメータ最適化方法の提案</a></h3>
             <div class="markdown">
-                本記事は第6回 統計・機械学習若手シンポジウム 日本の博士課程〜若手シンポジウム’21 カウントダウンカレンダー〜のために執筆しました。
+                本研究ではヘッセ行列を低ランク近似することで，勾配法を用いたハイパーパラメータ最適化が効率的に行えることを示しました． 実験的にはこの方法は設定の差異に対して鈍感であり，応用上使いやすいと期待されます．
                 
-                <a href="https://mosko.tokyo/ja/blog/how_to_write_research_proposals/">つづきを読む</a>
+                <a href="https://mosko.tokyo/ja/blog/aistats2023_ja/">つづきを読む</a>
                 
             </div>
         </div>

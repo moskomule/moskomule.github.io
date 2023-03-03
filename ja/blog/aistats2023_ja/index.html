@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta name="description" content="幡谷龍一郎のページ">
+<title>
+ヘッセ行列の低ランク近似を用いた勾配法によるハイパーパラメータ最適化方法の提案 - 幡谷龍一郎のページ
+</title>
+
+
+
+        
+        <meta property="og:title" content="ヘッセ行列の低ランク近似を用いた勾配法によるハイパーパラメータ最適化方法の提案 - 幡谷龍一郎のページ" />
+<meta property="og:type" content="website" />
+<meta property="og:description" content="幡谷龍一郎のページ"/>
+<meta property="og:url" content="https://mosko.tokyo/ja/blog/aistats2023_ja/"/>
+<meta property="og:site_name" content="幡谷龍一郎のページ"/>
+
+
+
+
+<meta property="og:image" content="https://mosko.tokyo/ja/home/bird.png"/>
+
+<meta property="og:image" content="https://mosko.tokyo/ja/home/prague.png"/>
+
+<meta property="og:image" content="https://mosko.tokyo/ja/home/profile.png"/>
+
+
+
+
+        
+<link rel="shortcut icon" href="/img/fav.ico">
+
+
+        
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.min.36f9d8263432beffbd6094f57fb28719ed0c231274aff928d0a0f8820a88d26f.css" integrity="sha256-NvnYJjQyvv&#43;9YJT1f7KHGe0MIxJ0r/ko0KD4ggqI0m8="
+  crossorigin="anonymous" media="screen">
+
+
+
+
+<link rel="stylesheet" href="/css/custom.css" integrity="" crossorigin="anonymous"
+  media="screen">
+
+
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [
+        ['$', '$'],
+        ['\\(', '\\)']
+      ],
+      macros: {
+        argmax: "\\DeclareMathOperator*{\\argmax}{argmax}",
+        argmin: "\\DeclareMathOperator*{\\argmin}{argmin}"
+      },
+      tags: 'ams'
+    }
+  };
+</script>
+        
+        
+        
+        
+    </head>
+    <body>
+        <section id="top" class="section">
+            
+            <div class="container hero ">
+                
+
+<h1 class="bold-title is-1">記事</h1>
+
+
+            </div>
+            
+            <div class="section ">
+                
+<div class="container">
+    <hr>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        
+        <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false" >
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+        <div class="navbar-menu " id="navMenu">
+            
+            
+            
+            
+            <a class="navbar-item" href="/ja/">メインページ</a>
+            
+
+            
+            
+
+            
+                
+            
+
+            
+                
+            
+
+            
+            
+            
+            <a class="navbar-item" href="/ja/#about">プロフィール</a>
+            
+            
+            
+            
+            
+                
+                
+                
+                
+                  <a class="navbar-item" href="https://mosko.tokyo/ja/projects/">
+                  
+                  
+                  研究概要
+                  
+                  
+                  </a>
+                
+                
+            
+            
+            
+            
+            
+                
+                
+                
+                
+                  <a class="navbar-item" href="https://mosko.tokyo/ja/blog/">
+                  
+                  記事に戻る
+                  
+                  </a>
+                
+                
+            
+            
+            
+            
+            
+            <a class="navbar-item" href="/ja/#publications">論文など</a>
+            
+            
+            
+            
+            
+            <a class="navbar-item" href="/ja/#activities">研究活動</a>
+            
+            
+            
+            
+
+            
+            
+            
+
+            
+            
+            
+            
+            <a class="navbar-item" href="https://mosko.tokyo/">English</a>
+            
+            
+
+            
+            
+        </div>
+    </nav>
+    <hr>
+</div>
+
+
+
+                
+<div class="container">
+    <h2 class="title is-1 top-pad strong-post-title">
+        <a href="https://mosko.tokyo/ja/blog/aistats2023_ja/">ヘッセ行列の低ランク近似を用いた勾配法によるハイパーパラメータ最適化方法の提案</a>
+    </h2>
+    
+    <div class="post-data">
+        Mar 1, 2023
+        
+         | 
+        約1分で読めます
+        
+    </div>
+    
+    <div class="blog-share">
+        記事を共有する:
+        
+        <a class="twitter-share-button"
+            href="https://twitter.com/intent/tweet?text=%e3%83%98%e3%83%83%e3%82%bb%e8%a1%8c%e5%88%97%e3%81%ae%e4%bd%8e%e3%83%a9%e3%83%b3%e3%82%af%e8%bf%91%e4%bc%bc%e3%82%92%e7%94%a8%e3%81%84%e3%81%9f%e5%8b%be%e9%85%8d%e6%b3%95%e3%81%ab%e3%82%88%e3%82%8b%e3%83%8f%e3%82%a4%e3%83%91%e3%83%bc%e3%83%91%e3%83%a9%e3%83%a1%e3%83%bc%e3%82%bf%e6%9c%80%e9%81%a9%e5%8c%96%e6%96%b9%e6%b3%95%e3%81%ae%e6%8f%90%e6%a1%88%20https%3a%2f%2fmosko.tokyo%2fja%2fblog%2faistats2023_ja%2f"
+            onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+            <i class="fab fa-twitter"></i>
+            <span class="hidden">Twitter</span>
+        </a>
+        
+        
+        <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fmosko.tokyo%2fja%2fblog%2faistats2023_ja%2f"
+            onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+            <i class="fab fa-facebook-f"></i>
+            <span class="hidden">Facebook</span>
+        </a>
+        
+        
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <p>
+        Tags:
+        
+        <a href="/ja/tags/%E7%A0%94%E7%A9%B6">
+            研究</a>
+        
+    </p>
+    
+    
+    
+    
+</div>
+
+<div class="container markdown top-pad">
+    <p>本研究ではヘッセ行列を低ランク近似することで，勾配法を用いたハイパーパラメータ最適化が効率的に行えることを示しました．
+実験的にはこの方法は設定の差異に対して鈍感であり，応用上使いやすいと期待されます．</p>
+<p>以下のようなハイパーパラメータ最適化を考えます．</p>
+<p>[ \min_\phi g(\theta^\ast, \phi)\quad\text{s.t.}\quad \theta^\ast\in\argmin_\theta f(\theta, \phi) ]</p>
+<p>ここで$f, g$は訓練損失，評価損失，$\theta, \phi$はモデルパラメータ，ハイパーパラメータで，右側がモデルの最適化，左側がハイパーパラメータの最適化を表しています．
+このような問題は機械学習の実用においてはしばしば現れ，通常 $\phi$ の最適化はブラックボックス最適化によりますが，例えばベイズ最適化は $\phi$ の次元が高くなると効率が極端に低下します．
+一部の問題ではハイパーパラメータの勾配（超勾配） $\nabla_\phi g$ を得ることができ，ハイパーパラメータ最適化を勾配法によって実現できます．</p>
+<p>この超勾配は $\nabla_{\theta} f= 0$ 周辺では陰関数微分を用いて</p>
+<p>[ \frac{\partial g}{\partial \phi}=\frac{\partial g}{\partial \theta}\left(\frac{\partial^2 f}{\partial \theta^2}\right)^{-1}\frac{\partial^ g}{\partial \theta \partial \phi}+\frac{\partial g}{\partial \phi} ]</p>
+<p>と表現することができます．
+ヘッセ行列 $\frac{\partial^2 f}{\partial \theta^2}$ が現れますが，特にニューラルネットワークを考える場合にはヘッセ行列がパラメータ数の2乗個の要素を持つことになり，比較的小さなニューラルネットワークであってもメモリに保持できないほど大きくなってしまいます．
+ヘッセ行列の逆行列であれば当然計算が困難です．
+ここでヘッセ行列の逆行列自体は必要ではなく，ヘッセ行列の逆行列のベクトル積（<strong>i</strong>nverse <strong>H</strong>essian-<strong>v</strong>ector <strong>p</strong>roduct）だけが必要なことに着目し，ヘッセ行列のベクトル積（Hessian-vector product）を組み合わせてIHVPの近似を図ります．
+なお，HVPは最近の自動微分ライブラリ（PyTorchやJAX）などではニューラルネットワークの評価程度の計算コストで得ることができます．</p>
+<p>既存法では逐次的な近似方法を用いていました．
+共役勾配法は正定値行列 $A$ に対して $\argmin_v|Av-x|$ を逐次計算し $v=A^{-1}x$ を近似します．
+ノイマン級数法による近似では正定値行列 $|A|&lt;1$ に対して $A^{-1}=I+A+A^2+\cdots$ を用いています．
+共役勾配法は悪条件の行列の場合に収束が遅いことが知られており，ノイマン級数法はノルムを抑える必要があります．</p>
+<p>本研究ではヘッセ行列を低ランク近似することでIHVPを効率的に計算します．
+ニューラルネットワークのヘッセ行列では0に近い固有値が圧倒的多数で，大きな固有値が少ないため，低ランクだと思えば相性が良いと思われます．
+低ランク近似にはNyström法を用い，適当に選んだヘッセ行列の列のインデックス集合を $K$として，</p>
+<p>[ H\approx H_k=H_{[:,K]}H_{[K,K]}^{-1}H_{[:,K]}^\top ]</p>
+<p>とします．ここで $H_{[:,K]}$ はヘッセ行列の $K$ に対応する列を抽出したものです．
+$H_k$ は低ランクで逆行列が存在しないため，対角成分に $\rho$ を足します．
+するとWoodburyの行列恒等式が使えて，適当なベクトル $v$ に対するIHVPは</p>
+<p>[ (\rho I+H_{[:, K]}H_{[K, K]}^{-1}H_{[:, K]}^\top)^{-1}v = \frac{1}{\rho}v-\frac{1}{\rho^2}H_{[:, K]}\left(H_{[K,K]}+\frac{1}{\rho}H_{[:, K]}^\top H_{[:, K]}\right)^{-1}H_{[:, K]}^\top v ]</p>
+<p>と表すことができます．
+右辺では $k\times k$ 行列の逆行列が必要となりますが， $k\ll p$ なのでこれは簡単に得られます．
+またこの右辺には逐次的な計算が含まれないので，GPU上では高速に計算が可能です．</p>
+
+</div>
+
+
+
+
+
+                
+                <div class="container">
+    <hr>
+</div>
+<div class="container has-text-centered top-pad">
+    <a href="#top">
+        <i class="fa fa-arrow-up"></i>
+    </a>
+</div>
+
+<div class="container">
+    <hr>
+</div>
+
+                <div class="section" id="footer">
+    <div class="container has-text-centered">
+    
+        2019-2022 Ryuichiro Hataya · Powered by <a href="https://gohugo.io">hugo</a> with <a href="https://github.com/victoriadrake/hugo-theme-introduction">Introduction</a>
+    
+    </div>
+</div>
+
+                
+            </div>
+        </section>
+        
+        
+
+
+<script src="https://mosko.tokyo/js/bundle.5c23c0437f001a469ca373a465a6f7487203d18e10cdff76d86a60af66d5ee28.js" integrity="sha256-XCPAQ38AGkaco3OkZab3SHID0Y4Qzf922Gpgr2bV7ig="></script>
+
+
+
+
+
+
+        
+        
+        
+        
+    </body>
+</html>

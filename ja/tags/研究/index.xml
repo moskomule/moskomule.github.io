@@ -6,7 +6,16 @@
     <description>Recent content in 研究 on 幡谷龍一郎のページ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Fri, 04 Feb 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://mosko.tokyo/ja/tags/%E7%A0%94%E7%A9%B6/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 01 Mar 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://mosko.tokyo/ja/tags/%E7%A0%94%E7%A9%B6/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ヘッセ行列の低ランク近似を用いた勾配法によるハイパーパラメータ最適化方法の提案</title>
+      <link>https://mosko.tokyo/ja/blog/aistats2023_ja/</link>
+      <pubDate>Wed, 01 Mar 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://mosko.tokyo/ja/blog/aistats2023_ja/</guid>
+      <description>本研究ではヘッセ行列を低ランク近似することで，勾配法を用いたハイパーパラメータ最適化が効率的に行えることを示しました． 実験的にはこの方法は設定の差異に対して鈍感であり，応用上使いやすいと期待されます．</description>
+    </item>
+    
     <item>
       <title>研究提案書の書き方</title>
       <link>https://mosko.tokyo/ja/blog/how_to_write_research_proposals/</link>
