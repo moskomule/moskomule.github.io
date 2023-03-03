@@ -9,7 +9,7 @@ tags: ["研究"]
 
 以下のようなハイパーパラメータ最適化を考えます．
 
-\[ \min_\phi g(\theta^\ast, \phi)\quad\text{s.t.}\quad \theta^\ast\in\argmin_\theta f(\theta, \phi) \]
+\\[ \min_\phi g(\theta^\ast, \phi)\quad\text{s.t.}\quad \theta^\ast\in\argmin_\theta f(\theta, \phi) \\]
 
 ここで$f, g$は訓練損失，評価損失，$\theta, \phi$はモデルパラメータ，ハイパーパラメータで，右側がモデルの最適化，左側がハイパーパラメータの最適化を表しています．
 このような問題は機械学習の実用においてはしばしば現れ，通常 $\phi$ の最適化はブラックボックス最適化によりますが，例えばベイズ最適化は $\phi$ の次元が高くなると効率が極端に低下します．
@@ -17,7 +17,7 @@ tags: ["研究"]
 
 この超勾配は $\nabla_{\theta} f= 0$ 周辺では陰関数微分を用いて
 
-\[ \frac{\partial g}{\partial \phi}=\frac{\partial g}{\partial \theta}\left(\frac{\partial^2 f}{\partial \theta^2}\right)^{-1}\frac{\partial^ g}{\partial \theta \partial \phi}+\frac{\partial g}{\partial \phi} \]
+\\[ \frac{\partial g}{\partial \phi}=\frac{\partial g}{\partial \theta}\left(\frac{\partial^2 f}{\partial \theta^2}\right)^{-1}\frac{\partial^ g}{\partial \theta \partial \phi}+\frac{\partial g}{\partial \phi} \\]
 
 と表現することができます．
 ヘッセ行列 $\frac{\partial^2 f}{\partial \theta^2}$ が現れますが，特にニューラルネットワークを考える場合にはヘッセ行列がパラメータ数の2乗個の要素を持つことになり，比較的小さなニューラルネットワークであってもメモリに保持できないほど大きくなってしまいます．
@@ -34,13 +34,13 @@ tags: ["研究"]
 ニューラルネットワークのヘッセ行列では0に近い固有値が圧倒的多数で，大きな固有値が少ないため，低ランクだと思えば相性が良いと思われます．
 低ランク近似にはNyström法を用い，適当に選んだヘッセ行列の列のインデックス集合を $K$として，
 
-\[ H\approx H_k=H_{[:,K]}H_{[K,K]}^{-1}H_{[:,K]}^\top \]
+\\[ H\approx H_k=H_{[:,K]}H_{[K,K]}^{-1}H_{[:,K]}^\top \\]
 
 とします．ここで $H_{[:,K]}$ はヘッセ行列の $K$ に対応する列を抽出したものです．
 $H_k$ は低ランクで逆行列が存在しないため，対角成分に $\rho$ を足します．
 するとWoodburyの行列恒等式が使えて，適当なベクトル $v$ に対するIHVPは
 
-\[ (\rho I+H_{[:, K]}H_{[K, K]}^{-1}H_{[:, K]}^\top)^{-1}v = \frac{1}{\rho}v-\frac{1}{\rho^2}H_{[:, K]}\left(H_{[K,K]}+\frac{1}{\rho}H_{[:, K]}^\top H_{[:, K]}\right)^{-1}H_{[:, K]}^\top v \]
+\\[ (\rho I+H_{[:, K]}H_{[K, K]}^{-1}H_{[:, K]}^\top)^{-1}v = \frac{1}{\rho}v-\frac{1}{\rho^2}H_{[:, K]}\left(H_{[K,K]}+\frac{1}{\rho}H_{[:, K]}^\top H_{[:, K]}\right)^{-1}H_{[:, K]}^\top v \\]
 
 と表すことができます．
 右辺では $k\times k$ 行列の逆行列が必要となりますが， $k\ll p$ なのでこれは簡単に得られます．
