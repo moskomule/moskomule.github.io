@@ -40,7 +40,7 @@ tags: ["研究"]
 $H_k$ は低ランクで逆行列が存在しないため，対角成分に $\rho$ を足します．
 するとWoodburyの行列恒等式が使えて，適当なベクトル $v$ に対するIHVPは
 
-\[(\rho I+H_{[:, K]}H_{[K, K]}^{-1}H_{[:, K]}^\top)^{-1}v = \frac{1}{\rho}v-\frac{1}{\rho^2}H_{[:, K]}\left(H_{[K,K]}+\frac{1}{\rho}H_{[:, K]}^\top H_{[:, K]}\right)^{-1}H_{[:, K]}^\top v \]
+\[ (\rho I+H_{[:, K]}H_{[K, K]}^{-1}H_{[:, K]}^\top)^{-1}v = \frac{1}{\rho}v-\frac{1}{\rho^2}H_{[:, K]}\left(H_{[K,K]}+\frac{1}{\rho}H_{[:, K]}^\top H_{[:, K]}\right)^{-1}H_{[:, K]}^\top v \]
 
 と表すことができます．
 右辺では $k\times k$ 行列の逆行列が必要となりますが， $k\ll p$ なのでこれは簡単に得られます．
