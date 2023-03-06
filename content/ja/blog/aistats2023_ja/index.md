@@ -23,7 +23,7 @@ $$ \min_\phi g(\theta^\ast, \phi)\quad\text{s.t.}\quad \theta^\ast\in\argmin_\th
 
 この超勾配は $\nabla_{\theta} f= 0$ 周辺では陰関数微分を用いて
 
-$$ \frac{\partial g}{\partial \phi}=\frac{\partial g}{\partial \theta}\left(\frac{\partial^2 f}{\partial \theta^2}\right)^{-1}\frac{\partial^ g}{\partial \theta \partial \phi}+\frac{\partial g}{\partial \phi} $$
+$$ \frac{\mathrm{d} g}{\mathrm{d} \phi}=\frac{\partial g}{\partial \theta}\left(\frac{\partial^2 f}{\partial \theta^2}\right)^{-1}\frac{\partial^ g}{\partial \theta \partial \phi}+\frac{\partial g}{\partial \phi} $$
 
 と表現することができます．
 ヘッセ行列 $\displaystyle H=\frac{\partial^2 f}{\partial \theta^2}$ が現れますが，特にニューラルネットワークを考える場合にはヘッセ行列がパラメータ数の2乗個の要素を持つことになり，比較的小さなニューラルネットワークであってもメモリに保持できないほど大きくなってしまいます．
@@ -59,7 +59,7 @@ $$ (\rho I+H_{[:, K]}H_{[K, K]}^{-1}H_{[:, K]}^\top)^{-1}v = \frac{1}{\rho}v-\fr
 
 提案法は，こうして得られたIHVPによって超勾配を
 
-$$ \frac{\partial g}{\partial \phi}\approx\frac{\partial g}{\partial \theta}\left(\rho I+H_{[:, K]}H_{[K, K]}^{-1}H_{[:, K]}^\top\right)^{-1}\frac{\partial^ g}{\partial \theta \partial \phi}+\frac{\partial g}{\partial \phi} $$
+$$ \frac{\mathrm{d} g}{\mathrm{d} \phi}\approx\frac{\partial g}{\partial \theta}\left(\rho I+H_{[:, K]}H_{[K, K]}^{-1}H_{[:, K]}^\top\right)^{-1}\frac{\partial^ g}{\partial \theta \partial \phi}+\frac{\partial g}{\partial \phi} $$
 
 と近似して用います．
 
