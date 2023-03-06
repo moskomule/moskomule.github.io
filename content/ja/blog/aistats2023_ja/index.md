@@ -26,7 +26,7 @@ $$ \min_\phi g(\theta^\ast, \phi)\quad\text{s.t.}\quad \theta^\ast\in\argmin_\th
 $$ \frac{\partial g}{\partial \phi}=\frac{\partial g}{\partial \theta}\left(\frac{\partial^2 f}{\partial \theta^2}\right)^{-1}\frac{\partial^ g}{\partial \theta \partial \phi}+\frac{\partial g}{\partial \phi} $$
 
 と表現することができます．
-ヘッセ行列 $\frac{\partial^2 f}{\partial \theta^2}$ が現れますが，特にニューラルネットワークを考える場合にはヘッセ行列がパラメータ数の2乗個の要素を持つことになり，比較的小さなニューラルネットワークであってもメモリに保持できないほど大きくなってしまいます．
+ヘッセ行列 $\displaystyle H=\frac{\partial^2 f}{\partial \theta^2}$ が現れますが，特にニューラルネットワークを考える場合にはヘッセ行列がパラメータ数の2乗個の要素を持つことになり，比較的小さなニューラルネットワークであってもメモリに保持できないほど大きくなってしまいます．
 その逆行列となれば当然計算が困難です．
 
 ここでヘッセ行列の逆行列自体は必要ではなく，ヘッセ行列の逆行列のベクトル積（**i**nverse **H**essian-**v**ector **p**roduct）だけが必要なことに着目し，ヘッセ行列のベクトル積（**H**essian-**v**ector **p**roduct）を組み合わせてIHVPの近似を図ります．
