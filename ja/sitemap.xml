@@ -27,6 +27,19 @@
                 href="https://mosko.tokyo/ja/blog/"
                 />
   </url><url>
+    <loc>https://mosko.tokyo/ja/</loc>
+    <lastmod>2023-03-01T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://mosko.tokyo/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="https://mosko.tokyo/ja/"
+                />
+  </url><url>
     <loc>https://mosko.tokyo/ja/tags/</loc>
     <lastmod>2023-03-01T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -45,19 +58,6 @@
   </url><url>
     <loc>https://mosko.tokyo/ja/tags/%E7%A0%94%E7%A9%B6/</loc>
     <lastmod>2023-03-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mosko.tokyo/ja/</loc>
-    <lastmod>2023-03-01T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://mosko.tokyo/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ja"
-                href="https://mosko.tokyo/ja/"
-                />
   </url><url>
     <loc>https://mosko.tokyo/ja/blog/how_to_write_research_proposals/</loc>
     <lastmod>2022-02-04T00:00:00+00:00</lastmod>
