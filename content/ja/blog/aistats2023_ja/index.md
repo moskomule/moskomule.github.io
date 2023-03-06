@@ -11,7 +11,7 @@ tags: ["研究"]
 
 ---
 
-$$ \DeclareMathOperator*{\argmax}{argmax} $$
+$$ \DeclareMathOperator*{\argmin}{argmin} $$
 
 以下のようなハイパーパラメータ最適化を考えます．
 
