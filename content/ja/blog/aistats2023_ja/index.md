@@ -101,5 +101,5 @@ $$ \frac{\partial g}{\partial \phi}\approx\frac{\partial g}{\partial \theta}\lef
 ```
 
 実験コードを整理したものを[ライブラリ](https://github.com/moskomule/hypergrad)として公開してみました．
-PyTorchの使える環境であれば，`pip install hypergrad`によってインストールして使うことができます．
+PyTorchのインストールされた環境であれば，`pip install hypergrad`ですぐに試すことができます．
 是非使ってみてください．
