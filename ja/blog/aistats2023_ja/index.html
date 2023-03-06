@@ -10,13 +10,13 @@
 <meta name="referrer" content="no-referrer">
 <meta name="description" content="...">
 <title>
-ヘッセ行列の低ランク近似を用いた勾配法によるハイパーパラメータ最適化方法の提案 - &hellip;
+ヘッセ行列の低ランク近似による，勾配法を用いたハイパーパラメータ最適化方法の提案 - &hellip;
 </title>
 
 
 
         
-        <meta property="og:title" content="ヘッセ行列の低ランク近似を用いた勾配法によるハイパーパラメータ最適化方法の提案 - &hellip;" />
+        <meta property="og:title" content="ヘッセ行列の低ランク近似による，勾配法を用いたハイパーパラメータ最適化方法の提案 - &hellip;" />
 <meta property="og:type" content="website" />
 <meta property="og:description" content="..."/>
 <meta property="og:url" content="https://mosko.tokyo/ja/blog/aistats2023_ja/"/>
@@ -202,7 +202,7 @@
                 
 <div class="container">
     <h2 class="title is-1 top-pad strong-post-title">
-        <a href="https://mosko.tokyo/ja/blog/aistats2023_ja/">ヘッセ行列の低ランク近似を用いた勾配法によるハイパーパラメータ最適化方法の提案</a>
+        <a href="https://mosko.tokyo/ja/blog/aistats2023_ja/">ヘッセ行列の低ランク近似による，勾配法を用いたハイパーパラメータ最適化方法の提案</a>
     </h2>
     
     <div class="post-data">
@@ -217,7 +217,7 @@
         記事を共有する:
         
         <a class="twitter-share-button"
-            href="https://twitter.com/intent/tweet?text=%e3%83%98%e3%83%83%e3%82%bb%e8%a1%8c%e5%88%97%e3%81%ae%e4%bd%8e%e3%83%a9%e3%83%b3%e3%82%af%e8%bf%91%e4%bc%bc%e3%82%92%e7%94%a8%e3%81%84%e3%81%9f%e5%8b%be%e9%85%8d%e6%b3%95%e3%81%ab%e3%82%88%e3%82%8b%e3%83%8f%e3%82%a4%e3%83%91%e3%83%bc%e3%83%91%e3%83%a9%e3%83%a1%e3%83%bc%e3%82%bf%e6%9c%80%e9%81%a9%e5%8c%96%e6%96%b9%e6%b3%95%e3%81%ae%e6%8f%90%e6%a1%88%20https%3a%2f%2fmosko.tokyo%2fja%2fblog%2faistats2023_ja%2f"
+            href="https://twitter.com/intent/tweet?text=%e3%83%98%e3%83%83%e3%82%bb%e8%a1%8c%e5%88%97%e3%81%ae%e4%bd%8e%e3%83%a9%e3%83%b3%e3%82%af%e8%bf%91%e4%bc%bc%e3%81%ab%e3%82%88%e3%82%8b%ef%bc%8c%e5%8b%be%e9%85%8d%e6%b3%95%e3%82%92%e7%94%a8%e3%81%84%e3%81%9f%e3%83%8f%e3%82%a4%e3%83%91%e3%83%bc%e3%83%91%e3%83%a9%e3%83%a1%e3%83%bc%e3%82%bf%e6%9c%80%e9%81%a9%e5%8c%96%e6%96%b9%e6%b3%95%e3%81%ae%e6%8f%90%e6%a1%88%20https%3a%2f%2fmosko.tokyo%2fja%2fblog%2faistats2023_ja%2f"
             onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
             <i class="fab fa-twitter"></i>
             <span class="hidden">Twitter</span>
@@ -264,6 +264,7 @@
 実験的にはこの方法は設定の差異に対して鈍感であり，応用上も使いやすいのではないかと期待しています．</p>
 <p><a href="https://arxiv.org/abs/2302.09726">本記事の元となっている論文</a>はOIST・京都大学・理研AIPの<a href="https://riken-yamada.github.io/profile.html">山田誠先生</a>との共著で，2023年4月にAISTATS 2023において発表を行う予定です．</p>
 <hr>
+<p>$$ \DeclareMathOperator*{\argmax}{argmax} $$</p>
 <p>以下のようなハイパーパラメータ最適化を考えます．</p>
 <p>$$ \min_\phi g(\theta^\ast, \phi)\quad\text{s.t.}\quad \theta^\ast\in\argmin_\theta f(\theta, \phi) $$</p>
 <p>ここで$f, g$は訓練損失，評価損失，$\theta, \phi$はモデルパラメータ，ハイパーパラメータで，右側がモデルの最適化，左側がハイパーパラメータの最適化を表しています．

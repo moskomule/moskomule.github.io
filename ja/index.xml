@@ -8,7 +8,7 @@
     <language>ja</language>
     <lastBuildDate>Wed, 01 Mar 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://mosko.tokyo/ja/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>ヘッセ行列の低ランク近似を用いた勾配法によるハイパーパラメータ最適化方法の提案</title>
+      <title>ヘッセ行列の低ランク近似による，勾配法を用いたハイパーパラメータ最適化方法の提案</title>
       <link>https://mosko.tokyo/ja/blog/aistats2023_ja/</link>
       <pubDate>Wed, 01 Mar 2023 00:00:00 +0000</pubDate>
       
