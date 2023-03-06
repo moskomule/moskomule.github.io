@@ -264,7 +264,7 @@
 実験的にはこの方法は設定の差異に対して鈍感であり，応用上も使いやすいのではないかと期待しています．</p>
 <p><a href="https://arxiv.org/abs/2302.09726">本記事の元となっている論文</a>はOIST・京都大学・理研AIPの<a href="https://riken-yamada.github.io/profile.html">山田誠先生</a>との共著で，2023年4月にAISTATS 2023において発表を行う予定です．</p>
 <hr>
-<p>$$ \DeclareMathOperator*{\argmax}{argmax} $$</p>
+<p>$$ \DeclareMathOperator*{\argmin}{argmin} $$</p>
 <p>以下のようなハイパーパラメータ最適化を考えます．</p>
 <p>$$ \min_\phi g(\theta^\ast, \phi)\quad\text{s.t.}\quad \theta^\ast\in\argmin_\theta f(\theta, \phi) $$</p>
 <p>ここで$f, g$は訓練損失，評価損失，$\theta, \phi$はモデルパラメータ，ハイパーパラメータで，右側がモデルの最適化，左側がハイパーパラメータの最適化を表しています．
