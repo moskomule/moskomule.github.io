@@ -260,35 +260,108 @@
 </div>
 
 <div class="container markdown top-pad">
-    <p>本研究ではヘッセ行列を低ランク近似することで，勾配法を用いたハイパーパラメータ最適化が効率的に行えることを示しました．
-実験的にはこの方法は設定の差異に対して鈍感であり，応用上使いやすいと期待されます．</p>
+    <p>本記事では我々が提案した，ヘッセ行列を低ランク近似することで勾配法を用いたハイパーパラメータ最適化を効率的に行う方法を紹介します．
+実験的にはこの方法は設定の差異に対して鈍感であり，応用上も使いやすいのではないかと期待しています．</p>
+<p><a href="https://arxiv.org/abs/2302.09726">本記事の元となっている論文</a>はOIST・京都大学・理研AIPの山田先生との共著で，2023年4月にAISTATS 2023において発表を行う予定です．</p>
+<hr>
 <p>以下のようなハイパーパラメータ最適化を考えます．</p>
-<p>\[ \min_\phi g(\theta^\ast, \phi)\quad\text{s.t.}\quad \theta^\ast\in\argmin_\theta f(\theta, \phi) \]</p>
+<p>$$ \min_\phi g(\theta^\ast, \phi)\quad\text{s.t.}\quad \theta^\ast\in\argmin_\theta f(\theta, \phi) $$</p>
 <p>ここで$f, g$は訓練損失，評価損失，$\theta, \phi$はモデルパラメータ，ハイパーパラメータで，右側がモデルの最適化，左側がハイパーパラメータの最適化を表しています．
 このような問題は機械学習の実用においてはしばしば現れ，通常 $\phi$ の最適化はブラックボックス最適化によりますが，例えばベイズ最適化は $\phi$ の次元が高くなると効率が極端に低下します．
 一部の問題ではハイパーパラメータの勾配（超勾配） $\nabla_\phi g$ を得ることができ，ハイパーパラメータ最適化を勾配法によって実現できます．</p>
 <p>この超勾配は $\nabla_{\theta} f= 0$ 周辺では陰関数微分を用いて</p>
-<p>\[ \frac{\partial g}{\partial \phi}=\frac{\partial g}{\partial \theta}\left(\frac{\partial^2 f}{\partial \theta^2}\right)^{-1}\frac{\partial^ g}{\partial \theta \partial \phi}+\frac{\partial g}{\partial \phi} \]</p>
+<p>$$ \frac{\partial g}{\partial \phi}=\frac{\partial g}{\partial \theta}\left(\frac{\partial^2 f}{\partial \theta^2}\right)^{-1}\frac{\partial^ g}{\partial \theta \partial \phi}+\frac{\partial g}{\partial \phi} $$</p>
 <p>と表現することができます．
 ヘッセ行列 $\frac{\partial^2 f}{\partial \theta^2}$ が現れますが，特にニューラルネットワークを考える場合にはヘッセ行列がパラメータ数の2乗個の要素を持つことになり，比較的小さなニューラルネットワークであってもメモリに保持できないほど大きくなってしまいます．
-ヘッセ行列の逆行列であれば当然計算が困難です．
-ここでヘッセ行列の逆行列自体は必要ではなく，ヘッセ行列の逆行列のベクトル積（<strong>i</strong>nverse <strong>H</strong>essian-<strong>v</strong>ector <strong>p</strong>roduct）だけが必要なことに着目し，ヘッセ行列のベクトル積（Hessian-vector product）を組み合わせてIHVPの近似を図ります．
-なお，HVPは最近の自動微分ライブラリ（PyTorchやJAX）などではニューラルネットワークの評価程度の計算コストで得ることができます．</p>
+その逆行列となれば当然計算が困難です．</p>
+<p>ここでヘッセ行列の逆行列自体は必要ではなく，ヘッセ行列の逆行列のベクトル積（<strong>i</strong>nverse <strong>H</strong>essian-<strong>v</strong>ector <strong>p</strong>roduct）だけが必要なことに着目し，ヘッセ行列のベクトル積（<strong>H</strong>essian-<strong>v</strong>ector <strong>p</strong>roduct）を組み合わせてIHVPの近似を図ります．
+なお，HVPは最近の自動微分ライブラリ（PyTorchやJAX）などではニューラルネットワークの評価程度の計算コストで得ることができます<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>．</p>
 <p>既存法では逐次的な近似方法を用いていました．
 共役勾配法は正定値行列 $A$ に対して $\argmin_v|Av-x|$ を逐次計算し $v=A^{-1}x$ を近似します．
 ノイマン級数法による近似では正定値行列 $|A|&lt;1$ に対して $A^{-1}=I+A+A^2+\cdots$ を用いています．
 共役勾配法は悪条件の行列の場合に収束が遅いことが知られており，ノイマン級数法はノルムを抑える必要があります．</p>
-<p>本研究ではヘッセ行列を低ランク近似することでIHVPを効率的に計算します．
+<p>本研究ではヘッセ行列を低ランク近似し，逐次計算に依らずにIHVPを効率的に計算します．
 ニューラルネットワークのヘッセ行列では0に近い固有値が圧倒的多数で，大きな固有値が少ないため，低ランクだと思えば相性が良いと思われます．
 低ランク近似にはNyström法を用い，適当に選んだヘッセ行列の列のインデックス集合を $K$として，</p>
-<p>\[ H\approx H_k=H_{[:,K]}H_{[K,K]}^{-1}H_{[:,K]}^\top \]</p>
+<p>$$ H\approx H_k=H_{[:,K]}H_{[K,K]}^{-1}H_{[:,K]}^\top $$</p>
 <p>とします．ここで $H_{[:,K]}$ はヘッセ行列の $K$ に対応する列を抽出したものです．
 $H_k$ は低ランクで逆行列が存在しないため，対角成分に $\rho$ を足します．
-するとWoodburyの行列恒等式が使えて，適当なベクトル $v$ に対するIHVPは</p>
-<p>\[ (\rho I+H_{[:, K]}H_{[K, K]}^{-1}H_{[:, K]}^\top)^{-1}v = \frac{1}{\rho}v-\frac{1}{\rho^2}H_{[:, K]}\left(H_{[K,K]}+\frac{1}{\rho}H_{[:, K]}^\top H_{[:, K]}\right)^{-1}H_{[:, K]}^\top v \]</p>
+するとWoodburyの行列恒等式が使えて，適当なベクトル $v$ に対する近似的なIHVPは</p>
+<p>$$ (\rho I+H_{[:, K]}H_{[K, K]}^{-1}H_{[:, K]}^\top)^{-1}v = \frac{1}{\rho}v-\frac{1}{\rho^2}H_{[:, K]}\left(H_{[K,K]}+\frac{1}{\rho}H_{[:, K]}^\top H_{[:, K]}\right)^{-1}H_{[:, K]}^\top v $$</p>
 <p>と表すことができます．
 右辺では $k\times k$ 行列の逆行列が必要となりますが， $k\ll p$ なのでこれは簡単に得られます．
-またこの右辺には逐次的な計算が含まれないので，GPU上では高速に計算が可能です．</p>
+またこの右辺には逐次的な計算が含まれないので，GPUなどでは高速に計算が可能です <sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>．</p>
+<p>提案法は，こうして得られたIHVPによって超勾配を</p>
+<p>$$ \frac{\partial g}{\partial \phi}\approx\frac{\partial g}{\partial \theta}\left(\rho I+H_{[:, K]}H_{[K, K]}^{-1}H_{[:, K]}^\top\right)^{-1}\frac{\partial^ g}{\partial \theta \partial \phi}+\frac{\partial g}{\partial \phi} $$</p>
+<p>と近似して用います．</p>
+<hr>
+<p>理論的な分析や，数値実験の詳細については<a href="https://arxiv.org/abs/2302.09726">論文</a>を参照してください．
+ここではハイパーパラメータ最適化の例として，各データ点毎の損失の重みを調整することで学習データ中のクラス不均衡の影響を抑える方法であるdata reweightingの結果を示します．</p>
+<table>
+<thead>
+<tr>
+<th>不均衡度</th>
+<th>200</th>
+<th>100</th>
+<th>50</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>調整なし</td>
+<td>0.62±0.06</td>
+<td>0.67±0.13</td>
+<td>0.74±0.08</td>
+</tr>
+<tr>
+<td>共役勾配法</td>
+<td>0.63±0.06</td>
+<td>0.70±0.05</td>
+<td>0.78±0.02</td>
+</tr>
+<tr>
+<td>ノイマン級数法</td>
+<td>0.60±0.09</td>
+<td>0.73±0.01</td>
+<td>0.79±0.01</td>
+</tr>
+<tr>
+<td>提案法</td>
+<td>0.66±0.02</td>
+<td>0.73±0.02</td>
+<td>0.79±0.01</td>
+</tr>
+</tbody>
+</table>
+<p>ここではCIFAR-10データセットを人工的に不均衡にしたベンチマークデータセットを使用しています．
+全設定において一貫して高い性能が発揮できていることが分かります．
+このことは他の実験結果でも同様です．</p>
+<p>上では$k=10$および$\rho=0.01$の場合の実験結果を示しましたが，このようにハイパーパラメータ最適化には「ハイパーハイパーパラメータ」が現れます．
+「ハイパーハイパーパラメータ」に鋭敏な方法は，研究ではともかく，実用上は使いにくいものです．
+論文中では$k$や$\rho$を変えた場合の結果も示しており，その選択に対して頑健であることを実験的に示しています．</p>
+<p>なお，この記事では簡単のためにハイパーハイパーパラメータ最適化に的を絞っていますが，実は提案法は勾配法による二重最適化一般に対するもので，例えばMAMLのような勾配法によるメタ学習にも利用可能です．</p>
+<hr>
+<p>論文の情報は以下の通りです．</p>
+<div class="highlight"><pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bibtex" data-lang="bibtex"><span style="display:flex;"><span><span style="color:#75af00">@inproceedings</span><span style="color:#111">{</span><span style="color:#111">hataya2023nystrom</span><span style="color:#111">,</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75af00">author</span> <span style="color:#111">=</span> <span style="color:#d88200">{Ryuichiro Hataya and Makoto Yamada}</span><span style="color:#111">,</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75af00">title</span> <span style="color:#111">=</span> <span style="color:#d88200">{{Nystr\&#34;om Method for Accurate and Scalable Implicit Differentiation}}</span><span style="color:#111">,</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75af00">booktitle</span> <span style="color:#111">=</span> <span style="color:#d88200">{AISTATS}</span><span style="color:#111">,</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75af00">year</span> <span style="color:#111">=</span> <span style="color:#d88200">{2023}</span><span style="color:#111">,</span>
+</span></span><span style="display:flex;"><span><span style="color:#111">}</span>
+</span></span></code></pre></div><p>実験コードを整理したものを<a href="https://github.com/moskomule/hypergrad">ライブラリ</a>として公開してみました．
+PyTorchの使える環境であれば，<code>pip install hypergrad</code>によってインストールして使うことができます．
+是非使ってみてください．</p>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>ここではHessian-vector productとvector-Hessian productを区別せずに用いています．&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p>実際にはfunctorchやJAXのvmapを用いないと $H_{[:, K]}$ の計算が逐次的になってしまいます．なお，$H_{[:, K]}$の保持にはモデルパラメータ数の$k$倍のメモリが必要となりますが，Woodburyの行列恒等式を回帰的に用いることで空間計算量を時間計算量に変換可能です．詳細は論文をご覧ください．&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
 
 </div>
 
