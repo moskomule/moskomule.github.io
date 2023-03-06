@@ -273,7 +273,7 @@
 <p>この超勾配は $\nabla_{\theta} f= 0$ 周辺では陰関数微分を用いて</p>
 <p>$$ \frac{\partial g}{\partial \phi}=\frac{\partial g}{\partial \theta}\left(\frac{\partial^2 f}{\partial \theta^2}\right)^{-1}\frac{\partial^ g}{\partial \theta \partial \phi}+\frac{\partial g}{\partial \phi} $$</p>
 <p>と表現することができます．
-ヘッセ行列 $\frac{\partial^2 f}{\partial \theta^2}$ が現れますが，特にニューラルネットワークを考える場合にはヘッセ行列がパラメータ数の2乗個の要素を持つことになり，比較的小さなニューラルネットワークであってもメモリに保持できないほど大きくなってしまいます．
+ヘッセ行列 $\displaystyle H=\frac{\partial^2 f}{\partial \theta^2}$ が現れますが，特にニューラルネットワークを考える場合にはヘッセ行列がパラメータ数の2乗個の要素を持つことになり，比較的小さなニューラルネットワークであってもメモリに保持できないほど大きくなってしまいます．
 その逆行列となれば当然計算が困難です．</p>
 <p>ここでヘッセ行列の逆行列自体は必要ではなく，ヘッセ行列の逆行列のベクトル積（<strong>i</strong>nverse <strong>H</strong>essian-<strong>v</strong>ector <strong>p</strong>roduct）だけが必要なことに着目し，ヘッセ行列のベクトル積（<strong>H</strong>essian-<strong>v</strong>ector <strong>p</strong>roduct）を組み合わせてIHVPの近似を図ります．
 なお，HVPは最近の自動微分ライブラリ（PyTorchやJAX）などではニューラルネットワークの評価程度の計算コストで得ることができます<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>．</p>
