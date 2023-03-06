@@ -271,7 +271,7 @@
 このような問題は機械学習の実用においてはしばしば現れ，通常 $\phi$ の最適化はブラックボックス最適化によりますが，例えばベイズ最適化は $\phi$ の次元が高くなると効率が極端に低下します．
 一部の問題ではハイパーパラメータの勾配（超勾配） $\nabla_\phi g$ を得ることができ，ハイパーパラメータ最適化を勾配法によって実現できます．</p>
 <p>この超勾配は $\nabla_{\theta} f= 0$ 周辺では陰関数微分を用いて</p>
-<p>$$ \frac{\partial g}{\partial \phi}=\frac{\partial g}{\partial \theta}\left(\frac{\partial^2 f}{\partial \theta^2}\right)^{-1}\frac{\partial^ g}{\partial \theta \partial \phi}+\frac{\partial g}{\partial \phi} $$</p>
+<p>$$ \frac{\mathrm{d} g}{\mathrm{d} \phi}=\frac{\partial g}{\partial \theta}\left(\frac{\partial^2 f}{\partial \theta^2}\right)^{-1}\frac{\partial^ g}{\partial \theta \partial \phi}+\frac{\partial g}{\partial \phi} $$</p>
 <p>と表現することができます．
 ヘッセ行列 $\displaystyle H=\frac{\partial^2 f}{\partial \theta^2}$ が現れますが，特にニューラルネットワークを考える場合にはヘッセ行列がパラメータ数の2乗個の要素を持つことになり，比較的小さなニューラルネットワークであってもメモリに保持できないほど大きくなってしまいます．
 その逆行列となれば当然計算が困難です．</p>
@@ -293,7 +293,7 @@ $H_k$ は低ランクで逆行列が存在しないため，対角成分に $\rh
 右辺では $k\times k$ 行列の逆行列が必要となりますが， $k\ll p$ なのでこれは簡単に得られます．
 またこの右辺には逐次的な計算が含まれないので，GPUなどでは高速に計算が可能です <sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>．</p>
 <p>提案法は，こうして得られたIHVPによって超勾配を</p>
-<p>$$ \frac{\partial g}{\partial \phi}\approx\frac{\partial g}{\partial \theta}\left(\rho I+H_{[:, K]}H_{[K, K]}^{-1}H_{[:, K]}^\top\right)^{-1}\frac{\partial^ g}{\partial \theta \partial \phi}+\frac{\partial g}{\partial \phi} $$</p>
+<p>$$ \frac{\mathrm{d} g}{\mathrm{d} \phi}\approx\frac{\partial g}{\partial \theta}\left(\rho I+H_{[:, K]}H_{[K, K]}^{-1}H_{[:, K]}^\top\right)^{-1}\frac{\partial^ g}{\partial \theta \partial \phi}+\frac{\partial g}{\partial \phi} $$</p>
 <p>と近似して用います．</p>
 <hr>
 <p>理論的な分析や，数値実験の詳細については<a href="https://arxiv.org/abs/2302.09726">論文</a>を参照してください．
