@@ -16,8 +16,7 @@ weight: 8
 
 * 勾配法によるハイパーパラメータ最適化
 * 作用素論的機械学習
-* Energy-based models
-* 機械学習の応用（医用画像・古生物学・化学・物理学など）
+* 機械学習の他分野への応用（医用画像・古生物学・化学・物理学など）
 
 ### News
 
@@ -28,6 +27,9 @@ weight: 8
 * 第4回理研AIP数学系合同セミナーに参加しました．
 * 主著論文 "Nyström Method for Accurate and Scalable Implicit Differentiation" がAISTATS 2023に採択されました．京大・山田先生との共著です．
 
+<details>
+<summary>昔の話</summary>
+
 #### 2022
 
 * 理化学研究所の特別研究員となりました．
@@ -36,9 +38,6 @@ weight: 8
 * 主著論文 "DJMix: Unsupervised Task-agnostic Image Augmentation for Improving Robustness of Convolutional Neural Networks
 " がIJCNN 2022に採択されました．
 * 3月10日に[ザッピングセミナー](https://zappingseminar.connpass.com/event/239765/)において発表を行います．
-
-<details>
-<summary>昔の話</summary>
 
 #### 2021
 

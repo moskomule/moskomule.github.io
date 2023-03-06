@@ -14,8 +14,7 @@ I am Ryuichiro Hataya, PhD (Information Science and Technology).
 
 * Gradient-based hyperparameter optimization
 * Operator-theoretic machine learning
-* Energy-based models
-* Application of machine learning (medical imaging, palaeontology, chemistry, physics, etc.)
+* Applications of machine learning to other research fields (medical imaging, palaeontology, chemistry, physics, etc.)
 
 ### News
 
