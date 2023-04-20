@@ -20,9 +20,14 @@ I am Ryuichiro Hataya, PhD (Information Science and Technology).
 
 #### 2023
 
-* I will visit Vietnam Institute for Advanced Study in Mathematics in April.
+* I will visit IIT at Genova in May.
+* I will attend AISTATS at Valencia in April.
+* I will visit Vietnam Institute for Advanced Study in Mathematics at Hanoi in April.
 * I will visit EPFL CIS (Switzerland) and Fraunhofer IIS (Germany) from 8th to 15th March 2023.
 * Our paper "Nyström Method for Accurate and Scalable Implicit Differentiation" has been accepted at AISTATS 2023.
+
+<details>
+<summary>older news</summary>
 
 #### 2022
 
@@ -32,8 +37,6 @@ I am Ryuichiro Hataya, PhD (Information Science and Technology).
 * I visited IIT (Genova, Italy) from July 8th.
 * Our paper "DJMix: Unsupervised Task-agnostic Image Augmentation for Improving Robustness of Convolutional Neural Networks" is accepted to IJCNN 2022.
 
-<details>
-<summary>older news</summary>
 
 #### 2021
 

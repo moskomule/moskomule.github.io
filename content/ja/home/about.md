@@ -22,6 +22,8 @@ weight: 8
 
 #### 2023
 
+* ジェノバのIITを訪問します．
+* AISTATSに参加します．
 * 4月にVietnam Institute for Advanced Study in Mathematicsを訪問します．
 * 3月にEPFL CIS・Fraunhofer IISを訪問します．
 * 第4回理研AIP数学系合同セミナーに参加しました．
