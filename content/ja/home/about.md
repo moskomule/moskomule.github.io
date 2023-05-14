@@ -22,6 +22,7 @@ weight: 8
 
 #### 2023
 
+* モントリオールのMILAを訪問します．バンクーバーで開催されるCVPRに参加します．
 * ジェノバのIITを訪問します．
 * AISTATSに参加します．
 * 4月にVietnam Institute for Advanced Study in Mathematicsを訪問します．
