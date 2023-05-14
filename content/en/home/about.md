@@ -20,7 +20,7 @@ I am Ryuichiro Hataya, PhD (Information Science and Technology).
 
 #### 2023
 
-* I will visit MILA at Montreal and attend CVPR.
+* I will visit MILA at Montreal and attend CVPR in June.
 * I will visit IIT at Genova in May.
 * I will attend AISTATS at Valencia in April.
 * I will visit Vietnam Institute for Advanced Study in Mathematics at Hanoi in April.
