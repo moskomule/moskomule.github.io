@@ -5,7 +5,7 @@
     <loc>https://mosko.tokyo/ja/projects/</loc>
     <xhtml:link
                 rel="alternate"
-                hreflang="en"
+                hreflang="en-us"
                 href="https://mosko.tokyo/projects/"
                 />
     <xhtml:link
@@ -18,7 +18,7 @@
     <lastmod>2023-03-01T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
-                hreflang="en"
+                hreflang="en-us"
                 href="https://mosko.tokyo/blog/"
                 />
     <xhtml:link
@@ -31,7 +31,7 @@
     <lastmod>2023-03-01T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
-                hreflang="en"
+                hreflang="en-us"
                 href="https://mosko.tokyo/"
                 />
     <xhtml:link
@@ -44,7 +44,7 @@
     <lastmod>2023-03-01T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
-                hreflang="en"
+                hreflang="en-us"
                 href="https://mosko.tokyo/tags/"
                 />
     <xhtml:link
@@ -68,7 +68,7 @@
     <loc>https://mosko.tokyo/ja/home/</loc>
     <xhtml:link
                 rel="alternate"
-                hreflang="en"
+                hreflang="en-us"
                 href="https://mosko.tokyo/home/"
                 />
     <xhtml:link
