@@ -23,6 +23,7 @@ weight: 8
 #### 2023
 
 * 6月にモントリオールのMILAを訪問します．バンクーバーで開催されるCVPRに参加します．
+* 東京大学素粒子物理国際研究センターで講演を行います．
 * 5月にジェノバのIITを訪問します．
 * AISTATSに参加します．
 * 4月にVietnam Institute for Advanced Study in Mathematicsを訪問します．

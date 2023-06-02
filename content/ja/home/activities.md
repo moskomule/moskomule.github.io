@@ -6,6 +6,7 @@ weight: 60
 
 ### 招待講演
 
+* "行列式点過程の機械学習への応用," [ICEPPセミナー](https://www.icepp.s.u-tokyo.ac.jp/collaboration/seminar.html), 2023年6月．
 *　"Towards accurate and scalable gradient-based hyperparameter optimization," Istituto Italiano di Tecnologia, 2023年5月.
 *　"Noncommutative $C^*$-algebra Networks," [Japan-Vietnam AI Forum](https://viasm.edu.vn/en/hdkh/jvaif), 2023年4月.
 * 「ベイズモデル選択による弱教師あり深層学習アルゴリズムのハイパーパラメータ最適化」, [ザッピングセミナー](https://zappingseminar.connpass.com/event/239765/), 2022.
