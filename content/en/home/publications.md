@@ -22,6 +22,7 @@ weight: 30
 
 ### Preprints
 
+* Leonardo Placidi, **Ryuichiro Hataya**, Toshio Mori, Koki Aoyama, Hayata Morisaki, Kosuke Mitarai, and Keisuke Fujii, "MNISQ: A Large-Scale Quantum Circuit Dataset for Machine Learning on/for Quantum Computers in the NISQ era," 2023. [arXiv](https://arxiv.org/abs/2306.16627)
 * **Ryuichiro Hataya**, and Yuka Hashimoto, "Noncommutative $C^\*$-algebra Net: Learning Neural Networks with Powerful Product Structure in $C^\*$-algebra," 2023. [arXiv](https://arxiv.org/abs/2302.01191)
 * **Ryuichiro Hataya**, Bao Han, and Hiromi Arai, "Will Large-scale Generative Models Corrupt Future Datasets?" 2022. [arXiv](https://arxiv.org/abs/2211.08095)
 * **Ryuichiro Hataya**, Hideki Nakayama, and Kazuki Yoshizoe, "Graph Energy-based Model for Substructure Preserving Molecular Design," 2021. [arxiv](https://arxiv.org/abs/2102.04600)
