@@ -6,7 +6,8 @@ weight: 60
 
 ### Invited Talks
 
-* "Determinantal point processes and their applications in machine learning," (in Japanese) [ICEPP seminar](https://www.icepp.s.u-tokyo.ac.jp/collaboration/seminar.html), 2023年6月．
+* "Stable Gradient-based Hyperparameter Optimization," [RIKEN AIP & NCU Workshops 2023](https://about.bci-lab.info/events/riken-aip-unc-workshops-2023), September 2023.
+* "Determinantal point processes and their applications in machine learning," (in Japanese) [ICEPP seminar](https://www.icepp.s.u-tokyo.ac.jp/collaboration/seminar.html), June 2023．
 * "Towards accurate and scalable gradient-based hyperparameter optimization," Istituto Italiano di Tecnologia, May, 2023.
 * "Noncommutative $C^\*$-algebra Networks," [Japan-Vietnam AI Forum](https://viasm.edu.vn/en/hdkh/jvaif), April 2023.
 * "Bayesian Model Selection for Deep Learning" (in Japanese), Zapping Seminar, 2022.

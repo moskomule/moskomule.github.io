@@ -20,6 +20,8 @@ I am Ryuichiro Hataya, PhD (Information Science and Technology).
 
 #### 2023
 
+* I will visit Nicolaus Copernicus University Poland from Sep 25th to 30th.
+* Our paper "Will Large-scale Generative Models Corrupt Future Datasets?" has been accepted at ICCV 2023.
 * I will visit MILA at Montreal and attend CVPR in June.
 * I will give a talk at UTokyo ICEPP.
 * I will visit IIT at Genova in May.

@@ -6,6 +6,7 @@ weight: 60
 
 ### 招待講演
 
+* "Stable Gradient-based Hyperparameter Optimization," [RIKEN AIP & NCU Workshops 2023](https://about.bci-lab.info/events/riken-aip-unc-workshops-2023), 2023年9月．
 * "行列式点過程の機械学習への応用," [ICEPPセミナー](https://www.icepp.s.u-tokyo.ac.jp/collaboration/seminar.html), 2023年6月．
 *　"Towards accurate and scalable gradient-based hyperparameter optimization," Istituto Italiano di Tecnologia, 2023年5月.
 *　"Noncommutative $C^*$-algebra Networks," [Japan-Vietnam AI Forum](https://viasm.edu.vn/en/hdkh/jvaif), 2023年4月.
