@@ -24,6 +24,7 @@ weight: 8
 
 * 9月末にポーランドのニコラウス･コペルニクス大学を訪問します．
 * 主著論文 "Will Large-scale Generative Models Corrupt Future Datasets?" がICCV 2023に採択されました．京大・包さん，理研・荒井さんとの共著です．
+* 共著論文 "Towards AI-driven radiology education: A self-supervised segmentation-based framework for high-precision medical image editing" がMICCAI2023に採択されました．
 * 6月にモントリオールのMILAを訪問します．バンクーバーで開催されるCVPRに参加します．
 * 東京大学素粒子物理国際研究センターで講演を行います．
 * 5月にジェノバのIITを訪問します．
