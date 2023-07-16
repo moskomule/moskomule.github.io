@@ -19,7 +19,7 @@ DefaultContentLanguage           = "en"                    # Default language fo
         showAllPosts             = false                   # Set true to list all posts on home page, or set false to link to separate blog list page
         numberOfProjectsToShow   = 3                       # Maximum number of projects to show on home page. Unset or comment out to show all projects
 
-        localTime                = true                    # Show your current local time in contact section
+        localTime                = false                    # Show your current local time in contact section
         timeZone                 = "Asia/Tokyo"   # Your timezone as in the TZ* column of this list: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
         timeFormat               = "h:mm A"                # https://momentjs.com/docs/#/displaying/format/
     [params.projects]
@@ -93,7 +93,7 @@ DefaultContentLanguage           = "en"                    # Default language fo
         title            = "Ryuichiro Hataya's webpage"
         [languages.en.params]
             description  = "Ryuichiro Hataya's webpage"   # Max 160 characters show in search results
-            footerText   = "2019-2022 Ryuichiro Hataya · Powered by [hugo](https://gohugo.io) with [Introduction](https://github.com/victoriadrake/hugo-theme-introduction)"                      # Text to override default footer text (markdown allowed)
+            footerText   = "2019-2023 Ryuichiro Hataya · Powered by [hugo](https://gohugo.io) with [Introduction](https://github.com/victoriadrake/hugo-theme-introduction)"                      # Text to override default footer text (markdown allowed)
 
     [languages.ja]
         languageName     = "日本語"
