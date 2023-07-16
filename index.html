@@ -561,8 +561,6 @@ Ryuichiro Hataya&#39;s Webpage
 
                 </div>
                 
-                <p>My current local time is <span id="time"></span>.</p>
-                
                 
                 <div class="social-icons">
     
@@ -599,7 +597,7 @@ Ryuichiro Hataya&#39;s Webpage
         <div class="section" id="footer">
     <div class="container has-text-centered">
     
-        2019-2022 Ryuichiro Hataya · Powered by <a href="https://gohugo.io">hugo</a> with <a href="https://github.com/victoriadrake/hugo-theme-introduction">Introduction</a>
+        2019-2023 Ryuichiro Hataya · Powered by <a href="https://gohugo.io">hugo</a> with <a href="https://github.com/victoriadrake/hugo-theme-introduction">Introduction</a>
     
     </div>
 </div>
@@ -622,16 +620,6 @@ Ryuichiro Hataya&#39;s Webpage
 <script src="https://mosko.tokyo/js/bundleOwlCarousel.bc6b73f0a36bf19c70c5df8fc352d322988ca2bc40743fb836ee7371d555c28a.js" integrity="sha256-vGtz8KNr8Zxwxd&#43;Pw1LTIpiMorxAdD&#43;4Nu5zcdVVwoo="></script>
 
 
-        
-        <script>
-            function update_localtime() {
-                const time = new Date().toLocaleTimeString('h:mm A', { timeZone: 'Asia\/Tokyo', timeStyle: 'short' });
-                document.getElementById('time').innerHTML = time;
-            }
-            update_localtime();
-            
-            setInterval(update_localtime, 1000);
-        </script>
         
     </body>
 

@@ -592,16 +592,6 @@
 
 
         
-        <script>
-            function update_localtime() {
-                const time = new Date().toLocaleTimeString('h:mm A', { timeZone: 'Asia\/Tokyo', timeStyle: 'short' });
-                document.getElementById('time').innerHTML = time;
-            }
-            update_localtime();
-            
-            setInterval(update_localtime, 1000);
-        </script>
-        
     </body>
 
 </html>
