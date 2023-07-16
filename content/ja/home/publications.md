@@ -4,11 +4,11 @@ image: "bird.png"
 weight: 30
 ---
 
-### 原著論文
+#### 原著論文
 
 * Kazuma Kobayashi, **Ryuichiro Hataya**, Yusuke Kurose, Mototaka Miyake, Masamichi Takahashi, Akiko Nakagawa, Tatsuya Harada, and Ryuji Hamamoto, ["Decomposing Normal and Abnormal Features of Medical Images for Content-Based Image Retrieval of Glioma Imaging."](https://www.sciencedirect.com/science/article/pii/S1361841521002723) *Medical Image Analysis*, Vo74, Dec., 2021.
 
-### 査読あり会議論文
+#### 査読あり会議論文
 
 * **Ryuichiro Hataya**, Han Bao, and Hiromi Arai, "Will Large-scale Generative Models Corrupt Future Datasets?," *International Conference on Computer Vision*, France, 2023.
 * Kazuma Kobayashi, Lin Gu, **Ryuichiro Hataya**, Mototaka Miyake, Yasuyuki Takamizawa, Sono Ito, Hirokazu Watanabe, Yukihiro Yoshida, Hiroki Yoshimura, Tatsuya Harada, Ryuji Hamamoto, "Towards AI-driven radiology education: A self-supervised segmentation-based framework for high-precision medical image editing," *Medical Image Computing and Computer-Assisted Intervention*, Canada, 2023.
@@ -19,13 +19,13 @@ weight: 30
 * **Ryuichiro Hataya**, Jan Zdenek, Kazuki Yoshizoe, and Hideki Nakayama, ["Faster AutoAugment: Learning Augmentation Strategies using Backpropagation."](http://www.ecva.net/papers/eccv_2020/papers_ECCV/html/4830_ECCV_2020_paper.php) *European Conference on Computer Vision*, 2020.
 * **Ryuichiro Hataya**, and Hideki Nakayama, "LOL: Learning To Optimize Loss Switching Under Label Noise." *International Conference on Image Processing*, 2019.
 
-### プレプリント
+#### プレプリント
 
 * Leonardo Placidi, **Ryuichiro Hataya**, Toshio Mori, Koki Aoyama, Hayata Morisaki, Kosuke Mitarai, and Keisuke Fujii, "MNISQ: A Large-Scale Quantum Circuit Dataset for Machine Learning on/for Quantum Computers in the NISQ era," 2023. [arXiv](https://arxiv.org/abs/2306.16627)
 * **Ryuichiro Hataya**, and Yuka Hashimoto, "Noncommutative $C^\star$-algebra Net: Learning Neural Networks with Powerful Product Structure in $C^\star$-algebra," 2023. [arXiv](https://arxiv.org/abs/2302.01191)
 * **Ryuichiro Hataya**, Hideki Nakayama, and Kazuki Yoshizoe, "Graph Energy-based Model for Substructure Preserving Molecular Design." 2021. [arxiv](https://arxiv.org/abs/2102.04600)
 
-### そのほか
+#### そのほか
 
 <details>
 <summary>そのほか</summary>

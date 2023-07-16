@@ -4,7 +4,7 @@ image: "prague.png"
 weight: 60
 ---
 
-### 招待講演
+#### 招待講演
 
 * "Stable Gradient-based Hyperparameter Optimization," [RIKEN AIP & NCU Workshops 2023](https://about.bci-lab.info/events/riken-aip-unc-workshops-2023), 2023年9月．
 * "行列式点過程の機械学習への応用," [ICEPPセミナー](https://www.icepp.s.u-tokyo.ac.jp/collaboration/seminar.html), 2023年6月．
@@ -16,19 +16,19 @@ weight: 60
 * 「深層学習を支えるデータ拡張」, [StatsML Symposium](https://sites.google.com/view/statsmlsymposium20/), 2020.
 * 「勾配降下法によるハイパーパラメータ最適化とデータ拡張戦略最適化への応用」, [ザッピングセミナー ](https://zappingseminar.connpass.com/event/189061/), 2020.
 
-### 研究費
+#### 研究費
 
 * 人と相補する生成モデルの研究，JST ACT-X, 450万円, 2021-2024.
 * 微分可能データ拡張の研究, JSPS若手研究者海外挑戦プログラム, 140万円, 2021.
 * 対話的な画像生成の研究, Microsoft Research Asia Collaborative Research Program (D-CORE 2021) by MSRA, 100万円, 2021.
 * インクルーシブな画像認識の研究, 東大RIISE価値交換工学萌芽RA, 200万円, 2020-2022.
 
-### 受賞
+#### 受賞
 
 * Microsoft Research Asia D-Core Award, 2020.
 * Best Student Paper Award, The 23rd Meeting on Image Recognition and Understanding, 2020.
 
-### そのほか
+#### そのほか
 
 * Meetup Chair of NeurIPS, 2021.
 * Organizer of NeurIPS meetup Japan & Women in ML, 2020.
