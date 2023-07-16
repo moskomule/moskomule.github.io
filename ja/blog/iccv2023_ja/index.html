@@ -24,13 +24,7 @@
 
 
 
-
-<meta property="og:image" content="https://mosko.tokyo/ja/home/bird.png"/>
-
-<meta property="og:image" content="https://mosko.tokyo/ja/home/prague.png"/>
-
-<meta property="og:image" content="https://mosko.tokyo/ja/home/profile.png"/>
-
+<meta property="og:image" content="https://mosko.tokyo/ja/blog/iccv2023_ja/datasets_wide.png"/>
 
 
 
@@ -260,10 +254,17 @@
 </div>
 
 <div class="container markdown top-pad">
-    <p>昨今，StableDiffusionやMidjourneyをはじめとする，高品質な生成モデルがたくさん登場しています．
-実際の画像と区別の付かないような
-<a href="https://arxiv.org/abs/2211.08095"></a>は京都大学の包さん，理研AIPの荒井さんとの共著で，2023年10月にICCV 2023において発表を行う予定です．</p>
+    <p>昨今，文章から画像を生成するStableDiffusionやMidjourneyをはじめとする高品質な（text2img）生成モデルが次々に登場し，実際の画像と区別の付かないような生成画像が多量にインターネット上にアップロードされています <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>．
+このような現象は，将来的にインターネット上から画像を収集し，データセットを作成した場合にコンピュータービジョンに対してどのような影響があるのでしょうか<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>？
+本記事で紹介する，京都大学の包さん，理研AIPの荒井さんとの<a href="https://arxiv.org/abs/2211.08095">研究</a>は，この疑問に対して実験的に調査を行ったもので，今年10月にフランスで開催されるコンピュータービジョン分野の国際会議であるICCVにおいて発表します．</p>
 <hr>
+<p>はじめに述べたように，この1年ほどでStableDiffusionやChatGPTといった「生成AI」が多数登場し，研究者のみならず，一般のユーザーも使うようになりました．
+その結果，多数の生成データがインターネット上にアップロードされるようになり，<a href="https://www.washingtonpost.com/technology/interactive/2022/artificial-intelligence-images-dall-e/">偽情報の生産</a>や<a href="https://dl.acm.org/doi/abs/10.1145/3593013.3594095">人種バイアスの拡大</a>といった社会的な問題も現れています．
+本研究では，将来的にウェブから収集した画像データセットに生成画像が混入した場合に，コンピュータービジョンに対してどのような影響があるのかを実験的に調べました．</p>
+<p>具体的には，代表的なtext2img生成モデルであるStableDiffusionを用いて，ImageNetやCOCO captionといった既存のデータセットを模倣して，200万枚程度の画像を生成しました．そして，生成された画像で元のデータセットの画像を置き換えることによって，生成画像が混入した状況を模倣し，画像認識モデルなどの学習データとした場合の影響を調べます．</p>
+<figure><img src="datasets_wide.png" width="80%"/>
+</figure>
+
 <hr>
 <p>論文の情報は以下の通りです．</p>
 <div class="highlight"><pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bibtex" data-lang="bibtex"><span style="display:flex;"><span><span style="color:#75af00">@inproceedings</span><span style="color:#111">{</span><span style="color:#111">hataya2023will</span><span style="color:#111">,</span>
@@ -272,7 +273,18 @@
 </span></span><span style="display:flex;"><span>    <span style="color:#75af00">booktitle</span> <span style="color:#111">=</span> <span style="color:#d88200">{ICCV}</span><span style="color:#111">,</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#75af00">year</span> <span style="color:#111">=</span> <span style="color:#d88200">{2023}</span><span style="color:#111">,</span>
 </span></span><span style="display:flex;"><span><span style="color:#111">}</span>
-</span></span></code></pre></div>
+</span></span></code></pre></div><div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p><a href="https://openai.com/blog/dall-e-now-available-without-waitlist/">https://openai.com/blog/dall-e-now-available-without-waitlist/</a> によれば，OpenAI社のDALL･E2は2022年9月年に1日あたり200万枚の画像を生成したという．&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p>昨年の9月半ばに第2著者の包さんと伊都キャンパスから博多駅に向かうバスに乗っているときの雑談で出てきたのが，この素朴な疑問でした．&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+
 </div>
 
 
