@@ -30,7 +30,9 @@ weight: 60
 
 #### そのほか
 
-* Meetup Chair of NeurIPS, 2021.
-* Organizer of NeurIPS meetup Japan & Women in ML, 2020.
+* Program Committee of [MLSS Okinawa 2024](https://groups.oist.jp/mlss).
+* Program Committee of [IBIS 2023](https://ibisml.org/ibis2023/).
+* Meetup Chair of [NeurIPS, 2021](https://neurips.cc/Conferences/2021).
+* Organizer of [NeurIPS meetup Japan & Women in ML, 2020](https://neuripsmeetupjapan.github.io/2020).
 * Volunteer for ICML, and ICLR, 2020.
 * Reviewer for NeurIPS, ICCV, ICLR, CVPR, ICML 2019~.
