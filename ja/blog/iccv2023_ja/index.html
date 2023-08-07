@@ -261,8 +261,8 @@
 
 <div class="container markdown top-pad">
     <p>昨今，文章から画像を生成するStableDiffusionやMidjourneyをはじめとする高品質な（text2img）生成モデルが次々に登場し，実際の画像と区別の付かないような生成画像が多量にインターネット上にアップロードされています <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>．
-このような現象は，将来的にインターネット上から画像を収集し，データセットを作成した場合にコンピュータービジョンに対してどのような影響があるのでしょうか<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>？
-本記事で紹介する，京都大学の包さん，理研AIPの荒井さんとの<a href="https://arxiv.org/abs/2211.08095">研究</a>は，この疑問に対して実験的に調査を行ったもので，今年10月にフランスで開催されるコンピュータービジョン分野の国際会議であるICCVにおいて発表します．</p>
+このような現象は，将来的にインターネット上から画像を収集し，データセットを作成した場合にコンピュータービジョンに対してどのような影響があるのでしょうか<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>？</p>
+<p>本記事で紹介する，京都大学の包さん，理研AIPの荒井さんとの<a href="https://arxiv.org/abs/2211.08095">研究</a>は，この疑問に対して実験的に調査を行ったもので，今年10月にフランスで開催されるコンピュータービジョン分野の国際会議であるICCVにおいて発表します．</p>
 <hr>
 <p>はじめに述べたように，この1年ほどでStableDiffusionやChatGPTといった「生成AI」が多数登場し，研究者のみならず，一般のユーザーも使うようになりました．
 その結果，多数の生成データがインターネット上にアップロードされるようになり，<a href="https://www.washingtonpost.com/technology/interactive/2022/artificial-intelligence-images-dall-e/">偽情報のサポート</a>や<a href="https://dl.acm.org/doi/abs/10.1145/3593013.3594095">人種バイアスの拡大</a>といった社会的な問題も現れています．
@@ -276,7 +276,7 @@
 <p>このような生成画像によってImageNetの画像を置き換えたデータセットによって画像分類モデル（ResNet-50）を訓練し，ImageNet評価データセット上で評価を行った際の正解率を以下の図（<font color="Blue">青線</font>）に示しました．
 参考のために，生成画像ではなく，ImageNetと同じカテゴリの画像を別途収集したWebVisionデータセットの画像を混入させた場合の正解率を<font color="Orange">橙線</font>で示しています．
 混入率（横軸）が大きくなるにつれて，生成画像の混入が精度に対して悪影響を与えることが分かります．</p>
-<figure><img src="classification-resnet50.png" width="80%"/>
+<figure><img src="classification-resnet50.png" width="50%"/>
 </figure>
 
 <p>SwinTransformer-SmallやConvNeXt-Tinyといった現代的なモデルでも同様の分類性能は低下し，その影響はImageNet-Aなどの分布外データに対する頑健性評価のベンチマークにも見られます．
