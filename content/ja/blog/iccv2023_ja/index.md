@@ -37,9 +37,9 @@ SwinTransformer-SmallやConvNeXt-Tinyといった現代的なモデルでも同�
 さらに，生成画像の混入したデータセットを用いて画像生成モデルを訓練するタスクにおいては，生成画像の多様性が低下が観察されました．
 
 このような生成データのもたらす悪影響の原因として，実際の画像と比較して，生成画像の多様性が低いことが挙げられます[^webimages]．
-実際に，[precition-recallという生成モデルの品質尺度](https://proceedings.neurips.cc/paper_files/paper/2019/hash/0234c510bc6d908b28c70ff313743079-Abstract.html)によりSD-ImageNetの画像分布がImageNetの画像分布の一部領域にほぼ含まれていることが分かっています．
+実際に，[precision-recall](https://proceedings.neurips.cc/paper_files/paper/2019/hash/0234c510bc6d908b28c70ff313743079-Abstract.html)という指標を用いた場合，SD-ImageNetの画像分布がImageNetの画像分布の一部領域に概ね含まれていることが分かっています．以下に雰囲気を示しています．
 
-{{<figure src="precision-recall.png" width="50%">}}
+{{<figure src="precision-recall.png" width="30%">}}
 
 キャプションを工夫したSD-ImageNetの派生の画像も，ImageNetの画像と比べて多様性が乏しいことがわかっています．
 このような多様性の低下は，[Shumailov et al. 2023](https://arxiv.org/abs/2305.17493)でも指摘されているように，生成画像を含んだデータセットから生成モデルが作られるループが繰り返されることで加速していく可能性があります．
@@ -47,7 +47,7 @@ SwinTransformer-SmallやConvNeXt-Tinyといった現代的なモデルでも同�
 [^webimages]: もちろんインターネット上から収集可能な画像も，「撮影しよう」「投稿しよう」という人の意思フィルターがかかるため，実世界にあり得る画像に比べれば多様性には乏しいはずです．
 
 最新の生成モデルによる高品質な生成画像が厄介なのは，簡易な検出が難しく，巨大なデータセットから効率的に取り除けない点です．
-例えば[実画像と生成画像の周波数成分の違いに着目した検出](https://proceedings.neurips.cc/paper/2020/hash/1f8d87e1161af68b81bace188a1ec624-Abstract.html)はあまり使えなさそうです．
+例えば実画像と生成画像の[周波数成分の違いに着目した検出](https://proceedings.neurips.cc/paper/2020/hash/1f8d87e1161af68b81bace188a1ec624-Abstract.html)はあまり使えなさそうです．
 さらに，多くの場合，人の目でも識別は困難です．
 幸いにもStableDiffusionやDALL･Eなどは「透かし」を入れているので検出は可能ですが，今後も生成モデル開発者には生成画像の検出を可能にする透かしの導入が求められるでしょう．
 同時に，生成画像の高速な検出方法の開発も望まれます．
