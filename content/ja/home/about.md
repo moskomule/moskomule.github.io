@@ -22,6 +22,7 @@ weight: 8
 
 #### 2023
 
+* 共著論文 "An Empirical Investigation of Pre-trained Model Selection for Out-of-Distribution Generalization and Calibration" がICCV 2023 Workshop on Uncertainty Quantification for Computer Visionに採択されました．
 * 9月末にポーランドのニコラウス･コペルニクス大学を訪問します．
 * 主著論文 "Will Large-scale Generative Models Corrupt Future Datasets?" がICCV 2023に採択されました．京大・包さん，理研・荒井さんとの共著です．
 * 共著論文 "Towards AI-driven radiology education: A self-supervised segmentation-based framework for high-precision medical image editing" がMICCAI2023に採択されました．
