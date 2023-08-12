@@ -9,7 +9,7 @@ tags: ["研究"]
 
 本記事で紹介する，京都大学の包さん，理研AIPの荒井さんとの[研究](https://arxiv.org/abs/2211.08095)は，この疑問に対して実験的に調査を行ったもので，今年10月にフランスで開催されるコンピュータービジョン分野の国際会議であるICCVにおいて発表します．
 
-[^openai]: https://openai.com/blog/dall-e-now-available-without-waitlist/ によれば，OpenAI社のDALL･E2は2022年9月年に1日あたり200万枚の画像を生成したという．
+[^openai]: https://openai.com/blog/dall-e-now-available-without-waitlist/ によれば，OpenAI社のDALL･E2は2022年9月年に1日あたり200万枚の画像を生成したそうです．
 [^question]: 昨年の9月半ばに第2著者の包さんと伊都キャンパスから博多駅に向かうバスに乗っているときの雑談で出てきたのが，この素朴な疑問でした．
 
 ---
