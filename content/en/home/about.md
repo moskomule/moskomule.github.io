@@ -20,10 +20,10 @@ I am Ryuichiro Hataya, PhD (Information Science and Technology).
 
 #### 2023
 
-* Our paper "An Empirical Investigation of Pre-trained Model Selection for Out-of-Distribution Generalization and Calibration" has been accepted at ICCV Workshop 2023 on Uncertainty Quantification for Computer Vision.
+* Our paper "An Empirical Investigation of Pre-trained Model Selection for Out-of-Distribution Generalization and Calibration" (Naganuma & Hataya) has been accepted at ICCV Workshop 2023 on Uncertainty Quantification for Computer Vision.
 * I will visit Nicolaus Copernicus University Poland from Sep 25th to 30th.
 * Our paper "Will Large-scale Generative Models Corrupt Future Datasets?" has been accepted at ICCV 2023.
-* Our paper "Towards AI-driven radiology education: A self-supervised segmentation-based framework for high-precision medical image editing" (Kobayashi et al.) has been accepted at MICCAI 2023.
+* Our paper "Towards AI-driven radiology education: A self-supervised segmentation-based framework for high-precision medical image editing" (Kobayashi et al.) has been accepted at MICCAI 2023 as an oral presentation.
 * I will visit MILA at Montreal and attend CVPR in June.
 * I will give a talk at UTokyo ICEPP.
 * I will visit IIT at Genova in May.
