@@ -27,6 +27,7 @@ weight: 60
 
 #### Research Grants
 
+* Grant-in-Aid for Research Activity Start-up, Japan Society for the Promotion of Science, ¥2.2M, 2023-2024.
 * Research Project of Interactive Data Generation, Japan Science and Technology Agency, ACT-X, ¥4.5M, 2021-2024.
 * Research Project of Differentiable Data Augmentation for Image Recognition, Overseas Challenge Program for Young Researchers by JSPS, ¥1.4M, 2021.
 * Research Project of Interactive Image Generation, Microsoft Research Asia Collaborative Research Program (D-CORE 2021) by MSRA, ¥1.0M, 2021.
