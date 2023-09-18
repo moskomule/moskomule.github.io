@@ -21,7 +21,8 @@ weight: 60
 
 #### Talks
 
-* "Stable Gradient-based Hyperparameter Optimization," [RIKEN AIP & NCU Workshops 2023](https://about.bci-lab.info/events/riken-aip-unc-workshops-2023), September 2023.
+* "On Dataset Contamination by Large Generative Models" (In Japanese), [Mathematical Informatics Research Workshop @ Akita](), October 2023.
+* "Stable Gradient-based Hyperparameter Optimization," [RIKEN AIP & NCU Workshops 2023](https://ai.umk.pl/start), September 2023.
 
 </details>
 
