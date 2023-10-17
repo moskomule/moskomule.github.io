@@ -10,12 +10,6 @@ I am Ryuichiro Hataya, PhD (Information Science and Technology).
 * Postdoctoral researcher @ RIKEN Center for Advanced Intelligence Project
 * Visiting researcher @ International Center for Elementary Particle Physics, UTokyo
 
-### Research Interests
-
-* Gradient-based hyperparameter optimization
-* Operator-theoretic machine learning
-* Applications of machine learning to other research fields (medical imaging, palaeontology, chemistry, physics, etc.)
-
 ### News
 
 #### 2023
@@ -24,6 +18,10 @@ I am Ryuichiro Hataya, PhD (Information Science and Technology).
 * I will visit Nicolaus Copernicus University Poland from Sep 25th to 30th.
 * Our paper "Will Large-scale Generative Models Corrupt Future Datasets?" has been accepted at ICCV 2023.
 * Our paper "Towards AI-driven radiology education: A self-supervised segmentation-based framework for high-precision medical image editing" (Kobayashi et al.) has been accepted at MICCAI 2023 as an oral presentation.
+
+<details>
+<summary>older news</summary>
+
 * I will visit MILA at Montreal and attend CVPR in June.
 * I will give a talk at UTokyo ICEPP.
 * I will visit IIT at Genova in May.
@@ -32,8 +30,6 @@ I am Ryuichiro Hataya, PhD (Information Science and Technology).
 * I will visit EPFL CIS (Switzerland) and Fraunhofer IIS (Germany) from 8th to 15th March 2023.
 * Our paper "Nyström Method for Accurate and Scalable Implicit Differentiation" has been accepted at AISTATS 2023.
 
-<details>
-<summary>older news</summary>
 
 #### 2022
 
