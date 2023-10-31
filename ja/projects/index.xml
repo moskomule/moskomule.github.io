@@ -5,6 +5,7 @@
     <link>https://mosko.tokyo/ja/projects/</link>
     <description>Recent content in 研究概要 on ...</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>ja</language><atom:link href="https://mosko.tokyo/ja/projects/index.xml" rel="self" type="application/rss+xml" />
+    <language>ja</language>
+    <atom:link href="https://mosko.tokyo/ja/projects/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

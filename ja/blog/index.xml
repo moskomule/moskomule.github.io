@@ -6,43 +6,36 @@
     <description>Recent content in 記事 on ...</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Sat, 15 Jul 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://mosko.tokyo/ja/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 15 Jul 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://mosko.tokyo/ja/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>高品質な生成画像は将来のコンピュータービジョンに悪影響を与えるのか</title>
       <link>https://mosko.tokyo/ja/blog/iccv2023_ja/</link>
       <pubDate>Sat, 15 Jul 2023 00:00:00 +0000</pubDate>
-      
       <guid>https://mosko.tokyo/ja/blog/iccv2023_ja/</guid>
       <description>昨今，文章から画像を生成するStableDiffusionやMidjourneyをはじめとする高品質な（text2img）生成モデルが次々に登場し，実際の画像と区別の付かないような生成画像が多量にインターネット上にアップロードされています 1． このような現象は，将来的にインターネット上から画像を収集し，データセットを作成した場合に，画像認識をはじめとするコンピュータービジョンに対してどのような影響があるのでしょうか2？</description>
     </item>
-    
     <item>
       <title>ヘッセ行列の低ランク近似による，勾配法を用いたハイパーパラメータ最適化方法の提案</title>
       <link>https://mosko.tokyo/ja/blog/aistats2023_ja/</link>
       <pubDate>Wed, 01 Mar 2023 00:00:00 +0000</pubDate>
-      
       <guid>https://mosko.tokyo/ja/blog/aistats2023_ja/</guid>
       <description>本記事では我々が提案した，ヘッセ行列を低ランク近似することで勾配法を用いたハイパーパラメータ最適化を効率的に行う方法を紹介します． 実験的にはこの方法は設定の差異に対して鈍感であり，応用上も使いやすいのではないかと期待しています．</description>
     </item>
-    
     <item>
       <title>研究提案書の書き方</title>
       <link>https://mosko.tokyo/ja/blog/how_to_write_research_proposals/</link>
       <pubDate>Fri, 04 Feb 2022 00:00:00 +0000</pubDate>
-      
       <guid>https://mosko.tokyo/ja/blog/how_to_write_research_proposals/</guid>
       <description>本記事は第6回 統計・機械学習若手シンポジウム 日本の博士課程〜若手シンポジウム’21 カウントダウンカレンダー〜のために執筆しました。</description>
     </item>
-    
     <item>
       <title>研究に便利なツールまとめ</title>
       <link>https://mosko.tokyo/ja/blog/research_tools_2020/</link>
       <pubDate>Sun, 07 Jun 2020 00:00:00 +0000</pubDate>
-      
       <guid>https://mosko.tokyo/ja/blog/research_tools_2020/</guid>
       <description>情報系の博士学生をしていて使っているツールなどをまとめてみました．しばらく自宅待機で研究室に行けない研究室入りたての人，などの役に立てば幸いです．
 筆者の環境 ラップトップとしてMacBook Pro，タブレット端末としてiPad Pro+Apple Pencilを使っています．また，実験の際にはUbuntuの外部サーバーにアクセスすることを前提としています．</description>
     </item>
-    
   </channel>
 </rss>
