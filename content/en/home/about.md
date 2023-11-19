@@ -13,6 +13,7 @@ I am Ryuichiro Hataya, PhD (Information Science and Technology).
 
 #### 2023
 
+* We will present "Non-commutative $C^\*$-algebra Net" at [QTML 2023](https://qtml-2023.web.cern.ch/) @ Geneve, Switzerland.
 * Our paper "An Empirical Investigation of Pre-trained Model Selection for Out-of-Distribution Generalization and Calibration" (Naganuma & Hataya) has been accepted at ICCV Workshop 2023 on Uncertainty Quantification for Computer Vision.
 * I will visit Nicolaus Copernicus University Poland from Sep 25th to 30th.
 * Our paper "Will Large-scale Generative Models Corrupt Future Datasets?" has been accepted at ICCV 2023.
