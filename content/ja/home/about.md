@@ -13,6 +13,7 @@ weight: 8
 
 #### 2023
 
+* 国立がん研究センター・小林さんとの共著論文 "Sketch-based Semantic Retrieval of Medical Images" がMedical Image Analysis誌に採択されました．
 * スイスのジュネーブで開催される[QTML 2023](https://qtml-2023.web.cern.ch/)において"Non-commutative $C^\*$-algebra Net"を発表します．
 * モントリオール大/MILA・長沼さんとの共著論文 "An Empirical Investigation of Pre-trained Model Selection for Out-of-Distribution Generalization and Calibration" がICCV 2023 Workshop on Uncertainty Quantification for Computer Visionに採択されました．
 * 9月末にポーランドのニコラウス･コペルニクス大学を訪問します．
