@@ -6,6 +6,7 @@ weight: 30
 
 #### Journal Papers (Peer-reviewed)
 
+* Kazuma Kobayashi, Lin Gu, **Ryuichiro Hataya**, Takaaki Mizuno, Mototaka Miyake, Hirokazu Watanabe, Masamichi Takahashi, Yasuyuki Takamizawa, Yukihiro Yoshida, Satoshi Nakamura, Nobuji Kouno, Amina Bolatkan, Yusuke Kurose, Tatsuya Harada, Ryuji Hamamoto, ["Sketch-based Semantic Retrieval of Medical Images."]() *Medical Image Analysis,* xxx, xxx, 2024.
 * Kazuma Kobayashi, **Ryuichiro Hataya**, Yusuke Kurose, Mototaka Miyake, Masamichi Takahashi, Akiko Nakagawa, Tatsuya Harada, and Ryuji Hamamoto, ["Decomposing Normal and Abnormal Features of Medical Images for Content-Based Image Retrieval of Glioma Imaging."](https://www.sciencedirect.com/science/article/pii/S1361841521002723) *Medical Image Analysis*, Vo74, Dec., 2021.
 
 #### Conference Papers (Peer-reviewed)
@@ -24,10 +25,10 @@ weight: 30
 
 #### Preprints
 
-
+* Hiroki Naganuma${}^\star$, Ryuichiro Hataya${}^\star$, Ioannis Mitliagkas, "An Empirical Investigation of Pre-trained Model Selection for Out-of-Distribution Generalization and Calibration," 2023. [arXiv](https://arxiv.org/abs/2307.08187) (${}^\star$ indicates equal contribution)
 * Leonardo Placidi, **Ryuichiro Hataya**, Toshio Mori, Koki Aoyama, Hayata Morisaki, Kosuke Mitarai, and Keisuke Fujii, "MNISQ: A Large-Scale Quantum Circuit Dataset for Machine Learning on/for Quantum Computers in the NISQ era," 2023. [arXiv](https://arxiv.org/abs/2306.16627)
 * **Ryuichiro Hataya**, and Yuka Hashimoto, "Noncommutative $C^\star$-algebra Net: Learning Neural Networks with Powerful Product Structure in $C^\star$-algebra," 2023. [arXiv](https://arxiv.org/abs/2302.01191)
-* **Ryuichiro Hataya**, Hideki Nakayama, and Kazuki Yoshizoe, "Graph Energy-based Model for Substructure Preserving Molecular Design," 2021. [arxiv](https://arxiv.org/abs/2102.04600)
+* **Ryuichiro Hataya**, Hideki Nakayama, and Kazuki Yoshizoe, "Graph Energy-based Model for Substructure Preserving Molecular Design," 2021. [arXiv](https://arxiv.org/abs/2102.04600)
 
 #### Others
 
