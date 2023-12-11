@@ -6,7 +6,7 @@ weight: 30
 
 #### 原著論文
 
-* Kazuma Kobayashi, Lin Gu, **Ryuichiro Hataya**, Takaaki Mizuno, Mototaka Miyake, Hirokazu Watanabe, Masamichi Takahashi, Yasuyuki Takamizawa, Yukihiro Yoshida, Satoshi Nakamura, Nobuji Kouno, Amina Bolatkan, Yusuke Kurose, Tatsuya Harada, Ryuji Hamamoto, ["Sketch-based Semantic Retrieval of Medical Images."]() *Medical Image Analysis,* xxx, xxx, 2024.
+* Kazuma Kobayashi, Lin Gu, **Ryuichiro Hataya**, Takaaki Mizuno, Mototaka Miyake, Hirokazu Watanabe, Masamichi Takahashi, Yasuyuki Takamizawa, Yukihiro Yoshida, Satoshi Nakamura, Nobuji Kouno, Amina Bolatkan, Yusuke Kurose, Tatsuya Harada, Ryuji Hamamoto, ["Sketch-based Semantic Retrieval of Medical Images."](https://www.sciencedirect.com/science/article/pii/S1361841523003201) *Medical Image Analysis,* 2023.
 * Kazuma Kobayashi, **Ryuichiro Hataya**, Yusuke Kurose, Mototaka Miyake, Masamichi Takahashi, Akiko Nakagawa, Tatsuya Harada, and Ryuji Hamamoto, ["Decomposing Normal and Abnormal Features of Medical Images for Content-Based Image Retrieval of Glioma Imaging."](https://www.sciencedirect.com/science/article/pii/S1361841521002723) *Medical Image Analysis*, Vo74, Dec., 2021.
 
 #### 査読あり会議論文
