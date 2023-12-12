@@ -25,14 +25,16 @@ weight: 30
 
 #### プレプリント
 
-* Hiroki Naganuma${}^\star$, Ryuichiro Hataya${}^\star$, Ioannis Mitliagkas, "An Empirical Investigation of Pre-trained Model Selection for Out-of-Distribution Generalization and Calibration," 2023. [arXiv](https://arxiv.org/abs/2307.08187) (${}^\star$ indicates equal contribution)
+* Hiroki Naganuma${}^\star$, **Ryuichiro Hataya**${}^\star$, Ioannis Mitliagkas, "An Empirical Investigation of Pre-trained Model Selection for Out-of-Distribution Generalization and Calibration," 2023. [arXiv](https://arxiv.org/abs/2307.08187)
 * Leonardo Placidi, **Ryuichiro Hataya**, Toshio Mori, Koki Aoyama, Hayata Morisaki, Kosuke Mitarai, and Keisuke Fujii, "MNISQ: A Large-Scale Quantum Circuit Dataset for Machine Learning on/for Quantum Computers in the NISQ era," 2023. [arXiv](https://arxiv.org/abs/2306.16627)
-* **Ryuichiro Hataya**, and Yuka Hashimoto, "Noncommutative $C^\star$-algebra Net: Learning Neural Networks with Powerful Product Structure in $C^\star$-algebra," 2023. [arXiv](https://arxiv.org/abs/2302.01191)
+* **Ryuichiro Hataya**${}^\star$, and Yuka Hashimoto${}^\star$, "Noncommutative $C^\ast$-algebra Net: Learning Neural Networks with Powerful Product Structure in $C^\ast$-algebra," 2023. [arXiv](https://arxiv.org/abs/2302.01191)
 * **Ryuichiro Hataya**, Hideki Nakayama, and Kazuki Yoshizoe, "Graph Energy-based Model for Substructure Preserving Molecular Design." 2021. [arxiv](https://arxiv.org/abs/2102.04600)
+
+ (${}^\star$ indicates equal contribution)
 
 #### そのほか
 
-* **Ryuichiro Hataya**, Yuka Hashimoto, "Noncommutative $C^*$-algebra Nets,"  International Conference on Quantum Techinques in Machine Learning, 2023. (Peer Reviewed Etended Abstract)
+* **Ryuichiro Hataya**, Yuka Hashimoto, "Noncommutative $C^\ast$-algebra Nets,"  International Conference on Quantum Techinques in Machine Learning, 2023. (Peer Reviewed Etended Abstract)
 * Hiroki Naganuma, **Ryuichiro Hataya**, "An Empirical Investigation of Pre-trained Model Selection for Out-of-Distribution Generalization and Calibration," ICCV 2023 Workshop on Uncertainty Quantification for Computer Vision, 2023. (Peer Reviewed Etended Abstract [arXiv](https://arxiv.org/abs/2307.08187))
 * **Ryuichiro Hataya**, Hideki Nakayama, and Kazuki Yoshizoe, ["Graph Energy-based Model for Molecular Graph Generation."](https://openreview.net/forum?id=I2AD-xWJ2-J) *EBM Workshop at ICLR 2021*, 2021. (Peer Reviewed, Contributed Talk)
 * Kazuma Kobayashi, Ryuichiro Hataya, Yusuke Kurose, Tatsuya Harada, and Ryuji Hamamoto, "Decomposing Normal and Abnormal Features of Medical Images for Content-based Image Retrieval." *Machine Learning for Health Workshop at NeurIPS 2020*. (Peer Reviewed, Extended Abstract)
