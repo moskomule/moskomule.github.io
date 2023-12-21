@@ -103,3 +103,8 @@ $$ \frac{\mathrm{d} g}{\mathrm{d} \phi}\approx\frac{\partial g}{\partial \theta}
 実験コードを整理したものを[ライブラリ](https://github.com/moskomule/hypergrad)として公開してみました．
 PyTorchのインストールされた環境であれば，`pip install hypergrad`ですぐに試すことができます．
 是非使ってみてください．
+
+
+---
+
+本研究はJST ACT-X（JPMJAX210H）および科研費（20H04243）の補助を受けて行われました．

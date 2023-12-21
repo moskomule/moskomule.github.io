@@ -67,3 +67,8 @@ SwinTransformer-SmallやConvNeXt-Tinyといった現代的なモデルでも同�
 ```
 
 この研究で生成したSD-ImageNetおよびSD-COCOは https://dmsgrdm.riken.jp:5000/c24kn/ からダウンロードできます．
+
+
+---
+
+本研究はJST ACT-X（JPMJAX210H）の補助を受けて行われました．
