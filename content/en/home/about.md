@@ -11,6 +11,11 @@ I am Ryuichiro Hataya, PhD (Information Science and Technology).
 
 ### News
 
+#### 2024
+
+<details>
+<summary>older news</summary>
+
 #### 2023
 
 * Our paper "Sketch-based Semantic Retrieval of Medical Images" (Kobayashi et al.) has been accepted at Medical Image Analysis.
@@ -20,8 +25,6 @@ I am Ryuichiro Hataya, PhD (Information Science and Technology).
 * Our paper "Will Large-scale Generative Models Corrupt Future Datasets?" has been accepted at ICCV 2023.
 * Our paper "Towards AI-driven radiology education: A self-supervised segmentation-based framework for high-precision medical image editing" (Kobayashi et al.) has been accepted at MICCAI 2023 as an oral presentation.
 
-<details>
-<summary>older news</summary>
 
 * I will visit MILA at Montreal and attend CVPR in June.
 * I will give a talk at UTokyo ICEPP.

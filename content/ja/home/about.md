@@ -11,6 +11,11 @@ weight: 8
 
 ### News
 
+#### 2024
+
+<details>
+<summary>昔の話</summary>
+
 #### 2023
 
 * 国立がん研究センター・小林さんとの共著論文 "Sketch-based Semantic Retrieval of Medical Images" がMedical Image Analysis誌に採択されました．[プレスリリース](https://www.ncc.go.jp/jp/information/researchtopics/2023/1222/index.html)．
@@ -27,9 +32,6 @@ weight: 8
 * 3月にEPFL CIS・Fraunhofer IISを訪問します．
 * 第4回理研AIP数学系合同セミナーに参加しました．
 * 主著論文 "Nyström Method for Accurate and Scalable Implicit Differentiation" がAISTATS 2023に採択されました．京大・山田先生との共著です．
-
-<details>
-<summary>昔の話</summary>
 
 #### 2022
 
