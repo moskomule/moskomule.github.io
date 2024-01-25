@@ -13,6 +13,8 @@ weight: 8
 
 #### 2024
 
+* 統数研共同研究集会 兼 第4回TREFOIL研究会で招待講演を行います．
+
 <details>
 <summary>昔の話</summary>
 
@@ -25,7 +27,7 @@ weight: 8
 * 主著論文 "Will Large-scale Generative Models Corrupt Future Datasets?" がICCV 2023に採択されました．京大・包さん，理研・荒井さんとの共著です．
 * 国立がん研究センター・小林さんとの共著論文 "Towards AI-driven radiology education: A self-supervised segmentation-based framework for high-precision medical image editing" がMICCAI2023にオーラルとして採択されました．
 * 6月にモントリオールのMILAを訪問します．バンクーバーで開催されるCVPRに参加します．
-* 東京大学素粒子物理国際研究センターで講演を行います．
+* 東京大学素粒子物理国際研究センターで招待講演を行います．
 * 5月にジェノバのIITを訪問します．
 * AISTATSに参加します．
 * 4月にVietnam Institute for Advanced Study in Mathematicsを訪問します．
