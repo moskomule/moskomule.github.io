@@ -15,6 +15,7 @@
                 />
   </url><url>
     <loc>https://mosko.tokyo/blog/</loc>
+    <lastmod>2024-01-05T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="ja"
@@ -26,19 +27,11 @@
                 href="https://mosko.tokyo/blog/"
                 />
   </url><url>
-    <loc>https://mosko.tokyo/home/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="ja"
-                href="https://mosko.tokyo/ja/home/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en-us"
-                href="https://mosko.tokyo/home/"
-                />
+    <loc>https://mosko.tokyo/tags/japan/</loc>
+    <lastmod>2024-01-05T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://mosko.tokyo/</loc>
+    <lastmod>2024-01-05T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="ja"
@@ -51,6 +44,7 @@
                 />
   </url><url>
     <loc>https://mosko.tokyo/tags/</loc>
+    <lastmod>2024-01-05T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="ja"
@@ -60,6 +54,21 @@
                 rel="alternate"
                 hreflang="en-us"
                 href="https://mosko.tokyo/tags/"
+                />
+  </url><url>
+    <loc>https://mosko.tokyo/blog/tips_in_japan/</loc>
+    <lastmod>2024-01-05T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://mosko.tokyo/home/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="https://mosko.tokyo/ja/home/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-us"
+                href="https://mosko.tokyo/home/"
                 />
   </url>
 </urlset>
