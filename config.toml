@@ -1,4 +1,4 @@
-baseURL                          = "https://mosko.tokyo/"  # Your domain name. Must end with "/"
+baseURL                          = "https://hataya.tokyo/"  # Your domain name. Must end with "/"
 theme                            = "introduction"
 DefaultContentLanguage           = "en"                    # Default language for multilingual sites
 
