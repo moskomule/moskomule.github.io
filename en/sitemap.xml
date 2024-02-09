@@ -2,73 +2,73 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://mosko.tokyo/projects/</loc>
+    <loc>https://hataya.tokyo/projects/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="ja"
-                href="https://mosko.tokyo/ja/projects/"
+                href="https://hataya.tokyo/ja/projects/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en-us"
-                href="https://mosko.tokyo/projects/"
+                href="https://hataya.tokyo/projects/"
                 />
   </url><url>
-    <loc>https://mosko.tokyo/blog/</loc>
+    <loc>https://hataya.tokyo/blog/</loc>
     <lastmod>2024-01-05T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="ja"
-                href="https://mosko.tokyo/ja/blog/"
+                href="https://hataya.tokyo/ja/blog/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en-us"
-                href="https://mosko.tokyo/blog/"
+                href="https://hataya.tokyo/blog/"
                 />
   </url><url>
-    <loc>https://mosko.tokyo/tags/japan/</loc>
+    <loc>https://hataya.tokyo/tags/japan/</loc>
     <lastmod>2024-01-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://mosko.tokyo/</loc>
-    <lastmod>2024-01-05T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="ja"
-                href="https://mosko.tokyo/ja/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en-us"
-                href="https://mosko.tokyo/"
-                />
-  </url><url>
-    <loc>https://mosko.tokyo/tags/</loc>
+    <loc>https://hataya.tokyo/</loc>
     <lastmod>2024-01-05T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="ja"
-                href="https://mosko.tokyo/ja/tags/"
+                href="https://hataya.tokyo/ja/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en-us"
-                href="https://mosko.tokyo/tags/"
+                href="https://hataya.tokyo/"
                 />
   </url><url>
-    <loc>https://mosko.tokyo/blog/tips_in_japan/</loc>
+    <loc>https://hataya.tokyo/tags/</loc>
     <lastmod>2024-01-05T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mosko.tokyo/home/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="ja"
-                href="https://mosko.tokyo/ja/home/"
+                href="https://hataya.tokyo/ja/tags/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en-us"
-                href="https://mosko.tokyo/home/"
+                href="https://hataya.tokyo/tags/"
+                />
+  </url><url>
+    <loc>https://hataya.tokyo/blog/tips_in_japan/</loc>
+    <lastmod>2024-01-05T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://hataya.tokyo/home/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="https://hataya.tokyo/ja/home/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-us"
+                href="https://hataya.tokyo/home/"
                 />
   </url>
 </urlset>

@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Ryuichiro Hataya&#39;s webpage</title>
-    <link>https://mosko.tokyo/tags/</link>
+    <link>https://hataya.tokyo/tags/</link>
     <description>Recent content in Tags on Ryuichiro Hataya&#39;s webpage</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 05 Jan 2024 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://mosko.tokyo/tags/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://hataya.tokyo/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>japan</title>
-      <link>https://mosko.tokyo/tags/japan/</link>
+      <link>https://hataya.tokyo/tags/japan/</link>
       <pubDate>Fri, 05 Jan 2024 00:00:00 +0000</pubDate>
-      <guid>https://mosko.tokyo/tags/japan/</guid>
+      <guid>https://hataya.tokyo/tags/japan/</guid>
       <description></description>
     </item>
   </channel>
