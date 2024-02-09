@@ -15,6 +15,6 @@ On iPhone, open the Wallet app, tap the plus button at the top right corner, sel
 On Android, use the Google Pay app.
 That's it!
 
-{{<figure src="datasets_wide.png" width="80%">}}
+{{<figure src="pasmo.png" width="80%">}}
 
-# ...
+# To be updated ...
