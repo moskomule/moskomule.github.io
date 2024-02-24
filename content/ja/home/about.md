@@ -13,7 +13,8 @@ weight: 8
 
 #### 2024
 
-* 統数研共同研究集会 兼 第4回TREFOIL研究会で招待講演を行います．
+* [第53回IBISML研究会](https://ibisml.org/ibisml053)において招待講演「勾配法を用いたハイパーパラメータ最適化」を行います．
+* [統数研共同研究集会 兼 第4回TREFOIL研究会](https://docs.google.com/forms/d/e/1FAIpQLSdS2RB1mkBL9S2F-CnOT8aYqMOSLr9INfolbmosAbRsRGYK8A/viewform?vc=0&c=0&w=1&flr=0&pli=1)で招待講演「深層学習とデータ拡張」を行います．
 
 <details>
 <summary>昔の話</summary>
