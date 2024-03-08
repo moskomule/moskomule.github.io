@@ -13,6 +13,10 @@ I am Ryuichiro Hataya, PhD (Information Science and Technology).
 
 #### 2024
 
+* I will present at [Workshop on Functional Inference and Machine Intelligence](https://ismseminar.github.io/fimi2024/).
+* I will attend [DL 2024](https://sites.google.com/view/dl2024/).
+* I will attend [Machine Learning Summer School Okinawa](https://groups.oist.jp/mlss/) as a program committee.
+
 <details>
 <summary>older news</summary>
 

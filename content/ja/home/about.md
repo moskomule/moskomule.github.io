@@ -13,6 +13,9 @@ weight: 8
 
 #### 2024
 
+* [Workshop on Functional Inference and Machine Intelligence](https://ismseminar.github.io/fimi2024/)に参加します．
+* [DL 2024](https://sites.google.com/view/dl2024/)に参加します．
+* [Machine Learning Summer School Okinawa](https://groups.oist.jp/mlss/)にプログラム委員として参加します．
 * [第53回IBISML研究会](https://ibisml.org/ibisml053)において招待講演「勾配法を用いたハイパーパラメータ最適化」を行います．
 * [統数研共同研究集会 兼 第4回TREFOIL研究会](https://docs.google.com/forms/d/e/1FAIpQLSdS2RB1mkBL9S2F-CnOT8aYqMOSLr9INfolbmosAbRsRGYK8A/viewform?vc=0&c=0&w=1&flr=0&pli=1)で招待講演「深層学習とデータ拡張」を行います．
 
