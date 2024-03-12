@@ -8,15 +8,16 @@ weight: 60
 
 * "勾配法によるハイパーパラメータ最適化"，[第53回IBISML研究会](https://ibisml.org/ibisml053)，2024年3月 [スライド](/slides/ibisml_202403.pdf)．
 * "深層学習とデータ拡張"，[統数研共同研究集会 兼 第4回TREFOIL研究会](https://docs.google.com/forms/d/e/1FAIpQLSdS2RB1mkBL9S2F-CnOT8aYqMOSLr9INfolbmosAbRsRGYK8A/viewform?vc=0&c=0&w=1&flr=0&pli=1)，2024年2月．
+
+<details>
+<summary>過去の情報</summary>
+
 * "行列式点過程の機械学習への応用," [ICEPPセミナー](https://www.icepp.s.u-tokyo.ac.jp/collaboration/seminar.html), 2023年6月．
 * "Towards accurate and scalable gradient-based hyperparameter optimization," Istituto Italiano di Tecnologia, 2023年5月．
 * "Noncommutative $C^\star$-algebra Nets," [Japan-Vietnam AI Forum](https://viasm.edu.vn/en/hdkh/jvaif), 2023年4月.
 * 「ベイズモデル選択による弱教師あり深層学習アルゴリズムのハイパーパラメータ最適化」, [ザッピングセミナー](https://zappingseminar.connpass.com/event/239765/), 2022.
 * 「深層学習とデータ拡張」, [愛媛大学DS研究セミナー](https://www.cdse.ehime-u.ac.jp/)，2021.
 
-
-<details>
-<summary>その他</summary>
 
 * 「深層学習におけるデータ拡張の原理と最新動向」, Symposium on Sensing via Image Information, 2021.
 * 「深層学習を支えるデータ拡張」, [StatsML Symposium](https://sites.google.com/view/statsmlsymposium20/), 2020.
