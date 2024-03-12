@@ -6,7 +6,7 @@ weight: 60
 
 #### 招待講演
 
-* "勾配法によるハイパーパラメータ最適化"，[第53回IBISML研究会](https://ibisml.org/ibisml053)，2024年3月．
+* "勾配法によるハイパーパラメータ最適化"，[第53回IBISML研究会](https://ibisml.org/ibisml053)，2024年3月 [スライド](/slides/ibisml_202403.pdf)．
 * "深層学習とデータ拡張"，[統数研共同研究集会 兼 第4回TREFOIL研究会](https://docs.google.com/forms/d/e/1FAIpQLSdS2RB1mkBL9S2F-CnOT8aYqMOSLr9INfolbmosAbRsRGYK8A/viewform?vc=0&c=0&w=1&flr=0&pli=1)，2024年2月．
 * "行列式点過程の機械学習への応用," [ICEPPセミナー](https://www.icepp.s.u-tokyo.ac.jp/collaboration/seminar.html), 2023年6月．
 * "Towards accurate and scalable gradient-based hyperparameter optimization," Istituto Italiano di Tecnologia, 2023年5月．
