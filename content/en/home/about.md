@@ -7,12 +7,12 @@ weight: 8
 I am Ryuichiro Hataya, PhD (Information Science and Technology).
 
 * Postdoctoral Researcher @ RIKEN Center for Advanced Intelligence Project ([High-Dimensional Causal Analysis Team](https://www.riken.jp/en/research/labs/aip/generic_tech/highdim_cause_anl/index.html))
-* Visiting Researcher @ International Center for Elementary Particle Physics, UTokyo
 
 ### News
 
 #### 2024
 
+* My research proposal is accepted at the Acceleration phase of JST ACT-X.
 * I will present at [Workshop on Functional Inference and Machine Intelligence](https://ismseminar.github.io/fimi2024/).
 * I will attend [DL 2024](https://sites.google.com/view/dl2024/).
 * I will attend [Machine Learning Summer School Okinawa](https://groups.oist.jp/mlss/) as a program committee.

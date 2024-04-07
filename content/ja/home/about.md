@@ -7,12 +7,13 @@ weight: 8
 幡谷龍一郎です（博士（情報理工学））。
 
 * 特別研究員（理化学研究所革新知能統合研究センター高次元因果解析チーム）
-* 客員共同研究員（東京大学素粒子物理国際研究センター）
 
 ### News
 
 #### 2024
 
+* 研究課題が
+* 研究課題がJST ACT-X数理情報のフロンティア領域の加速フェーズに採択されました．
 * [Workshop on Functional Inference and Machine Intelligence](https://ismseminar.github.io/fimi2024/)に参加します．
 * [DL 2024](https://sites.google.com/view/dl2024/)に参加します．
 * [Machine Learning Summer School Okinawa](https://groups.oist.jp/mlss/)にプログラム委員として参加します．
