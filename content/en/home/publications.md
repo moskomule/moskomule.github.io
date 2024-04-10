@@ -25,6 +25,7 @@ weight: 30
 
 #### Preprints
 
+* Yuka Hashimoto${}^\star$, **Ryuichiro Hataya**, "Quantum Circuit $C^\ast$-algebra Net," 2024. [arXiv](https://arxiv.org/abs/2404.06218)
 * **Ryuichiro Hataya**, Yoshinobu Kawahara, "Glocal Hypergradient Estimation with Koopman Operator," 2024. [arXiv](https://arxiv.org/abs/2402.02741)
 * Han Bao, **Ryuichiro Hataya**, Ryo Karakida, "Self-attention Networks Localize When QK-eigenspectrum Concentrates," 2024. [arXiv](https://arxiv.org/abs/2402.02098)
 * Hiroki Naganuma${}^\star$, **Ryuichiro Hataya**${}^\star$, Ioannis Mitliagkas, "An Empirical Investigation of Pre-trained Model Selection for Out-of-Distribution Generalization and Calibration," 2023. [arXiv](https://arxiv.org/abs/2307.08187)

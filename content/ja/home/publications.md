@@ -11,6 +11,7 @@ weight: 30
 
 #### 査読あり会議論文
 
+* Yuka Hashimoto${}^\star$, **Ryuichiro Hataya**, "Quantum Circuit $C^\ast$-algebra Net," 2024. [arXiv](https://arxiv.org/abs/2404.06218)
 * **Ryuichiro Hataya**, Han Bao, and Hiromi Arai, ["Will Large-scale Generative Models Corrupt Future Datasets?,"](https://openaccess.thecvf.com/content/ICCV2023/html/Hataya_Will_Large-scale_Generative_Models_Corrupt_Future_Datasets_ICCV_2023_paper.html) *International Conference on Computer Vision*, France, 2023.
 * Kazuma Kobayashi, Lin Gu, **Ryuichiro Hataya**, Mototaka Miyake, Yasuyuki Takamizawa, Sono Ito, Hirokazu Watanabe, Yukihiro Yoshida, Hiroki Yoshimura, Tatsuya Harada, Ryuji Hamamoto, "Towards AI-driven radiology education: A self-supervised segmentation-based framework for high-precision medical image editing," *Medical Image Computing and Computer-Assisted Intervention*, Canada, 2023.
 * **Ryuichiro Hataya**, and Makoto Yamada, "[Nyström Method for Accurate and Scalable Implicit Differentiation](https://arxiv.org/abs/2302.09726)," *International Conference on Artificial Intelligence and Statistics*, Spain, 2023.
