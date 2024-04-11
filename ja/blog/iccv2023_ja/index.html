@@ -1,374 +1,41 @@
-<!DOCTYPE html>
-<html lang="ja">
-    <head>
-        
-        <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="chrome=1">
-<meta name="HandheldFriendly" content="True">
-<meta name="MobileOptimized" content="320">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="referrer" content="no-referrer">
-<meta name="description" content="...">
-<title>
-高品質な生成画像は将来のコンピュータービジョンに悪影響を与えるのか - &hellip;
-</title>
-
-
-
-        
-        <meta property="og:title" content="高品質な生成画像は将来のコンピュータービジョンに悪影響を与えるのか - &hellip;" />
-<meta property="og:type" content="website" />
-<meta property="og:description" content="..."/>
-<meta property="og:url" content="https://hataya.tokyo/ja/blog/iccv2023_ja/"/>
-<meta property="og:site_name" content="&hellip;"/>
-
-
-
-<meta property="og:image" content="https://hataya.tokyo/ja/blog/iccv2023_ja/classification-resnet50.png"/>
-
-<meta property="og:image" content="https://hataya.tokyo/ja/blog/iccv2023_ja/datasets_wide.png"/>
-
-<meta property="og:image" content="https://hataya.tokyo/ja/blog/iccv2023_ja/precision-recall.png"/>
-
-
-
-        
-<link rel="shortcut icon" href="/img/fav.ico">
-
-
-        
-
-
-
-
-
-
-<link rel="stylesheet" href="/css/main.min.36f9d8263432beffbd6094f57fb28719ed0c231274aff928d0a0f8820a88d26f.css" integrity="sha256-NvnYJjQyvv&#43;9YJT1f7KHGe0MIxJ0r/ko0KD4ggqI0m8="
-  crossorigin="anonymous" media="screen">
-
-
-
-
-<link rel="stylesheet" href="/css/custom.css" integrity="" crossorigin="anonymous"
-  media="screen">
-
-
-<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
-</script>
-<script>
-  window.MathJax = {
-    tex: {
-      inlineMath: [
-        ['$', '$'],
-        ['\\(', '\\)']
-      ],
-      displayMath:
-        [
-          ['$$', '$$'],
-          ['\\[', '\\]']
-        ],
-      macros: {
-        argmax: "\\DeclareMathOperator*{\\argmax}{argmax}",
-        argmin: "\\DeclareMathOperator*{\\argmin}{argmin}"
-      },
-      tags: 'ams'
-    }
-  };
-</script>
-        
-        
-        
-        
-    </head>
-    <body>
-        <section id="top" class="section">
-            
-            <div class="container hero ">
-                
-
-<h1 class="bold-title is-1">記事</h1>
-
-
-            </div>
-            
-            <div class="section ">
-                
-<div class="container">
-    <hr>
-    <nav class="navbar" role="navigation" aria-label="main navigation">
-        
-        <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false" >
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-        </a>
-        <div class="navbar-menu " id="navMenu">
-            
-            
-            
-            
-            <a class="navbar-item" href="/ja/">メインページ</a>
-            
-
-            
-            
-
-            
-                
-            
-
-            
-                
-            
-
-            
-            
-            
-            
-            
-            <a class="navbar-item" href="/ja/#about">プロフィール</a>
-            
-            
-            
-            
-            
-                
-                
-                
-                
-                  <a class="navbar-item" href="https://hataya.tokyo/ja/projects/">
-                  
-                  
-                  研究概要
-                  
-                  
-                  </a>
-                
-                
-            
-            
-            
-            
-            
-                
-                
-                
-                
-                  <a class="navbar-item" href="https://hataya.tokyo/ja/blog/">
-                  
-                  記事に戻る
-                  
-                  </a>
-                
-                
-            
-            
-            
-            
-            
-            <a class="navbar-item" href="/ja/#publications">論文など</a>
-            
-            
-            
-            
-            
-            <a class="navbar-item" href="/ja/#activities">研究活動</a>
-            
-            
-            
-            
-
-            
-            
-            <a class="navbar-item" href="/ja/#contact">Contact</a>
-            
-            
-
-            
-            
-            <a class="navbar-item" href="https://hataya.tokyo/">English</a>
-            
-            
-            
-            
-
-            
-            
-        </div>
-    </nav>
-    <hr>
-</div>
-
-
-
-                
-<div class="container">
-    <h2 class="title is-1 top-pad strong-post-title">
-        <a href="https://hataya.tokyo/ja/blog/iccv2023_ja/">高品質な生成画像は将来のコンピュータービジョンに悪影響を与えるのか</a>
-    </h2>
-    
-    <div class="post-data">
-        Jul 15, 2023
-        
-         | 
-        約1分で読めます
-        
-    </div>
-    
-    <div class="blog-share">
-        記事を共有する:
-        
-        <a class="twitter-share-button"
-            href="https://twitter.com/intent/tweet?text=%e9%ab%98%e5%93%81%e8%b3%aa%e3%81%aa%e7%94%9f%e6%88%90%e7%94%bb%e5%83%8f%e3%81%af%e5%b0%86%e6%9d%a5%e3%81%ae%e3%82%b3%e3%83%b3%e3%83%94%e3%83%a5%e3%83%bc%e3%82%bf%e3%83%bc%e3%83%93%e3%82%b8%e3%83%a7%e3%83%b3%e3%81%ab%e6%82%aa%e5%bd%b1%e9%9f%bf%e3%82%92%e4%b8%8e%e3%81%88%e3%82%8b%e3%81%ae%e3%81%8b%20https%3a%2f%2fhataya.tokyo%2fja%2fblog%2ficcv2023_ja%2f"
-            onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-            <i class="fab fa-twitter"></i>
-            <span class="hidden">Twitter</span>
-        </a>
-        
-        
-        <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fhataya.tokyo%2fja%2fblog%2ficcv2023_ja%2f"
-            onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-            <i class="fab fa-facebook-f"></i>
-            <span class="hidden">Facebook</span>
-        </a>
-        
-        
-    </div>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <p>
-        Tags:
-        
-        <a href="/ja/tags/%E7%A0%94%E7%A9%B6">
-            研究</a>
-        
-    </p>
-    
-    
-    
-    
-</div>
-
-<div class="container markdown top-pad">
-    <p>昨今，文章から画像を生成するStableDiffusionやMidjourneyをはじめとする高品質な（text2img）生成モデルが次々に登場し，実際の画像と区別の付かないような生成画像が多量にインターネット上にアップロードされています <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>．
-このような現象は，将来的にインターネット上から画像を収集し，データセットを作成した場合に，画像認識をはじめとするコンピュータービジョンに対してどのような影響があるのでしょうか<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>？</p>
-<p>本記事で紹介する，京都大学の包さん，理研AIPの荒井さんとの<a href="https://arxiv.org/abs/2211.08095">研究</a>は，この疑問に対して実験的に調査を行ったもので，今年10月にフランスで開催されるコンピュータービジョン分野の国際会議であるICCVにおいて発表します．</p>
-<hr>
-<p>はじめに述べたように，この1年ほどでStableDiffusionやChatGPTといった「生成AI」が多数登場し，研究者のみならず，一般のユーザーも使うようになりました．
-その結果，多数の生成データがインターネット上にアップロードされるようになり，<a href="https://www.washingtonpost.com/technology/interactive/2022/artificial-intelligence-images-dall-e/">偽情報の補強</a>や<a href="https://dl.acm.org/doi/abs/10.1145/3593013.3594095">人種バイアスの拡大</a>といった社会的な問題も現れてしまっています．
-それに対して，本研究では，生成画像が将来的にウェブから収集した画像データセットに混入する可能性が高いと考え，このような混入が画像認識などのコンピュータービジョンに対して与える影響を実験的に調べました．</p>
-<p>具体的には，代表的なtext2img生成モデルであるStableDiffusionを用いて，ImageNetやCOCO captionという既存のデータセットを模倣し，合計200万枚程度の画像を生成しました．
+<!doctype html><html lang=ja><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="chrome=1"><meta name=HandheldFriendly content="True"><meta name=MobileOptimized content="320"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=referrer content="no-referrer"><meta name=description content="..."><title>高品質な生成画像は将来のコンピュータービジョンに悪影響を与えるのか - &mldr;
+</title><meta property="og:title" content="高品質な生成画像は将来のコンピュータービジョンに悪影響を与えるのか - &mldr;"><meta property="og:type" content="website"><meta property="og:description" content="..."><meta property="og:url" content="https://hataya.tokyo/ja/blog/iccv2023_ja/"><meta property="og:site_name" content="&mldr;"><meta property="og:image" content="https://hataya.tokyo/ja/blog/iccv2023_ja/classification-resnet50.png"><meta property="og:image" content="https://hataya.tokyo/ja/blog/iccv2023_ja/datasets_wide.png"><meta property="og:image" content="https://hataya.tokyo/ja/blog/iccv2023_ja/precision-recall.png"><link rel="shortcut icon" href=/img/fav.ico><link rel=stylesheet href=/css/main.min.36f9d8263432beffbd6094f57fb28719ed0c231274aff928d0a0f8820a88d26f.css integrity="sha256-NvnYJjQyvv+9YJT1f7KHGe0MIxJ0r/ko0KD4ggqI0m8=" crossorigin=anonymous media=screen><link rel=stylesheet href=/css/custom.css integrity crossorigin=anonymous media=screen><script type=text/javascript id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js></script><script>window.MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],macros:{argmax:"\\DeclareMathOperator*{\\argmax}{argmax}",argmin:"\\DeclareMathOperator*{\\argmin}{argmin}"},tags:"ams"}}</script></head><body><section id=top class=section><div class="container hero"><h1 class="bold-title is-1">記事</h1></div><div class=section><div class=container><hr><nav class=navbar role=navigation aria-label="main navigation"><a role=button class=navbar-burger data-target=navMenu aria-label=menu aria-expanded=false><span aria-hidden=true></span>
+<span aria-hidden=true></span>
+<span aria-hidden=true></span></a><div class=navbar-menu id=navMenu><a class=navbar-item href=/ja/>メインページ</a>
+<a class=navbar-item href=/ja/#about>プロフィール</a>
+<a class=navbar-item href=https://hataya.tokyo/ja/projects/>研究概要
+</a><a class=navbar-item href=https://hataya.tokyo/ja/blog/>記事に戻る
+</a><a class=navbar-item href=/ja/#publications>論文など</a>
+<a class=navbar-item href=/ja/#activities>研究活動</a>
+<a class=navbar-item href=/ja/#contact>Contact</a>
+<a class=navbar-item href=https://hataya.tokyo/>English</a></div></nav><hr></div><div class=container><h2 class="title is-1 top-pad strong-post-title"><a href=https://hataya.tokyo/ja/blog/iccv2023_ja/>高品質な生成画像は将来のコンピュータービジョンに悪影響を与えるのか</a></h2><div class=post-data>Jul 15, 2023
+|
+約1分で読めます</div><div class=blog-share>記事を共有する:
+<a class=twitter-share-button href="https://twitter.com/intent/tweet?text=%e9%ab%98%e5%93%81%e8%b3%aa%e3%81%aa%e7%94%9f%e6%88%90%e7%94%bb%e5%83%8f%e3%81%af%e5%b0%86%e6%9d%a5%e3%81%ae%e3%82%b3%e3%83%b3%e3%83%94%e3%83%a5%e3%83%bc%e3%82%bf%e3%83%bc%e3%83%93%e3%82%b8%e3%83%a7%e3%83%b3%e3%81%ab%e6%82%aa%e5%bd%b1%e9%9f%bf%e3%82%92%e4%b8%8e%e3%81%88%e3%82%8b%e3%81%ae%e3%81%8b%20https%3a%2f%2fhataya.tokyo%2fja%2fblog%2ficcv2023_ja%2f" onclick='return window.open(this.href,"twitter-share","width=550,height=235"),!1'><i class="fab fa-twitter"></i>
+<span class=hidden>Twitter</span>
+</a><a class=icon-facebook href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fhataya.tokyo%2fja%2fblog%2ficcv2023_ja%2f" onclick='return window.open(this.href,"facebook-share","width=580,height=296"),!1'><i class="fab fa-facebook-f"></i>
+<span class=hidden>Facebook</span></a></div><p>Tags:
+<a href=/ja/tags/%E7%A0%94%E7%A9%B6>研究</a></p></div><div class="container markdown top-pad"><p>昨今，文章から画像を生成するStableDiffusionやMidjourneyをはじめとする高品質な（text2img）生成モデルが次々に登場し，実際の画像と区別の付かないような生成画像が多量にインターネット上にアップロードされています <sup id=fnref:1><a href=#fn:1 class=footnote-ref role=doc-noteref>1</a></sup>．
+このような現象は，将来的にインターネット上から画像を収集し，データセットを作成した場合に，画像認識をはじめとするコンピュータービジョンに対してどのような影響があるのでしょうか<sup id=fnref:2><a href=#fn:2 class=footnote-ref role=doc-noteref>2</a></sup>？</p><p>本記事で紹介する，京都大学の包さん，理研AIPの荒井さんとの<a href=https://arxiv.org/abs/2211.08095>研究</a>は，この疑問に対して実験的に調査を行ったもので，今年10月にフランスで開催されるコンピュータービジョン分野の国際会議であるICCVにおいて発表します．</p><hr><p>はじめに述べたように，この1年ほどでStableDiffusionやChatGPTといった「生成AI」が多数登場し，研究者のみならず，一般のユーザーも使うようになりました．
+その結果，多数の生成データがインターネット上にアップロードされるようになり，<a href=https://www.washingtonpost.com/technology/interactive/2022/artificial-intelligence-images-dall-e/>偽情報の補強</a>や<a href=https://dl.acm.org/doi/abs/10.1145/3593013.3594095>人種バイアスの拡大</a>といった社会的な問題も現れてしまっています．
+それに対して，本研究では，生成画像が将来的にウェブから収集した画像データセットに混入する可能性が高いと考え，このような混入が画像認識などのコンピュータービジョンに対して与える影響を実験的に調べました．</p><p>具体的には，代表的なtext2img生成モデルであるStableDiffusionを用いて，ImageNetやCOCO captionという既存のデータセットを模倣し，合計200万枚程度の画像を生成しました．
 そして，生成された画像によって元のデータセットの画像を置き換えることで，生成画像が混入した状況を模擬的に再現し，画像認識モデルなどの学習データとした場合の影響を調べます．
 以下の画像の左側はImageNetを真似るために，カテゴリ名を使って生成した画像（SD-ImageNet）の一部，
 右側はCOCO caption（SD-COCO）の説明文から生成した画像の一部です．
-少なくとも一見は「ちゃんとした」画像に見えます．</p>
-<figure><img src="/ja/blog/iccv2023_ja/datasets_wide.png" width="80%">
-</figure>
-
-<p>このような生成画像によってImageNetの画像を置き換えたデータセットによって画像分類モデル（ResNet-50）を訓練し，ImageNet評価データセット上で評価を行った際の正解率を以下の図（<font color="Blue">青線</font>）に示しました．
-参考のために，生成画像ではなく，ImageNetと同じカテゴリの画像を別途収集したWebVisionデータセットの画像を混入させた場合の正解率を<font color="Orange">橙線</font>で示しています．
-混入率（横軸）が大きくなるにつれて，生成画像の混入の方が精度（縦軸）を悪化させていることが分かります．</p>
-<figure><img src="/ja/blog/iccv2023_ja/classification-resnet50.png" width="50%">
-</figure>
-
-<p>SwinTransformer-SmallやConvNeXt-Tinyといった現代的なモデルでも同様の分類性能は低下し，その影響はImageNet-Aなどの分布外データに対する頑健性評価のベンチマークにも見られます．
+少なくとも一見は「ちゃんとした」画像に見えます．</p><figure><img src=/ja/blog/iccv2023_ja/datasets_wide.png width=80%></figure><p>このような生成画像によってImageNetの画像を置き換えたデータセットによって画像分類モデル（ResNet-50）を訓練し，ImageNet評価データセット上で評価を行った際の正解率を以下の図（<font color=Blue>青線</font>）に示しました．
+参考のために，生成画像ではなく，ImageNetと同じカテゴリの画像を別途収集したWebVisionデータセットの画像を混入させた場合の正解率を<font color=Orange>橙線</font>で示しています．
+混入率（横軸）が大きくなるにつれて，生成画像の混入の方が精度（縦軸）を悪化させていることが分かります．</p><figure><img src=/ja/blog/iccv2023_ja/classification-resnet50.png width=50%></figure><p>SwinTransformer-SmallやConvNeXt-Tinyといった現代的なモデルでも同様の分類性能は低下し，その影響はImageNet-Aなどの分布外データに対する頑健性評価のベンチマークにも見られます．
 また，このような生成画像特有の性能低下は画像説明文生成における様々な精度指標にも現れます．
-さらに，生成画像の混入したデータセットを用いて画像生成モデルを訓練するタスクにおいては，生成画像の多様性が低下が観察されました．</p>
-<p>このような生成データのもたらす悪影響の原因として，実際の画像と比較して，生成画像の多様性が低いことが挙げられます<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>．
-実際に，<a href="https://proceedings.neurips.cc/paper_files/paper/2019/hash/0234c510bc6d908b28c70ff313743079-Abstract.html">precision-recall</a>という指標を用いた場合，SD-ImageNetの画像分布がImageNetの画像分布の一部領域に概ね含まれていることが分かっています．以下に雰囲気を示しています．</p>
-<figure><img src="/ja/blog/iccv2023_ja/precision-recall.png" width="30%">
-</figure>
-
-<p>キャプションを工夫したSD-ImageNetの派生の画像も，ImageNetの画像と比べて多様性が乏しいことがわかっています．
-このような多様性の低下は，<a href="https://arxiv.org/abs/2305.17493">Shumailov et al. 2023</a>でも指摘されているように，生成画像を含んだデータセットから生成モデルが作られるループが繰り返されることで加速していく可能性があります．</p>
-<p>最新の生成モデルによる高品質な生成画像が厄介なのは，簡易な検出が難しく，巨大なデータセットから効率的に取り除けない点です．
-例えば実画像と生成画像の<a href="https://proceedings.neurips.cc/paper/2020/hash/1f8d87e1161af68b81bace188a1ec624-Abstract.html">周波数成分の違いに着目した検出</a>はあまり使えなさそうです．
+さらに，生成画像の混入したデータセットを用いて画像生成モデルを訓練するタスクにおいては，生成画像の多様性が低下が観察されました．</p><p>このような生成データのもたらす悪影響の原因として，実際の画像と比較して，生成画像の多様性が低いことが挙げられます<sup id=fnref:3><a href=#fn:3 class=footnote-ref role=doc-noteref>3</a></sup>．
+実際に，<a href=https://proceedings.neurips.cc/paper_files/paper/2019/hash/0234c510bc6d908b28c70ff313743079-Abstract.html>precision-recall</a>という指標を用いた場合，SD-ImageNetの画像分布がImageNetの画像分布の一部領域に概ね含まれていることが分かっています．以下に雰囲気を示しています．</p><figure><img src=/ja/blog/iccv2023_ja/precision-recall.png width=30%></figure><p>キャプションを工夫したSD-ImageNetの派生の画像も，ImageNetの画像と比べて多様性が乏しいことがわかっています．
+このような多様性の低下は，<a href=https://arxiv.org/abs/2305.17493>Shumailov et al. 2023</a>でも指摘されているように，生成画像を含んだデータセットから生成モデルが作られるループが繰り返されることで加速していく可能性があります．</p><p>最新の生成モデルによる高品質な生成画像が厄介なのは，簡易な検出が難しく，巨大なデータセットから効率的に取り除けない点です．
+例えば実画像と生成画像の<a href=https://proceedings.neurips.cc/paper/2020/hash/1f8d87e1161af68b81bace188a1ec624-Abstract.html>周波数成分の違いに着目した検出</a>はあまり使えなさそうです．
 さらに，多くの場合，人の目でも識別は困難です．
 幸いにもStableDiffusionやDALL･Eなどは「透かし」を入れているので検出は可能ですが，今後も生成モデル開発者には生成画像の検出を可能にする透かしの導入が求められるでしょう．
-同時に，生成画像の高速な検出方法の開発も望まれます．</p>
-<hr>
-<p>論文の情報は以下の通りです．</p>
-<div class="highlight"><pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bibtex" data-lang="bibtex"><span style="display:flex;"><span><span style="color:#75af00">@inproceedings</span><span style="color:#111">{</span><span style="color:#111">hataya2023will</span><span style="color:#111">,</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75af00">author</span> <span style="color:#111">=</span> <span style="color:#d88200">{Ryuichiro Hataya and Han Bao and Hiromi Arai}</span><span style="color:#111">,</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75af00">title</span> <span style="color:#111">=</span> <span style="color:#d88200">{{Will Large-scale Generative Models Corrupt Future Datasets?}}</span><span style="color:#111">,</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75af00">booktitle</span> <span style="color:#111">=</span> <span style="color:#d88200">{ICCV}</span><span style="color:#111">,</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75af00">year</span> <span style="color:#111">=</span> <span style="color:#d88200">{2023}</span><span style="color:#111">,</span>
-</span></span><span style="display:flex;"><span><span style="color:#111">}</span>
-</span></span></code></pre></div><p>この研究で生成したSD-ImageNetおよびSD-COCOは <a href="https://dmsgrdm.riken.jp:5000/c24kn/">https://dmsgrdm.riken.jp:5000/c24kn/</a> からダウンロードできます．</p>
-<hr>
-<p>本研究はJST ACT-X（JPMJAX210H）の補助を受けて行われました．</p>
-<div class="footnotes" role="doc-endnotes">
-<hr>
-<ol>
-<li id="fn:1">
-<p><a href="https://openai.com/blog/dall-e-now-available-without-waitlist/">https://openai.com/blog/dall-e-now-available-without-waitlist/</a> によれば，OpenAI社のDALL･E2は2022年9月年に1日あたり200万枚の画像を生成したそうです．&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-<li id="fn:2">
-<p>昨年の9月半ばに第2著者の包さんと伊都キャンパスから博多駅に向かうバスに乗っているときの雑談で出てきたのが，この素朴な疑問でした．&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-<li id="fn:3">
-<p>もちろんインターネット上から収集可能な画像も，「撮影しよう」「投稿しよう」という人の意思フィルターがかかるため，実世界にあり得る画像に比べれば多様性には乏しいはずです．&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-</ol>
-</div>
-
-</div>
-
-
-
-
-
-                
-                <div class="container">
-    <hr>
-</div>
-<div class="container has-text-centered top-pad">
-    <a href="#top">
-        <i class="fa fa-arrow-up"></i>
-    </a>
-</div>
-
-<div class="container">
-    <hr>
-</div>
-
-                <div class="section" id="footer">
-    <div class="container has-text-centered">
-    
-        2019-2024, by Ryuichiro Hataya, Powered by <a href="https://gohugo.io">hugo</a> with <a href="https://github.com/victoriadrake/hugo-theme-introduction">Introduction</a>
-    
-    </div>
-</div>
-
-                
-            </div>
-        </section>
-        
-        
-
-
-<script src="https://hataya.tokyo/js/bundle.5c23c0437f001a469ca373a465a6f7487203d18e10cdff76d86a60af66d5ee28.js" integrity="sha256-XCPAQ38AGkaco3OkZab3SHID0Y4Qzf922Gpgr2bV7ig="></script>
-
-
-
-
-
-
-        
-        
-        
-        
-    </body>
-</html>
+同時に，生成画像の高速な検出方法の開発も望まれます．</p><hr><p>論文の情報は以下の通りです．</p><div class=highlight><pre tabindex=0 style=color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bibtex data-lang=bibtex><span style=display:flex><span><span style=color:#75af00>@inproceedings</span><span style=color:#111>{</span><span style=color:#111>hataya2023will</span><span style=color:#111>,</span>
+</span></span><span style=display:flex><span>    <span style=color:#75af00>author</span> <span style=color:#111>=</span> <span style=color:#d88200>{Ryuichiro Hataya and Han Bao and Hiromi Arai}</span><span style=color:#111>,</span>
+</span></span><span style=display:flex><span>    <span style=color:#75af00>title</span> <span style=color:#111>=</span> <span style=color:#d88200>{{Will Large-scale Generative Models Corrupt Future Datasets?}}</span><span style=color:#111>,</span>
+</span></span><span style=display:flex><span>    <span style=color:#75af00>booktitle</span> <span style=color:#111>=</span> <span style=color:#d88200>{ICCV}</span><span style=color:#111>,</span>
+</span></span><span style=display:flex><span>    <span style=color:#75af00>year</span> <span style=color:#111>=</span> <span style=color:#d88200>{2023}</span><span style=color:#111>,</span>
+</span></span><span style=display:flex><span><span style=color:#111>}</span>
+</span></span></code></pre></div><p>この研究で生成したSD-ImageNetおよびSD-COCOは <a href=https://dmsgrdm.riken.jp:5000/c24kn/>https://dmsgrdm.riken.jp:5000/c24kn/</a> からダウンロードできます．</p><hr><p>本研究はJST ACT-X（JPMJAX210H）の補助を受けて行われました．</p><div class=footnotes role=doc-endnotes><hr><ol><li id=fn:1><p><a href=https://openai.com/blog/dall-e-now-available-without-waitlist/>https://openai.com/blog/dall-e-now-available-without-waitlist/</a> によれば，OpenAI社のDALL･E2は2022年9月年に1日あたり200万枚の画像を生成したそうです．&#160;<a href=#fnref:1 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li id=fn:2><p>昨年の9月半ばに第2著者の包さんと伊都キャンパスから博多駅に向かうバスに乗っているときの雑談で出てきたのが，この素朴な疑問でした．&#160;<a href=#fnref:2 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li id=fn:3><p>もちろんインターネット上から収集可能な画像も，「撮影しよう」「投稿しよう」という人の意思フィルターがかかるため，実世界にあり得る画像に比べれば多様性には乏しいはずです．&#160;<a href=#fnref:3 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li></ol></div></div><div class=container><hr></div><div class="container has-text-centered top-pad"><a href=#top><i class="fa fa-arrow-up"></i></a></div><div class=container><hr></div><div class=section id=footer><div class="container has-text-centered">2019-2024, by Ryuichiro Hataya, Powered by <a href=https://gohugo.io>hugo</a> with <a href=https://github.com/victoriadrake/hugo-theme-introduction>Introduction</a></div></div></div></section><script src=https://hataya.tokyo/js/bundle.5c23c0437f001a469ca373a465a6f7487203d18e10cdff76d86a60af66d5ee28.js integrity="sha256-XCPAQ38AGkaco3OkZab3SHID0Y4Qzf922Gpgr2bV7ig="></script></body></html>
