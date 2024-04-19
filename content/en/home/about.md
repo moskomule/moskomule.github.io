@@ -12,6 +12,7 @@ I am Ryuichiro Hataya, PhD (Information Science and Technology).
 
 #### 2024
 
+* We will organize an ECCV workshop entitled "The Dark Side of Generative AIs and Beyond".
 * My research proposal is accepted at Initiative on Promotion of Supercomputing for Young or Women Researchers, Information Technology Center, The University of Tokyo.
 * My research proposal is accepted at the Acceleration phase of JST ACT-X.
 * I will present at [Workshop on Functional Inference and Machine Intelligence](https://ismseminar.github.io/fimi2024/).
