@@ -12,6 +12,7 @@ weight: 8
 
 #### 2024
 
+* 京都大学・包さんとの共著論文 "Self-attention Networks Localize When QK-eigenspectrum Concentrates" がICMLに採択されました．
 * ECCV 2024において，ワークショップ「The Dark Side of Generative AIs and Beyond」を開催します．
 * 研究課題が東京大学情報基盤センター　若手・女性利用者推薦に採択されました．
 * 研究課題がJST ACT-X数理情報のフロンティア領域の加速フェーズに採択されました．

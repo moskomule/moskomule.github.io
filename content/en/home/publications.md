@@ -11,6 +11,7 @@ weight: 30
 
 #### Conference Papers (Peer-reviewed)
 
+* Han Bao, **Ryuichiro Hataya**, Ryo Karakida, "Self-attention Networks Localize When QK-eigenspectrum Concentrates," *International Conference on Machine Learning,* 2024. [arXiv](https://arxiv.org/abs/2402.02098)
 * **Ryuichiro Hataya**, Han Bao, and Hiromi Arai, ["Will Large-scale Generative Models Corrupt Future Datasets?,"](https://openaccess.thecvf.com/content/ICCV2023/html/Hataya_Will_Large-scale_Generative_Models_Corrupt_Future_Datasets_ICCV_2023_paper.html) *International Conference on Computer Vision*, France, 2023.
 * Kazuma Kobayashi, Lin Gu, **Ryuichiro Hataya**, Mototaka Miyake, Yasuyuki Takamizawa, Sono Ito, Hirokazu Watanabe, Yukihiro Yoshida, Hiroki Yoshimura, Tatsuya Harada, Ryuji Hamamoto, "Towards AI-driven radiology education: A self-supervised segmentation-based framework for high-precision medical image editing," *Medical Image Computing and Computer-Assisted Intervention*, Canada, 2023.
 * **Ryuichiro Hataya**, and Makoto Yamada, "[Nyström Method for Accurate and Scalable Implicit Differentiation](https://arxiv.org/abs/2302.09726)," *International Conference on Artificial Intelligence and Statistics*, Spain, 2023.
@@ -27,7 +28,6 @@ weight: 30
 
 * Yuka Hashimoto${}^\star$, **Ryuichiro Hataya**${}^\star$, "Quantum Circuit $C^\ast$-algebra Net," 2024. [arXiv](https://arxiv.org/abs/2404.06218)
 * **Ryuichiro Hataya**, Yoshinobu Kawahara, "Glocal Hypergradient Estimation with Koopman Operator," 2024. [arXiv](https://arxiv.org/abs/2402.02741)
-* Han Bao, **Ryuichiro Hataya**, Ryo Karakida, "Self-attention Networks Localize When QK-eigenspectrum Concentrates," 2024. [arXiv](https://arxiv.org/abs/2402.02098)
 * Hiroki Naganuma${}^\star$, **Ryuichiro Hataya**${}^\star$, Ioannis Mitliagkas, "An Empirical Investigation of Pre-trained Model Selection for Out-of-Distribution Generalization and Calibration," 2023. [arXiv](https://arxiv.org/abs/2307.08187)
 * Leonardo Placidi, **Ryuichiro Hataya**, Toshio Mori, Koki Aoyama, Hayata Morisaki, Kosuke Mitarai, and Keisuke Fujii, "MNISQ: A Large-Scale Quantum Circuit Dataset for Machine Learning on/for Quantum Computers in the NISQ era," 2023. [arXiv](https://arxiv.org/abs/2306.16627)
 * **Ryuichiro Hataya**${}^\star$, and Yuka Hashimoto${}^\star$, "Noncommutative $C^\ast$-algebra Net: Learning Neural Networks with Powerful Product Structure in $C^\ast$-algebra," 2023. [arXiv](https://arxiv.org/abs/2302.01191)
