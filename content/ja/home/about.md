@@ -12,6 +12,7 @@ weight: 8
 
 #### 2024
 
+* [RIKEN-IIT Joint Workshop in ML/AI](https://aip.riken.jp/events/event_172747/)に参加します．
 * 京都大学・包さんとの共著論文 "Self-attention Networks Localize When QK-eigenspectrum Concentrates" がICMLに採択されました．
 * ECCV 2024において，ワークショップ ["The Dark Side of Generative AIs and Beyond"](https://sites.google.com/view/darksideofgenaiandbeyond) を開催します．
 * 研究課題が東京大学情報基盤センター　若手・女性利用者推薦に採択されました．

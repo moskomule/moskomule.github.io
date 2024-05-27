@@ -12,6 +12,7 @@ I am Ryuichiro Hataya, PhD (Information Science and Technology).
 
 #### 2024
 
+* I will attend [RIKEN-IIT Joint Workshop in ML/AI](https://aip.riken.jp/events/event_172747/).
 * Our paper "Self-attention Networks Localize When QK-eigenspectrum Concentrates" (Bao et al.) is accepted at ICML.
 * We will organize an ECCV workshop entitled ["The Dark Side of Generative AIs and Beyond"](https://sites.google.com/view/darksideofgenaiandbeyond).
 * My research proposal is accepted at Initiative on Promotion of Supercomputing for Young or Women Researchers, Information Technology Center, The University of Tokyo.
