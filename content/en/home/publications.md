@@ -37,6 +37,7 @@ weight: 30
 
 #### Others
 
+* **Ryuichiro Hataya**, Kota Matsui, Masaaki Imaizumi, "Automatic Domain Adaptation by Transformers in In-Context Learning," 2024. [arXiv](https://arxiv.org/abs/2405.16819)
 * **Ryuichiro Hataya**, Yuka Hashimoto, "Noncommutative $C^\ast$-algebra Nets,"  International Conference on Quantum Techinques in Machine Learning, 2023. (Peer Reviewed Etended Abstract)
 * Hiroki Naganuma, **Ryuichiro Hataya**, "An Empirical Investigation of Pre-trained Model Selection for Out-of-Distribution Generalization and Calibration," ICCV 2023 Workshop on Uncertainty Quantification for Computer Vision, 2023. (Peer Reviewed Etended Abstract [arXiv](https://arxiv.org/abs/2307.08187))
 * **Ryuichiro Hataya**, Hideki Nakayama, and Kazuki Yoshizoe, ["Graph Energy-based Model for Molecular Graph Generation."](https://openreview.net/forum?id=I2AD-xWJ2-J) *EBM Workshop at ICLR 2021*, 2021. (Peer Reviewed, Contributed Talk)

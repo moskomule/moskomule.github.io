@@ -26,6 +26,7 @@ weight: 30
 
 #### プレプリント
 
+* **Ryuichiro Hataya**, Kota Matsui, Masaaki Imaizumi, "Automatic Domain Adaptation by Transformers in In-Context Learning," 2024. [arXiv](https://arxiv.org/abs/2405.16819)
 * Yuka Hashimoto${}^\star$, **Ryuichiro Hataya**${}^\star$, "Quantum Circuit $C^\ast$-algebra Net," 2024. [arXiv](https://arxiv.org/abs/2404.06218)
 * **Ryuichiro Hataya**, Yoshinobu Kawahara, "Glocal Hypergradient Estimation with Koopman Operator," 2024. [arXiv](https://arxiv.org/abs/2402.02741)
 * Hiroki Naganuma${}^\star$, **Ryuichiro Hataya**${}^\star$, Ioannis Mitliagkas, "An Empirical Investigation of Pre-trained Model Selection for Out-of-Distribution Generalization and Calibration," 2023. [arXiv](https://arxiv.org/abs/2307.08187)
