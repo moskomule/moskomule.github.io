@@ -12,6 +12,7 @@ weight: 8
 
 #### 2024
 
+* A*STAR-CFARに滞在し，[A*STAR-CFAR_RIKEN-AIP Workshop ]()に参加します．
 * [Zapping seminar](https://zappingseminar.connpass.com/event/320972/) において招待講演 "Automatic Domain Adaptation by Transformers in In-Context Learning" を行います．
 * [RIKEN-IIT Joint Workshop in ML/AI](https://aip.riken.jp/events/event_172747/)に参加します．
 * 京都大学・包さんとの共著論文 "Self-attention Networks Localize When QK-eigenspectrum Concentrates" がICMLに採択されました．
