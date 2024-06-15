@@ -6,21 +6,25 @@ weight: 60
 
 #### Invited Talks
 
+* "Automatic Domain Adaptation by Transformers in In-Context Learning," (in Japanese) [Zapping Seminar](), June 2024.
+* "Gradient-based Hyperparameter Optimization", (in Japanese) [The 53rd IBISML seminar](), March 2024.
+
+<details>
+<summary>others</summary>
+
+* "Deep learning and data augmentation", (in Japanese) [The 4th TREFOIL seminar](), Feburary 2024.
 * "Determinantal point processes and their applications in machine learning," (in Japanese) [ICEPP seminar](https://www.icepp.s.u-tokyo.ac.jp/collaboration/seminar.html), June 2023．
 * "Towards accurate and scalable gradient-based hyperparameter optimization," Istituto Italiano di Tecnologia, May, 2023.
 * "Noncommutative $C^\ast$-algebra Nets," [Japan-Vietnam AI Forum](https://viasm.edu.vn/en/hdkh/jvaif), April 2023.
 * "Bayesian Model Selection for Deep Learning" (in Japanese), Zapping Seminar, 2022.
 * "Data Augmentation for Deep Learning" (in Japanese), Ehime University DS Research Seminar, 2021.
 * "Data Augmentation for Deep Learning" (in Japanese), Symposium on Sensing via Image Information, 2021.
-
-<details>
-<summary>others</summary>
-
 * "Data Augmentation for Deep Learning" (in Japanese), StatsML Symposium, 2020.
 * "Gradient-based Hyperparameter Optimization" (in Japanese), Zapping Seminar, 2020.
 
 #### Talks
 
+* "On Dataset Contamination by Large Generative Models" (In Japanese), [JSAI](), May 2024.
 * "On Dataset Contamination by Large Generative Models" (In Japanese), [Mathematical Informatics Research Workshop @ Akita](), October 2023.
 * "Stable Gradient-based Hyperparameter Optimization," [RIKEN AIP & NCU Workshops 2023](https://ai.umk.pl/start), September 2023.
 

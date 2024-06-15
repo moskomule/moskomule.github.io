@@ -6,6 +6,7 @@ weight: 60
 
 #### 招待講演
 
+* "Automatic Domain Adaptation by Transformers in In-Context Learning," [ザッピングセミナー](), 2024年6月 [スライド]()
 * "勾配法によるハイパーパラメータ最適化"，[第53回IBISML研究会](https://ibisml.org/ibisml053)，2024年3月 [スライド](/slides/ibisml_202403.pdf)．
 * "深層学習とデータ拡張"，[統数研共同研究集会 兼 第4回TREFOIL研究会](https://docs.google.com/forms/d/e/1FAIpQLSdS2RB1mkBL9S2F-CnOT8aYqMOSLr9INfolbmosAbRsRGYK8A/viewform?vc=0&c=0&w=1&flr=0&pli=1)，2024年2月．
 
@@ -25,6 +26,8 @@ weight: 60
 
 #### 講演
 
+* 「生成モデルによるデータセット汚染」, 人工知能学会, 静岡, 2024年5月.
+* 「生成モデルによるデータセット汚染」, 数理情報研究集会, 秋田, 2023年10月.
 * "Stable Gradient-based Hyperparameter Optimization," [RIKEN AIP & NCU Workshops 2023](https://about.bci-lab.info/events/riken-aip-unc-workshops-2023), September 2023.
 
 </details>
