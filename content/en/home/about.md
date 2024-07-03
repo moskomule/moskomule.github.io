@@ -12,18 +12,24 @@ I am Ryuichiro Hataya, PhD (Information Science and Technology).
 
 #### 2024
 
+* I will visit CENTAI @ Torino🇮🇹.
+* I will visit Wien🇦🇹 to attend ICML.
+* I will visit Aix-Marseille University @ Marseille🇫🇷.
 * I will attend [A*STAR-CFAR_RIKEN-AIP Workshop]().
 * I will attend [RIKEN-IIT Joint Workshop in ML/AI](https://aip.riken.jp/events/event_172747/).
 * Our paper "Self-attention Networks Localize When QK-eigenspectrum Concentrates" (Bao et al.) is accepted at ICML.
 * We will organize an ECCV workshop entitled ["The Dark Side of Generative AIs and Beyond"](https://sites.google.com/view/darksideofgenaiandbeyond).
+
+<details>
+<summary>older news</summary>
+
 * My research proposal is accepted at Initiative on Promotion of Supercomputing for Young or Women Researchers, Information Technology Center, The University of Tokyo.
 * My research proposal is accepted at the Acceleration phase of JST ACT-X.
 * I will present at [Workshop on Functional Inference and Machine Intelligence](https://ismseminar.github.io/fimi2024/).
 * I will attend [DL 2024](https://sites.google.com/view/dl2024/).
 * I will attend [Machine Learning Summer School Okinawa](https://groups.oist.jp/mlss/) as a program committee.
 
-<details>
-<summary>older news</summary>
+
 
 #### 2023
 

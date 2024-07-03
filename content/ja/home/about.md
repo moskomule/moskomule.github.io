@@ -12,11 +12,18 @@ weight: 8
 
 #### 2024
 
+* CENTAI🇮🇹を訪問します．
+* ICMLに参加します🇦🇹．
+* Aix-Marseiile大学🇫🇷を訪問します．
 * A*STAR-CFARに滞在し，[A*STAR-CFAR_RIKEN-AIP Workshop ]()に参加します．
 * [Zapping seminar](https://zappingseminar.connpass.com/event/320972/) において招待講演 "Automatic Domain Adaptation by Transformers in In-Context Learning" を行います．
 * [RIKEN-IIT Joint Workshop in ML/AI](https://aip.riken.jp/events/event_172747/)に参加します．
 * 京都大学・包さんとの共著論文 "Self-attention Networks Localize When QK-eigenspectrum Concentrates" がICMLに採択されました．
 * ECCV 2024において，ワークショップ ["The Dark Side of Generative AIs and Beyond"](https://sites.google.com/view/darksideofgenaiandbeyond) を開催します．
+
+<details>
+<summary>昔の話</summary>
+
 * 研究課題が東京大学情報基盤センター　若手・女性利用者推薦に採択されました．
 * 研究課題がJST ACT-X数理情報のフロンティア領域の加速フェーズに採択されました．
 * [Workshop on Functional Inference and Machine Intelligence](https://ismseminar.github.io/fimi2024/)に参加します．
@@ -25,8 +32,7 @@ weight: 8
 * [第53回IBISML研究会](https://ibisml.org/ibisml053)において招待講演「勾配法を用いたハイパーパラメータ最適化」を行います．
 * [統数研共同研究集会 兼 第4回TREFOIL研究会](https://docs.google.com/forms/d/e/1FAIpQLSdS2RB1mkBL9S2F-CnOT8aYqMOSLr9INfolbmosAbRsRGYK8A/viewform?vc=0&c=0&w=1&flr=0&pli=1)で招待講演「深層学習とデータ拡張」を行います．
 
-<details>
-<summary>昔の話</summary>
+
 
 #### 2023
 
