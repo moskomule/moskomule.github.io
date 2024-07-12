@@ -14,7 +14,7 @@ I am Ryuichiro Hataya, PhD (Information Science and Technology).
 
 * I will visit CENTAI @ Torino🇮🇹.
 * I will visit Wien🇦🇹 to attend ICML.
-* I will visit Aix-Marseille University @ Marseille🇫🇷.
+* I will visit Aix-Marseille University @ Marseille🇫🇷 and present at [Workshop on mathematical foundations of machine learning](https://conferences.cirm-math.fr/3425.html).
 * I will vist A*STAR🇸🇬 and attend [A*STAR-CFAR_RIKEN-AIP Workshop]().
 * I will attend [RIKEN-IIT Joint Workshop in ML/AI](https://aip.riken.jp/events/event_172747/).
 * Our paper "Self-attention Networks Localize When QK-eigenspectrum Concentrates" (Bao et al.) is accepted at ICML.

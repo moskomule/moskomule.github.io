@@ -14,7 +14,7 @@ weight: 8
 
 * CENTAI🇮🇹を訪問します．
 * ICMLに参加します🇦🇹．
-* Aix-Marseiile大学🇫🇷を訪問します．
+* Aix-Marseiile大学🇫🇷を訪問し，[Workshop on mathematical foundations of machine learning](https://conferences.cirm-math.fr/3425.html)において発表します．
 * A*STAR-CFAR🇸🇬に滞在し，[A*STAR-CFAR_RIKEN-AIP Workshop ]()に参加します．
 * [Zapping seminar](https://zappingseminar.connpass.com/event/320972/) において招待講演 "Automatic Domain Adaptation by Transformers in In-Context Learning" を行います．
 * [RIKEN-IIT Joint Workshop in ML/AI](https://aip.riken.jp/events/event_172747/)に参加します．

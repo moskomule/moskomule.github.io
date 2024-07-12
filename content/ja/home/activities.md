@@ -6,6 +6,7 @@ weight: 60
 
 #### 招待講演
 
+* "Automatic Domain Adaptation by Transformers in In-Context Learning," [Workshop on Mathematical foundations of machine learning](), 2024年7月
 * "Automatic Domain Adaptation by Transformers in In-Context Learning," [A*STAR-CFAR_RIKEN-AIP Workshop](), 2024年6月 [スライド](/slides/astar_aip_workshop.pdf)
 * "Automatic Domain Adaptation by Transformers in In-Context Learning," [ザッピングセミナー](), 2024年6月 [スライド](/slides/astar_aip_workshop.pdf)
 * "勾配法によるハイパーパラメータ最適化"，[第53回IBISML研究会](https://ibisml.org/ibisml053)，2024年3月 [スライド](/slides/ibisml_202403.pdf)．
