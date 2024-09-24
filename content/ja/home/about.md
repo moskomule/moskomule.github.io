@@ -12,6 +12,8 @@ weight: 8
 
 #### 2024
 
+* IITおよびFondazione Bruno Kesslerを訪問します🇮🇹．
+* ECCVに参加します🇮🇹．
 * CENTAI🇮🇹を訪問します．
 * ICMLに参加します🇦🇹．
 * Aix-Marseiile大学🇫🇷を訪問し，[Workshop on mathematical foundations of machine learning](https://conferences.cirm-math.fr/3425.html)において発表します．

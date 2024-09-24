@@ -50,6 +50,8 @@ weight: 60
 
 #### そのほか
 
+* Organizer of [ECCV 2024 Workshop The Dark Side of Generative AIs and Beyond](https://sites.google.com/view/yaml2024).
+* Organizer of [YAML 2024](https://sites.google.com/view/yaml2024).
 * Program Committee of [MLSS Okinawa 2024](https://groups.oist.jp/mlss).
 * Program Committee of [IBIS 2023](https://ibisml.org/ibis2023/).
 * Meetup Chair of [NeurIPS, 2021](https://neurips.cc/Conferences/2021).
