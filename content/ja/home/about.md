@@ -12,6 +12,7 @@ weight: 8
 
 #### 2024
 
+* [ERCIM/JST Joint Workshop 2024](https://www.ercim.eu/events/5th-ercim-jst-joint-workshop-2024)に参加します🇭🇺．
 * IITおよびFondazione Bruno Kesslerを訪問します🇮🇹．
 * ECCVに参加します🇮🇹．
 * CENTAI🇮🇹を訪問します．
