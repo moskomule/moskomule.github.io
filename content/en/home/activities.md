@@ -6,6 +6,7 @@ weight: 60
 
 #### Invited Talks
 
+* "Gradient-based Hyperparameter Optimization for Deep Learning", University of Trento, Oct, 2024.
 * "Automatic Domain Adaptation by Transformers in In-Context Learning," [CIRM Workshop on mathematical foundations of machine learning](https://conferences.cirm-math.fr/3425.html), July 2024. 
 * "Automatic Domain Adaptation by Transformers in In-Context Learning," [A*STAR-CFAR_RIKEN-AIP Workshop](), June 2024. [Slides](/slides/astar_aip_workshop.pdf)
 * "Automatic Domain Adaptation by Transformers in In-Context Learning," (in Japanese) [Zapping Seminar](), June 2024.
