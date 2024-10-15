@@ -7,6 +7,7 @@ weight: 60
 #### 招待講演
 
 * "Gradient-based Hyperparameter Optimization for Deep Learning", トレント大学, 2024年10月
+* "Will Large-scale Generative Models Corrupt Future Datasets?"，FIT2024，2024年9月
 * "Automatic Domain Adaptation by Transformers in In-Context Learning," [Workshop on Mathematical foundations of machine learning](), 2024年7月
 * "Automatic Domain Adaptation by Transformers in In-Context Learning," [A*STAR-CFAR_RIKEN-AIP Workshop](), 2024年6月 [スライド](/slides/astar_aip_workshop.pdf)
 * "Automatic Domain Adaptation by Transformers in In-Context Learning," [ザッピングセミナー](), 2024年6月 [スライド](/slides/astar_aip_workshop.pdf)
