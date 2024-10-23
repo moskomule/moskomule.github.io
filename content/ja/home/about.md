@@ -12,6 +12,9 @@ weight: 8
 
 #### 2024
 
+* メルボルン大学を訪問します🇦🇺．
+* [IBIS 2024](https://ibisml.org/ibis2024/)に参加します．
+* [](https://sites.google.com/view/okinawaworkshop/home)に参加します．
 * [ERCIM/JST Joint Workshop 2024](https://www.ercim.eu/events/5th-ercim-jst-joint-workshop-2024)に参加します🇭🇺．
 * University of Trentoにおいて招待講演 "Gradient-based hyperparameter optimization for deep learning" を行います．
 * IIT，University of Trento，およびFondazione Bruno Kesslerを訪問します🇮🇹．

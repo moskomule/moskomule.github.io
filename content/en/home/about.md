@@ -12,6 +12,7 @@ I am Ryuichiro Hataya, PhD (Information Science and Technology).
 
 #### 2024
 
+* I will visit The University of Melbourne🇦🇺.
 * I will attend [ERCIM/JST Joint Workshop 2024](https://www.ercim.eu/events/5th-ercim-jst-joint-workshop-2024) @Budapest🇭🇺.
 * I will visit IIT @ Genova, University of Trento, and Fondazione Bruno Kessler @ Trento🇮🇹.
 * I will attend ECCV to organize an ECCV workshop entitled ["The Dark Side of Generative AIs and Beyond"](https://sites.google.com/view/darksideofgenaiandbeyond).
