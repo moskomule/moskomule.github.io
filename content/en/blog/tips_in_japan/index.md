@@ -2,6 +2,7 @@
 title: "Useful information when you come to Japan"
 date: 2024-01-05
 tags: ["japan"]
+draft: true
 ---
 
 # Public Transportation
