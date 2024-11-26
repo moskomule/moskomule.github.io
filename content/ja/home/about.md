@@ -12,6 +12,7 @@ weight: 8
 
 #### 2024
 
+* [医療健康データ科学Webセミナー](https://www.ism.ac.jp/rcmhds/web/2024/#%E8%A9%B3%E7%B4%B020)の機械学習コースにおいて「深層学習の基礎」について講演します．
 * メルボルン大学を訪問します🇦🇺．
 * [IBIS 2024](https://ibisml.org/ibis2024/)に参加します．
 * [](https://sites.google.com/view/okinawaworkshop/home)に参加します．
