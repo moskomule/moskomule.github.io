@@ -6,13 +6,14 @@ weight: 60
 
 #### 招待講演
 
+* 「深層学習の基礎」，[医療健康データ科学Webセミナー](https://www.ism.ac.jp/rcmhds/web/2024/#%E8%A9%B3%E7%B4%B020)，2024年12月 [スライド](/slides/ims_lecture_202412.pdf)
 * "Gradient-based Hyperparameter Optimization for Deep Learning", トレント大学, 2024年10月
 * "Will Large-scale Generative Models Corrupt Future Datasets?"，FIT2024，2024年9月
 * "Automatic Domain Adaptation by Transformers in In-Context Learning," [Workshop on Mathematical foundations of machine learning](), 2024年7月
 * "Automatic Domain Adaptation by Transformers in In-Context Learning," [A*STAR-CFAR_RIKEN-AIP Workshop](), 2024年6月 [スライド](/slides/astar_aip_workshop.pdf)
 * "Automatic Domain Adaptation by Transformers in In-Context Learning," [ザッピングセミナー](), 2024年6月 [スライド](/slides/astar_aip_workshop.pdf)
-* "勾配法によるハイパーパラメータ最適化"，[第53回IBISML研究会](https://ibisml.org/ibisml053)，2024年3月 [スライド](/slides/ibisml_202403.pdf)．
-* "深層学習とデータ拡張"，[統数研共同研究集会 兼 第4回TREFOIL研究会](https://docs.google.com/forms/d/e/1FAIpQLSdS2RB1mkBL9S2F-CnOT8aYqMOSLr9INfolbmosAbRsRGYK8A/viewform?vc=0&c=0&w=1&flr=0&pli=1)，2024年2月．
+* 「勾配法によるハイパーパラメータ最適化」，[第53回IBISML研究会](https://ibisml.org/ibisml053)，2024年3月 [スライド](/slides/ibisml_202403.pdf)．
+* 「深層学習とデータ拡張」，[統数研共同研究集会 兼 第4回TREFOIL研究会](https://docs.google.com/forms/d/e/1FAIpQLSdS2RB1mkBL9S2F-CnOT8aYqMOSLr9INfolbmosAbRsRGYK8A/viewform?vc=0&c=0&w=1&flr=0&pli=1)，2024年2月．
 
 <details>
 <summary>過去の情報</summary>

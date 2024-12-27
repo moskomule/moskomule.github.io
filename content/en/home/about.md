@@ -6,8 +6,6 @@ weight: 8
 
 I am Ryuichiro Hataya, PhD (Information Science and Technology).
 
-* Postdoctoral Researcher @ RIKEN Center for Advanced Intelligence Project ([High-Dimensional Causal Analysis Team](https://www.riken.jp/en/research/labs/aip/generic_tech/highdim_cause_anl/index.html))
-
 ### News
 
 #### 2024
