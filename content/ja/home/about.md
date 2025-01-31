@@ -8,6 +8,14 @@ weight: 8
 
 ### News
 
+#### 2025
+
+* 秋田大学において講義を行いました．
+
+
+<details>
+<summary>昔の話</summary>
+
 #### 2024
 
 * [医療健康データ科学Webセミナー](https://www.ism.ac.jp/rcmhds/web/2024/#%E8%A9%B3%E7%B4%B020)の機械学習コースにおいて「深層学習の基礎」について講演します．
@@ -27,8 +35,7 @@ weight: 8
 * 京都大学・包さんとの共著論文 "Self-attention Networks Localize When QK-eigenspectrum Concentrates" がICMLに採択されました．
 * ECCV 2024において，ワークショップ ["The Dark Side of Generative AIs and Beyond"](https://sites.google.com/view/darksideofgenaiandbeyond) を開催します．
 
-<details>
-<summary>昔の話</summary>
+
 
 * 研究課題が東京大学情報基盤センター　若手・女性利用者推薦に採択されました．
 * 研究課題がJST ACT-X数理情報のフロンティア領域の加速フェーズに採択されました．
