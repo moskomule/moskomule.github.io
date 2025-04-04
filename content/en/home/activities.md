@@ -36,6 +36,8 @@ weight: 60
 
 #### Research Grants
 
+* JST BOOST, ¥50M, 2025-2029.
+* Grant-in-Aid for Young Scientists, Japan Society for the Promotion of Science, ¥3.2M, 2025-2026.
 * Japan Science and Technology Agency, ACT-X Acceleration phase, ¥5.0M, 2024.
 * Grant-in-Aid for Research Activity Start-up, Japan Society for the Promotion of Science, ¥2.2M, 2023-2024.
 * Japan Science and Technology Agency, ACT-X, ¥4.5M, 2021-2024.
