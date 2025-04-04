@@ -2,4 +2,4 @@
 title: "Contact"
 ---
 
-`${firstname}.${lastname}@riken.jp`からご連絡ください．
+`research@${first_name}.tokyo`からご連絡ください．

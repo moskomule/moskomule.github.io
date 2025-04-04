@@ -2,4 +2,4 @@
 title: "Contact"
 ---
 
-Contact me via `${firstname}.${lastname}@riken.jp`.
+Contact me via ``research@${first_name}.tokyo``.
