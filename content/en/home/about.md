@@ -32,14 +32,11 @@ I am Ryuichiro Hataya, PhD (Information Science and Technology).
 * I will attend [RIKEN-IIT Joint Workshop in ML/AI](https://aip.riken.jp/events/event_172747/).
 * Our paper "Self-attention Networks Localize When QK-eigenspectrum Concentrates" (Bao et al.) is accepted at ICML.
 * We will organize an ECCV workshop entitled ["The Dark Side of Generative AIs and Beyond"](https://sites.google.com/view/darksideofgenaiandbeyond).
-
 * My research proposal is accepted at Initiative on Promotion of Supercomputing for Young or Women Researchers, Information Technology Center, The University of Tokyo.
 * My research proposal is accepted at the Acceleration phase of JST ACT-X.
 * I will present at [Workshop on Functional Inference and Machine Intelligence](https://ismseminar.github.io/fimi2024/).
 * I will attend [DL 2024](https://sites.google.com/view/dl2024/).
 * I will attend [Machine Learning Summer School Okinawa](https://groups.oist.jp/mlss/) as a program committee.
-
-
 
 #### 2023
 
@@ -49,8 +46,6 @@ I am Ryuichiro Hataya, PhD (Information Science and Technology).
 * I will visit Nicolaus Copernicus University Poland from Sep 25th to 30th.
 * Our paper "Will Large-scale Generative Models Corrupt Future Datasets?" has been accepted at ICCV 2023.
 * Our paper "Towards AI-driven radiology education: A self-supervised segmentation-based framework for high-precision medical image editing" (Kobayashi et al.) has been accepted at MICCAI 2023 as an oral presentation.
-
-
 * I will visit MILA at Montreal and attend CVPR in June.
 * I will give a talk at UTokyo ICEPP.
 * I will visit IIT at Genova in May.
@@ -67,7 +62,6 @@ I am Ryuichiro Hataya, PhD (Information Science and Technology).
 * I defended my PhD thesis.
 * I visited IIT (Genova, Italy) from July 8th.
 * Our paper "DJMix: Unsupervised Task-agnostic Image Augmentation for Improving Robustness of Convolutional Neural Networks" is accepted to IJCNN 2022.
-
 
 #### 2021
 
