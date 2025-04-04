@@ -5,11 +5,15 @@ weight: 8
 ---
 
 I am Ryuichiro Hataya, PhD (Information Science and Technology).
+- Senior Research Scientist at SB Intuitions
 
 ### News
 
 
 #### 2025
+
+* I will visit Nicolaus Copernicus University @ Torun, Poland.
+* I quit my position at RIKEN AIP and join SB Intuitions as a senior research scientist.
 
 <details>
 <summary>older news</summary>
