@@ -13,7 +13,7 @@ I am Ryuichiro Hataya, PhD (Information Science and Technology).
 #### 2025
 
 * I will visit Nicolaus Copernicus University @ Torun, Poland🇵🇱.
-* My research proposal is accepted at JST BOOST.
+* My research proposal is accepted at JST BOOST Fostering Researchers in Emerging AI Program.
 * I quit my position at RIKEN AIP and join SB Intuitions as a senior research scientist.
 
 <details>

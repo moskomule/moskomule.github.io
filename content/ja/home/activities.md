@@ -39,11 +39,11 @@ weight: 60
 
 #### 研究費
 
-* JST BOOST，5000万円，2025-2029．
+* BOOST次世代 AI 人材育成プログラム，JST，5,000万円，2025-2029．
 * 若手研究，JSPS，320万円，2025-2026．
-* JST ACT-X加速フェーズ，500万円，2024．
+* ACT-X加速フェーズ，JST，500万円，2024．
 * 研究活動スタート支援，JSPS，220万円，2023-2024.
-* JST ACT-X, 450万円, 2021-2024.
+* ACT-X, 450万円, JST，2021-2024.
 * JSPS若手研究者海外挑戦プログラム, 140万円, 2021.
 * Microsoft Research Asia Collaborative Research Program (D-CORE 2021) by MSRA, 100万円, 2021.
 * 東大RIISE価値交換工学萌芽RA, 200万円, 2020-2022.
