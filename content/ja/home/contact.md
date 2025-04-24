@@ -2,4 +2,4 @@
 title: "Contact"
 ---
 
-`research@${first_name}.tokyo`からご連絡ください．
+`research@${last_name}.tokyo`からご連絡ください．
