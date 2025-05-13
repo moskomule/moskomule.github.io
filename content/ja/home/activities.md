@@ -6,6 +6,11 @@ weight: 60
 
 #### 招待講演
 
+* "Developing Japanese Vision Language Models," [NOW](https://now.bci-lab.info/), ニコラスコペルニクス大学, 2025年1月
+
+<details>
+<summary>過去の情報</summary>
+
 * 「深層学習の基礎」，[医療健康データ科学Webセミナー](https://www.ism.ac.jp/rcmhds/web/2024/#%E8%A9%B3%E7%B4%B020)，2024年12月 [スライド](/slides/ims_lecture_202412.pdf)
 * "Gradient-based Hyperparameter Optimization for Deep Learning", トレント大学, 2024年10月
 * "Will Large-scale Generative Models Corrupt Future Datasets?"，FIT2024，2024年9月
@@ -14,17 +19,11 @@ weight: 60
 * "Automatic Domain Adaptation by Transformers in In-Context Learning," [ザッピングセミナー](), 2024年6月 [スライド](/slides/astar_aip_workshop.pdf)
 * 「勾配法によるハイパーパラメータ最適化」，[第53回IBISML研究会](https://ibisml.org/ibisml053)，2024年3月 [スライド](/slides/ibisml_202403.pdf)．
 * 「深層学習とデータ拡張」，[統数研共同研究集会 兼 第4回TREFOIL研究会](https://docs.google.com/forms/d/e/1FAIpQLSdS2RB1mkBL9S2F-CnOT8aYqMOSLr9INfolbmosAbRsRGYK8A/viewform?vc=0&c=0&w=1&flr=0&pli=1)，2024年2月．
-
-<details>
-<summary>過去の情報</summary>
-
 * "行列式点過程の機械学習への応用," [ICEPPセミナー](https://www.icepp.s.u-tokyo.ac.jp/collaboration/seminar.html), 2023年6月．
 * "Towards accurate and scalable gradient-based hyperparameter optimization," Istituto Italiano di Tecnologia, 2023年5月．
 * "Noncommutative $C^\star$-algebra Nets," [Japan-Vietnam AI Forum](https://viasm.edu.vn/en/hdkh/jvaif), 2023年4月.
 * 「ベイズモデル選択による弱教師あり深層学習アルゴリズムのハイパーパラメータ最適化」, [ザッピングセミナー](https://zappingseminar.connpass.com/event/239765/), 2022.
 * 「深層学習とデータ拡張」, [愛媛大学DS研究セミナー](https://www.cdse.ehime-u.ac.jp/)，2021.
-
-
 * 「深層学習におけるデータ拡張の原理と最新動向」, Symposium on Sensing via Image Information, 2021.
 * 「深層学習を支えるデータ拡張」, [StatsML Symposium](https://sites.google.com/view/statsmlsymposium20/), 2020.
 * 「勾配降下法によるハイパーパラメータ最適化とデータ拡張戦略最適化への応用」, [ザッピングセミナー ](https://zappingseminar.connpass.com/event/189061/), 2020.
@@ -40,6 +39,9 @@ weight: 60
 #### 研究費
 
 * BOOST次世代 AI 人材育成プログラム，JST，5,000万円，2025-2029．
+
+<details>
+<summary>過去の情報</summary>
 * 若手研究，JSPS，320万円，2025-2026．
 * ACT-X加速フェーズ，JST，500万円，2024．
 * 研究活動スタート支援，JSPS，220万円，2023-2024.
@@ -47,6 +49,8 @@ weight: 60
 * JSPS若手研究者海外挑戦プログラム, 140万円, 2021.
 * Microsoft Research Asia Collaborative Research Program (D-CORE 2021) by MSRA, 100万円, 2021.
 * 東大RIISE価値交換工学萌芽RA, 200万円, 2020-2022.
+
+</details>
 
 #### 受賞
 
