@@ -11,6 +11,7 @@ weight: 8
 
 #### 2025
 
+* 主著論文 "An Empirical Study of Pre-trained Model Selection for Out-of-Distribution Generalization and Calibration" がTMLRに採択されました．
 * ポーランドのニコラウス・コペルニクス大学を訪問し、[NOW](https://now.bci-lab.info/)で招待講演を行います🇵🇱．
 * 研究課題がJST BOOST 次世代 AI 人材育成プログラムに採択されました．
 * 研究課題がJSPS 若手研究に採択されました．

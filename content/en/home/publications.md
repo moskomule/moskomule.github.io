@@ -6,8 +6,11 @@ weight: 30
 
 #### Journal Papers (Peer-reviewed)
 
+* Hiroki Naganuma ${}^\star$, **Ryuichiro Hataya** ${}^\star$, Kotaro Yoshida, Ioannis Mitliagkas, [An Empirical Study of Pre-trained Model Selection for Out-of-Distribution Generalization and Calibration](https://openreview.net/forum?id=tYjoHjShxF), *Transaction on Machine Learning Research*, Apr, 2025.
 * Kazuma Kobayashi, Lin Gu, **Ryuichiro Hataya**, Takaaki Mizuno, Mototaka Miyake, Hirokazu Watanabe, Masamichi Takahashi, Yasuyuki Takamizawa, Yukihiro Yoshida, Satoshi Nakamura, Nobuji Kouno, Amina Bolatkan, Yusuke Kurose, Tatsuya Harada, Ryuji Hamamoto, ["Sketch-based Semantic Retrieval of Medical Images."](https://www.sciencedirect.com/science/article/pii/S1361841523003201) *Medical Image Analysis,* Vol 92, Feb. 2024.
 * Kazuma Kobayashi, **Ryuichiro Hataya**, Yusuke Kurose, Mototaka Miyake, Masamichi Takahashi, Akiko Nakagawa, Tatsuya Harada, and Ryuji Hamamoto, ["Decomposing Normal and Abnormal Features of Medical Images for Content-Based Image Retrieval of Glioma Imaging."](https://www.sciencedirect.com/science/article/pii/S1361841521002723) *Medical Image Analysis*, Vo74, Dec. 2021.
+
+ (${}^\star$ indicates equal contribution)
 
 #### Conference Papers (Peer-reviewed)
 
@@ -27,14 +30,11 @@ weight: 30
 #### Preprints
 
 * **Ryuichiro Hataya**, Kota Matsui, Masaaki Imaizumi, "Automatic Domain Adaptation by Transformers in In-Context Learning," 2024. [arXiv](https://arxiv.org/abs/2405.16819)
-* Yuka Hashimoto${}^\star$, **Ryuichiro Hataya**${}^\star$, "Quantum Circuit $C^\ast$-algebra Net," 2024. [arXiv](https://arxiv.org/abs/2404.06218)
+* Yuka Hashimoto ${}^\star$, **Ryuichiro Hataya** ${}^\star$, "Quantum Circuit $C^\ast$-algebra Net," 2024. [arXiv](https://arxiv.org/abs/2404.06218)
 * **Ryuichiro Hataya**, Yoshinobu Kawahara, "Glocal Hypergradient Estimation with Koopman Operator," 2024. [arXiv](https://arxiv.org/abs/2402.02741)
-* Hiroki Naganuma${}^\star$, **Ryuichiro Hataya**${}^\star$, Ioannis Mitliagkas, "An Empirical Investigation of Pre-trained Model Selection for Out-of-Distribution Generalization and Calibration," 2023. [arXiv](https://arxiv.org/abs/2307.08187)
 * Leonardo Placidi, **Ryuichiro Hataya**, Toshio Mori, Koki Aoyama, Hayata Morisaki, Kosuke Mitarai, and Keisuke Fujii, "MNISQ: A Large-Scale Quantum Circuit Dataset for Machine Learning on/for Quantum Computers in the NISQ era," 2023. [arXiv](https://arxiv.org/abs/2306.16627)
-* **Ryuichiro Hataya**${}^\star$, and Yuka Hashimoto${}^\star$, "Noncommutative $C^\ast$-algebra Net: Learning Neural Networks with Powerful Product Structure in $C^\ast$-algebra," 2023. [arXiv](https://arxiv.org/abs/2302.01191)
+* **Ryuichiro Hataya** ${}^\star$, and Yuka Hashimoto ${}^\star$, "Noncommutative $C^\ast$-algebra Net: Learning Neural Networks with Powerful Product Structure in $C^\ast$-algebra," 2023. [arXiv](https://arxiv.org/abs/2302.01191)
 * **Ryuichiro Hataya**, Hideki Nakayama, and Kazuki Yoshizoe, "Graph Energy-based Model for Substructure Preserving Molecular Design." 2021. [arxiv](https://arxiv.org/abs/2102.04600)
-
- (${}^\star$ indicates equal contribution)
 
 #### Others
 
