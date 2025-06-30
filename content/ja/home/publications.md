@@ -6,6 +6,7 @@ weight: 30
 
 #### 原著論文
 
+* Hiroki Naganuma ${}^\star$, **Ryuichiro Hataya** ${}^\star$, Kotaro Yoshida, Ioannis Mitliagkas, [An Empirical Study of Pre-trained Model Selection for Out-of-Distribution Generalization and Calibration](https://openreview.net/forum?id=tYjoHjShxF), *Transaction on Machine Learning Research*, Apr, 2025.
 * Kazuma Kobayashi, Lin Gu, **Ryuichiro Hataya**, Takaaki Mizuno, Mototaka Miyake, Hirokazu Watanabe, Masamichi Takahashi, Yasuyuki Takamizawa, Yukihiro Yoshida, Satoshi Nakamura, Nobuji Kouno, Amina Bolatkan, Yusuke Kurose, Tatsuya Harada, Ryuji Hamamoto, ["Sketch-based Semantic Retrieval of Medical Images."](https://www.sciencedirect.com/science/article/pii/S1361841523003201) *Medical Image Analysis,* Vol 92, Feb. 2024.
 * Kazuma Kobayashi, **Ryuichiro Hataya**, Yusuke Kurose, Mototaka Miyake, Masamichi Takahashi, Akiko Nakagawa, Tatsuya Harada, and Ryuji Hamamoto, ["Decomposing Normal and Abnormal Features of Medical Images for Content-Based Image Retrieval of Glioma Imaging."](https://www.sciencedirect.com/science/article/pii/S1361841521002723) *Medical Image Analysis*, Vo74, Dec. 2021.
 

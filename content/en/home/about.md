@@ -14,7 +14,8 @@ I am Ryuichiro Hataya, PhD (Information Science and Technology).
 #### 2025
 
 * I will join Kyoto University as a Program-Specific Assistant Professor.
-* I will visit Nicolaus Copernicus University @ Torun, Poland🇵🇱.
+* Our paper "An Empirical Study of Pre-trained Model Selection for Out-of-Distribution Generalization and Calibration" (coauthored with H. Naganuma) is accepted at TMLR.
+* I will visit Nicolaus Copernicus University @ Torun, Poland to attend [NOW](https://now.bci-lab.info/)🇵🇱.
 * My research proposal is accepted at JST BOOST Fostering Researchers in Emerging AI Program.
 * I quit my position at RIKEN AIP and join SB Intuitions as a senior research scientist.
 
