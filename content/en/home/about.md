@@ -6,12 +6,14 @@ weight: 8
 
 I am Ryuichiro Hataya, PhD (Information Science and Technology).
 - Senior Research Scientist at SB Intuitions
+- Program-Specific Assistant Professor at Kyoto University
 
 ### News
 
 
 #### 2025
 
+* I will join Kyoto University as a Program-Specific Assistant Professor.
 * I will visit Nicolaus Copernicus University @ Torun, Poland🇵🇱.
 * My research proposal is accepted at JST BOOST Fostering Researchers in Emerging AI Program.
 * I quit my position at RIKEN AIP and join SB Intuitions as a senior research scientist.
