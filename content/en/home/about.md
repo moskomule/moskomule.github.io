@@ -13,6 +13,7 @@ I am Ryuichiro Hataya, PhD (Information Science and Technology).
 
 #### 2025
 
+* I will visit Artois University and Inria Centre at the University of Bordeaux🇫🇷.
 * I will join Kyoto University as a Program-Specific Assistant Professor.
 * Our paper "An Empirical Study of Pre-trained Model Selection for Out-of-Distribution Generalization and Calibration" (coauthored with H. Naganuma) is accepted at TMLR.
 * I will visit Nicolaus Copernicus University @ Torun, Poland to attend [NOW](https://now.bci-lab.info/)🇵🇱.

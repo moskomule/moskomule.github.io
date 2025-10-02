@@ -12,6 +12,7 @@ weight: 8
 
 #### 2025
 
+* Artois UniversityおよびInria Centre at the University of Bordeauxを訪問します🇫🇷．
 * 京都大学に特定助教として着任します．
 * 主著論文 "An Empirical Study of Pre-trained Model Selection for Out-of-Distribution Generalization and Calibration" がTMLRに採択されました．
 * ポーランドのニコラウス・コペルニクス大学を訪問し、[NOW](https://now.bci-lab.info/)で招待講演を行います🇵🇱．
