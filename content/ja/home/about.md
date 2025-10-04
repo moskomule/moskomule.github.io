@@ -13,6 +13,7 @@ weight: 8
 #### 2025
 
 * Artois UniversityおよびInria Centre at the University of Bordeauxを訪問します🇫🇷．
+* 翻訳プロジェクトに参加したKevin Murphy著 "Probabilistic Machine Learning: An Introduction" が「確率的機械学習」として朝倉書店から出版されます（[上](https://www.asakura.co.jp/detail.php?book_code=12303), [下](https://www.asakura.co.jp/detail.php?book_code=12304)）．
 * 京都大学に特定助教として着任します．
 * 主著論文 "An Empirical Study of Pre-trained Model Selection for Out-of-Distribution Generalization and Calibration" がTMLRに採択されました．
 * ポーランドのニコラウス・コペルニクス大学を訪問し、[NOW](https://now.bci-lab.info/)で招待講演を行います🇵🇱．
