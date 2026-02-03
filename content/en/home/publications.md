@@ -6,14 +6,15 @@ weight: 30
 
 #### Journal Papers (Peer-reviewed)
 
-* Hiroki Naganuma ${}^\star$, **Ryuichiro Hataya** ${}^\star$, Kotaro Yoshida, Ioannis Mitliagkas, [An Empirical Study of Pre-trained Model Selection for Out-of-Distribution Generalization and Calibration](https://openreview.net/forum?id=tYjoHjShxF), *Transaction on Machine Learning Research*, Apr, 2025.
-* Kazuma Kobayashi, Lin Gu, **Ryuichiro Hataya**, Takaaki Mizuno, Mototaka Miyake, Hirokazu Watanabe, Masamichi Takahashi, Yasuyuki Takamizawa, Yukihiro Yoshida, Satoshi Nakamura, Nobuji Kouno, Amina Bolatkan, Yusuke Kurose, Tatsuya Harada, Ryuji Hamamoto, ["Sketch-based Semantic Retrieval of Medical Images."](https://www.sciencedirect.com/science/article/pii/S1361841523003201) *Medical Image Analysis,* Vol 92, Feb. 2024.
-* Kazuma Kobayashi, **Ryuichiro Hataya**, Yusuke Kurose, Mototaka Miyake, Masamichi Takahashi, Akiko Nakagawa, Tatsuya Harada, and Ryuji Hamamoto, ["Decomposing Normal and Abnormal Features of Medical Images for Content-Based Image Retrieval of Glioma Imaging."](https://www.sciencedirect.com/science/article/pii/S1361841521002723) *Medical Image Analysis*, Vo74, Dec. 2021.
+* Hiroki Naganuma ${}^\star$, **Ryuichiro Hataya** ${}^\star$, Kotaro Yoshida, Ioannis Mitliagkas, ["An Empirical Study of Pre-trained Model Selection for Out-of-Distribution Generalization and Calibration,"](https://openreview.net/forum?id=tYjoHjShxF), *Transaction on Machine Learning Research*, Apr, 2025.
+* Kazuma Kobayashi, Lin Gu, **Ryuichiro Hataya**, Takaaki Mizuno, Mototaka Miyake, Hirokazu Watanabe, Masamichi Takahashi, Yasuyuki Takamizawa, Yukihiro Yoshida, Satoshi Nakamura, Nobuji Kouno, Amina Bolatkan, Yusuke Kurose, Tatsuya Harada, Ryuji Hamamoto, ["Sketch-based Semantic Retrieval of Medical Images,"](https://www.sciencedirect.com/science/article/pii/S1361841523003201) *Medical Image Analysis,* Vol 92, Feb. 2024.
+* Kazuma Kobayashi, **Ryuichiro Hataya**, Yusuke Kurose, Mototaka Miyake, Masamichi Takahashi, Akiko Nakagawa, Tatsuya Harada, and Ryuji Hamamoto, ["Decomposing Normal and Abnormal Features of Medical Images for Content-Based Image Retrieval of Glioma Imaging,"](https://www.sciencedirect.com/science/article/pii/S1361841521002723) *Medical Image Analysis*, Vo74, Dec. 2021.
 
  (${}^\star$ indicates equal contribution)
 
 #### Conference Papers (Peer-reviewed)
 
+* Kazuto Fukuchi, **Ryuichiro Hataya**, Kota Matsui, ["Provable Target Sample Complexity Improvements as Pre‑Trained Models Scale,"]() *International Conference on Artificial Intelligence and Statistics*, 2026.
 * Han Bao, **Ryuichiro Hataya**, Ryo Karakida, ["Self-attention Networks Localize When QK-eigenspectrum Concentrates,"](https://proceedings.mlr.press/v235/bao24b.html) *International Conference on Machine Learning,* 2024.
 * **Ryuichiro Hataya**, Han Bao, and Hiromi Arai, ["Will Large-scale Generative Models Corrupt Future Datasets?,"](https://openaccess.thecvf.com/content/ICCV2023/html/Hataya_Will_Large-scale_Generative_Models_Corrupt_Future_Datasets_ICCV_2023_paper.html) *International Conference on Computer Vision*, France, 2023.
 * Kazuma Kobayashi, Lin Gu, **Ryuichiro Hataya**, Mototaka Miyake, Yasuyuki Takamizawa, Sono Ito, Hirokazu Watanabe, Yukihiro Yoshida, Hiroki Yoshimura, Tatsuya Harada, Ryuji Hamamoto, "Towards AI-driven radiology education: A self-supervised segmentation-based framework for high-precision medical image editing," *Medical Image Computing and Computer-Assisted Intervention*, Canada, 2023.
