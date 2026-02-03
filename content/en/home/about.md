@@ -12,7 +12,7 @@ I am Ryuichiro Hataya, PhD (Information Science and Technology).
 
 #### 2026
 
-* Our paper "Provable Target Sample Complexity Improvements as Pre‑Trained Models Scale," coauthored with F. Fukuchi (University of Tsukuba) and S. Matsui (Kyoto University), has been accepted at AISTATS 2026.
+* Our paper "Provable Target Sample Complexity Improvements as Pre‑Trained Models Scale," coauthored with K. Fukuchi (University of Tsukuba) and K. Matsui (Kyoto University), has been accepted at AISTATS 2026.
 
 <details>
 <summary>Older news</summary>
