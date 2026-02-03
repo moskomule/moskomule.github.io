@@ -10,6 +10,14 @@ weight: 8
 
 ### News
 
+#### 2026
+
+
+* 筑波大・福地さん，京大・松井さんとの共著論文 "Provable Target Sample Complexity Improvements as Pre‑Trained Models Scale" がAISTATS 2026に採択されました．
+
+<details>
+<summary>昔の話</summary>
+
 #### 2025
 
 * Artois UniversityおよびInria Centre at the University of Bordeauxを訪問します🇫🇷．
@@ -21,10 +29,6 @@ weight: 8
 * 研究課題がJSPS 若手研究に採択されました．
 * 理研AIPを退職し，SB Intuitionsにシニアリサーチサイエンティストとして入社します．
 * 秋田大学において講義を行いました．
-
-
-<details>
-<summary>昔の話</summary>
 
 #### 2024
 

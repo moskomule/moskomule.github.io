@@ -10,6 +10,12 @@ I am Ryuichiro Hataya, PhD (Information Science and Technology).
 
 ### News
 
+#### 2026
+
+* Our paper "Provable Target Sample Complexity Improvements as Pre‑Trained Models Scale," coauthored with F. Fukuchi (University of Tsukuba) and S. Matsui (Kyoto University), has been accepted at AISTATS 2026.
+
+<details>
+<summary>Older news</summary>
 
 #### 2025
 
@@ -19,9 +25,6 @@ I am Ryuichiro Hataya, PhD (Information Science and Technology).
 * I will visit Nicolaus Copernicus University @ Torun, Poland to attend [NOW](https://now.bci-lab.info/)🇵🇱.
 * My research proposal is accepted at JST BOOST Fostering Researchers in Emerging AI Program.
 * I quit my position at RIKEN AIP and join SB Intuitions as a senior research scientist.
-
-<details>
-<summary>older news</summary>
 
 #### 2024
 
