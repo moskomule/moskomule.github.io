@@ -14,7 +14,7 @@ weight: 30
 
 #### Conference Papers (Peer-reviewed)
 
-* Kazuto Fukuchi, **Ryuichiro Hataya**, Kota Matsui, ["Provable Target Sample Complexity Improvements as Pre‑Trained Models Scale,"]() *International Conference on Artificial Intelligence and Statistics*, 2026.
+* Kazuto Fukuchi, **Ryuichiro Hataya**, Kota Matsui, ["Provable Target Sample Complexity Improvements as Pre‑Trained Models Scale,"](https://arxiv.org/abs/2602.04233) *International Conference on Artificial Intelligence and Statistics*, 2026.
 * Han Bao, **Ryuichiro Hataya**, Ryo Karakida, ["Self-attention Networks Localize When QK-eigenspectrum Concentrates,"](https://proceedings.mlr.press/v235/bao24b.html) *International Conference on Machine Learning,* 2024.
 * **Ryuichiro Hataya**, Han Bao, and Hiromi Arai, ["Will Large-scale Generative Models Corrupt Future Datasets?,"](https://openaccess.thecvf.com/content/ICCV2023/html/Hataya_Will_Large-scale_Generative_Models_Corrupt_Future_Datasets_ICCV_2023_paper.html) *International Conference on Computer Vision*, France, 2023.
 * Kazuma Kobayashi, Lin Gu, **Ryuichiro Hataya**, Mototaka Miyake, Yasuyuki Takamizawa, Sono Ito, Hirokazu Watanabe, Yukihiro Yoshida, Hiroki Yoshimura, Tatsuya Harada, Ryuji Hamamoto, "Towards AI-driven radiology education: A self-supervised segmentation-based framework for high-precision medical image editing," *Medical Image Computing and Computer-Assisted Intervention*, Canada, 2023.
