@@ -93,7 +93,7 @@ DefaultContentLanguage           = "en"                    # Default language fo
         title            = "Ryuichiro Hataya's webpage"
         [languages.en.params]
             description  = "Ryuichiro Hataya's webpage"   # Max 160 characters show in search results
-            footerText   = "2019-2025, by Ryuichiro Hataya, Powered by [hugo](https://gohugo.io) with [Introduction](https://github.com/victoriadrake/hugo-theme-introduction)"                      # Text to override default footer text (markdown allowed)
+            footerText   = "2019-2026, by Ryuichiro Hataya, Powered by [hugo](https://gohugo.io) with [Introduction](https://github.com/victoriadrake/hugo-theme-introduction)"                      # Text to override default footer text (markdown allowed)
 
     [languages.ja]
         languageName     = "日本語"
@@ -107,5 +107,5 @@ DefaultContentLanguage           = "en"                    # Default language fo
         
         [languages.ja.params]
             description  = "..."
-            footerText   = "2019-2025, by Ryuichiro Hataya, Powered by [hugo](https://gohugo.io) with [Introduction](https://github.com/victoriadrake/hugo-theme-introduction)"                      # Text to override default footer text (markdown allowed)
+            footerText   = "2019-2026, by Ryuichiro Hataya, Powered by [hugo](https://gohugo.io) with [Introduction](https://github.com/victoriadrake/hugo-theme-introduction)"                      # Text to override default footer text (markdown allowed)
 
