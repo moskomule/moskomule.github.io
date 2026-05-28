@@ -12,6 +12,8 @@ I am Ryuichiro Hataya, PhD (Information Science and Technology).
 
 #### 2026
 
+* Our paper "RAPTOR: Accurate and Scalable Rational Polar Decomposition for the Muon Algorithm" has been accepted at ECML PKDD 2026. See you in September in Napoli🇮🇹.
+* Our paper "Provable Data Scaling Law for Meta Learning via Complexity Minimization," coauthored with K. Fukuchi (University of Tsukuba) and K. Matsui (Kyoto University), has been accepted at the High-dimensional Learning Dynamics (HiLD) workshop at ICML 2026.
 * Our paper "Provable Target Sample Complexity Improvements as Pre‑Trained Models Scale," coauthored with K. Fukuchi (University of Tsukuba) and K. Matsui (Kyoto University), has been accepted at AISTATS 2026.
 
 <details>

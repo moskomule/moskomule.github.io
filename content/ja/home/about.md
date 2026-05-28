@@ -12,7 +12,8 @@ weight: 8
 
 #### 2026
 
-
+* 論文 "RAPTOR: Accurate and Scalable Rational Polar Decomposition for the Muon Algorithm" がECML PKDD 2026に採択されました．
+* 筑波大・福地さん，京大・松井さんとの共著論文 "Provable Data Scaling Law for Meta Learning via Complexity Minimization" がICML 2026のHigh-dimensional Learning Dynamics (HiLD)ワークショップに採択されました．
 * 筑波大・福地さん，京大・松井さんとの共著論文 "Provable Target Sample Complexity Improvements as Pre‑Trained Models Scale" がAISTATS 2026に採択されました．
 
 <details>
