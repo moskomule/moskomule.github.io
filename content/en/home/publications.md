@@ -14,6 +14,7 @@ weight: 30
 
 #### Conference Papers (Peer-reviewed)
 
+* **Ryuichiro Hataya**, ["RAPTOR: Accurate and Scalable Rational Polar Decomposition for the Muon Algorithm,"](), *European Conference on Machine Learning and Principles and Practice of Knowledge Discovery in Databases*, 2026.
 * Kazuto Fukuchi, **Ryuichiro Hataya**, Kota Matsui, ["Provable Target Sample Complexity Improvements as Pre‑Trained Models Scale,"](https://arxiv.org/abs/2602.04233) *International Conference on Artificial Intelligence and Statistics*, 2026.
 * Han Bao, **Ryuichiro Hataya**, Ryo Karakida, ["Self-attention Networks Localize When QK-eigenspectrum Concentrates,"](https://proceedings.mlr.press/v235/bao24b.html) *International Conference on Machine Learning,* 2024.
 * **Ryuichiro Hataya**, Han Bao, and Hiromi Arai, ["Will Large-scale Generative Models Corrupt Future Datasets?,"](https://openaccess.thecvf.com/content/ICCV2023/html/Hataya_Will_Large-scale_Generative_Models_Corrupt_Future_Datasets_ICCV_2023_paper.html) *International Conference on Computer Vision*, France, 2023.
@@ -39,6 +40,7 @@ weight: 30
 
 #### Others
 
+* Kazuto Fukuchi, **Ryuichiro Hataya**, Kota Matsui, "Provable Data Scaling Law for Meta Learning via Complexity Minimization," ICML Workshop on High-dimensional Learning Dynamics, 2026. (Peer Reviewed Short Paper)
 * **Ryuichiro Hataya**, Kota Matsui, Masaaki Imaizumi, "Automatic Domain Adaptation by Transformers in In-Context Learning, " ICML Workshop on In-Context Learning, 2024. (Peer Reviewed Short Paper)
 * **Ryuichiro Hataya**, Masaaki Imaizumi, "Transformers as Stochastic Optimizers," ICML Workshop on In-Context Learning, 2024. (Peer Reviewed Short Paper)
 * **Ryuichiro Hataya**, Yuka Hashimoto, "Noncommutative $C^\ast$-algebra Nets,"  International Conference on Quantum Techinques in Machine Learning, 2023. (Peer Reviewed Etended Abstract)
