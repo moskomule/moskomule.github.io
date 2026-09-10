@@ -13,7 +13,7 @@ weight: 30
 
 #### 査読あり会議論文
 
-* **Ryuichiro Hataya**, ["RAPTOR: Accurate and Scalable Rational Polar Decomposition for the Muon Algorithm,"](), *European Conference on Machine Learning and Principles and Practice of Knowledge Discovery in Databases*, 2026.
+* **Ryuichiro Hataya**, ["RAPTOR: Accurate and Scalable Rational Polar Decomposition for the Muon Algorithm,"](https://link.springer.com/chapter/10.1007/978-3-032-37670-1_3), *European Conference on Machine Learning and Principles and Practice of Knowledge Discovery in Databases*, 2026.
 * Kazuto Fukuchi, **Ryuichiro Hataya**, Kota Matsui, ["Provable Target Sample Complexity Improvements as Pre‑Trained Models Scale,"](https://arxiv.org/abs/2602.04233) *International Conference on Artificial Intelligence and Statistics*, 2026.
 * Han Bao, **Ryuichiro Hataya**, Ryo Karakida, ["Self-attention Networks Localize When QK-eigenspectrum Concentrates,"](https://proceedings.mlr.press/v235/bao24b.html) *International Conference on Machine Learning,* 2024.
 * **Ryuichiro Hataya**, Han Bao, and Hiromi Arai, ["Will Large-scale Generative Models Corrupt Future Datasets?,"](https://openaccess.thecvf.com/content/ICCV2023/html/Hataya_Will_Large-scale_Generative_Models_Corrupt_Future_Datasets_ICCV_2023_paper.html) *International Conference on Computer Vision*, France, 2023.
