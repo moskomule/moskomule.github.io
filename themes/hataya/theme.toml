@@ -1,7 +1,7 @@
 name = "hataya"
 license = "MIT"
 description = "A bilingual academic homepage theme with a social-profile style cover, section photo bands and a BibTeX-driven publication list."
-min_version = "0.165.0"
+min_version = "0.158.0"
 features = ["multilingual", "bibtex publications", "responsive"]
 
 [author]

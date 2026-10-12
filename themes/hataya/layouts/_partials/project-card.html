@@ -1,18 +1,13 @@
-{{/* A project card. Front matter: title, description (or summary), external_link, project_timeframe, venues (list), weight.
-     The first image in the project bundle (sorted by its `weight`) becomes the thumbnail. */}}
+{{/* Front matter: title, description, venues, external_link, project_timeframe. The first image in the bundle is the thumbnail. */}}
 {{- $href := .Params.external_link | default .RelPermalink }}
 <article class="card">
   {{- with .Resources.ByType "image" }}
-  {{- $img := index (sort . "Params.weight") 0 }}
-  {{- if reflect.IsImageResource $img }}{{ if ne $img.MediaType.SubType "gif" }}{{ $img = $img.Process "fill 800x450 center webp" }}{{ end }}{{ end }}
-  <a class="card__thumb" href="{{ $href }}" tabindex="-1" aria-hidden="true"><img src="{{ $img.RelPermalink }}" alt="" loading="lazy"></a>
+  <img src="{{ ((index . 0).Process "fill 800x450").RelPermalink }}" alt="" loading="lazy">
   {{- end }}
   <div class="card__body">
-    <h3 class="card__title"><a href="{{ $href }}"{{ if .Params.external_link }} rel="noopener" target="_blank"{{ end }}>{{ .Title | markdownify }}</a></h3>
-    {{- with .Params.project_timeframe }}<p class="card__meta">{{ . }}</p>{{ end }}
-    {{- with .Description | default .Params.summary }}<p class="card__text">{{ . | markdownify }}</p>{{ end }}
-    {{- with .Params.venues }}
-    <ul class="chips">{{ range . }}<li>{{ . }}</li>{{ end }}</ul>
-    {{- end }}
+    <h3><a href="{{ $href }}">{{ .Title }}</a></h3>
+    {{- with .Params.project_timeframe }}<p class="muted">{{ . }}</p>{{ end }}
+    {{- with .Description }}<p>{{ . }}</p>{{ end }}
+    {{- with .Params.venues }}<p class="chips">{{ range . }}<span>{{ . }}</span>{{ end }}</p>{{ end }}
   </div>
 </article>

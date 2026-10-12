@@ -1,0 +1,16 @@
+{{ define "main" }}
+<article class="wrap page">
+  <h1>{{ .Title }}</h1>
+  <p class="muted">
+    {{- if not .Date.IsZero }}<time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format ":date_long" }}</time>{{ end }}
+    {{- range .GetTerms "tags" }} <a href="{{ .RelPermalink }}">#{{ .Title }}</a>{{ end }}
+  </p>
+  <div class="prose">{{ .Content }}</div>
+  {{- if eq .Section "blog" }}
+  <nav class="pager">
+    {{- with .PrevInSection }}<a href="{{ .RelPermalink }}">← {{ .Title }}</a>{{ else }}<span></span>{{ end }}
+    {{- with .NextInSection }}<a href="{{ .RelPermalink }}">{{ .Title }} →</a>{{ end }}
+  </nav>
+  {{- end }}
+</article>
+{{ end }}

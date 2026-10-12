@@ -1,0 +1,18 @@
+{{/* Compact header used on every page except the home page. */}}
+{{- $profile := partialCached "funcs/profile.html" . site.Language.Name }}
+<header class="topbar">
+  <div class="wrap topbar__inner">
+    <a class="topbar__brand" href="{{ site.Home.RelPermalink }}">
+      {{- with $profile.avatar }}<img src="{{ . }}" alt="" width="36" height="36">{{ end }}
+      <span>{{ site.Params.authorName | default site.Title }}</span>
+    </a>
+    <nav class="topbar__nav" aria-label="Main">
+      {{- range partial "funcs/sections.html" . }}
+        {{- $href := printf "%s#%s" site.Home.RelPermalink (partial "funcs/section-id.html" .) }}
+        {{- if eq .Kind "section" }}{{ $href = .RelPermalink }}{{ end }}
+      <a href="{{ $href }}">{{ .LinkTitle }}</a>
+      {{- end }}
+    </nav>
+    {{ partial "lang-switch.html" . }}
+  </div>
+</header>

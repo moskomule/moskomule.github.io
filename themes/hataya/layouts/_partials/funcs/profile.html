@@ -1,0 +1,10 @@
+{{/* Avatar and cover image URLs. The avatar falls back to the `image` of home/about.md. */}}
+{{- $home := site.GetPage "/home" }}
+{{- $avatar := site.Params.profile.avatar }}
+{{- if not $avatar }}{{ with $home }}{{ with .Resources.Get "about.md" }}{{ $avatar = .Params.image }}{{ end }}{{ end }}{{ end }}
+{{- return dict
+  "home" $home
+  "avatarName" $avatar
+  "avatar" (partial "funcs/image.html" (dict "name" $avatar "page" $home "width" 480))
+  "cover" (partial "funcs/image.html" (dict "name" site.Params.profile.cover "page" $home "width" 2400))
+}}

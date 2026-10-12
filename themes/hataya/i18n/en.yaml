@@ -1,13 +1,8 @@
-contact: Contact
 cv: CV
 home: Home
+not_found: The page you are looking for does not exist.
 projects_all: All projects
-blog_latest: Latest posts
 blog_all: All posts
-read_more: Read more
-share: Share
-tags: Tags
-back_to_top: Back to top
 pub_selected: Selected
 pub_all: All
 pub_journal: Journal
@@ -16,12 +11,6 @@ pub_workshop: Workshop
 pub_preprint: Preprint
 pub_other: Other
 pub_equal: "* equal contribution"
-pub_bibtex: BibTeX
-pub_copy: Copy
-pub_copied: Copied
-pub_count:
-  one: "{{ .Count }} publication"
-  other: "{{ .Count }} publications"
 link_paper: Paper
 link_doi: DOI
 link_pdf: PDF
@@ -32,6 +21,3 @@ link_slides: Slides
 link_poster: Poster
 link_video: Video
 link_project: Project
-not_found_title: Page not found
-not_found_text: The page you are looking for does not exist.
-language: Language

@@ -1,0 +1,4 @@
+{{- /* Anchor of a home section: "about" for home/about.md, "projects" for /projects. */ -}}
+{{- $id := .Section }}
+{{- if ne .Kind "section" }}{{ $id = strings.TrimSuffix ".md" (path.Base .Name) }}{{ end }}
+{{- return $id }}

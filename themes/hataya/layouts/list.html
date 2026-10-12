@@ -1,17 +1,11 @@
 {{ define "main" }}
 <div class="wrap page">
-  <header class="page__header">
-    <h1 class="page__title">{{ .Title | markdownify }}</h1>
-  </header>
-  {{- with .Content }}<div class="prose">{{ . }}</div>{{ end }}
+  <h1>{{ .Title }}</h1>
+  <div class="prose">{{ .Content }}</div>
   {{- if eq .Kind "taxonomy" }}
-  <ul class="term-list">
-    {{- range .Data.Terms.ByCount }}<li><a href="{{ .Page.RelPermalink }}">#{{ .Page.Title }}</a> <span>{{ .Count }}</span></li>{{ end }}
-  </ul>
+  <p class="chips">{{ range .Pages }}<a href="{{ .RelPermalink }}">#{{ .Title }} ({{ len .Pages }})</a>{{ end }}</p>
   {{- else }}
-  <ul class="post-list">
-    {{- range .RegularPagesRecursive.ByDate.Reverse }}{{ partial "post-item.html" . }}{{ end }}
-  </ul>
+  {{ partial "post-list.html" .RegularPagesRecursive.ByDate.Reverse }}
   {{- end }}
 </div>
 {{ end }}

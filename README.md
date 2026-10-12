@@ -1,6 +1,6 @@
 # hataya.tokyo
 
-Source of https://hataya.tokyo, built with [Hugo](https://gohugo.io) (≥ 0.165; CI uses 0.167.0) and the
+Source of https://hataya.tokyo, built with [Hugo](https://gohugo.io) (≥ 0.158; CI uses 0.167.0) and the
 in-repo theme `themes/hataya`. Pushing to `source` builds the site with GitHub Actions and deploys it
 to GitHub Pages (`.github/workflows/publish.yml`, following the Hugo docs). Pull requests are built but not deployed.
 
@@ -39,7 +39,7 @@ Edit `publications.bib`. Besides the usual BibTeX fields, the site reads:
 - `note`, `arxiv`, `openreview`, `code`, `slides`, `pdf`, `project` — shown as text / links
 
 Any markdown page can show the list with `{{< publications >}}`
-(options: `filter="all"`, `tabs="false"`, `category="journal"`).
+(options: `filter="all"` to start on "All", `category="journal"` for one category without filter buttons).
 
 ## Add a project
 
@@ -61,3 +61,17 @@ hugo new content ja/blog/my-post/index.md
 MathJax 4 is loaded only on pages that need it (`params.math = "auto"`: the top page and pages
 whose source contains `$`, `\(` or `\[`). Force it per page with `math: true` / `math: false`
 in front matter, or site-wide with `math = true` / `false` in `hugo.toml`.
+
+## Theme files (`themes/hataya`)
+
+| File | Role |
+| --- | --- |
+| `layouts/baseof.html` | page skeleton |
+| `layouts/home.html` | top page: cover, profile, section tabs, sections with photo bands |
+| `layouts/list.html`, `single.html` | blog / tag lists and posts |
+| `layouts/projects/` | project list and project pages |
+| `layouts/_partials/` | header, footer, head (CSS, JS, MathJax), small helpers in `funcs/` |
+| `layouts/_shortcodes/publications.html` | publication list |
+| `assets/css/main.css` | all styles; colors and widths are variables at the top |
+| `assets/js/main.js` | publication filter buttons (the only script) |
+| `i18n/*.yaml` | English / Japanese labels |

@@ -1,4 +1,0 @@
-{{- /* Anchor id of a home section: file name for home/*.md, section name for /projects and /blog */ -}}
-{{- $id := "" -}}
-{{- if eq .Kind "section" }}{{ $id = .Section }}{{ else }}{{ $id = strings.TrimSuffix ".md" (path.Base .Name) }}{{ end -}}
-{{- return ($id | urlize) -}}

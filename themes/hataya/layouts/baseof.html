@@ -1,15 +1,13 @@
-<!DOCTYPE html>
-<html lang="{{ site.Language.Locale | default site.Language.Lang }}" dir="{{ site.Language.Direction | default "ltr" }}">
+<!doctype html>
+<html lang="{{ site.Language.Locale }}">
 <head>
   {{- partial "head.html" . }}
 </head>
-<body class="{{ if .IsHome }}is-home{{ else }}is-inner{{ end }}">
-  <a class="skip-link" href="#main">Skip to content</a>
-  {{- block "header" . }}{{ partial "topbar.html" . }}{{ end }}
+<body>
+  {{- block "header" . }}{{ partial "header.html" . }}{{ end }}
   <main id="main">
     {{- block "main" . }}{{ end }}
   </main>
   {{- partial "footer.html" . }}
-  {{- partial "scripts.html" . }}
 </body>
 </html>
