@@ -1,0 +1,9 @@
+{{/* params.social: [{url, name}]. Without `name`, the old Font Awesome `icon` value is used as the label. */}}
+{{- $labels := dict "github" "GitHub" "linkedin" "LinkedIn" "graduation-cap" "Google Scholar" "twitter" "X" "bluesky" "Bluesky" "orcid" "ORCID" "envelope" "Email" }}
+{{- with site.Params.social }}
+<ul class="links">
+  {{- range . }}
+  <li><a href="{{ .url }}" rel="me">{{ .name | default (index $labels .icon) | default .icon }}</a></li>
+  {{- end }}
+</ul>
+{{- end }}

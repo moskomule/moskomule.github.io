@@ -1,0 +1,24 @@
+{{- $home := site.GetPage "/home" }}
+{{- $avatar := site.Params.profile.avatar }}
+{{- if not $avatar }}{{ with $home }}{{ with .Resources.Get "about.md" }}{{ $avatar = .Params.image }}{{ end }}{{ end
+}}{{ end }}
+
+{{- $covers := slice }}
+{{- with site.Params.profile.cover }}
+{{- if strings.HasSuffix . "/" }}
+{{- range resources.Match (printf "%s*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}" .) }}
+{{- $img := . }}
+{{- if gt .Width 2400 }}{{ $img = .Process "resize 2400x" }}{{ end }}
+{{- $covers = $covers | append $img.RelPermalink }}
+{{- end }}
+{{- else }}
+{{- $covers = slice (partial "funcs/image.html" (dict "name" . "page" $home "width" 2400)) }}
+{{- end }}
+{{- end }}
+
+{{- return dict
+"home" $home
+"avatarName" $avatar
+"avatar" (partial "funcs/image.html" (dict "name" $avatar "page" $home "width" 480))
+"covers" $covers
+}}

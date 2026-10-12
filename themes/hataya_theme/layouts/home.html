@@ -1,0 +1,76 @@
+{{ define "header" }}
+{{- $profile := partialCached "funcs/profile.html" . site.Language.Name }}
+<header class="profile">
+  <div class="cover">
+    {{- $style := printf "object-position: %s" (site.Params.profile.coverPosition | default "center") }}
+    {{- with $profile.covers }}
+      {{- if eq (len .) 1 }}
+    <img src="{{ index . 0 }}" alt="" style="{{ $style | safeCSS }}">
+      {{- else }}
+    {{/* Several covers: pick one at random when the page loads. */}}
+    <img data-covers="{{ jsonify . }}" alt="" style="{{ $style | safeCSS }}">
+    <script>{const i=document.currentScript.previousElementSibling,c=JSON.parse(i.dataset.covers);i.src=c[Math.floor(Math.random()*c.length)]}</script>
+    <noscript><img src="{{ index . 0 }}" alt="" style="{{ $style | safeCSS }}"></noscript>
+      {{- end }}
+    {{- end }}
+    {{ partial "lang-switch.html" . }}
+  </div>
+  <div class="wrap">
+    <div class="profile__row">
+      {{- with $profile.avatar }}<img class="avatar" src="{{ . }}" alt="" width="168" height="168">{{ end }}
+      <div class="profile__actions">
+        {{- with site.Params.cv }}<a class="button" href="{{ . | relURL }}">{{ i18n "cv" }}</a>{{ end }}
+        {{- with $profile.home }}{{ with .Resources.Get "contact.md" }}<a class="button button--dark" href="#contact">{{ .Title }}</a>{{ end }}{{ end }}
+      </div>
+    </div>
+    <h1>{{ site.Params.authorName | default site.Title }}</h1>
+    {{- with site.Params.tagline }}<p class="muted">{{ . }}</p>{{ end }}
+    {{- with $profile.home }}<div class="profile__bio">{{ .Content }}</div>{{ end }}
+    {{- with site.Params.affiliations }}<p class="muted affiliations">{{ range . }}<span>{{ . }}</span>{{ end }}</p>{{ end }}
+    {{ partial "social.html" . }}
+  </div>
+</header>
+
+<nav class="tabs" aria-label="Sections">
+  <div class="wrap">
+    {{- range partial "funcs/sections.html" . }}
+    <a href="#{{ partial "funcs/section-id.html" . }}">{{ .LinkTitle }}</a>
+    {{- end }}
+  </div>
+</nav>
+{{ end }}
+
+{{ define "main" }}
+{{- $profile := partialCached "funcs/profile.html" . site.Language.Name }}
+{{- range partial "funcs/sections.html" . }}
+
+  {{/* Photo band before the section: front matter `band`, or `image` (as in the old theme). `band: false` hides it. */}}
+  {{- $band := .Params.band | default .Params.image }}
+  {{- if and $band (ne .Params.band false) (ne $band $profile.avatarName) }}
+    {{- $page := cond (eq .Kind "section") . $profile.home }}
+  <figure class="band">
+    <img src="{{ partial "funcs/image.html" (dict "name" $band "page" $page "width" 2400) }}" alt="" loading="lazy">
+  </figure>
+  {{- end }}
+
+  <section id="{{ partial "funcs/section-id.html" . }}" class="section wrap">
+    <h2>{{ .Title }}</h2>
+    {{- if eq .Section "projects" }}
+      {{ partial "projects.html" (dict "page" . "limit" site.Params.home.numberOfProjectsToShow) }}
+    {{- else if eq .Section "blog" }}
+      {{- $posts := .RegularPagesRecursive.ByDate.Reverse }}
+      {{ partial "post-list.html" (first 5 $posts) }}
+      {{- if gt (len $posts) 5 }}<p class="more"><a href="{{ .RelPermalink }}">{{ i18n "blog_all" }} →</a></p>{{ end }}
+    {{- else }}
+      <div class="prose">{{ .Content }}</div>
+    {{- end }}
+  </section>
+{{- end }}
+
+{{- with $profile.home }}{{ with .Resources.Get "contact.md" }}
+  <section id="contact" class="section wrap">
+    <h2>{{ .Title }}</h2>
+    <div class="prose">{{ .Content }}</div>
+  </section>
+{{- end }}{{ end }}
+{{ end }}

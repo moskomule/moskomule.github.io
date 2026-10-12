@@ -1,0 +1,13 @@
+{{/*
+  Sections of the home page, sorted by `weight`:
+  content/<lang>/home/*.md (except index.md and contact.md), plus /projects and /blog when they have content.
+*/}}
+{{- $sections := slice }}
+{{- with site.GetPage "/home" }}
+  {{- range .Resources.ByType "page" }}
+    {{- if ne .Name "contact.md" }}{{ $sections = $sections | append . }}{{ end }}
+  {{- end }}
+{{- end }}
+{{- with site.GetPage "/projects" }}{{ $sections = $sections | append . }}{{ end }}
+{{- with site.GetPage "/blog" }}{{ if .RegularPagesRecursive }}{{ $sections = $sections | append . }}{{ end }}{{ end }}
+{{- return sort $sections "Params.weight" }}

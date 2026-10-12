@@ -1,14 +1,15 @@
 ---
 title: "プロフィール"
-image: "profile.png"
 weight: 8
 ---
 
-幡谷龍一郎です（博士（情報理工学））。
-- SB Intuitions（シニアリサーチサイエンティスト）
-- 特定助教（京都大学）
+### 略歴
 
-### News
+SB Intuitionsにシニアリサーチサイエンティストとして，京都大学に特定助教として所属しています．
+2025年まで理化学研究所にてポスドク研究員として勤務していました．
+2022年に東京大学にて情報理工学の博士号を取得しました．
+
+### 最近の情報
 
 #### 2026
 
@@ -17,7 +18,7 @@ weight: 8
 * 筑波大・福地さん，京大・松井さんとの共著論文 "Provable Target Sample Complexity Improvements as Pre‑Trained Models Scale" がAISTATS 2026に採択されました．
 
 <details>
-<summary>昔の話</summary>
+<summary>過去の情報</summary>
 
 #### 2025
 

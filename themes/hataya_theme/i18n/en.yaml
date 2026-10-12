@@ -1,0 +1,23 @@
+cv: CV
+home: Home
+not_found: The page you are looking for does not exist.
+projects_all: All projects
+blog_all: All posts
+pub_selected: Selected
+pub_all: All
+pub_journal: Journal
+pub_conference: Conference
+pub_workshop: Workshop
+pub_preprint: Preprint
+pub_other: Other
+pub_equal: "* equal contribution"
+link_paper: Paper
+link_doi: DOI
+link_pdf: PDF
+link_arxiv: arXiv
+link_openreview: OpenReview
+link_code: Code
+link_slides: Slides
+link_poster: Poster
+link_video: Video
+link_project: Project

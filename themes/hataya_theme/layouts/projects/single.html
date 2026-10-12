@@ -1,0 +1,9 @@
+{{ define "main" }}
+<article class="wrap page">
+  <h1>{{ .Title }}</h1>
+  {{- with .Params.project_timeframe }}<p class="muted">{{ . }}</p>{{ end }}
+  {{- with .Params.venues }}<p class="chips">{{ range . }}<span>{{ . }}</span>{{ end }}</p>{{ end }}
+  <div class="prose">{{ .Content }}</div>
+  <p class="more"><a href="{{ .Parent.RelPermalink }}">← {{ .Parent.Title }}</a></p>
+</article>
+{{ end }}

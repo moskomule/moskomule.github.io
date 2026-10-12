@@ -1,0 +1,86 @@
+baseURL                = "https://hataya.tokyo/"
+theme                  = "hataya_theme"
+defaultContentLanguage = "en"
+hasCJKLanguage         = true          # count Japanese characters correctly (summaries etc.)
+
+[params]
+    customCSS          = ["css/custom.css"]   # extra CSS files under assets/
+    math               = "auto"               # MathJax: "auto" (only pages with math), true, or false
+    # favicon          = "/favicon.ico"       # file under static/
+    # cv               = "/cv.pdf"            # shows a "CV" button next to "Contact"
+
+    # Profile header. Paths are relative to assets/ (site-wide images live in assets/images/).
+    [params.profile]
+        avatar         = "images/profile.png"
+        cover          = "images/covers/"     # one image, or a folder ending in "/" (a random one on each page load)
+        coverPosition  = "center 62%"         # CSS object-position of the cover photo
+
+    # Publication list generated from publications.bib (see scripts/bib2json.py)
+    [params.publications]
+        me             = ["Ryuichiro Hataya", "R. Hataya"]   # shown in bold
+
+    [params.home]
+        numberOfProjectsToShow = 3            # projects shown on the top page
+
+    # Profile links. `name` is optional; it is guessed from `icon` (github, linkedin, graduation-cap, ...).
+    [[params.social]]
+        url            = "https://github.com/moskomule"
+        icon           = "github"
+
+    [[params.social]]
+        url            = "https://www.linkedin.com/in/ryuichiro-hataya-7940a1125"
+        icon           = "linkedin"
+
+    [[params.social]]
+        url            = "https://scholar.google.com/citations?user=84l6KcEAAAAJ"
+        icon           = "graduation-cap"
+
+[markup]
+  [markup.highlight]
+    noClasses          = true                 # inline colors; no extra stylesheet needed
+    style              = "monokailight"
+    tabWidth           = 4
+  [markup.goldmark.renderer]
+    unsafe             = true                 # allow raw HTML such as <details> in markdown
+
+# content/<lang>/home/ only holds the sections of the top page; do not render it as its own page.
+[[cascade]]
+  [cascade.build]
+    render = "never"
+    list   = "never"
+  [cascade.target]
+    path = "{/home,/home/**}"
+
+[taxonomies]
+  tag = "tags"
+
+# Keep processed images in Hugo's cache dir (restored between CI runs) instead of resources/_gen
+[caches.images]
+  dir = ":cacheDir/images"
+
+[languages]
+    [languages.en]
+        label          = "English"
+        locale         = "en-US"
+        contentDir     = "content/en"
+        weight         = 1
+        title          = "Ryuichiro Hataya's webpage"
+        [languages.en.params]
+            description  = "Ryuichiro Hataya's webpage"   # max 160 characters, shown in search results
+            footerText   = "2019-2026, by Ryuichiro Hataya, Powered by [Hugo](https://gohugo.io)"
+            authorName   = "Ryuichiro Hataya"
+            tagline      = "Ryuichiro Hataya · PhD (Information Science and Technology, University of Tokyo)"
+            affiliations = ["Senior Research Scientist, SB Intuitions", "Program-Specific Assistant Professor, Kyoto University"]
+
+    [languages.ja]
+        label          = "日本語"
+        locale         = "ja-JP"
+        contentDir     = "content/ja"
+        weight         = 2
+        title          = "幡谷龍一郎のページ"
+        [languages.ja.params]
+            description  = "幡谷龍一郎のページ"
+            footerText   = "2019-2026, by Ryuichiro Hataya, Powered by [Hugo](https://gohugo.io)"
+            authorName   = "幡谷 龍一郎"
+            tagline      = "Ryuichiro Hataya · 博士（情報理工学・東京大学）"
+            affiliations = ["SB Intuitions シニアリサーチサイエンティスト", "京都大学 特定助教"]

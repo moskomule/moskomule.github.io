@@ -1,0 +1,6 @@
+{{ define "main" }}
+<div class="wrap page">
+  <h1>{{ .Title }}</h1>
+  {{ partial "projects.html" (dict "page" .) }}
+</div>
+{{ end }}

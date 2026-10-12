@@ -1,0 +1,15 @@
+{{/* Front matter: title, description, venues, external_link, project_timeframe. The first image in the bundle is the thumbnail. */}}
+{{- $href := .Params.external_link | default .RelPermalink }}
+<article class="card">
+  {{- with .Resources.ByType "image" }}
+    {{- $img := index . 0 }}
+    {{- if reflect.IsImageResourceProcessable $img }}{{ $img = $img.Process "fill 1200x675" }}{{ end }}
+  <img src="{{ $img.RelPermalink }}" alt="" loading="lazy">
+  {{- end }}
+  <div class="card__body">
+    <h3><a href="{{ $href }}">{{ .Title }}</a></h3>
+    {{- with .Params.project_timeframe }}<p class="muted">{{ . }}</p>{{ end }}
+    {{- with .Description }}<p>{{ . }}</p>{{ end }}
+    {{- with .Params.venues }}<p class="chips">{{ range . }}<span>{{ . }}</span>{{ end }}</p>{{ end }}
+  </div>
+</article>

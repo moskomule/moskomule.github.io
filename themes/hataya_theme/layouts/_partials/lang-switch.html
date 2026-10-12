@@ -1,0 +1,12 @@
+{{/* Links to this page in each language, or to that language's home page when there is no translation. */}}
+{{- $page := . }}
+{{- if gt (len (site.Home.Rotate "language")) 1 }}
+<nav class="lang-switch" aria-label="Language">
+  {{- range site.Home.Rotate "language" }}
+    {{- $lang := .Language.Name }}
+    {{- $target := . }}
+    {{- range $page.Rotate "language" }}{{ if eq .Language.Name $lang }}{{ $target = . }}{{ end }}{{ end }}
+  <a href="{{ $target.RelPermalink }}" lang="{{ .Language.Locale }}" {{- if eq $lang site.Language.Name }} aria-current="page"{{ end }}>{{ .Language.Label }}</a>
+  {{- end }}
+</nav>
+{{- end }}

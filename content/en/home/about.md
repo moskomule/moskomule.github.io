@@ -1,12 +1,13 @@
 ---
 title: "About"
-image: "profile.png"
 weight: 8
 ---
 
-I am Ryuichiro Hataya, PhD (Information Science and Technology).
-- Senior Research Scientist at SB Intuitions
-- Program-Specific Assistant Professor at Kyoto University
+### Short Bio
+
+I am a senior research scientist at SB Intuitions and a program-specific assistant professor at Kyoto University.
+Previously, I was a postdoctoral researcher at RIKEN.
+I received my PhD in Information Science and Technology from the University of Tokyo in 2022.
 
 ### News
 

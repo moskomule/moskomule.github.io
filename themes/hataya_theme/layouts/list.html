@@ -1,0 +1,11 @@
+{{ define "main" }}
+<div class="wrap page">
+  <h1>{{ .Title }}</h1>
+  <div class="prose">{{ .Content }}</div>
+  {{- if eq .Kind "taxonomy" }}
+  <p class="chips">{{ range .Pages }}<a href="{{ .RelPermalink }}">#{{ .Title }} ({{ len .Pages }})</a>{{ end }}</p>
+  {{- else }}
+  {{ partial "post-list.html" .RegularPagesRecursive.ByDate.Reverse }}
+  {{- end }}
+</div>
+{{ end }}

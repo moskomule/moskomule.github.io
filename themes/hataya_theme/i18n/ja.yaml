@@ -1,0 +1,23 @@
+cv: CV
+home: ホーム
+not_found: お探しのページは見つかりませんでした．
+projects_all: すべてのプロジェクト
+blog_all: すべての記事
+pub_selected: 主要
+pub_all: すべて
+pub_journal: 論文誌
+pub_conference: 国際会議
+pub_workshop: ワークショップ
+pub_preprint: プレプリント
+pub_other: その他
+pub_equal: "* 同等の貢献"
+link_paper: Paper
+link_doi: DOI
+link_pdf: PDF
+link_arxiv: arXiv
+link_openreview: OpenReview
+link_code: Code
+link_slides: Slides
+link_poster: Poster
+link_video: Video
+link_project: Project

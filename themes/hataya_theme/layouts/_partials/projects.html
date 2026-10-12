@@ -1,0 +1,12 @@
+{{/* Project cards. .page = the /projects section, .limit = how many to show (optional). */}}
+{{- $projects := .page.Pages.ByWeight }}
+{{- $limit := .limit | default (len $projects) }}
+<div class="prose">{{ .page.Content }}</div>
+{{- with first $limit $projects }}
+<div class="cards">
+  {{- range . }}{{ partial "project-card.html" . }}{{ end }}
+</div>
+{{- end }}
+{{- if lt $limit (len $projects) }}
+<p class="more"><a href="{{ .page.RelPermalink }}">{{ i18n "projects_all" }} →</a></p>
+{{- end }}

@@ -1,38 +1,96 @@
+# Build with Hugo and deploy to GitHub Pages, following
+# https://gohugo.io/host-and-deploy/host-on-github-pages/
+#
+# Repository setting required: Settings > Pages > Build and deployment > Source = "GitHub Actions".
+# The custom domain (hataya.tokyo) is configured in the same settings page.
 name: publish
+
 on:
-    push:
-        branches:
-            - source
+  push:
+    branches: [source]
+  pull_request:
+    branches: [source]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow one deployment at a time; let an in-progress deployment finish.
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: false
+
+defaults:
+  run:
+    shell: bash
 
 jobs:
-    build:
-        runs-on: ubuntu-latest
-        if: "!contains(github.event.head_commit.message, 'skip run')"
+  build:
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, 'skip run')"
+    env:
+      HUGO_VERSION: "0.167.0"
+      HUGO_ENVIRONMENT: production
+      TZ: Asia/Tokyo
+    steps:
+      - uses: actions/checkout@v7
 
-        steps:
-            - uses: actions/checkout@v4
-              with:
-                submodules: true
+      - name: Configure GitHub Pages
+        id: pages
+        if: github.event_name != 'pull_request'
+        uses: actions/configure-pages@v6
 
-            - uses: peaceiris/actions-hugo@v3
-              with:
-                hugo-version: "0.124.0"
-                extended: true
+      # Hugo has no official setup action; this is the install step from the Hugo docs.
+      - name: Install Hugo
+        run: |
+          mkdir -p "${HOME}/.local/hugo"
+          curl -sSLJO "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.tar.gz"
+          tar -C "${HOME}/.local/hugo" -xf "hugo_extended_${HUGO_VERSION}_linux-amd64.tar.gz"
+          rm "hugo_extended_${HUGO_VERSION}_linux-amd64.tar.gz"
+          echo "${HOME}/.local/hugo" >> "${GITHUB_PATH}"
 
-            - uses: actions/setup-node@v4
-              with:
-                node-version: 18
-              
-            - name: install dependencies
-              run: npm install -g postcss postcss-cli autoprefixer
+      - name: Convert publications.bib
+        run: python3 scripts/bib2json.py   # standard library only; uses the runner's Python
 
-            - name: build
-              run: hugo --minify
+      - name: Restore Hugo cache
+        id: cache-restore
+        uses: actions/cache/restore@v6
+        with:
+          path: ${{ runner.temp }}/hugo_cache
+          key: hugo-${{ github.run_id }}
+          restore-keys: hugo-
 
-            - name: push
-              uses: peaceiris/actions-gh-pages@v4
-              with:
-                github_token: ${{ secrets.GITHUB_TOKEN }}
-                publish_dir: ./public
-                publish_branch: master
-                cname: hataya.tokyo
+      - name: Build
+        run: |
+          hugo version
+          base_url="${{ steps.pages.outputs.base_url }}"
+          hugo build --gc --minify \
+            --cacheDir "${{ runner.temp }}/hugo_cache" \
+            ${base_url:+--baseURL "${base_url}/"}
+
+      - name: Save Hugo cache
+        if: github.event_name != 'pull_request'
+        uses: actions/cache/save@v6
+        with:
+          path: ${{ runner.temp }}/hugo_cache
+          key: ${{ steps.cache-restore.outputs.cache-primary-key }}
+
+      - name: Upload artifact
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: ./public
+
+  deploy:
+    if: github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
