@@ -1,5 +1,5 @@
 baseURL                = "https://hataya.tokyo/"
-theme                  = "hataya"
+theme                  = "hataya_theme"
 defaultContentLanguage = "en"
 hasCJKLanguage         = true          # count Japanese characters correctly (summaries etc.)
 
