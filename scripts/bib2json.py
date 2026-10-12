@@ -55,7 +55,11 @@ LATEX_ACCENTS = {
     "c": {"c": "ç", "C": "Ç"},
     "v": {"c": "č", "s": "š", "z": "ž", "r": "ř", "e": "ě", "C": "Č", "S": "Š", "Z": "Ž"},
     "k": {"a": "ą", "e": "ę"},
-    "l": {"": "ł"},
+}
+
+LATEX_SYMBOLS = {
+    "i": "i", "j": "j", "ss": "ß", "aa": "å", "AA": "Å", "ae": "æ", "AE": "Æ",
+    "oe": "œ", "OE": "Œ", "o": "ø", "O": "Ø", "l": "ł", "L": "Ł",
 }
 
 
@@ -193,7 +197,10 @@ def latex_to_text(s: str) -> str:
             cmd, ch = m.group(1), m.group(2) or ""
             return LATEX_ACCENTS.get(cmd, {}).get(ch, ch)
 
-        chunk = re.sub(r"\{?\\([\"'`^~ckvl])\s*\{?([A-Za-z]?)\}?\}?", accent, chunk)
+        chunk = re.sub(r"\\(?:emph|text(?:it|bf|rm|tt|sc|sf|up))\s*\{([^{}]*)\}", r"\1", chunk)
+        chunk = re.sub(r"\\(i|j|ss|aa|AA|ae|AE|oe|OE|o|O|l|L)(?![A-Za-z])\s*", lambda m: LATEX_SYMBOLS[m.group(1)], chunk)
+        chunk = re.sub(r"\{?\\([\"'`^~]|[ckv](?![A-Za-z]))\s*\{?([A-Za-z]?)\}?\}?", accent, chunk)
+        chunk = re.sub(r"\\(ldots|dots|cdot)(?![A-Za-z])", lambda m: "…" if "dots" in m.group(1) else "·", chunk)
         chunk = chunk.replace("\\&", "&").replace("\\%", "%").replace("\\_", "_")
         chunk = chunk.replace("---", "—").replace("--", "–").replace("~", " ")
         chunk = chunk.replace("{", "").replace("}", "")
@@ -201,17 +208,32 @@ def latex_to_text(s: str) -> str:
     return re.sub(r"\s+", " ", "".join(out)).strip()
 
 
+def _split_top_level_commas(s: str) -> list[str]:
+    parts, depth, cur = [], 0, []
+    for c in s:
+        if c == "{":
+            depth += 1
+        elif c == "}":
+            depth -= 1
+        if c == "," and depth == 0:
+            parts.append("".join(cur))
+            cur = []
+        else:
+            cur.append(c)
+    parts.append("".join(cur))
+    return [latex_to_text(p) for p in parts]
+
+
 def format_author(name: str) -> str:
-    name = latex_to_text(name.strip())
+    name = name.strip()
     if name.lower() == "others":
         return "others"
-    if "," in name:
-        parts = [p.strip() for p in name.split(",")]
-        if len(parts) == 2:
-            return f"{parts[1]} {parts[0]}".strip()
-        if len(parts) == 3:  # von Last, Jr, First
-            return f"{parts[2]} {parts[0]}, {parts[1]}".strip()
-    return name
+    parts = _split_top_level_commas(name)  # commas inside {...} (e.g. "{Barnes and Noble, Inc.}") stay
+    if len(parts) == 2:
+        return f"{parts[1]} {parts[0]}".strip()
+    if len(parts) == 3:  # von Last, Jr, First
+        return f"{parts[2]} {parts[0]}, {parts[1]}".strip()
+    return latex_to_text(name)
 
 
 def split_authors(s: str) -> list[str]:
@@ -303,7 +325,11 @@ def main(argv: list[str]) -> int:
     dst = Path(argv[2]) if len(argv) > 2 else root / "data" / "publications.json"
     entries = [entry_to_json(e) for e in parse_bibtex(src.read_text(encoding="utf-8"))]
     # newest first; keep file order within the same year/month
-    entries.sort(key=lambda p: (-int(p["year"] or 0), -p["month"], p["_pos"]))
+    def year(p: dict) -> int:  # "2024", "2024a", "to appear" -> 2024, 2024, 0
+        m = re.search(r"\d{4}", p["year"])
+        return int(m.group(0)) if m else 0
+
+    entries.sort(key=lambda p: (-year(p), -p["month"], p["_pos"]))
     for p in entries:
         del p["_pos"]
     dst.write_text(json.dumps(entries, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")

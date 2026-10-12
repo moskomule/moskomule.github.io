@@ -50,7 +50,7 @@ Edit `publications.bib` (entries are grouped by year, newest first; the page is 
 - `category = {workshop}` — `journal` / `conference` / `workshop` / `preprint` / `other`
   (default: `@article` → journal, `@inproceedings` → conference, `@misc` → preprint)
 - `equal = {1,2}` — equal-contribution authors (1-based)
-- `note`, `arxiv`, `openreview`, `code`, `slides`, `pdf`, `project` — shown as text / links
+- `note`, `arxiv`, `openreview`, `code`, `slides`, `pdf`, `poster`, `video`, `project` — shown as text / links
 
 Any markdown page can show the list with `{{< publications >}}`
 (options: `filter="all"` to start on "All", `category="journal"` for one category without filter buttons).
@@ -58,7 +58,7 @@ Any markdown page can show the list with `{{< publications >}}`
 ## Add a project
 
 ```sh
-hugo new content en/projects/my-project/index.md
+hugo new content content/en/projects/my-project/index.md
 ```
 
 Add a picture next to `index.md`, write `description`, set `draft: false`.
@@ -67,7 +67,7 @@ The home page shows up to `params.home.numberOfProjectsToShow` projects.
 ## Add a blog post
 
 ```sh
-hugo new content ja/blog/my-post/index.md
+hugo new content content/ja/blog/my-post/index.md
 ```
 
 ## Math
@@ -87,5 +87,5 @@ in front matter, or site-wide with `math = true` / `false` in `hugo.toml`.
 | `layouts/_partials/` | header, footer, head (CSS, JS, MathJax), small helpers in `funcs/` |
 | `layouts/_shortcodes/publications.html` | publication list |
 | `assets/css/main.css` | all styles; colors and widths are variables at the top |
-| `assets/js/main.js` | publication filter buttons (the only script) |
+| `assets/js/main.js` | publication filter buttons (the random cover is a two-line inline script in `home.html`) |
 | `i18n/*.yaml` | English / Japanese labels |

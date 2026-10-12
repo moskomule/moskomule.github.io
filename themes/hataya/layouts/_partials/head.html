@@ -31,12 +31,12 @@
 <script src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" defer></script>
 {{- end }}
 
-{{/* MathJax. params.math: "auto" (pages containing $, \( or \[, plus the home page), true or false.
+{{/* MathJax. params.math: "auto" (pages containing $, \( or \[, the publication list, and the home page), true or false.
      Front matter `math: true/false` overrides it for one page. */}}
 {{- $math := site.Params.math | default "auto" }}
 {{- if isset .Params "math" }}{{ $math = .Params.math }}{{ end }}
 {{- if eq $math "auto" }}
-  {{- $math = or .IsHome (strings.Contains .RawContent "$") (strings.Contains .RawContent "\\(") (strings.Contains .RawContent "\\[") }}
+  {{- $math = or .IsHome (.HasShortcode "publications") (strings.Contains .RawContent "$") (strings.Contains .RawContent "\\(") (strings.Contains .RawContent "\\[") }}
 {{- end }}
 {{- if $math }}
 <script>

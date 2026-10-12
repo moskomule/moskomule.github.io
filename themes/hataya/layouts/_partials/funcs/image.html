@@ -10,8 +10,11 @@
   {{- $img := false }}
   {{- with $.page }}{{ $img = .Resources.Get $name }}{{ end }}
   {{- if not $img }}{{ $img = resources.Get $name }}{{ end }}
+  {{- if and $img (ne $img.MediaType.MainType "image") }}
+    {{- errorf "%q is not an image (a cover folder must end with \"/\")" $name }}
+  {{- end }}
   {{- with $img }}
-    {{- if and $.width (in (slice "jpeg" "png" "webp") .MediaType.SubType) (gt .Width $.width) }}
+    {{- if and $.width (reflect.IsImageResourceProcessable .) (gt .Width $.width) }}
       {{- $img = .Process (printf "resize %dx" $.width) }}
     {{- end }}
     {{- $url = $img.RelPermalink }}

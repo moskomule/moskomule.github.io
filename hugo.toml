@@ -43,12 +43,6 @@ hasCJKLanguage         = true          # count Japanese characters correctly (su
   [markup.goldmark.renderer]
     unsafe             = true                 # allow raw HTML such as <details> in markdown
 
-# The default menu lists the top-page sections. Define your own to override it:
-# [[menu.main]]
-#     name   = "Blog"
-#     url    = "/blog/"
-#     weight = 1
-
 # content/<lang>/home/ only holds the sections of the top page; do not render it as its own page.
 [[cascade]]
   [cascade.build]

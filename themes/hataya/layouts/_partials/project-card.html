@@ -2,7 +2,9 @@
 {{- $href := .Params.external_link | default .RelPermalink }}
 <article class="card">
   {{- with .Resources.ByType "image" }}
-  <img src="{{ ((index . 0).Process "fill 1200x675").RelPermalink }}" alt="" loading="lazy">
+    {{- $img := index . 0 }}
+    {{- if reflect.IsImageResourceProcessable $img }}{{ $img = $img.Process "fill 1200x675" }}{{ end }}
+  <img src="{{ $img.RelPermalink }}" alt="" loading="lazy">
   {{- end }}
   <div class="card__body">
     <h3><a href="{{ $href }}">{{ .Title }}</a></h3>

@@ -12,6 +12,8 @@
 {{- $categories := slice "journal" "conference" "workshop" "preprint" "other" }}
 {{- with .Get "category" }}{{ $pubs = where $pubs "category" . }}{{ $categories = slice }}{{ end }}
 {{- $hasSelected := where $pubs "selected" true }}
+{{- $hasEqual := false }}
+{{- range $pubs }}{{ range .authors }}{{ if .equal }}{{ $hasEqual = true }}{{ end }}{{ end }}{{ end }}
 {{- $filter := .Get "filter" | default (cond (gt (len $hasSelected) 0) "selected" "all") }}
 
 {{- if not $pubs }}
@@ -49,6 +51,6 @@
     </li>
   {{- end }}
   </ol>
-  <p class="muted">{{ i18n "pub_equal" }}</p>
+  {{- if $hasEqual }}<p class="muted">{{ i18n "pub_equal" }}</p>{{ end }}
 </div>
 {{- end }}
