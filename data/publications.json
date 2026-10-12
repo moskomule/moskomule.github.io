@@ -1,0 +1,992 @@
+[
+ {
+  "key": "placidi2026mnisq",
+  "type": "article",
+  "category": "journal",
+  "selected": false,
+  "title": "MNISQ: A Large-Scale Quantum Circuit Dataset for Machine Learning in the NISQ Era",
+  "authors": [
+   {
+    "name": "Leonardo Placidi",
+    "equal": false
+   },
+   {
+    "name": "Ryuichiro Hataya",
+    "equal": false
+   },
+   {
+    "name": "Toshio Mori",
+    "equal": false
+   },
+   {
+    "name": "Koki Aoyama",
+    "equal": false
+   },
+   {
+    "name": "Hayata Morisaki",
+    "equal": false
+   },
+   {
+    "name": "Kosuke Mitarai",
+    "equal": false
+   },
+   {
+    "name": "Keisuke Fujii",
+    "equal": false
+   }
+  ],
+  "venue": "Scientific Data",
+  "abbr": "Sci. Data 2026",
+  "note": "",
+  "year": "2026",
+  "month": 5,
+  "links": [
+   {
+    "label": "paper",
+    "url": "https://www.nature.com/articles/s41597-026-07493-9"
+   }
+  ],
+  "bibtex": "@article{placidi2026mnisq,\n  author = {Placidi, Leonardo and Hataya, Ryuichiro and Mori, Toshio and Aoyama, Koki and Morisaki, Hayata and Mitarai, Kosuke and Fujii, Keisuke},\n  title = {{MNISQ}: A Large-Scale Quantum Circuit Dataset for Machine Learning in the {NISQ} Era},\n  journal = {Scientific Data},\n  year = {2026},\n  month = may,\n  url = {https://www.nature.com/articles/s41597-026-07493-9},\n}"
+ },
+ {
+  "key": "hataya2026raptor",
+  "type": "inproceedings",
+  "category": "conference",
+  "selected": true,
+  "title": "RAPTOR: Accurate and Scalable Rational Polar Decomposition for the Muon Algorithm",
+  "authors": [
+   {
+    "name": "Ryuichiro Hataya",
+    "equal": false
+   }
+  ],
+  "venue": "European Conference on Machine Learning and Principles and Practice of Knowledge Discovery in Databases",
+  "abbr": "ECML PKDD 2026",
+  "note": "",
+  "year": "2026",
+  "month": 0,
+  "links": [
+   {
+    "label": "paper",
+    "url": "https://link.springer.com/chapter/10.1007/978-3-032-37670-1_3"
+   }
+  ],
+  "bibtex": "@inproceedings{hataya2026raptor,\n  author = {Hataya, Ryuichiro},\n  title = {{RAPTOR}: Accurate and Scalable Rational Polar Decomposition for the Muon Algorithm},\n  booktitle = {European Conference on Machine Learning and Principles and Practice of Knowledge Discovery in Databases},\n  year = {2026},\n  url = {https://link.springer.com/chapter/10.1007/978-3-032-37670-1_3},\n}"
+ },
+ {
+  "key": "fukuchi2026provable",
+  "type": "inproceedings",
+  "category": "conference",
+  "selected": true,
+  "title": "Provable Target Sample Complexity Improvements as Pre-Trained Models Scale",
+  "authors": [
+   {
+    "name": "Kazuto Fukuchi",
+    "equal": false
+   },
+   {
+    "name": "Ryuichiro Hataya",
+    "equal": false
+   },
+   {
+    "name": "Kota Matsui",
+    "equal": false
+   }
+  ],
+  "venue": "International Conference on Artificial Intelligence and Statistics",
+  "abbr": "AISTATS 2026",
+  "note": "",
+  "year": "2026",
+  "month": 0,
+  "links": [
+   {
+    "label": "arxiv",
+    "url": "https://arxiv.org/abs/2602.04233"
+   }
+  ],
+  "bibtex": "@inproceedings{fukuchi2026provable,\n  author = {Fukuchi, Kazuto and Hataya, Ryuichiro and Matsui, Kota},\n  title = {Provable Target Sample Complexity Improvements as Pre-Trained Models Scale},\n  booktitle = {International Conference on Artificial Intelligence and Statistics},\n  year = {2026},\n}"
+ },
+ {
+  "key": "fukuchi2026scaling",
+  "type": "inproceedings",
+  "category": "workshop",
+  "selected": false,
+  "title": "Provable Data Scaling Law for Meta Learning via Complexity Minimization",
+  "authors": [
+   {
+    "name": "Kazuto Fukuchi",
+    "equal": false
+   },
+   {
+    "name": "Ryuichiro Hataya",
+    "equal": false
+   },
+   {
+    "name": "Kota Matsui",
+    "equal": false
+   }
+  ],
+  "venue": "ICML Workshop on High-dimensional Learning Dynamics",
+  "abbr": "ICML-W 2026",
+  "note": "Peer-reviewed short paper",
+  "year": "2026",
+  "month": 0,
+  "links": [],
+  "bibtex": "@inproceedings{fukuchi2026scaling,\n  author = {Fukuchi, Kazuto and Hataya, Ryuichiro and Matsui, Kota},\n  title = {Provable Data Scaling Law for Meta Learning via Complexity Minimization},\n  booktitle = {ICML Workshop on High-dimensional Learning Dynamics},\n  year = {2026},\n}"
+ },
+ {
+  "key": "naganuma2025empirical",
+  "type": "article",
+  "category": "journal",
+  "selected": true,
+  "title": "An Empirical Study of Pre-trained Model Selection for Out-of-Distribution Generalization and Calibration",
+  "authors": [
+   {
+    "name": "Hiroki Naganuma",
+    "equal": true
+   },
+   {
+    "name": "Ryuichiro Hataya",
+    "equal": true
+   },
+   {
+    "name": "Kotaro Yoshida",
+    "equal": false
+   },
+   {
+    "name": "Ioannis Mitliagkas",
+    "equal": false
+   }
+  ],
+  "venue": "Transactions on Machine Learning Research",
+  "abbr": "TMLR 2025",
+  "note": "",
+  "year": "2025",
+  "month": 4,
+  "links": [
+   {
+    "label": "openreview",
+    "url": "https://openreview.net/forum?id=tYjoHjShxF"
+   }
+  ],
+  "bibtex": "@article{naganuma2025empirical,\n  author = {Naganuma, Hiroki and Hataya, Ryuichiro and Yoshida, Kotaro and Mitliagkas, Ioannis},\n  title = {An Empirical Study of Pre-trained Model Selection for Out-of-Distribution Generalization and Calibration},\n  journal = {Transactions on Machine Learning Research},\n  year = {2025},\n  month = apr,\n}"
+ },
+ {
+  "key": "kobayashi2024sketch",
+  "type": "article",
+  "category": "journal",
+  "selected": false,
+  "title": "Sketch-based Semantic Retrieval of Medical Images",
+  "authors": [
+   {
+    "name": "Kazuma Kobayashi",
+    "equal": false
+   },
+   {
+    "name": "Lin Gu",
+    "equal": false
+   },
+   {
+    "name": "Ryuichiro Hataya",
+    "equal": false
+   },
+   {
+    "name": "Takaaki Mizuno",
+    "equal": false
+   },
+   {
+    "name": "Mototaka Miyake",
+    "equal": false
+   },
+   {
+    "name": "Hirokazu Watanabe",
+    "equal": false
+   },
+   {
+    "name": "Masamichi Takahashi",
+    "equal": false
+   },
+   {
+    "name": "Yasuyuki Takamizawa",
+    "equal": false
+   },
+   {
+    "name": "Yukihiro Yoshida",
+    "equal": false
+   },
+   {
+    "name": "Satoshi Nakamura",
+    "equal": false
+   },
+   {
+    "name": "Nobuji Kouno",
+    "equal": false
+   },
+   {
+    "name": "Amina Bolatkan",
+    "equal": false
+   },
+   {
+    "name": "Yusuke Kurose",
+    "equal": false
+   },
+   {
+    "name": "Tatsuya Harada",
+    "equal": false
+   },
+   {
+    "name": "Ryuji Hamamoto",
+    "equal": false
+   }
+  ],
+  "venue": "Medical Image Analysis",
+  "abbr": "MedIA 2024",
+  "note": "",
+  "year": "2024",
+  "month": 2,
+  "links": [
+   {
+    "label": "paper",
+    "url": "https://www.sciencedirect.com/science/article/pii/S1361841523003201"
+   }
+  ],
+  "bibtex": "@article{kobayashi2024sketch,\n  author = {Kobayashi, Kazuma and Gu, Lin and Hataya, Ryuichiro and Mizuno, Takaaki and Miyake, Mototaka and Watanabe, Hirokazu and Takahashi, Masamichi and Takamizawa, Yasuyuki and Yoshida, Yukihiro and Nakamura, Satoshi and Kouno, Nobuji and Bolatkan, Amina and Kurose, Yusuke and Harada, Tatsuya and Hamamoto, Ryuji},\n  title = {Sketch-based Semantic Retrieval of Medical Images},\n  journal = {Medical Image Analysis},\n  volume = {92},\n  year = {2024},\n  month = feb,\n  url = {https://www.sciencedirect.com/science/article/pii/S1361841523003201},\n}"
+ },
+ {
+  "key": "bao2024selfattention",
+  "type": "inproceedings",
+  "category": "conference",
+  "selected": true,
+  "title": "Self-attention Networks Localize When QK-eigenspectrum Concentrates",
+  "authors": [
+   {
+    "name": "Han Bao",
+    "equal": false
+   },
+   {
+    "name": "Ryuichiro Hataya",
+    "equal": false
+   },
+   {
+    "name": "Ryo Karakida",
+    "equal": false
+   }
+  ],
+  "venue": "International Conference on Machine Learning",
+  "abbr": "ICML 2024",
+  "note": "",
+  "year": "2024",
+  "month": 0,
+  "links": [
+   {
+    "label": "paper",
+    "url": "https://proceedings.mlr.press/v235/bao24b.html"
+   }
+  ],
+  "bibtex": "@inproceedings{bao2024selfattention,\n  author = {Bao, Han and Hataya, Ryuichiro and Karakida, Ryo},\n  title = {Self-attention Networks Localize When {QK}-eigenspectrum Concentrates},\n  booktitle = {International Conference on Machine Learning},\n  year = {2024},\n  url = {https://proceedings.mlr.press/v235/bao24b.html},\n}"
+ },
+ {
+  "key": "hataya2024automatic",
+  "type": "misc",
+  "category": "preprint",
+  "selected": false,
+  "title": "Automatic Domain Adaptation by Transformers in In-Context Learning",
+  "authors": [
+   {
+    "name": "Ryuichiro Hataya",
+    "equal": false
+   },
+   {
+    "name": "Kota Matsui",
+    "equal": false
+   },
+   {
+    "name": "Masaaki Imaizumi",
+    "equal": false
+   }
+  ],
+  "venue": "arXiv",
+  "abbr": "arXiv 2024",
+  "note": "",
+  "year": "2024",
+  "month": 0,
+  "links": [
+   {
+    "label": "arxiv",
+    "url": "https://arxiv.org/abs/2405.16819"
+   }
+  ],
+  "bibtex": "@misc{hataya2024automatic,\n  author = {Hataya, Ryuichiro and Matsui, Kota and Imaizumi, Masaaki},\n  title = {Automatic Domain Adaptation by Transformers in In-Context Learning},\n  year = {2024},\n  eprint = {2405.16819},\n  archiveprefix = {arXiv},\n}"
+ },
+ {
+  "key": "hashimoto2024quantum",
+  "type": "misc",
+  "category": "preprint",
+  "selected": false,
+  "title": "Quantum Circuit $C^\\ast$-algebra Net",
+  "authors": [
+   {
+    "name": "Yuka Hashimoto",
+    "equal": true
+   },
+   {
+    "name": "Ryuichiro Hataya",
+    "equal": true
+   }
+  ],
+  "venue": "arXiv",
+  "abbr": "arXiv 2024",
+  "note": "",
+  "year": "2024",
+  "month": 0,
+  "links": [
+   {
+    "label": "arxiv",
+    "url": "https://arxiv.org/abs/2404.06218"
+   }
+  ],
+  "bibtex": "@misc{hashimoto2024quantum,\n  author = {Hashimoto, Yuka and Hataya, Ryuichiro},\n  title = {Quantum Circuit $C^\\ast$-algebra Net},\n  year = {2024},\n  eprint = {2404.06218},\n  archiveprefix = {arXiv},\n}"
+ },
+ {
+  "key": "hataya2024glocal",
+  "type": "misc",
+  "category": "preprint",
+  "selected": false,
+  "title": "Glocal Hypergradient Estimation with Koopman Operator",
+  "authors": [
+   {
+    "name": "Ryuichiro Hataya",
+    "equal": false
+   },
+   {
+    "name": "Yoshinobu Kawahara",
+    "equal": false
+   }
+  ],
+  "venue": "arXiv",
+  "abbr": "arXiv 2024",
+  "note": "",
+  "year": "2024",
+  "month": 0,
+  "links": [
+   {
+    "label": "arxiv",
+    "url": "https://arxiv.org/abs/2402.02741"
+   }
+  ],
+  "bibtex": "@misc{hataya2024glocal,\n  author = {Hataya, Ryuichiro and Kawahara, Yoshinobu},\n  title = {Glocal Hypergradient Estimation with {Koopman} Operator},\n  year = {2024},\n  eprint = {2402.02741},\n  archiveprefix = {arXiv},\n}"
+ },
+ {
+  "key": "hataya2024icl",
+  "type": "inproceedings",
+  "category": "workshop",
+  "selected": false,
+  "title": "Automatic Domain Adaptation by Transformers in In-Context Learning",
+  "authors": [
+   {
+    "name": "Ryuichiro Hataya",
+    "equal": false
+   },
+   {
+    "name": "Kota Matsui",
+    "equal": false
+   },
+   {
+    "name": "Masaaki Imaizumi",
+    "equal": false
+   }
+  ],
+  "venue": "ICML Workshop on In-Context Learning",
+  "abbr": "ICML-W 2024",
+  "note": "Peer-reviewed short paper",
+  "year": "2024",
+  "month": 0,
+  "links": [],
+  "bibtex": "@inproceedings{hataya2024icl,\n  author = {Hataya, Ryuichiro and Matsui, Kota and Imaizumi, Masaaki},\n  title = {Automatic Domain Adaptation by Transformers in In-Context Learning},\n  booktitle = {ICML Workshop on In-Context Learning},\n  year = {2024},\n}"
+ },
+ {
+  "key": "hataya2024stochastic",
+  "type": "inproceedings",
+  "category": "workshop",
+  "selected": false,
+  "title": "Transformers as Stochastic Optimizers",
+  "authors": [
+   {
+    "name": "Ryuichiro Hataya",
+    "equal": false
+   },
+   {
+    "name": "Masaaki Imaizumi",
+    "equal": false
+   }
+  ],
+  "venue": "ICML Workshop on In-Context Learning",
+  "abbr": "ICML-W 2024",
+  "note": "Peer-reviewed short paper",
+  "year": "2024",
+  "month": 0,
+  "links": [],
+  "bibtex": "@inproceedings{hataya2024stochastic,\n  author = {Hataya, Ryuichiro and Imaizumi, Masaaki},\n  title = {Transformers as Stochastic Optimizers},\n  booktitle = {ICML Workshop on In-Context Learning},\n  year = {2024},\n}"
+ },
+ {
+  "key": "hataya2023corrupt",
+  "type": "inproceedings",
+  "category": "conference",
+  "selected": true,
+  "title": "Will Large-scale Generative Models Corrupt Future Datasets?",
+  "authors": [
+   {
+    "name": "Ryuichiro Hataya",
+    "equal": false
+   },
+   {
+    "name": "Han Bao",
+    "equal": false
+   },
+   {
+    "name": "Hiromi Arai",
+    "equal": false
+   }
+  ],
+  "venue": "International Conference on Computer Vision",
+  "abbr": "ICCV 2023",
+  "note": "",
+  "year": "2023",
+  "month": 0,
+  "links": [
+   {
+    "label": "paper",
+    "url": "https://openaccess.thecvf.com/content/ICCV2023/html/Hataya_Will_Large-scale_Generative_Models_Corrupt_Future_Datasets_ICCV_2023_paper.html"
+   }
+  ],
+  "bibtex": "@inproceedings{hataya2023corrupt,\n  author = {Hataya, Ryuichiro and Bao, Han and Arai, Hiromi},\n  title = {Will Large-scale Generative Models Corrupt Future Datasets?},\n  booktitle = {International Conference on Computer Vision},\n  year = {2023},\n  url = {https://openaccess.thecvf.com/content/ICCV2023/html/Hataya_Will_Large-scale_Generative_Models_Corrupt_Future_Datasets_ICCV_2023_paper.html},\n}"
+ },
+ {
+  "key": "kobayashi2023radiology",
+  "type": "inproceedings",
+  "category": "conference",
+  "selected": false,
+  "title": "Towards AI-driven Radiology Education: A Self-supervised Segmentation-based Framework for High-precision Medical Image Editing",
+  "authors": [
+   {
+    "name": "Kazuma Kobayashi",
+    "equal": false
+   },
+   {
+    "name": "Lin Gu",
+    "equal": false
+   },
+   {
+    "name": "Ryuichiro Hataya",
+    "equal": false
+   },
+   {
+    "name": "Mototaka Miyake",
+    "equal": false
+   },
+   {
+    "name": "Yasuyuki Takamizawa",
+    "equal": false
+   },
+   {
+    "name": "Sono Ito",
+    "equal": false
+   },
+   {
+    "name": "Hirokazu Watanabe",
+    "equal": false
+   },
+   {
+    "name": "Yukihiro Yoshida",
+    "equal": false
+   },
+   {
+    "name": "Hiroki Yoshimura",
+    "equal": false
+   },
+   {
+    "name": "Tatsuya Harada",
+    "equal": false
+   },
+   {
+    "name": "Ryuji Hamamoto",
+    "equal": false
+   }
+  ],
+  "venue": "Medical Image Computing and Computer-Assisted Intervention",
+  "abbr": "MICCAI 2023",
+  "note": "Oral",
+  "year": "2023",
+  "month": 0,
+  "links": [],
+  "bibtex": "@inproceedings{kobayashi2023radiology,\n  author = {Kobayashi, Kazuma and Gu, Lin and Hataya, Ryuichiro and Miyake, Mototaka and Takamizawa, Yasuyuki and Ito, Sono and Watanabe, Hirokazu and Yoshida, Yukihiro and Yoshimura, Hiroki and Harada, Tatsuya and Hamamoto, Ryuji},\n  title = {Towards {AI}-driven Radiology Education: A Self-supervised Segmentation-based Framework for High-precision Medical Image Editing},\n  booktitle = {Medical Image Computing and Computer-Assisted Intervention},\n  year = {2023},\n}"
+ },
+ {
+  "key": "hataya2023nystrom",
+  "type": "inproceedings",
+  "category": "conference",
+  "selected": true,
+  "title": "Nyström Method for Accurate and Scalable Implicit Differentiation",
+  "authors": [
+   {
+    "name": "Ryuichiro Hataya",
+    "equal": false
+   },
+   {
+    "name": "Makoto Yamada",
+    "equal": false
+   }
+  ],
+  "venue": "International Conference on Artificial Intelligence and Statistics",
+  "abbr": "AISTATS 2023",
+  "note": "",
+  "year": "2023",
+  "month": 0,
+  "links": [
+   {
+    "label": "arxiv",
+    "url": "https://arxiv.org/abs/2302.09726"
+   }
+  ],
+  "bibtex": "@inproceedings{hataya2023nystrom,\n  author = {Hataya, Ryuichiro and Yamada, Makoto},\n  title = {Nystr{\\\"o}m Method for Accurate and Scalable Implicit Differentiation},\n  booktitle = {International Conference on Artificial Intelligence and Statistics},\n  year = {2023},\n}"
+ },
+ {
+  "key": "hataya2023noncommutative",
+  "type": "misc",
+  "category": "preprint",
+  "selected": false,
+  "title": "Noncommutative $C^\\ast$-algebra Net: Learning Neural Networks with Powerful Product Structure in $C^\\ast$-algebra",
+  "authors": [
+   {
+    "name": "Ryuichiro Hataya",
+    "equal": true
+   },
+   {
+    "name": "Yuka Hashimoto",
+    "equal": true
+   }
+  ],
+  "venue": "arXiv",
+  "abbr": "arXiv 2023",
+  "note": "",
+  "year": "2023",
+  "month": 0,
+  "links": [
+   {
+    "label": "arxiv",
+    "url": "https://arxiv.org/abs/2302.01191"
+   }
+  ],
+  "bibtex": "@misc{hataya2023noncommutative,\n  author = {Hataya, Ryuichiro and Hashimoto, Yuka},\n  title = {Noncommutative $C^\\ast$-algebra Net: Learning Neural Networks with Powerful Product Structure in $C^\\ast$-algebra},\n  year = {2023},\n  eprint = {2302.01191},\n  archiveprefix = {arXiv},\n}"
+ },
+ {
+  "key": "hataya2023qtml",
+  "type": "inproceedings",
+  "category": "workshop",
+  "selected": false,
+  "title": "Noncommutative $C^\\ast$-algebra Nets",
+  "authors": [
+   {
+    "name": "Ryuichiro Hataya",
+    "equal": false
+   },
+   {
+    "name": "Yuka Hashimoto",
+    "equal": false
+   }
+  ],
+  "venue": "International Conference on Quantum Techniques in Machine Learning",
+  "abbr": "QTML 2023",
+  "note": "Peer-reviewed extended abstract",
+  "year": "2023",
+  "month": 0,
+  "links": [],
+  "bibtex": "@inproceedings{hataya2023qtml,\n  author = {Hataya, Ryuichiro and Hashimoto, Yuka},\n  title = {Noncommutative $C^\\ast$-algebra Nets},\n  booktitle = {International Conference on Quantum Techniques in Machine Learning},\n  year = {2023},\n}"
+ },
+ {
+  "key": "naganuma2023empirical",
+  "type": "inproceedings",
+  "category": "workshop",
+  "selected": false,
+  "title": "An Empirical Investigation of Pre-trained Model Selection for Out-of-Distribution Generalization and Calibration",
+  "authors": [
+   {
+    "name": "Hiroki Naganuma",
+    "equal": false
+   },
+   {
+    "name": "Ryuichiro Hataya",
+    "equal": false
+   }
+  ],
+  "venue": "ICCV Workshop on Uncertainty Quantification for Computer Vision",
+  "abbr": "ICCV-W 2023",
+  "note": "Peer-reviewed extended abstract",
+  "year": "2023",
+  "month": 0,
+  "links": [
+   {
+    "label": "arxiv",
+    "url": "https://arxiv.org/abs/2307.08187"
+   }
+  ],
+  "bibtex": "@inproceedings{naganuma2023empirical,\n  author = {Naganuma, Hiroki and Hataya, Ryuichiro},\n  title = {An Empirical Investigation of Pre-trained Model Selection for Out-of-Distribution Generalization and Calibration},\n  booktitle = {ICCV Workshop on Uncertainty Quantification for Computer Vision},\n  year = {2023},\n}"
+ },
+ {
+  "key": "hataya2022djmix",
+  "type": "inproceedings",
+  "category": "conference",
+  "selected": false,
+  "title": "DJMix: Unsupervised Task-agnostic Image Augmentation for Improving Robustness of Convolutional Neural Networks",
+  "authors": [
+   {
+    "name": "Ryuichiro Hataya",
+    "equal": false
+   },
+   {
+    "name": "Hideki Nakayama",
+    "equal": false
+   }
+  ],
+  "venue": "International Joint Conference on Neural Networks",
+  "abbr": "IJCNN 2022",
+  "note": "",
+  "year": "2022",
+  "month": 0,
+  "links": [],
+  "bibtex": "@inproceedings{hataya2022djmix,\n  author = {Hataya, Ryuichiro and Nakayama, Hideki},\n  title = {{DJMix}: Unsupervised Task-agnostic Image Augmentation for Improving Robustness of Convolutional Neural Networks},\n  booktitle = {International Joint Conference on Neural Networks},\n  year = {2022},\n}"
+ },
+ {
+  "key": "hataya2022meta",
+  "type": "inproceedings",
+  "category": "conference",
+  "selected": false,
+  "title": "Meta Approach to Data Augmentation Optimization",
+  "authors": [
+   {
+    "name": "Ryuichiro Hataya",
+    "equal": false
+   },
+   {
+    "name": "Jan Zdenek",
+    "equal": false
+   },
+   {
+    "name": "Kazuki Yoshizoe",
+    "equal": false
+   },
+   {
+    "name": "Hideki Nakayama",
+    "equal": false
+   }
+  ],
+  "venue": "Winter Conference on Applications of Computer Vision",
+  "abbr": "WACV 2022",
+  "note": "",
+  "year": "2022",
+  "month": 0,
+  "links": [
+   {
+    "label": "pdf",
+    "url": "https://openaccess.thecvf.com/content/WACV2022/papers/Hataya_Meta_Approach_to_Data_Augmentation_Optimization_WACV_2022_paper.pdf"
+   }
+  ],
+  "bibtex": "@inproceedings{hataya2022meta,\n  author = {Hataya, Ryuichiro and Zdenek, Jan and Yoshizoe, Kazuki and Nakayama, Hideki},\n  title = {Meta Approach to Data Augmentation Optimization},\n  booktitle = {Winter Conference on Applications of Computer Vision},\n  year = {2022},\n}"
+ },
+ {
+  "key": "kobayashi2021decomposing",
+  "type": "article",
+  "category": "journal",
+  "selected": false,
+  "title": "Decomposing Normal and Abnormal Features of Medical Images for Content-Based Image Retrieval of Glioma Imaging",
+  "authors": [
+   {
+    "name": "Kazuma Kobayashi",
+    "equal": false
+   },
+   {
+    "name": "Ryuichiro Hataya",
+    "equal": false
+   },
+   {
+    "name": "Yusuke Kurose",
+    "equal": false
+   },
+   {
+    "name": "Mototaka Miyake",
+    "equal": false
+   },
+   {
+    "name": "Masamichi Takahashi",
+    "equal": false
+   },
+   {
+    "name": "Akiko Nakagawa",
+    "equal": false
+   },
+   {
+    "name": "Tatsuya Harada",
+    "equal": false
+   },
+   {
+    "name": "Ryuji Hamamoto",
+    "equal": false
+   }
+  ],
+  "venue": "Medical Image Analysis",
+  "abbr": "MedIA 2021",
+  "note": "",
+  "year": "2021",
+  "month": 12,
+  "links": [
+   {
+    "label": "paper",
+    "url": "https://www.sciencedirect.com/science/article/pii/S1361841521002723"
+   }
+  ],
+  "bibtex": "@article{kobayashi2021decomposing,\n  author = {Kobayashi, Kazuma and Hataya, Ryuichiro and Kurose, Yusuke and Miyake, Mototaka and Takahashi, Masamichi and Nakagawa, Akiko and Harada, Tatsuya and Hamamoto, Ryuji},\n  title = {Decomposing Normal and Abnormal Features of Medical Images for Content-Based Image Retrieval of Glioma Imaging},\n  journal = {Medical Image Analysis},\n  volume = {74},\n  year = {2021},\n  month = dec,\n  url = {https://www.sciencedirect.com/science/article/pii/S1361841521002723},\n}"
+ },
+ {
+  "key": "kashima2021visualizing",
+  "type": "inproceedings",
+  "category": "conference",
+  "selected": false,
+  "title": "Visualizing Association in Exemplar-based Classification",
+  "authors": [
+   {
+    "name": "Taiga Kashima",
+    "equal": false
+   },
+   {
+    "name": "Ryuichiro Hataya",
+    "equal": false
+   },
+   {
+    "name": "Hideki Nakayama",
+    "equal": false
+   }
+  ],
+  "venue": "International Conference on Acoustics, Speech, and Signal Processing",
+  "abbr": "ICASSP 2021",
+  "note": "",
+  "year": "2021",
+  "month": 0,
+  "links": [],
+  "bibtex": "@inproceedings{kashima2021visualizing,\n  author = {Kashima, Taiga and Hataya, Ryuichiro and Nakayama, Hideki},\n  title = {Visualizing Association in Exemplar-based Classification},\n  booktitle = {International Conference on Acoustics, Speech, and Signal Processing},\n  year = {2021},\n}"
+ },
+ {
+  "key": "hataya2021graph",
+  "type": "misc",
+  "category": "preprint",
+  "selected": false,
+  "title": "Graph Energy-based Model for Substructure Preserving Molecular Design",
+  "authors": [
+   {
+    "name": "Ryuichiro Hataya",
+    "equal": false
+   },
+   {
+    "name": "Hideki Nakayama",
+    "equal": false
+   },
+   {
+    "name": "Kazuki Yoshizoe",
+    "equal": false
+   }
+  ],
+  "venue": "arXiv",
+  "abbr": "arXiv 2021",
+  "note": "",
+  "year": "2021",
+  "month": 0,
+  "links": [
+   {
+    "label": "arxiv",
+    "url": "https://arxiv.org/abs/2102.04600"
+   }
+  ],
+  "bibtex": "@misc{hataya2021graph,\n  author = {Hataya, Ryuichiro and Nakayama, Hideki and Yoshizoe, Kazuki},\n  title = {Graph Energy-based Model for Substructure Preserving Molecular Design},\n  year = {2021},\n  eprint = {2102.04600},\n  archiveprefix = {arXiv},\n}"
+ },
+ {
+  "key": "hataya2021graphebm",
+  "type": "inproceedings",
+  "category": "workshop",
+  "selected": false,
+  "title": "Graph Energy-based Model for Molecular Graph Generation",
+  "authors": [
+   {
+    "name": "Ryuichiro Hataya",
+    "equal": false
+   },
+   {
+    "name": "Hideki Nakayama",
+    "equal": false
+   },
+   {
+    "name": "Kazuki Yoshizoe",
+    "equal": false
+   }
+  ],
+  "venue": "EBM Workshop at ICLR",
+  "abbr": "ICLR-W 2021",
+  "note": "Contributed talk",
+  "year": "2021",
+  "month": 0,
+  "links": [
+   {
+    "label": "openreview",
+    "url": "https://openreview.net/forum?id=I2AD-xWJ2-J"
+   }
+  ],
+  "bibtex": "@inproceedings{hataya2021graphebm,\n  author = {Hataya, Ryuichiro and Nakayama, Hideki and Yoshizoe, Kazuki},\n  title = {Graph Energy-based Model for Molecular Graph Generation},\n  booktitle = {EBM Workshop at ICLR},\n  year = {2021},\n}"
+ },
+ {
+  "key": "hataya2020faster",
+  "type": "inproceedings",
+  "category": "conference",
+  "selected": true,
+  "title": "Faster AutoAugment: Learning Augmentation Strategies using Backpropagation",
+  "authors": [
+   {
+    "name": "Ryuichiro Hataya",
+    "equal": false
+   },
+   {
+    "name": "Jan Zdenek",
+    "equal": false
+   },
+   {
+    "name": "Kazuki Yoshizoe",
+    "equal": false
+   },
+   {
+    "name": "Hideki Nakayama",
+    "equal": false
+   }
+  ],
+  "venue": "European Conference on Computer Vision",
+  "abbr": "ECCV 2020",
+  "note": "",
+  "year": "2020",
+  "month": 0,
+  "links": [
+   {
+    "label": "paper",
+    "url": "http://www.ecva.net/papers/eccv_2020/papers_ECCV/html/4830_ECCV_2020_paper.php"
+   }
+  ],
+  "bibtex": "@inproceedings{hataya2020faster,\n  author = {Hataya, Ryuichiro and Zdenek, Jan and Yoshizoe, Kazuki and Nakayama, Hideki},\n  title = {Faster {AutoAugment}: Learning Augmentation Strategies using Backpropagation},\n  booktitle = {European Conference on Computer Vision},\n  year = {2020},\n  url = {http://www.ecva.net/papers/eccv_2020/papers_ECCV/html/4830_ECCV_2020_paper.php},\n}"
+ },
+ {
+  "key": "kobayashi2020decomposing",
+  "type": "inproceedings",
+  "category": "workshop",
+  "selected": false,
+  "title": "Decomposing Normal and Abnormal Features of Medical Images for Content-based Image Retrieval",
+  "authors": [
+   {
+    "name": "Kazuma Kobayashi",
+    "equal": false
+   },
+   {
+    "name": "Ryuichiro Hataya",
+    "equal": false
+   },
+   {
+    "name": "Yusuke Kurose",
+    "equal": false
+   },
+   {
+    "name": "Tatsuya Harada",
+    "equal": false
+   },
+   {
+    "name": "Ryuji Hamamoto",
+    "equal": false
+   }
+  ],
+  "venue": "Machine Learning for Health Workshop at NeurIPS",
+  "abbr": "ML4H 2020",
+  "note": "Peer-reviewed extended abstract",
+  "year": "2020",
+  "month": 0,
+  "links": [],
+  "bibtex": "@inproceedings{kobayashi2020decomposing,\n  author = {Kobayashi, Kazuma and Hataya, Ryuichiro and Kurose, Yusuke and Harada, Tatsuya and Hamamoto, Ryuji},\n  title = {Decomposing Normal and Abnormal Features of Medical Images for Content-based Image Retrieval},\n  booktitle = {Machine Learning for Health Workshop at NeurIPS},\n  year = {2020},\n}"
+ },
+ {
+  "key": "hataya2020fossils",
+  "type": "inproceedings",
+  "category": "other",
+  "selected": false,
+  "title": "Learning to Identify Large Fossils using Deep Convolutional Neural Networks",
+  "authors": [
+   {
+    "name": "Ryuichiro Hataya",
+    "equal": false
+   },
+   {
+    "name": "Kumiko Matsui",
+    "equal": false
+   },
+   {
+    "name": "Tomoki Karasawa",
+    "equal": false
+   }
+  ],
+  "venue": "Geological Society of America Abstracts with Programs",
+  "abbr": "GSA 2020",
+  "note": "",
+  "year": "2020",
+  "month": 0,
+  "links": [],
+  "bibtex": "@inproceedings{hataya2020fossils,\n  author = {Hataya, Ryuichiro and Matsui, Kumiko and Karasawa, Tomoki},\n  title = {Learning to Identify Large Fossils using Deep Convolutional Neural Networks},\n  booktitle = {Geological Society of America Abstracts with Programs},\n  volume = {52},\n  number = {6},\n  year = {2020},\n}"
+ },
+ {
+  "key": "hataya2019lol",
+  "type": "inproceedings",
+  "category": "conference",
+  "selected": false,
+  "title": "LOL: Learning To Optimize Loss Switching Under Label Noise",
+  "authors": [
+   {
+    "name": "Ryuichiro Hataya",
+    "equal": false
+   },
+   {
+    "name": "Hideki Nakayama",
+    "equal": false
+   }
+  ],
+  "venue": "International Conference on Image Processing",
+  "abbr": "ICIP 2019",
+  "note": "",
+  "year": "2019",
+  "month": 0,
+  "links": [],
+  "bibtex": "@inproceedings{hataya2019lol,\n  author = {Hataya, Ryuichiro and Nakayama, Hideki},\n  title = {{LOL}: Learning To Optimize Loss Switching Under Label Noise},\n  booktitle = {International Conference on Image Processing},\n  year = {2019},\n}"
+ },
+ {
+  "key": "hataya2019unifying",
+  "type": "inproceedings",
+  "category": "workshop",
+  "selected": false,
+  "title": "Unifying Semi-supervised and Robust Learning by Mixup",
+  "authors": [
+   {
+    "name": "Ryuichiro Hataya",
+    "equal": false
+   },
+   {
+    "name": "Hideki Nakayama",
+    "equal": false
+   }
+  ],
+  "venue": "Workshop on Learning from Limited Labeled Data at ICLR",
+  "abbr": "ICLR-W 2019",
+  "note": "Spotlight",
+  "year": "2019",
+  "month": 0,
+  "links": [],
+  "bibtex": "@inproceedings{hataya2019unifying,\n  author = {Hataya, Ryuichiro and Nakayama, Hideki},\n  title = {Unifying Semi-supervised and Robust Learning by Mixup},\n  booktitle = {Workshop on Learning from Limited Labeled Data at ICLR},\n  year = {2019},\n}"
+ }
+]

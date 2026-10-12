@@ -1,0 +1,17 @@
+{{ define "main" }}
+<article class="wrap page">
+  <header class="page__header">
+    <h1 class="page__title">{{ .Title | markdownify }}</h1>
+    {{- with .Params.project_timeframe }}<p class="page__meta">{{ . }}</p>{{ end }}
+    {{- with .Params.venues }}<ul class="chips">{{ range . }}<li>{{ . }}</li>{{ end }}</ul>{{ end }}
+  </header>
+  {{- with .Resources.ByType "image" }}
+  {{- $img := index (sort . "Params.weight") 0 }}
+  {{- if in (slice "jpeg" "png" "webp") $img.MediaType.SubType }}{{ if gt $img.Width 1600 }}{{ $img = $img.Resize "1600x" }}{{ end }}{{ end }}
+  <figure class="page__hero"><img src="{{ $img.RelPermalink }}" alt=""></figure>
+  {{- end }}
+  <div class="prose">{{ .Content }}</div>
+  {{- with .Params.external_link }}<p class="more"><a href="{{ . }}" rel="noopener">{{ . }}</a></p>{{ end }}
+  <p class="more"><a href="{{ .Parent.RelPermalink }}">← {{ .Parent.Title }}</a></p>
+</article>
+{{ end }}

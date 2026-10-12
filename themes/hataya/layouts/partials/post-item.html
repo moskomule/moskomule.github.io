@@ -1,0 +1,7 @@
+<li class="post-item">
+  <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format (site.Params.dateFormat | default "2006-01-02") }}</time>
+  <div>
+    <a class="post-item__title" href="{{ .RelPermalink }}">{{ .Title | markdownify }}</a>
+    {{- with .Params.tags }}<span class="post-item__tags">{{ range $i, $t := . }}{{ if $i }}, {{ end }}#{{ $t }}{{ end }}</span>{{ end }}
+  </div>
+</li>

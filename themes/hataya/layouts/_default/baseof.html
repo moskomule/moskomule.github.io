@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="{{ site.Language.LanguageCode | default site.Language.Lang }}">
+<head>
+  {{- partial "head.html" . }}
+</head>
+<body class="{{ if .IsHome }}is-home{{ else }}is-inner{{ end }}">
+  <a class="skip-link" href="#main">Skip to content</a>
+  {{- block "header" . }}{{ partial "topbar.html" . }}{{ end }}
+  <main id="main">
+    {{- block "main" . }}{{ end }}
+  </main>
+  {{- partial "footer.html" . }}
+  {{- partial "scripts.html" . }}
+</body>
+</html>

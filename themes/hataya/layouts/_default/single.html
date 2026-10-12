@@ -1,0 +1,10 @@
+{{ define "main" }}
+<article class="wrap page">
+  <header class="page__header">
+    <h1 class="page__title">{{ .Title | markdownify }}</h1>
+    {{ partial "post-meta.html" . }}
+  </header>
+  <div class="prose">{{ .Content }}</div>
+  {{ partial "post-footer.html" . }}
+</article>
+{{ end }}

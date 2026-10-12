@@ -1,0 +1,6 @@
+<footer class="site-footer">
+  <div class="wrap site-footer__inner">
+    <div>{{ with site.Params.footerText }}{{ . | markdownify }}{{ else }}© {{ now.Year }} {{ site.Params.authorName | default site.Title }}{{ end }}</div>
+    <a href="#main" class="site-footer__top">{{ i18n "back_to_top" }} ↑</a>
+  </div>
+</footer>

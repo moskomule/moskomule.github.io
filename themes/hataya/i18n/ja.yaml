@@ -1,0 +1,38 @@
+contact: 連絡先
+cv: CV
+home: ホーム
+projects_all: すべてのプロジェクト
+blog_latest: 最新の記事
+blog_all: すべての記事
+read_more: 続きを読む
+reading_time:
+  other: "約{{ .Count }}分で読めます"
+share: 共有
+tags: タグ
+back_to_top: ページの先頭へ
+pub_selected: 主要
+pub_all: すべて
+pub_journal: 論文誌
+pub_conference: 国際会議
+pub_workshop: ワークショップ
+pub_preprint: プレプリント
+pub_other: その他
+pub_equal: "* 同等の貢献"
+pub_bibtex: BibTeX
+pub_copy: コピー
+pub_copied: コピーしました
+pub_count:
+  other: "{{ .Count }}件"
+link_paper: Paper
+link_doi: DOI
+link_pdf: PDF
+link_arxiv: arXiv
+link_openreview: OpenReview
+link_code: Code
+link_slides: Slides
+link_poster: Poster
+link_video: Video
+link_project: Project
+not_found_title: ページが見つかりません
+not_found_text: お探しのページは存在しないか，移動した可能性があります．
+language: 言語

@@ -1,0 +1,29 @@
+{{/*
+  Resolve an image name to a URL.
+  Params (dict):
+    name   image file name / path (e.g. "prague.png")
+    page   page whose bundle is searched first (usually the /home bundle)
+    width  optional max width; larger raster images are downscaled
+  Lookup order: page bundle resources -> assets/ -> static path / absolute URL.
+*/}}
+{{- $url := "" -}}
+{{- $name := .name -}}
+{{- if $name -}}
+  {{- $name = string $name -}}
+  {{- if or (hasPrefix $name "http://") (hasPrefix $name "https://") -}}
+    {{- $url = $name -}}
+  {{- else -}}
+    {{- $img := false -}}
+    {{- with .page }}{{ with .Resources.GetMatch $name }}{{ $img = . }}{{ end }}{{ end -}}
+    {{- if not $img }}{{ with resources.Get $name }}{{ $img = . }}{{ end }}{{ end -}}
+    {{- if $img -}}
+      {{- if and .width (eq $img.ResourceType "image") (in (slice "jpeg" "png" "webp" "tiff" "bmp") $img.MediaType.SubType) -}}
+        {{- if gt $img.Width .width }}{{ $img = $img.Resize (printf "%dx" .width) }}{{ end -}}
+      {{- end -}}
+      {{- $url = $img.RelPermalink -}}
+    {{- else -}}
+      {{- $url = $name | relURL -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- return $url -}}

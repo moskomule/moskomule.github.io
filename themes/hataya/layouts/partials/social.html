@@ -1,0 +1,10 @@
+{{/* Social / profile links from params.social. Each entry: url, name (optional), icon (Font Awesome name, used to guess the label). */}}
+{{- $labels := dict "github" "GitHub" "linkedin" "LinkedIn" "graduation-cap" "Google Scholar" "google-scholar" "Google Scholar" "twitter" "X (Twitter)" "x-twitter" "X" "bluesky" "Bluesky" "mastodon" "Mastodon" "orcid" "ORCID" "envelope" "Email" "researchgate" "ResearchGate" "youtube" "YouTube" "zhihu" "Zhihu" "speaker-deck" "Speaker Deck" -}}
+{{- with site.Params.social }}
+<ul class="social">
+  {{- range . }}
+  {{- $label := .name | default (index $labels (.icon | default "")) | default (.icon | humanize) }}
+  <li><a href="{{ .url }}" rel="me noopener" target="_blank">{{ $label }}</a></li>
+  {{- end }}
+</ul>
+{{- end }}

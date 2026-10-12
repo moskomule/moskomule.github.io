@@ -1,0 +1,74 @@
+{{/*
+  Publication list generated from data/publications.json
+  (created from publications.bib by scripts/bib2json.py).
+
+  Usage in markdown:
+    {{< publications >}}                       filter tabs, "Selected" shown first
+    {{< publications filter="all" >}}          start on "All"
+    {{< publications tabs="false" filter="selected" >}}   only selected, no tabs
+    {{< publications category="journal" >}}    only one category, no tabs
+
+  Your own name is shown in bold. Configure it with
+    [params.publications] me = ["Ryuichiro Hataya", "R. Hataya"]
+  (defaults to params.authorName).
+*/}}
+{{- $pubs := site.Data.publications | default slice }}
+{{- $me := site.Params.publications.me | default (slice site.Params.authorName) }}
+{{- $category := .Get "category" }}
+{{- $showTabs := ne (.Get "tabs") "false" }}
+{{- if $category }}{{ $showTabs = false }}{{ $pubs = where $pubs "category" $category }}{{ end }}
+{{- $hasSelected := gt (len (where $pubs "selected" true)) 0 }}
+{{- $filter := .Get "filter" | default (cond $hasSelected "selected" "all") }}
+{{- if and (not $showTabs) (eq $filter "selected") }}{{ $pubs = where $pubs "selected" true }}{{ end }}
+{{- $order := slice "journal" "conference" "workshop" "preprint" "other" }}
+
+{{- if not $pubs }}
+<p class="pubs-empty"><code>data/publications.json</code> not found. Run <code>python3 scripts/bib2json.py</code>.</p>
+{{- else }}
+<div class="pubs" data-filter="{{ $filter }}">
+  {{- if $showTabs }}
+  <div class="pubs__tabs" role="group" aria-label="Filter">
+    {{- if $hasSelected }}<button type="button" data-filter="selected" aria-pressed="{{ eq $filter "selected" }}">{{ i18n "pub_selected" }}</button>{{ end }}
+    <button type="button" data-filter="all" aria-pressed="{{ eq $filter "all" }}">{{ i18n "pub_all" }} <span class="count">{{ len $pubs }}</span></button>
+    {{- range $order }}
+      {{- $n := len (where $pubs "category" .) }}
+      {{- if gt $n 0 }}<button type="button" data-filter="{{ . }}" aria-pressed="{{ eq $filter . }}">{{ i18n (printf "pub_%s" .) }} <span class="count">{{ $n }}</span></button>{{ end }}
+    {{- end }}
+  </div>
+  {{- end }}
+
+  {{- $year := "" }}
+  {{- $hasEqual := false }}
+  <ol class="pubs__list">
+  {{- range $pubs }}
+    {{- if ne .year $year }}
+      {{- $year = .year }}
+    <li class="pubs__year" aria-hidden="true">{{ $year }}</li>
+    {{- end }}
+    <li class="pub" data-category="{{ .category }}" data-selected="{{ .selected }}" data-year="{{ .year }}">
+      <div class="pub__badge pub__badge--{{ .category }}">{{ .abbr | default .year }}</div>
+      <div class="pub__main">
+        <div class="pub__title">{{ .title }}</div>
+        <div class="pub__authors">
+          {{- range $i, $a := .authors }}{{ if $i }}, {{ end }}
+            {{- if in $me $a.name }}<strong>{{ $a.name }}</strong>{{ else }}{{ $a.name }}{{ end }}
+            {{- if $a.equal }}{{ $hasEqual = true }}<sup>*</sup>{{ end }}
+          {{- end }}
+        </div>
+        <div class="pub__venue">
+          {{- with .venue }}<em>{{ . }}</em>{{ end }}{{ with .year }}, {{ . }}{{ end }}{{ with .note }} · {{ . }}{{ end }}
+        </div>
+        <div class="pub__links">
+          {{- range .links }}<a href="{{ .url }}" target="_blank" rel="noopener">{{ i18n (printf "link_%s" .label) | default .label }}</a>{{ end }}
+          <details class="pub__bib">
+            <summary>{{ i18n "pub_bibtex" }}</summary>
+            <div class="pub__bibbox"><pre><code>{{ .bibtex }}</code></pre><button type="button" class="copy" data-copied="{{ i18n "pub_copied" }}">{{ i18n "pub_copy" }}</button></div>
+          </details>
+        </div>
+      </div>
+    </li>
+  {{- end }}
+  </ol>
+  {{- if $hasEqual }}<p class="pubs__note">{{ i18n "pub_equal" }}</p>{{ end }}
+</div>
+{{- end }}

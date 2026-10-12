@@ -1,0 +1,12 @@
+{{/* Language switcher. Links to the translated page when it exists, otherwise to that language's home. */}}
+{{- if hugo.IsMultilingual }}
+{{- $page := . }}
+<nav class="lang-switch" aria-label="{{ i18n "language" }}">
+  {{- range sort site.Home.AllTranslations "Language.Weight" }}
+  {{- $lang := .Language.Lang }}
+  {{- $target := . }}
+  {{- range $page.AllTranslations }}{{ if eq .Language.Lang $lang }}{{ $target = . }}{{ end }}{{ end }}
+  <a href="{{ $target.RelPermalink }}" hreflang="{{ $lang }}" lang="{{ $lang }}"{{ if eq $lang $page.Language.Lang }} class="is-active" aria-current="true"{{ end }}>{{ .Language.LanguageName }}</a>
+  {{- end }}
+</nav>
+{{- end }}

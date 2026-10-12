@@ -1,0 +1,9 @@
+name = "hataya"
+license = "MIT"
+description = "A bilingual academic homepage theme with a social-profile style cover, section photo bands and a BibTeX-driven publication list."
+min_version = "0.128.0"
+features = ["multilingual", "bibtex publications", "responsive"]
+
+[author]
+  name = "Ryuichiro Hataya"
+  homepage = "https://hataya.tokyo/"

@@ -3,6 +3,9 @@ on:
     push:
         branches:
             - source
+    pull_request:
+        branches:
+            - source
 
 jobs:
     build:
@@ -11,25 +14,24 @@ jobs:
 
         steps:
             - uses: actions/checkout@v4
+
+            - uses: actions/setup-python@v5
               with:
-                submodules: true
+                python-version: "3.12"
+
+            - name: convert publications.bib
+              run: python3 scripts/bib2json.py
 
             - uses: peaceiris/actions-hugo@v3
               with:
-                hugo-version: "0.124.0"
+                hugo-version: "0.145.0"
                 extended: true
-
-            - uses: actions/setup-node@v4
-              with:
-                node-version: 18
-              
-            - name: install dependencies
-              run: npm install -g postcss postcss-cli autoprefixer
 
             - name: build
               run: hugo --minify
 
             - name: push
+              if: github.event_name == 'push'
               uses: peaceiris/actions-gh-pages@v4
               with:
                 github_token: ${{ secrets.GITHUB_TOKEN }}

@@ -1,0 +1,303 @@
+% Publications of Ryuichiro Hataya.
+%
+% This file is the single source of truth for the publication list.
+% `scripts/bib2json.py` converts it to `data/publications.json`, which the
+% `{{< publications >}}` shortcode renders.
+%
+% Standard BibTeX fields are kept as they are. A few extra fields are used by
+% the website only (they are stripped from the "BibTeX" snippet on the page):
+%
+%   category  = journal | conference | workshop | preprint | other
+%               (default: article -> journal, inproceedings -> conference,
+%                misc/unpublished -> preprint)
+%   abbr      = short venue label shown as a badge, e.g. {ICCV 2023}
+%   keywords  = include "selected" to show the paper in the "Selected" tab
+%   equal     = 1-based indices of equal-contribution authors, e.g. {1,2}
+%   note      = free text shown after the venue
+%   arxiv, openreview, code, slides, pdf, project = extra links
+
+@article{placidi2026mnisq,
+  author    = {Placidi, Leonardo and Hataya, Ryuichiro and Mori, Toshio and Aoyama, Koki and Morisaki, Hayata and Mitarai, Kosuke and Fujii, Keisuke},
+  title     = {{MNISQ}: A Large-Scale Quantum Circuit Dataset for Machine Learning in the {NISQ} Era},
+  journal   = {Scientific Data},
+  year      = {2026},
+  month     = may,
+  url       = {https://www.nature.com/articles/s41597-026-07493-9},
+  abbr      = {Sci. Data 2026},
+}
+
+@article{naganuma2025empirical,
+  author    = {Naganuma, Hiroki and Hataya, Ryuichiro and Yoshida, Kotaro and Mitliagkas, Ioannis},
+  title     = {An Empirical Study of Pre-trained Model Selection for Out-of-Distribution Generalization and Calibration},
+  journal   = {Transactions on Machine Learning Research},
+  year      = {2025},
+  month     = apr,
+  openreview = {https://openreview.net/forum?id=tYjoHjShxF},
+  abbr      = {TMLR 2025},
+  equal     = {1,2},
+  keywords  = {selected},
+}
+
+@article{kobayashi2024sketch,
+  author    = {Kobayashi, Kazuma and Gu, Lin and Hataya, Ryuichiro and Mizuno, Takaaki and Miyake, Mototaka and Watanabe, Hirokazu and Takahashi, Masamichi and Takamizawa, Yasuyuki and Yoshida, Yukihiro and Nakamura, Satoshi and Kouno, Nobuji and Bolatkan, Amina and Kurose, Yusuke and Harada, Tatsuya and Hamamoto, Ryuji},
+  title     = {Sketch-based Semantic Retrieval of Medical Images},
+  journal   = {Medical Image Analysis},
+  volume    = {92},
+  year      = {2024},
+  month     = feb,
+  url       = {https://www.sciencedirect.com/science/article/pii/S1361841523003201},
+  abbr      = {MedIA 2024},
+}
+
+@article{kobayashi2021decomposing,
+  author    = {Kobayashi, Kazuma and Hataya, Ryuichiro and Kurose, Yusuke and Miyake, Mototaka and Takahashi, Masamichi and Nakagawa, Akiko and Harada, Tatsuya and Hamamoto, Ryuji},
+  title     = {Decomposing Normal and Abnormal Features of Medical Images for Content-Based Image Retrieval of Glioma Imaging},
+  journal   = {Medical Image Analysis},
+  volume    = {74},
+  year      = {2021},
+  month     = dec,
+  url       = {https://www.sciencedirect.com/science/article/pii/S1361841521002723},
+  abbr      = {MedIA 2021},
+}
+
+@inproceedings{hataya2026raptor,
+  author    = {Hataya, Ryuichiro},
+  title     = {{RAPTOR}: Accurate and Scalable Rational Polar Decomposition for the Muon Algorithm},
+  booktitle = {European Conference on Machine Learning and Principles and Practice of Knowledge Discovery in Databases},
+  year      = {2026},
+  url       = {https://link.springer.com/chapter/10.1007/978-3-032-37670-1_3},
+  abbr      = {ECML PKDD 2026},
+  keywords  = {selected},
+}
+
+@inproceedings{fukuchi2026provable,
+  author    = {Fukuchi, Kazuto and Hataya, Ryuichiro and Matsui, Kota},
+  title     = {Provable Target Sample Complexity Improvements as Pre-Trained Models Scale},
+  booktitle = {International Conference on Artificial Intelligence and Statistics},
+  year      = {2026},
+  arxiv     = {2602.04233},
+  abbr      = {AISTATS 2026},
+  keywords  = {selected},
+}
+
+@inproceedings{bao2024selfattention,
+  author    = {Bao, Han and Hataya, Ryuichiro and Karakida, Ryo},
+  title     = {Self-attention Networks Localize When {QK}-eigenspectrum Concentrates},
+  booktitle = {International Conference on Machine Learning},
+  year      = {2024},
+  url       = {https://proceedings.mlr.press/v235/bao24b.html},
+  abbr      = {ICML 2024},
+  keywords  = {selected},
+}
+
+@inproceedings{hataya2023corrupt,
+  author    = {Hataya, Ryuichiro and Bao, Han and Arai, Hiromi},
+  title     = {Will Large-scale Generative Models Corrupt Future Datasets?},
+  booktitle = {International Conference on Computer Vision},
+  year      = {2023},
+  url       = {https://openaccess.thecvf.com/content/ICCV2023/html/Hataya_Will_Large-scale_Generative_Models_Corrupt_Future_Datasets_ICCV_2023_paper.html},
+  abbr      = {ICCV 2023},
+  keywords  = {selected},
+}
+
+@inproceedings{kobayashi2023radiology,
+  author    = {Kobayashi, Kazuma and Gu, Lin and Hataya, Ryuichiro and Miyake, Mototaka and Takamizawa, Yasuyuki and Ito, Sono and Watanabe, Hirokazu and Yoshida, Yukihiro and Yoshimura, Hiroki and Harada, Tatsuya and Hamamoto, Ryuji},
+  title     = {Towards {AI}-driven Radiology Education: A Self-supervised Segmentation-based Framework for High-precision Medical Image Editing},
+  booktitle = {Medical Image Computing and Computer-Assisted Intervention},
+  year      = {2023},
+  abbr      = {MICCAI 2023},
+  note      = {Oral},
+}
+
+@inproceedings{hataya2023nystrom,
+  author    = {Hataya, Ryuichiro and Yamada, Makoto},
+  title     = {Nystr{\"o}m Method for Accurate and Scalable Implicit Differentiation},
+  booktitle = {International Conference on Artificial Intelligence and Statistics},
+  year      = {2023},
+  arxiv     = {2302.09726},
+  abbr      = {AISTATS 2023},
+  keywords  = {selected},
+}
+
+@inproceedings{hataya2022djmix,
+  author    = {Hataya, Ryuichiro and Nakayama, Hideki},
+  title     = {{DJMix}: Unsupervised Task-agnostic Image Augmentation for Improving Robustness of Convolutional Neural Networks},
+  booktitle = {International Joint Conference on Neural Networks},
+  year      = {2022},
+  abbr      = {IJCNN 2022},
+}
+
+@inproceedings{hataya2022meta,
+  author    = {Hataya, Ryuichiro and Zdenek, Jan and Yoshizoe, Kazuki and Nakayama, Hideki},
+  title     = {Meta Approach to Data Augmentation Optimization},
+  booktitle = {Winter Conference on Applications of Computer Vision},
+  year      = {2022},
+  pdf       = {https://openaccess.thecvf.com/content/WACV2022/papers/Hataya_Meta_Approach_to_Data_Augmentation_Optimization_WACV_2022_paper.pdf},
+  abbr      = {WACV 2022},
+}
+
+@inproceedings{kashima2021visualizing,
+  author    = {Kashima, Taiga and Hataya, Ryuichiro and Nakayama, Hideki},
+  title     = {Visualizing Association in Exemplar-based Classification},
+  booktitle = {International Conference on Acoustics, Speech, and Signal Processing},
+  year      = {2021},
+  abbr      = {ICASSP 2021},
+}
+
+@inproceedings{hataya2020faster,
+  author    = {Hataya, Ryuichiro and Zdenek, Jan and Yoshizoe, Kazuki and Nakayama, Hideki},
+  title     = {Faster {AutoAugment}: Learning Augmentation Strategies using Backpropagation},
+  booktitle = {European Conference on Computer Vision},
+  year      = {2020},
+  url       = {http://www.ecva.net/papers/eccv_2020/papers_ECCV/html/4830_ECCV_2020_paper.php},
+  abbr      = {ECCV 2020},
+  keywords  = {selected},
+}
+
+@inproceedings{hataya2019lol,
+  author    = {Hataya, Ryuichiro and Nakayama, Hideki},
+  title     = {{LOL}: Learning To Optimize Loss Switching Under Label Noise},
+  booktitle = {International Conference on Image Processing},
+  year      = {2019},
+  abbr      = {ICIP 2019},
+}
+
+@misc{hataya2024automatic,
+  author    = {Hataya, Ryuichiro and Matsui, Kota and Imaizumi, Masaaki},
+  title     = {Automatic Domain Adaptation by Transformers in In-Context Learning},
+  year      = {2024},
+  eprint    = {2405.16819},
+  archivePrefix = {arXiv},
+  abbr      = {arXiv 2024},
+}
+
+@misc{hashimoto2024quantum,
+  author    = {Hashimoto, Yuka and Hataya, Ryuichiro},
+  title     = {Quantum Circuit $C^\ast$-algebra Net},
+  year      = {2024},
+  eprint    = {2404.06218},
+  archivePrefix = {arXiv},
+  abbr      = {arXiv 2024},
+  equal     = {1,2},
+}
+
+@misc{hataya2024glocal,
+  author    = {Hataya, Ryuichiro and Kawahara, Yoshinobu},
+  title     = {Glocal Hypergradient Estimation with {Koopman} Operator},
+  year      = {2024},
+  eprint    = {2402.02741},
+  archivePrefix = {arXiv},
+  abbr      = {arXiv 2024},
+}
+
+@misc{hataya2023noncommutative,
+  author    = {Hataya, Ryuichiro and Hashimoto, Yuka},
+  title     = {Noncommutative $C^\ast$-algebra Net: Learning Neural Networks with Powerful Product Structure in $C^\ast$-algebra},
+  year      = {2023},
+  eprint    = {2302.01191},
+  archivePrefix = {arXiv},
+  abbr      = {arXiv 2023},
+  equal     = {1,2},
+}
+
+@misc{hataya2021graph,
+  author    = {Hataya, Ryuichiro and Nakayama, Hideki and Yoshizoe, Kazuki},
+  title     = {Graph Energy-based Model for Substructure Preserving Molecular Design},
+  year      = {2021},
+  eprint    = {2102.04600},
+  archivePrefix = {arXiv},
+  abbr      = {arXiv 2021},
+}
+
+@inproceedings{fukuchi2026scaling,
+  author    = {Fukuchi, Kazuto and Hataya, Ryuichiro and Matsui, Kota},
+  title     = {Provable Data Scaling Law for Meta Learning via Complexity Minimization},
+  booktitle = {ICML Workshop on High-dimensional Learning Dynamics},
+  year      = {2026},
+  category  = {workshop},
+  abbr      = {ICML-W 2026},
+  note      = {Peer-reviewed short paper},
+}
+
+@inproceedings{hataya2024icl,
+  author    = {Hataya, Ryuichiro and Matsui, Kota and Imaizumi, Masaaki},
+  title     = {Automatic Domain Adaptation by Transformers in In-Context Learning},
+  booktitle = {ICML Workshop on In-Context Learning},
+  year      = {2024},
+  category  = {workshop},
+  abbr      = {ICML-W 2024},
+  note      = {Peer-reviewed short paper},
+}
+
+@inproceedings{hataya2024stochastic,
+  author    = {Hataya, Ryuichiro and Imaizumi, Masaaki},
+  title     = {Transformers as Stochastic Optimizers},
+  booktitle = {ICML Workshop on In-Context Learning},
+  year      = {2024},
+  category  = {workshop},
+  abbr      = {ICML-W 2024},
+  note      = {Peer-reviewed short paper},
+}
+
+@inproceedings{hataya2023qtml,
+  author    = {Hataya, Ryuichiro and Hashimoto, Yuka},
+  title     = {Noncommutative $C^\ast$-algebra Nets},
+  booktitle = {International Conference on Quantum Techniques in Machine Learning},
+  year      = {2023},
+  category  = {workshop},
+  abbr      = {QTML 2023},
+  note      = {Peer-reviewed extended abstract},
+}
+
+@inproceedings{naganuma2023empirical,
+  author    = {Naganuma, Hiroki and Hataya, Ryuichiro},
+  title     = {An Empirical Investigation of Pre-trained Model Selection for Out-of-Distribution Generalization and Calibration},
+  booktitle = {ICCV Workshop on Uncertainty Quantification for Computer Vision},
+  year      = {2023},
+  arxiv     = {2307.08187},
+  category  = {workshop},
+  abbr      = {ICCV-W 2023},
+  note      = {Peer-reviewed extended abstract},
+}
+
+@inproceedings{hataya2021graphebm,
+  author    = {Hataya, Ryuichiro and Nakayama, Hideki and Yoshizoe, Kazuki},
+  title     = {Graph Energy-based Model for Molecular Graph Generation},
+  booktitle = {EBM Workshop at ICLR},
+  year      = {2021},
+  openreview = {https://openreview.net/forum?id=I2AD-xWJ2-J},
+  category  = {workshop},
+  abbr      = {ICLR-W 2021},
+  note      = {Contributed talk},
+}
+
+@inproceedings{kobayashi2020decomposing,
+  author    = {Kobayashi, Kazuma and Hataya, Ryuichiro and Kurose, Yusuke and Harada, Tatsuya and Hamamoto, Ryuji},
+  title     = {Decomposing Normal and Abnormal Features of Medical Images for Content-based Image Retrieval},
+  booktitle = {Machine Learning for Health Workshop at NeurIPS},
+  year      = {2020},
+  category  = {workshop},
+  abbr      = {ML4H 2020},
+  note      = {Peer-reviewed extended abstract},
+}
+
+@inproceedings{hataya2020fossils,
+  author    = {Hataya, Ryuichiro and Matsui, Kumiko and Karasawa, Tomoki},
+  title     = {Learning to Identify Large Fossils using Deep Convolutional Neural Networks},
+  booktitle = {Geological Society of America Abstracts with Programs},
+  volume    = {52},
+  number    = {6},
+  year      = {2020},
+  category  = {other},
+  abbr      = {GSA 2020},
+}
+
+@inproceedings{hataya2019unifying,
+  author    = {Hataya, Ryuichiro and Nakayama, Hideki},
+  title     = {Unifying Semi-supervised and Robust Learning by Mixup},
+  booktitle = {Workshop on Learning from Limited Labeled Data at ICLR},
+  year      = {2019},
+  category  = {workshop},
+  abbr      = {ICLR-W 2019},
+  note      = {Spotlight},
+}

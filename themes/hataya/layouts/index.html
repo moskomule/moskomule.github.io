@@ -1,0 +1,98 @@
+{{ define "header" }}
+{{- $home := site.GetPage "/home" }}
+{{- $sections := partial "home-sections.html" . }}
+{{- $avatarName := site.Params.profile.avatar }}
+{{- if and (not $avatarName) $home }}{{ with $home.Resources.GetMatch "about.md" }}{{ $avatarName = .Params.image }}{{ end }}{{ end }}
+{{- $avatar := partial "img-url.html" (dict "name" $avatarName "page" $home "width" 480) }}
+{{- $cover := partial "img-url.html" (dict "name" site.Params.profile.cover "page" $home "width" 2400) }}
+
+<header class="profile">
+  <div class="cover{{ if not $cover }} cover--plain{{ end }}">
+    {{- with $cover }}
+    <img src="{{ . }}" alt="" style="object-position: {{ site.Params.profile.coverPosition | default "center" }}">
+    {{- end }}
+    {{ partial "lang-switch.html" . }}
+  </div>
+
+  <div class="wrap">
+    <div class="profile__row">
+      {{- with $avatar }}
+      <img class="avatar" src="{{ . }}" alt="{{ site.Params.authorName | default site.Title }}" width="168" height="168">
+      {{- end }}
+      <div class="profile__actions">
+        {{- with site.Params.cv }}<a class="btn" href="{{ . | relURL }}">{{ i18n "cv" }}</a>{{ end }}
+        {{- if $home }}{{ with $home.Resources.GetMatch "contact.md" }}<a class="btn btn--dark" href="#contact">{{ .Title | default (i18n "contact") }}</a>{{ end }}{{ end }}
+      </div>
+    </div>
+
+    <div class="profile__body">
+      <h1 class="profile__name">{{ site.Params.authorName | default (cond (ne $home nil) $home.Title site.Title) }}</h1>
+      {{- with site.Params.tagline }}<p class="profile__tagline">{{ . | markdownify }}</p>{{ end }}
+      {{- with $home }}{{ with .Content }}<div class="profile__bio">{{ . }}</div>{{ end }}{{ end }}
+      {{- with site.Params.affiliations }}
+      <ul class="profile__meta">
+        {{- range . }}<li>{{ . | markdownify }}</li>{{ end }}
+      </ul>
+      {{- end }}
+      {{ partial "social.html" . }}
+    </div>
+  </div>
+</header>
+
+<div class="tabs-bar">
+  <div class="wrap">
+    <nav class="tabs" aria-label="Sections">
+      {{- if site.Menus.main }}
+        {{- range site.Menus.main }}<a href="{{ .URL }}">{{ .Name }}</a>{{ end }}
+      {{- else }}
+        {{- range $sections }}<a href="#{{ partial "section-id.html" . }}">{{ .Params.menuTitle | default .Title | markdownify }}</a>{{ end }}
+      {{- end }}
+    </nav>
+  </div>
+</div>
+{{ end }}
+
+{{ define "main" }}
+{{- $home := site.GetPage "/home" }}
+{{- $avatarName := site.Params.profile.avatar }}
+{{- if and (not $avatarName) $home }}{{ with $home.Resources.GetMatch "about.md" }}{{ $avatarName = .Params.image }}{{ end }}{{ end }}
+
+{{- range partial "home-sections.html" . }}
+  {{- $id := partial "section-id.html" . }}
+
+  {{/* Photo band between sections: front matter `band` (or `image`, as in the Introduction theme).
+       Set `band: false` to hide it. The avatar image is never used as a band. */}}
+  {{- $bandName := .Params.band | default .Params.image }}
+  {{- if eq .Params.band false }}{{ $bandName = "" }}{{ end }}
+  {{- if eq $bandName $avatarName }}{{ $bandName = "" }}{{ end }}
+  {{- $page := . }}
+  {{- with $bandName }}
+    {{- $src := "" }}
+    {{- if eq $page.Kind "section" }}{{ $src = partial "img-url.html" (dict "name" . "page" $page "width" 2400) }}{{ end }}
+    {{- if or (not $src) (eq $src (. | relURL)) }}{{ $src = partial "img-url.html" (dict "name" . "page" $home "width" 2400) }}{{ end }}
+  <figure class="band">
+    <img src="{{ $src }}" alt="{{ $page.Params.bandAlt }}" loading="lazy" style="object-position: {{ $page.Params.bandPosition | default "center" }}">
+    {{- with $page.Params.bandCaption }}<figcaption>{{ . }}</figcaption>{{ end }}
+  </figure>
+  {{- end }}
+
+  <section id="{{ $id }}" class="section wrap">
+    <h2 class="section__title">{{ .Title | markdownify }}</h2>
+    {{- if and (eq .Kind "section") (eq .Section "projects") }}
+      {{ partial "projects-section.html" (dict "page" . "limit" site.Params.home.numberOfProjectsToShow) }}
+    {{- else if and (eq .Kind "section") (eq .Section "blog") }}
+      {{ partial "blog-section.html" . }}
+    {{- else }}
+      <div class="prose">{{ .Content }}</div>
+    {{- end }}
+  </section>
+{{- end }}
+
+{{- with $home }}{{ with .Resources.GetMatch "contact.md" }}
+  <section id="contact" class="section section--contact wrap">
+    <h2 class="section__title">{{ .Title | markdownify }}</h2>
+    <div class="prose">{{ .Content }}</div>
+    {{- with site.Params.email }}<p><a href="mailto:{{ . }}">{{ . }}</a></p>{{ end }}
+  </section>
+{{- end }}{{ end }}
+{{ end }}

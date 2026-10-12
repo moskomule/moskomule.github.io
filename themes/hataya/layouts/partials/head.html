@@ -1,0 +1,68 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{{- $title := .Title | plainify -}}
+{{- if or .IsHome (not $title) }}{{ $title = site.Title }}{{ else }}{{ $title = printf "%s | %s" $title site.Title }}{{ end }}
+<title>{{ $title }}</title>
+{{- $desc := "" }}
+{{- with .Description }}{{ $desc = . }}{{ else }}{{ if .IsPage }}{{ $desc = .Summary | plainify | truncate 160 }}{{ else }}{{ $desc = site.Params.description }}{{ end }}{{ end }}
+{{- with $desc }}
+<meta name="description" content="{{ . }}">
+{{- end }}
+<meta name="theme-color" content="#ffffff">
+<link rel="canonical" href="{{ .Permalink }}">
+{{- range .AllTranslations }}
+<link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}">
+{{- end }}
+{{- with .OutputFormats.Get "RSS" }}
+<link rel="alternate" type="application/rss+xml" href="{{ .RelPermalink }}" title="{{ site.Title }}">
+{{- end }}
+
+{{/* Open Graph */}}
+<meta property="og:title" content="{{ $title }}">
+<meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+<meta property="og:url" content="{{ .Permalink }}">
+{{- with $desc }}<meta property="og:description" content="{{ . }}">{{ end }}
+{{- $ogImage := partial "img-url.html" (dict "name" site.Params.profile.avatar "page" (site.GetPage "/home") "width" 600) }}
+{{- with $ogImage }}<meta property="og:image" content="{{ . | absURL }}">{{ end }}
+<meta name="twitter:card" content="summary">
+
+{{- with site.Params.favicon }}
+<link rel="icon" href="{{ . | relURL }}">
+{{- end }}
+
+{{/* Fonts */}}
+{{- if ne site.Params.googleFonts false }}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Noto+Sans+JP:wght@400;500;700&display=swap">
+{{- end }}
+
+{{/* Styles: theme CSS, then any site-level customCSS (files under assets/) */}}
+{{- $css := resources.Get "css/main.css" }}
+{{- if hugo.IsProduction }}{{ $css = $css | minify | fingerprint }}{{ end }}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}"{{ with $css.Data.Integrity }} integrity="{{ . }}"{{ end }}>
+{{- range site.Params.customCSS }}
+{{- with resources.Get . }}
+{{- $c := . }}{{ if hugo.IsProduction }}{{ $c = . | minify | fingerprint }}{{ end }}
+<link rel="stylesheet" href="{{ $c.RelPermalink }}"{{ with $c.Data.Integrity }} integrity="{{ . }}"{{ end }}>
+{{- end }}
+{{- end }}
+
+{{/* Math (MathJax 3). Disable with params.math = false */}}
+{{- if ne site.Params.math false }}
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      macros: {
+        argmax: "\\DeclareMathOperator*{\\argmax}{argmax}",
+        argmin: "\\DeclareMathOperator*{\\argmin}{argmin}"
+      },
+      tags: 'ams'
+    }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+{{- end }}
+{{- partial "head-extra.html" . }}

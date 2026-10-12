@@ -1,0 +1,6 @@
+{{ define "main" }}
+<div class="wrap page">
+  <header class="page__header"><h1 class="page__title">{{ .Title | markdownify }}</h1></header>
+  {{ partial "projects-section.html" (dict "page" .) }}
+</div>
+{{ end }}

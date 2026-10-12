@@ -1,0 +1,16 @@
+{{/*
+  Returns the ordered list of sections shown on the home page, compatible with
+  the "Introduction" theme layout:
+    - every markdown file in content/<lang>/home/ (except index.md / contact.md)
+    - the /projects and /blog section pages (if they exist)
+  sorted by front matter `weight`.
+*/}}
+{{- $pages := slice -}}
+{{- with site.GetPage "/home" -}}
+  {{- range .Resources.ByType "page" -}}
+    {{- if and (ne .Name "contact.md") (ne .Params.hidden true) }}{{ $pages = $pages | append . }}{{ end -}}
+  {{- end -}}
+{{- end -}}
+{{- with site.GetPage "/projects" }}{{ if ne .Params.hidden true }}{{ $pages = $pages | append . }}{{ end }}{{ end -}}
+{{- with site.GetPage "/blog" }}{{ if and (ne .Params.hidden true) .RegularPagesRecursive }}{{ $pages = $pages | append . }}{{ end }}{{ end -}}
+{{- return (sort $pages "Params.weight") -}}

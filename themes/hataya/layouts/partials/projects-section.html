@@ -1,0 +1,12 @@
+{{- $page := .page }}
+{{- $all := $page.Pages.ByWeight }}
+{{- $limit := .limit | default (len $all) }}
+{{- with $page.Content }}<div class="prose">{{ . }}</div>{{ end }}
+{{- with first $limit $all }}
+<div class="cards">
+  {{- range . }}{{ partial "project-card.html" . }}{{ end }}
+</div>
+{{- end }}
+{{- if lt $limit (len $all) }}
+<p class="more"><a href="{{ $page.RelPermalink }}">{{ i18n "projects_all" }} →</a></p>
+{{- end }}
