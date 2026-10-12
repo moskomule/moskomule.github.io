@@ -1,6 +1,6 @@
 ---
 title: "Publications"
-image: "bird.png"
+image: "images/bird.png"
 weight: 30
 ---
 

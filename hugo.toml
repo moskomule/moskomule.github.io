@@ -9,10 +9,10 @@ hasCJKLanguage         = true          # count Japanese characters correctly (su
     # favicon          = "/favicon.ico"       # file under static/
     # cv               = "/cv.pdf"            # shows a "CV" button next to "Contact"
 
-    # Profile header. Images are looked up in content/<lang>/home/, then assets/, then static/.
+    # Profile header. Paths are relative to assets/ (site-wide images live in assets/images/).
     [params.profile]
-        avatar         = "profile.png"
-        cover          = "prague.png"
+        avatar         = "images/profile.png"
+        cover          = "images/prague.png"
         coverPosition  = "center 62%"         # CSS object-position of the cover photo
 
     # Publication list generated from publications.bib (see scripts/bib2json.py)

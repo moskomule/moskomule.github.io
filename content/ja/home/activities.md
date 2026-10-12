@@ -1,6 +1,6 @@
 ---
 title: "研究活動"
-image: "prague.png"
+image: "images/prague.png"
 weight: 60
 ---
 

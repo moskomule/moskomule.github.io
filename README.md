@@ -18,10 +18,10 @@ hugo server
 | What | File |
 | --- | --- |
 | Name, tagline, affiliations (per language) | `hugo.toml` → `[languages.*.params]` |
-| Profile picture / cover photo | `hugo.toml` → `[params.profile]` (`avatar`, `cover`) |
+| Profile picture / cover photo | `assets/images/`, chosen in `hugo.toml` → `[params.profile]` (`avatar`, `cover`) |
 | Short bio under the name | `content/<lang>/home/index.md` (body) |
 | Top-page sections (About, Publications, …) | `content/<lang>/home/*.md`, ordered by `weight` |
-| Photo band before a section | `image:` (or `band:`) in that section's front matter; `band: false` hides it |
+| Photo band before a section | `assets/images/`, chosen with `image: "images/xxx.jpg"` (or `band:`) in that section's front matter; `band: false` hides it |
 | Contact section | `content/<lang>/home/contact.md` |
 | Projects | `content/<lang>/projects/_index.md` + one bundle per project |
 | Blog posts | `content/<lang>/blog/<slug>/index.md` |
@@ -31,14 +31,14 @@ hugo server
 
 | Photo | Where to put it | Recommended size | Notes |
 | --- | --- | --- | --- |
-| Profile picture | `content/en/home/`, set `params.profile.avatar` | 600 × 600 px, square | Shown as a 168 px circle (104 px on phones); keep the face centered |
-| Cover photo | `content/en/home/`, set `params.profile.cover` | 2400 × 800 px (3 : 1) | Shown 1280 × 320 on PCs, about 390 × 150 on phones. Top and bottom are cropped; adjust with `coverPosition` (e.g. `"center 30%"`) |
-| Section photo band | `content/en/home/`, `image:` (or `band:`) in the section's front matter | 2400 × 600 px (4 : 1) | Shown up to 320 px tall across the full width; the left and right edges are cropped on phones |
+| Profile picture | `assets/images/`, set `params.profile.avatar` | 600 × 600 px, square | Shown as a 168 px circle (104 px on phones); keep the face centered |
+| Cover photo | `assets/images/`, set `params.profile.cover` | 2400 × 800 px (3 : 1) | Shown 1280 × 320 on PCs, about 390 × 150 on phones. Top and bottom are cropped; adjust with `coverPosition` (e.g. `"center 30%"`) |
+| Section photo band | `assets/images/`, `image: "images/xxx.jpg"` (or `band:`) in the section's front matter | 2400 × 600 px (4 : 1) | Shown up to 320 px tall across the full width; the left and right edges are cropped on phones |
 | Project thumbnail | next to the project's `index.md` | 1600 × 900 px (16 : 9) | Cropped to 16 : 9 from the center |
 
 - JPEG (quality ~85) or WebP; landscape photos rather than portrait.
 - Larger images are resized automatically (cover/bands to 2400 px wide), so camera originals are fine.
-- Files in `content/en/home/` are shared by the Japanese page; no need to copy them to `content/ja/home/`.
+- `assets/images/` is shared by both languages. Images used by one blog post or project go next to its `index.md` instead.
 - The bottom-left of the cover sits behind the profile picture, and the top-right behind the language switch.
 
 ## Add a publication

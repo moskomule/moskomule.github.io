@@ -1,6 +1,5 @@
 ---
 title: "プロフィール"
-image: "profile.png"
 weight: 8
 ---
 
