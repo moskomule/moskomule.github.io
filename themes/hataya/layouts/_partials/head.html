@@ -45,8 +45,17 @@
 {{- partialCached "stylesheet.html" (dict "path" .) . }}
 {{- end }}
 
-{{/* Math (MathJax 3). Disable with params.math = false */}}
-{{- if ne site.Params.math false }}
+{{/* Math (MathJax 4).
+     params.math: "auto" (default) loads it only where math is likely (home page — publication
+     titles — and pages whose source contains $, \( or \[); true = every page; false = never.
+     Front matter `math: true|false` overrides it per page. */}}
+{{- $math := site.Params.math | default "auto" }}
+{{- with .Params.math }}{{ $math = . }}{{ end }}
+{{- if eq .Params.math false }}{{ $math = false }}{{ end }}
+{{- if eq $math "auto" }}
+  {{- $math = or .IsHome (and .File (or (strings.Contains .RawContent "$") (strings.Contains .RawContent "\\(") (strings.Contains .RawContent "\\["))) }}
+{{- end }}
+{{- if $math }}
 <script>
   window.MathJax = {
     tex: {
@@ -60,6 +69,6 @@
     }
   };
 </script>
-<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<script id="MathJax-script" defer src="https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js"></script>
 {{- end }}
 {{- partial "head-extra.html" . }}

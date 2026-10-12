@@ -52,3 +52,9 @@ The home page shows up to `params.home.numberOfProjectsToShow` projects.
 ```sh
 hugo new content ja/blog/my-post/index.md
 ```
+
+## Math
+
+MathJax 4 is loaded only on pages that need it (`params.math = "auto"`: the top page and pages
+whose source contains `$`, `\(` or `\[`). Force it per page with `math: true` / `math: false`
+in front matter, or site-wide with `math = true` / `false` in `hugo.toml`.

@@ -6,7 +6,7 @@ hasCJKLanguage         = true          # count Japanese characters correctly (su
 [params]
     dateFormat         = "Jan 2, 2006"
     customCSS          = ["css/custom.css"]   # extra CSS files under assets/
-    math               = true                 # load MathJax
+    math               = "auto"               # MathJax: "auto" (only pages with math), true, or false
     # favicon          = "/favicon.ico"       # file under static/
     # email            = ""                   # shown in the contact section
     # cv               = "/cv.pdf"            # shows a "CV" button next to "Contact"

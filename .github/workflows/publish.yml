@@ -1,40 +1,48 @@
 name: publish
+
 on:
-    push:
-        branches:
-            - source
-    pull_request:
-        branches:
-            - source
+  push:
+    branches: [source]
+  pull_request:
+    branches: [source]
+  workflow_dispatch:
+
+permissions:
+  contents: write   # push the built site to the master branch
+
+concurrency:
+  group: publish-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  HUGO_VERSION: "0.167.0"
 
 jobs:
-    build:
-        runs-on: ubuntu-latest
-        if: "!contains(github.event.head_commit.message, 'skip run')"
+  build:
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, 'skip run')"
 
-        steps:
-            - uses: actions/checkout@v4
+    steps:
+      - uses: actions/checkout@v7
 
-            - uses: actions/setup-python@v5
-              with:
-                python-version: "3.12"
+      - name: Convert publications.bib
+        run: python3 scripts/bib2json.py   # standard library only; uses the runner's Python
 
-            - name: convert publications.bib
-              run: python3 scripts/bib2json.py
+      - uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: ${{ env.HUGO_VERSION }}
+          extended: true
 
-            - uses: peaceiris/actions-hugo@v3
-              with:
-                hugo-version: "0.167.0"
-                extended: true
+      - name: Build
+        env:
+          HUGO_ENVIRONMENT: production
+        run: hugo --minify
 
-            - name: build
-              run: hugo --minify
-
-            - name: push
-              if: github.event_name == 'push'
-              uses: peaceiris/actions-gh-pages@v4
-              with:
-                github_token: ${{ secrets.GITHUB_TOKEN }}
-                publish_dir: ./public
-                publish_branch: master
-                cname: hataya.tokyo
+      - name: Deploy
+        if: github.event_name != 'pull_request'
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+          publish_branch: master
+          cname: hataya.tokyo
