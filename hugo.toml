@@ -69,18 +69,18 @@ hasCJKLanguage         = true          # count Japanese characters correctly (su
             description  = "Ryuichiro Hataya's webpage"   # max 160 characters, shown in search results
             footerText   = "2019-2026, by Ryuichiro Hataya, Powered by [Hugo](https://gohugo.io)"
             authorName   = "Ryuichiro Hataya"
-            tagline      = "幡谷 龍一郎 · PhD (Information Science and Technology)"
-            affiliations = ["Senior Research Scientist, SB Intuitions", "Program-Specific Assistant Professor, Kyoto University", "Tokyo, Japan"]
+            tagline      = "Ryuichiro Hataya · PhD (Information Science and Technology, University of Tokyo)"
+            affiliations = ["Senior Research Scientist, SB Intuitions", "Program-Specific Assistant Professor, Kyoto University"]
 
     [languages.ja]
         label          = "日本語"
         locale         = "ja-JP"
         contentDir     = "content/ja"
         weight         = 2
-        title          = "..."
+        title          = "幡谷龍一郎のページ"
         [languages.ja.params]
-            description  = "..."
+            description  = "幡谷龍一郎のページ"
             footerText   = "2019-2026, by Ryuichiro Hataya, Powered by [Hugo](https://gohugo.io)"
             authorName   = "幡谷 龍一郎"
-            tagline      = "Ryuichiro Hataya · 博士（情報理工学）"
-            affiliations = ["SB Intuitions シニアリサーチサイエンティスト", "京都大学 特定助教", "東京"]
+            tagline      = "Ryuichiro Hataya · 博士（情報理工学・東京大学）"
+            affiliations = ["SB Intuitions シニアリサーチサイエンティスト", "京都大学 特定助教"]

@@ -1,6 +1,6 @@
 ---
 title: "Other Research Activities"
-image: "images/covers/prague.png"
+image: "images/camel.jpg"
 weight: 60
 ---
 
@@ -41,6 +41,7 @@ weight: 60
 
 <details>
 <summary>older information</summary>
+
 * Grant-in-Aid for Young Scientists, Japan Society for the Promotion of Science, ¥3.2M, 2025-2026.
 * ACT-X Acceleration phase, Japan Science and Technology Agency, ¥5.0M, 2024.
 * Grant-in-Aid for Research Activity Start-up, Japan Society for the Promotion of Science, ¥2.2M, 2023-2024.
@@ -57,6 +58,8 @@ weight: 60
 
 #### Others
 
+* Program Committee of [MLSS Okinawa 2027](https://oist.github.io/mlss2027okinawa/).
+* Program Committee of [IBIS 2026](https://ibisml.org/ibis2026/).
 * Organizer of [ECCV 2024 Workshop The Dark Side of Generative AIs and Beyond](https://sites.google.com/view/yaml2024).
 * Organizer of [YAML 2024](https://sites.google.com/view/yaml2024).
 * Program Committee of [MLSS Okinawa 2024](https://groups.oist.jp/mlss).

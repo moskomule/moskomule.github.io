@@ -1,6 +1,6 @@
 ---
 title: "研究活動"
-image: "images/covers/prague.png"
+image: "images/camel.jpg"
 weight: 60
 ---
 
@@ -59,6 +59,8 @@ weight: 60
 
 #### そのほか
 
+* Program Committee of [MLSS Okinawa 2027](https://oist.github.io/mlss2027okinawa/).
+* Program Committee of [IBIS 2026](https://ibisml.org/ibis2026/).
 * Organizer of [ECCV 2024 Workshop The Dark Side of Generative AIs and Beyond](https://sites.google.com/view/yaml2024).
 * Organizer of [YAML 2024](https://sites.google.com/view/yaml2024).
 * Program Committee of [MLSS Okinawa 2024](https://groups.oist.jp/mlss).
