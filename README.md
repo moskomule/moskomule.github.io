@@ -27,9 +27,23 @@ hugo server
 | Blog posts | `content/<lang>/blog/<slug>/index.md` |
 | Publications | `publications.bib` |
 
+## Photos
+
+| Photo | Where to put it | Recommended size | Notes |
+| --- | --- | --- | --- |
+| Profile picture | `content/en/home/`, set `params.profile.avatar` | 600 × 600 px, square | Shown as a 168 px circle (104 px on phones); keep the face centered |
+| Cover photo | `content/en/home/`, set `params.profile.cover` | 2400 × 800 px (3 : 1) | Shown 1280 × 320 on PCs, about 390 × 150 on phones. Top and bottom are cropped; adjust with `coverPosition` (e.g. `"center 30%"`) |
+| Section photo band | `content/en/home/`, `image:` (or `band:`) in the section's front matter | 2400 × 600 px (4 : 1) | Shown up to 320 px tall across the full width; the left and right edges are cropped on phones |
+| Project thumbnail | next to the project's `index.md` | 1600 × 900 px (16 : 9) | Cropped to 16 : 9 from the center |
+
+- JPEG (quality ~85) or WebP; landscape photos rather than portrait.
+- Larger images are resized automatically (cover/bands to 2400 px wide), so camera originals are fine.
+- Files in `content/en/home/` are shared by the Japanese page; no need to copy them to `content/ja/home/`.
+- The bottom-left of the cover sits behind the profile picture, and the top-right behind the language switch.
+
 ## Add a publication
 
-Edit `publications.bib`. Besides the usual BibTeX fields, the site reads:
+Edit `publications.bib` (entries are grouped by year, newest first; the page is sorted automatically, so the order in the file is only for readability). Besides the usual BibTeX fields, the site reads:
 
 - `abbr = {ICCV 2023}` — badge text
 - `keywords = {selected}` — show in the "Selected" tab
