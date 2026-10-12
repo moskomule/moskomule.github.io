@@ -1,7 +1,7 @@
 # hataya.tokyo
 
 Source of https://hataya.tokyo, built with [Hugo](https://gohugo.io) (≥ 0.158; CI uses 0.167.0) and the
-in-repo theme `themes/hataya`. Pushing to `source` builds the site with GitHub Actions and deploys it
+in-repo theme `themes/hataya_theme`. Pushing to `source` builds the site with GitHub Actions and deploys it
 to GitHub Pages (`.github/workflows/publish.yml`, following the Hugo docs). Pull requests are built but not deployed.
 
 Repository setting: **Settings → Pages → Source = GitHub Actions**, custom domain `hataya.tokyo`.
@@ -76,7 +76,7 @@ MathJax 4 is loaded only on pages that need it (`params.math = "auto"`: the top 
 whose source contains `$`, `\(` or `\[`). Force it per page with `math: true` / `math: false`
 in front matter, or site-wide with `math = true` / `false` in `hugo.toml`.
 
-## Theme files (`themes/hataya`)
+## Theme files (`themes/hataya_themes`)
 
 | File | Role |
 | --- | --- |
