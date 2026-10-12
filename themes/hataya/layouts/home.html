@@ -2,7 +2,17 @@
 {{- $profile := partialCached "funcs/profile.html" . site.Language.Name }}
 <header class="profile">
   <div class="cover">
-    {{- with $profile.cover }}<img src="{{ . }}" alt="" style="object-position: {{ site.Params.profile.coverPosition | default "center" }}">{{ end }}
+    {{- $style := printf "object-position: %s" (site.Params.profile.coverPosition | default "center") }}
+    {{- with $profile.covers }}
+      {{- if eq (len .) 1 }}
+    <img src="{{ index . 0 }}" alt="" style="{{ $style | safeCSS }}">
+      {{- else }}
+    {{/* Several covers: pick one at random when the page loads. */}}
+    <img data-covers="{{ jsonify . }}" alt="" style="{{ $style | safeCSS }}">
+    <script>{const i=document.currentScript.previousElementSibling,c=JSON.parse(i.dataset.covers);i.src=c[Math.floor(Math.random()*c.length)]}</script>
+    <noscript><img src="{{ index . 0 }}" alt="" style="{{ $style | safeCSS }}"></noscript>
+      {{- end }}
+    {{- end }}
     {{ partial "lang-switch.html" . }}
   </div>
   <div class="wrap">

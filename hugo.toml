@@ -12,7 +12,7 @@ hasCJKLanguage         = true          # count Japanese characters correctly (su
     # Profile header. Paths are relative to assets/ (site-wide images live in assets/images/).
     [params.profile]
         avatar         = "images/profile.png"
-        cover          = "images/prague.png"
+        cover          = "images/covers/"     # one image, or a folder ending in "/" (a random one on each page load)
         coverPosition  = "center 62%"         # CSS object-position of the cover photo
 
     # Publication list generated from publications.bib (see scripts/bib2json.py)

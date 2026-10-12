@@ -1,6 +1,6 @@
 ---
 title: "Other Research Activities"
-image: "images/prague.png"
+image: "images/covers/prague.png"
 weight: 60
 ---
 

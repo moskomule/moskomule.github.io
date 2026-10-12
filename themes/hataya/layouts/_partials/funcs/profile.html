@@ -1,10 +1,29 @@
-{{/* Avatar and cover image URLs. The avatar falls back to the `image` of home/about.md. */}}
+{{/*
+  Avatar and cover image URLs.
+  params.profile.cover is one image ("images/prague.png") or a folder ending in "/" ("images/covers/");
+  for a folder, every jpg/png/webp in it is a candidate and one is picked at random on each page load.
+  The avatar falls back to the `image` of home/about.md.
+*/}}
 {{- $home := site.GetPage "/home" }}
 {{- $avatar := site.Params.profile.avatar }}
 {{- if not $avatar }}{{ with $home }}{{ with .Resources.Get "about.md" }}{{ $avatar = .Params.image }}{{ end }}{{ end }}{{ end }}
+
+{{- $covers := slice }}
+{{- with site.Params.profile.cover }}
+  {{- if strings.HasSuffix . "/" }}
+    {{- range resources.Match (printf "%s*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}" .) }}
+      {{- $img := . }}
+      {{- if gt .Width 2400 }}{{ $img = .Process "resize 2400x" }}{{ end }}
+      {{- $covers = $covers | append $img.RelPermalink }}
+    {{- end }}
+  {{- else }}
+    {{- $covers = slice (partial "funcs/image.html" (dict "name" . "page" $home "width" 2400)) }}
+  {{- end }}
+{{- end }}
+
 {{- return dict
   "home" $home
   "avatarName" $avatar
   "avatar" (partial "funcs/image.html" (dict "name" $avatar "page" $home "width" 480))
-  "cover" (partial "funcs/image.html" (dict "name" site.Params.profile.cover "page" $home "width" 2400))
+  "covers" $covers
 }}

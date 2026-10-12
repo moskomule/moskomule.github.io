@@ -18,7 +18,7 @@ hugo server
 | What | File |
 | --- | --- |
 | Name, tagline, affiliations (per language) | `hugo.toml` → `[languages.*.params]` |
-| Profile picture / cover photo | `assets/images/`, chosen in `hugo.toml` → `[params.profile]` (`avatar`, `cover`) |
+| Profile picture / cover photos | `assets/images/profile.png`, `assets/images/covers/` (one is picked at random on each page load); see `hugo.toml` → `[params.profile]` |
 | Short bio under the name | `content/<lang>/home/index.md` (body) |
 | Top-page sections (About, Publications, …) | `content/<lang>/home/*.md`, ordered by `weight` |
 | Photo band before a section | `assets/images/`, chosen with `image: "images/xxx.jpg"` (or `band:`) in that section's front matter; `band: false` hides it |
@@ -32,7 +32,7 @@ hugo server
 | Photo | Where to put it | Recommended size | Notes |
 | --- | --- | --- | --- |
 | Profile picture | `assets/images/`, set `params.profile.avatar` | 600 × 600 px, square | Shown as a 168 px circle (104 px on phones); keep the face centered |
-| Cover photo | `assets/images/`, set `params.profile.cover` | 2400 × 800 px (3 : 1) | Shown 1280 × 320 on PCs, about 390 × 150 on phones. Top and bottom are cropped; adjust with `coverPosition` (e.g. `"center 30%"`) |
+| Cover photo | `assets/images/covers/` (all photos there rotate at random), or one file set in `params.profile.cover` | 2400 × 800 px (3 : 1) | Shown 1280 × 320 on PCs, about 390 × 150 on phones. Top and bottom are cropped; adjust with `coverPosition` (e.g. `"center 30%"`) |
 | Section photo band | `assets/images/`, `image: "images/xxx.jpg"` (or `band:`) in the section's front matter | 2400 × 600 px (4 : 1) | Shown up to 320 px tall across the full width; the left and right edges are cropped on phones |
 | Project thumbnail | next to the project's `index.md` | 1600 × 900 px (16 : 9) | Cropped to 16 : 9 from the center |
 
