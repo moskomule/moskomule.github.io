@@ -4,7 +4,7 @@
 <article class="card">
   {{- with .Resources.ByType "image" }}
   {{- $img := index (sort . "Params.weight") 0 }}
-  {{- if in (slice "jpeg" "png" "webp" "tiff" "bmp") $img.MediaType.SubType }}{{ $img = $img.Fill "800x450 Center" }}{{ end }}
+  {{- if reflect.IsImageResource $img }}{{ if ne $img.MediaType.SubType "gif" }}{{ $img = $img.Process "fill 800x450 center webp" }}{{ end }}{{ end }}
   <a class="card__thumb" href="{{ $href }}" tabindex="-1" aria-hidden="true"><img src="{{ $img.RelPermalink }}" alt="" loading="lazy"></a>
   {{- end }}
   <div class="card__body">

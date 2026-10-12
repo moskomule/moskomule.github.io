@@ -1,5 +1,4 @@
 <p class="page__meta">
   {{- if not .Date.IsZero }}<time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format (site.Params.dateFormat | default "2006-01-02") }}</time>{{ end }}
-  {{- if and .IsPage (ne site.Params.showReadingTime false) (eq .Section "blog") }}<span>{{ i18n "reading_time" .ReadingTime }}</span>{{ end }}
   {{- with .Params.tags }}<span>{{ range $i, $t := . }}{{ if $i }} {{ end }}<a href="{{ printf "/tags/%s/" ($t | urlize) | relLangURL }}">#{{ $t }}</a>{{ end }}</span>{{ end }}
 </p>

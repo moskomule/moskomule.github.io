@@ -3,7 +3,7 @@
   Params (dict):
     name   image file name / path (e.g. "prague.png")
     page   page whose bundle is searched first (usually the /home bundle)
-    width  optional max width; larger raster images are downscaled
+    width  optional max width; larger raster images are downscaled (JPEG/PNG are served as WebP)
   Lookup order: page bundle resources -> assets/ -> static path / absolute URL.
 */}}
 {{- $url := "" -}}
@@ -17,8 +17,8 @@
     {{- with .page }}{{ with .Resources.GetMatch $name }}{{ $img = . }}{{ end }}{{ end -}}
     {{- if not $img }}{{ with resources.Get $name }}{{ $img = . }}{{ end }}{{ end -}}
     {{- if $img -}}
-      {{- if and .width (eq $img.ResourceType "image") (in (slice "jpeg" "png" "webp" "tiff" "bmp") $img.MediaType.SubType) -}}
-        {{- if gt $img.Width .width }}{{ $img = $img.Resize (printf "%dx" .width) }}{{ end -}}
+      {{- if and (reflect.IsImageResource $img) (in (slice "jpeg" "png" "tiff" "bmp") $img.MediaType.SubType) -}}
+        {{- if and .width (gt $img.Width .width) }}{{ $img = $img.Process (printf "resize %dx webp" .width) }}{{ else }}{{ $img = $img.Process "webp" }}{{ end -}}
       {{- end -}}
       {{- $url = $img.RelPermalink -}}
     {{- else -}}

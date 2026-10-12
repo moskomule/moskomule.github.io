@@ -1,0 +1,9 @@
+{{/* Syntax highlighting CSS generated from markup.highlight.style.
+     Needs markup.highlight.noClasses = false; set params.highlightCSS = false to skip it. */}}
+{{- if ne site.Params.highlightCSS false }}
+  {{- with css.ChromaStyles (dict "targetPath" "css/highlight.css") }}
+    {{- with . | minify | fingerprint }}
+<link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+    {{- end }}
+  {{- end }}
+{{- end }}

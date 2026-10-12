@@ -6,7 +6,7 @@
   {{- $lang := .Language.Lang }}
   {{- $target := . }}
   {{- range $page.AllTranslations }}{{ if eq .Language.Lang $lang }}{{ $target = . }}{{ end }}{{ end }}
-  <a href="{{ $target.RelPermalink }}" hreflang="{{ $lang }}" lang="{{ $lang }}"{{ if eq $lang $page.Language.Lang }} class="is-active" aria-current="true"{{ end }}>{{ .Language.LanguageName }}</a>
+  <a href="{{ $target.RelPermalink }}" hreflang="{{ $lang }}" lang="{{ $lang }}"{{ if eq $lang $page.Language.Lang }} class="is-active" aria-current="true"{{ end }}>{{ .Language.Label }}</a>
   {{- end }}
 </nav>
 {{- end }}

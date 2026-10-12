@@ -12,7 +12,7 @@
     [params.publications] me = ["Ryuichiro Hataya", "R. Hataya"]
   (defaults to params.authorName).
 */}}
-{{- $pubs := site.Data.publications | default slice }}
+{{- $pubs := hugo.Data.publications | default slice }}
 {{- $me := site.Params.publications.me | default (slice site.Params.authorName) }}
 {{- $category := .Get "category" }}
 {{- $showTabs := ne (.Get "tabs") "false" }}

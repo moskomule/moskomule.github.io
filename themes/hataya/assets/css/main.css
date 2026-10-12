@@ -1,5 +1,8 @@
 /* hataya theme — social-profile style academic homepage */
 
+/* Values from [params.style] in the site config, e.g. accent = "#1d64d8" -> --accent */
+@import 'hugo:vars';
+
 :root {
   --bg: #ffffff;
   --ink: #0f1419;
@@ -7,8 +10,8 @@
   --muted: #536471;
   --line: #e6ecf0;
   --line-2: #cfd9de;
-  --accent: #1d64d8;
-  --accent-ink: #134aa3;
+  --accent: var(--style-accent, #1d64d8);
+  --accent-ink: var(--style-accent-ink, #134aa3);
   --tint: #edf3fd;
   --warm: #fdeee6;
   --warm-ink: #9a3412;
@@ -133,7 +136,7 @@ a:hover { color: var(--accent-ink); text-decoration: underline; text-underline-o
 .prose li::marker { color: var(--muted); }
 .prose blockquote { margin: 1.2em 0; padding: 0.2em 1em; border-left: 3px solid var(--line-2); color: var(--ink-2); }
 .prose code { font-family: var(--mono); font-size: 0.9em; background: var(--code-bg); border-radius: 4px; padding: 0.1em 0.35em; }
-.prose pre { background: var(--code-bg); border-radius: 10px; padding: 14px 16px; overflow-x: auto; font-size: 14px; line-height: 1.55; }
+.prose pre, .prose .chroma { background: var(--code-bg); border-radius: 10px; padding: 14px 16px; overflow-x: auto; font-size: 14px; line-height: 1.55; }
 .prose pre code { background: none; padding: 0; }
 .prose table { border-collapse: collapse; display: block; overflow-x: auto; }
 .prose th, .prose td { border: 1px solid var(--line); padding: 6px 10px; }

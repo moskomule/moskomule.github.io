@@ -7,7 +7,7 @@
   </header>
   {{- with .Resources.ByType "image" }}
   {{- $img := index (sort . "Params.weight") 0 }}
-  {{- if in (slice "jpeg" "png" "webp") $img.MediaType.SubType }}{{ if gt $img.Width 1600 }}{{ $img = $img.Resize "1600x" }}{{ end }}{{ end }}
+  {{- if reflect.IsImageResource $img }}{{ if ne $img.MediaType.SubType "gif" }}{{ $img = $img.Process (cond (gt $img.Width 1600) "resize 1600x webp" "webp") }}{{ end }}{{ end }}
   <figure class="page__hero"><img src="{{ $img.RelPermalink }}" alt=""></figure>
   {{- end }}
   <div class="prose">{{ .Content }}</div>

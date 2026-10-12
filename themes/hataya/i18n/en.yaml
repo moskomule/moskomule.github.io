@@ -5,9 +5,6 @@ projects_all: All projects
 blog_latest: Latest posts
 blog_all: All posts
 read_more: Read more
-reading_time:
-  one: "{{ .Count }} min read"
-  other: "{{ .Count }} min read"
 share: Share
 tags: Tags
 back_to_top: Back to top

@@ -37,15 +37,12 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Noto+Sans+JP:wght@400;500;700&display=swap">
 {{- end }}
 
-{{/* Styles: theme CSS, then any site-level customCSS (files under assets/) */}}
-{{- $css := resources.Get "css/main.css" }}
-{{- if hugo.IsProduction }}{{ $css = $css | minify | fingerprint }}{{ end }}
-<link rel="stylesheet" href="{{ $css.RelPermalink }}"{{ with $css.Data.Integrity }} integrity="{{ . }}"{{ end }}>
+{{/* Styles: theme CSS (css.Build, colors overridable via params.style -> hugo:vars),
+     syntax highlighting (css.ChromaStyles), then site-level customCSS files under assets/ */}}
+{{- partialCached "stylesheet.html" (dict "path" "css/main.css" "vars" (site.Params.style | default dict)) "css/main.css" }}
+{{- partialCached "highlight.html" . }}
 {{- range site.Params.customCSS }}
-{{- with resources.Get . }}
-{{- $c := . }}{{ if hugo.IsProduction }}{{ $c = . | minify | fingerprint }}{{ end }}
-<link rel="stylesheet" href="{{ $c.RelPermalink }}"{{ with $c.Data.Integrity }} integrity="{{ . }}"{{ end }}>
-{{- end }}
+{{- partialCached "stylesheet.html" (dict "path" .) . }}
 {{- end }}
 
 {{/* Math (MathJax 3). Disable with params.math = false */}}

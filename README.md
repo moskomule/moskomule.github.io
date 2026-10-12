@@ -1,6 +1,6 @@
 # hataya.tokyo
 
-Source of https://hataya.tokyo, built with [Hugo](https://gohugo.io) (≥ 0.128, CI uses 0.145.0) and the
+Source of https://hataya.tokyo, built with [Hugo](https://gohugo.io) (≥ 0.165; CI uses 0.167.0) and the
 in-repo theme `themes/hataya`. Pushing to `source` builds the site and publishes it to `master`.
 
 ## Local preview
@@ -14,8 +14,8 @@ hugo server
 
 | What | File |
 | --- | --- |
-| Name, tagline, affiliations (per language) | `config.toml` → `[languages.*.params]` |
-| Profile picture / cover photo | `config.toml` → `[params.profile]` (`avatar`, `cover`) |
+| Name, tagline, affiliations (per language) | `hugo.toml` → `[languages.*.params]` |
+| Profile picture / cover photo | `hugo.toml` → `[params.profile]` (`avatar`, `cover`) |
 | Short bio under the name | `content/<lang>/home/index.md` (body) |
 | Top-page sections (About, Publications, …) | `content/<lang>/home/*.md`, ordered by `weight` |
 | Photo band before a section | `image:` (or `band:`) in that section's front matter; `band: false` hides it |

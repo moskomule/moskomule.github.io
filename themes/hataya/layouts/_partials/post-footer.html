@@ -3,7 +3,7 @@
 <div class="share">
   <span>{{ i18n "share" }}:</span>
   {{- $text := printf "%s %s" (.Title | plainify) .Permalink | urlquery }}
-  {{- if site.Params.share.twitter }}<a href="https://twitter.com/intent/tweet?text={{ $text }}" target="_blank" rel="noopener">X</a>{{ end }}
+  {{- if site.Params.share.twitter }}<a href="https://x.com/intent/post?text={{ $text }}" target="_blank" rel="noopener">X</a>{{ end }}
   {{- if site.Params.share.bluesky }}<a href="https://bsky.app/intent/compose?text={{ $text }}" target="_blank" rel="noopener">Bluesky</a>{{ end }}
   {{- if site.Params.share.facebook }}<a href="https://www.facebook.com/sharer/sharer.php?u={{ .Permalink | urlquery }}" target="_blank" rel="noopener">Facebook</a>{{ end }}
 </div>
