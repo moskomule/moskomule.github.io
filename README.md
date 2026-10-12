@@ -76,7 +76,7 @@ MathJax 4 is loaded only on pages that need it (`params.math = "auto"`: the top 
 whose source contains `$`, `\(` or `\[`). Force it per page with `math: true` / `math: false`
 in front matter, or site-wide with `math = true` / `false` in `hugo.toml`.
 
-## Theme files (`themes/hataya_themes`)
+## Theme files (`themes/hataya_theme`)
 
 | File | Role |
 | --- | --- |
