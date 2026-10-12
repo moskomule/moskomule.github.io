@@ -74,6 +74,10 @@ hasCJKLanguage         = true          # count Japanese characters correctly (su
 [taxonomies]
   tag = "tags"
 
+# Keep processed images in Hugo's cache dir (restored between CI runs) instead of resources/_gen
+[caches.images]
+  dir = ":cacheDir/images"
+
 [languages]
     [languages.en]
         label          = "English"

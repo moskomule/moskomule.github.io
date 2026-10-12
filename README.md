@@ -1,7 +1,10 @@
 # hataya.tokyo
 
 Source of https://hataya.tokyo, built with [Hugo](https://gohugo.io) (≥ 0.165; CI uses 0.167.0) and the
-in-repo theme `themes/hataya`. Pushing to `source` builds the site and publishes it to `master`.
+in-repo theme `themes/hataya`. Pushing to `source` builds the site with GitHub Actions and deploys it
+to GitHub Pages (`.github/workflows/publish.yml`, following the Hugo docs). Pull requests are built but not deployed.
+
+Repository setting: **Settings → Pages → Source = GitHub Actions**, custom domain `hataya.tokyo`.
 
 ## Local preview
 
