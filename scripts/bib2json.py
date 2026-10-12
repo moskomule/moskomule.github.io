@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Convert a BibTeX file into the JSON consumed by the Hugo theme.
 
 Usage:
@@ -18,21 +17,49 @@ import sys
 from pathlib import Path
 
 MONTHS = {
-    "jan": 1, "feb": 2, "mar": 3, "apr": 4, "may": 5, "jun": 6,
-    "jul": 7, "aug": 8, "sep": 9, "oct": 10, "nov": 11, "dec": 12,
+    "jan": 1,
+    "feb": 2,
+    "mar": 3,
+    "apr": 4,
+    "may": 5,
+    "jun": 6,
+    "jul": 7,
+    "aug": 8,
+    "sep": 9,
+    "oct": 10,
+    "nov": 11,
+    "dec": 12,
 }
 
 # Fields used only by the website. They are removed from the BibTeX snippet.
 SITE_FIELDS = {
-    "category", "abbr", "keywords", "equal", "note", "arxiv", "openreview",
-    "code", "slides", "pdf", "project", "video", "poster",
+    "category",
+    "abbr",
+    "keywords",
+    "equal",
+    "note",
+    "arxiv",
+    "openreview",
+    "code",
+    "slides",
+    "pdf",
+    "project",
+    "video",
+    "poster",
 }
 
 # Order of links shown under each paper.
 LINK_FIELDS = [
-    ("url", "paper"), ("doi", "doi"), ("pdf", "pdf"), ("arxiv", "arxiv"),
-    ("openreview", "openreview"), ("code", "code"), ("slides", "slides"),
-    ("poster", "poster"), ("video", "video"), ("project", "project"),
+    ("url", "paper"),
+    ("doi", "doi"),
+    ("pdf", "pdf"),
+    ("arxiv", "arxiv"),
+    ("openreview", "openreview"),
+    ("code", "code"),
+    ("slides", "slides"),
+    ("poster", "poster"),
+    ("video", "video"),
+    ("project", "project"),
 ]
 
 DEFAULT_CATEGORY = {
@@ -47,8 +74,7 @@ DEFAULT_CATEGORY = {
 
 LATEX_ACCENTS = {
     '"': {"a": "ä", "o": "ö", "u": "ü", "e": "ë", "i": "ï", "A": "Ä", "O": "Ö", "U": "Ü"},
-    "'": {"a": "á", "e": "é", "i": "í", "o": "ó", "u": "ú", "c": "ć", "n": "ń", "s": "ś", "z": "ź",
-          "E": "É", "A": "Á"},
+    "'": {"a": "á", "e": "é", "i": "í", "o": "ó", "u": "ú", "c": "ć", "n": "ń", "s": "ś", "z": "ź", "E": "É", "A": "Á"},
     "`": {"a": "à", "e": "è", "i": "ì", "o": "ò", "u": "ù"},
     "^": {"a": "â", "e": "ê", "i": "î", "o": "ô", "u": "û"},
     "~": {"n": "ñ", "a": "ã", "o": "õ"},
@@ -58,8 +84,19 @@ LATEX_ACCENTS = {
 }
 
 LATEX_SYMBOLS = {
-    "i": "i", "j": "j", "ss": "ß", "aa": "å", "AA": "Å", "ae": "æ", "AE": "Æ",
-    "oe": "œ", "OE": "Œ", "o": "ø", "O": "Ø", "l": "ł", "L": "Ł",
+    "i": "i",
+    "j": "j",
+    "ss": "ß",
+    "aa": "å",
+    "AA": "Å",
+    "ae": "æ",
+    "AE": "Æ",
+    "oe": "œ",
+    "OE": "Œ",
+    "o": "ø",
+    "O": "Ø",
+    "l": "ł",
+    "L": "Ł",
 }
 
 
@@ -89,7 +126,7 @@ def _read_braced(s: str, i: int) -> tuple[str, int]:
         elif c == close_ch or (open_ch == "(" and c == "}"):
             depth -= 1
             if depth == 0:
-                return s[i + 1:j], j + 1
+                return s[i + 1 : j], j + 1
         j += 1
     raise BibParseError(f"unbalanced braces starting at offset {i}")
 
@@ -107,7 +144,7 @@ def _read_quoted(s: str, i: int) -> tuple[str, int]:
         elif c == "}":
             depth -= 1
         elif c == '"' and depth == 0:
-            return s[i + 1:j], j + 1
+            return s[i + 1 : j], j + 1
         j += 1
     raise BibParseError(f"unterminated string at offset {i}")
 
@@ -126,7 +163,7 @@ def _parse_fields(body: str) -> tuple[str, dict[str, str], list[tuple[str, str]]
             continue
         m = re.match(r"([A-Za-z][\w\-:.]*)\s*=\s*", rest[i:])
         if not m:
-            raise BibParseError(f"cannot parse field near: {rest[i:i + 40]!r}")
+            raise BibParseError(f"cannot parse field near: {rest[i : i + 40]!r}")
         name = m.group(1).lower()
         i += m.end()
         parts = []
@@ -198,7 +235,9 @@ def latex_to_text(s: str) -> str:
             return LATEX_ACCENTS.get(cmd, {}).get(ch, ch)
 
         chunk = re.sub(r"\\(?:emph|text(?:it|bf|rm|tt|sc|sf|up))\s*\{([^{}]*)\}", r"\1", chunk)
-        chunk = re.sub(r"\\(i|j|ss|aa|AA|ae|AE|oe|OE|o|O|l|L)(?![A-Za-z])\s*", lambda m: LATEX_SYMBOLS[m.group(1)], chunk)
+        chunk = re.sub(
+            r"\\(i|j|ss|aa|AA|ae|AE|oe|OE|o|O|l|L)(?![A-Za-z])\s*", lambda m: LATEX_SYMBOLS[m.group(1)], chunk
+        )
         chunk = re.sub(r"\{?\\([\"'`^~]|[ckv](?![A-Za-z]))\s*\{?([A-Za-z]?)\}?\}?", accent, chunk)
         chunk = re.sub(r"\\(ldots|dots|cdot)(?![A-Za-z])", lambda m: "…" if "dots" in m.group(1) else "·", chunk)
         chunk = chunk.replace("\\&", "&").replace("\\%", "%").replace("\\_", "_")
@@ -245,8 +284,8 @@ def split_authors(s: str) -> list[str]:
             depth += 1
         elif c == "}":
             depth -= 1
-        if depth == 0 and re.match(r"\s+and\s+", s[i:], flags=re.I) and (i == 0 or s[i].isspace()):
-            m = re.match(r"\s+and\s+", s[i:], flags=re.I)
+        if depth == 0 and re.match(r"\s+and\s+", s[i:], flags=re.IGNORECASE) and (i == 0 or s[i].isspace()):
+            m = re.match(r"\s+and\s+", s[i:], flags=re.IGNORECASE)
             out.append("".join(cur))
             cur = []
             i += m.end()
@@ -324,6 +363,7 @@ def main(argv: list[str]) -> int:
     src = Path(argv[1]) if len(argv) > 1 else root / "publications.bib"
     dst = Path(argv[2]) if len(argv) > 2 else root / "data" / "publications.json"
     entries = [entry_to_json(e) for e in parse_bibtex(src.read_text(encoding="utf-8"))]
+
     # newest first; keep file order within the same year/month
     def year(p: dict) -> int:  # "2024", "2024a", "to appear" -> 2024, 2024, 0
         m = re.search(r"\d{4}", p["year"])
@@ -332,6 +372,7 @@ def main(argv: list[str]) -> int:
     entries.sort(key=lambda p: (-year(p), -p["month"], p["_pos"]))
     for p in entries:
         del p["_pos"]
+    dst.parent.mkdir(parents=True, exist_ok=True)
     dst.write_text(json.dumps(entries, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
     print(f"wrote {len(entries)} entries to {dst}")
     return 0
